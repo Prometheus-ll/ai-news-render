@@ -23,8 +23,10 @@ jobs:
           pip install -r render/requirements.txt
 
       - name: Write manifest
-        run: echo '${{ toJson(github.event.client_payload) }}' > manifest.json
-
+        env:
+          PAYLOAD: ${{ toJson(github.event.client_payload) }}
+        run: python -c "import os, json; json.dump(json.loads(os.environ['PAYLOAD']), open('manifest.json', 'w'))"
+    
       - name: Render video
         run: |
           python render/render_video.py \
