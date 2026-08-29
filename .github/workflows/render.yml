@@ -26,9 +26,10 @@ jobs:
         env:
           PAYLOAD: ${{ toJson(github.event.client_payload) }}
         run: python -c "import os, json; json.dump(json.loads(os.environ['PAYLOAD']), open('manifest.json', 'w'))"
-    
+
       - name: Render video
         run: |
+          mkdir -p renders/output
           python render/render_video.py \
             --manifest manifest.json \
             --audio "${{ github.event.client_payload.audio_path }}" \
