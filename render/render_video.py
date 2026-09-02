@@ -75,8 +75,15 @@ def get_audio_duration(audio_path):
     return float(r.stdout.strip())
 
 def make_segment(frame_path, duration, out_path):
-    fade = min(0.4, duration / 4)
-    vf = f"fade=t=in:st=0:d={fade},fade=t=out:st={max(duration-fade,0)}:d={fade}"
+    fade = min(0.15, duration / 6)
+    fps = 30
+    total_frames = max(int(duration * fps), 1)
+    zoom_expr = f"1+0.06*min(1,on/{total_frames})"
+    vf = (
+        f"scale=2160:3840,"
+        f"zoompan=z='{zoom_expr}':d={total_frames}:s=1080x1920:fps={fps},"
+        f"fade=t=in:st=0:d={fade},fade=t=out:st={max(duration-fade,0)}:d={fade}"
+    )
     subprocess.run(['ffmpeg', '-y', '-loop', '1', '-i', frame_path, '-t', str(duration),
                      '-vf', vf, '-pix_fmt', 'yuv420p', out_path], check=True)
 
