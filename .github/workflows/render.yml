@@ -7,6 +7,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: render-video-render
+  cancel-in-progress: false
+  
 jobs:
   render:
     runs-on: ubuntu-latest
