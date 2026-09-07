@@ -98,7 +98,7 @@ Write:
 2. On-screen captions: split the narration into short caption lines for burned-in subtitles. Each line must be a few words (max ~7 words) taken verbatim from the narration, in order, covering the ENTIRE script with no words skipped.
 
 Respond with ONLY this JSON:
-{{"script": "the full narration text", "captions": ["caption line 1", "caption line 2"]}}"""
+{"script": "the full narration text", "captions": ["caption line 1", "caption line 2"], "logo_slugs": ["1-2 lowercase simple-icons.org style slugs for the companies/products central to this story, e.g. openai, nvidia, googlegemini, anthropic — omit if genuinely unclear"]}
     data = gemini_text(prompt)
 
     captions = data.get("captions", [])
