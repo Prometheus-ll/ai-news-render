@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
-import argparse, json, re, subprocess, os
-from PIL import Image, ImageDraw, ImageFont
+import argparse, json, re, subprocess, os, io
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
+import requests
+try:
+    import cairosvg
+    CAIROSVG_OK = True
+except Exception:
+    CAIROSVG_OK = False
 
 WIDTH, HEIGHT = 1080, 1920
 BG_COLOR = (245, 245, 243)
@@ -13,6 +19,29 @@ FONT_REGULAR = "render/fonts/Poppins-Regular.ttf"
 FONT_SIZE = 68
 ENTRANCE_FRAMES = 6
 FPS = 30
+
+def fetch_logo(slug, size=180):
+    if not CAIROSVG_OK:
+        return None
+    try:
+        r = requests.get(f"https://cdn.simpleicons.org/{slug}", timeout=6)
+        if r.status_code != 200:
+            return None
+        png_bytes = cairosvg.svg2png(bytestring=r.content, output_width=size, output_height=size)
+        logo = Image.open(io.BytesIO(png_bytes)).convert("RGBA")
+        card = Image.new("RGBA", (size + 40, size + 40), (0, 0, 0, 0))
+        shadow = Image.new("RGBA", (size + 40, size + 40), (0, 0, 0, 0))
+        sdraw = ImageDraw.Draw(shadow)
+        sdraw.rounded_rectangle([20, 24, size + 20, size + 24], radius=28, fill=(0, 0, 0, 60))
+        shadow = shadow.filter(ImageFilter.GaussianBlur(12))
+        card.alpha_composite(shadow)
+        cdraw = ImageDraw.Draw(card)
+        cdraw.rounded_rectangle([20, 20, size + 20, size + 20], radius=28, fill=(255, 255, 255, 255))
+        card.alpha_composite(logo, (20 + (size - logo.width) // 2, 20 + (size - logo.height) // 2))
+        return card
+    except Exception as e:
+        print(f"Logo fetch skipped ({slug}): {e}")
+        return None
 
 def draw_dot_grid(draw):
     for x in range(0, WIDTH, 54):
@@ -32,10 +61,20 @@ def wrap_words(draw, words, font, max_width):
     if current: lines.append(current)
     return lines
 
-def render_caption_frame(caption_text, watermark_text, scale, opacity, out_path):
+def render_caption_frame(caption_text, watermark_text, scale, opacity, out_path, logo_img=None):
     img = Image.new('RGBA', (WIDTH, HEIGHT), BG_COLOR + (255,))
     draw = ImageDraw.Draw(img)
     draw_dot_grid(draw)
+
+    if logo_img is not None:
+        logo_layer = Image.new('RGBA', (WIDTH, HEIGHT), (0, 0, 0, 0))
+        resized = logo_img.resize((int(logo_img.width * scale), int(logo_img.height * scale)))
+        lx = (WIDTH - resized.width) // 2
+        ly = int(HEIGHT * 0.32 - resized.height / 2)
+        logo_layer.paste(resized, (lx, ly), resized)
+        logo_alpha = logo_layer.split()[3].point(lambda p: int(p * opacity))
+        logo_layer.putalpha(logo_alpha)
+        img = Image.alpha_composite(img, logo_layer)
 
     font_bold = ImageFont.truetype(FONT_BOLD, int(FONT_SIZE * scale))
     words = [w for w in caption_text.split(' ') if w]
@@ -43,7 +82,7 @@ def render_caption_frame(caption_text, watermark_text, scale, opacity, out_path)
 
     line_h = int(FONT_SIZE * scale * 1.4)
     total_h = line_h * len(lines)
-    y = (HEIGHT - total_h) / 2
+    y = (HEIGHT - total_h) / 2 + (100 if logo_img is not None else 0)
 
     text_layer = Image.new('RGBA', (WIDTH, HEIGHT), (0, 0, 0, 0))
     tdraw = ImageDraw.Draw(text_layer)
@@ -83,15 +122,15 @@ def get_audio_duration(audio_path):
                         capture_output=True, text=True, check=True)
     return float(r.stdout.strip())
 
-def make_caption_segment(caption, channel_name, duration, seg_start, total_duration, work_dir, idx, out_path):
+def make_caption_segment(caption, channel_name, duration, seg_start, total_duration, work_dir, idx, out_path, logo_img=None):
     entrance_dir = f"{work_dir}/entrance_{idx}"
     os.makedirs(entrance_dir, exist_ok=True)
     for i in range(ENTRANCE_FRAMES):
         t = i / (ENTRANCE_FRAMES - 1)
         ease = 1 - (1 - t) ** 3
-        render_caption_frame(caption, channel_name, 0.88 + 0.12 * ease, ease, f"{entrance_dir}/f_{i:02d}.png")
+        render_caption_frame(caption, channel_name, 0.88 + 0.12 * ease, ease, f"{entrance_dir}/f_{i:02d}.png", logo_img=logo_img)
     held_path = f"{entrance_dir}/held.png"
-    render_caption_frame(caption, channel_name, 1.0, 1.0, held_path)
+    render_caption_frame(caption, channel_name, 1.0, 1.0, held_path, logo_img=logo_img)
 
     entrance_dur = ENTRANCE_FRAMES / FPS
     held_dur = max(duration - entrance_dur, 0.1)
@@ -127,6 +166,10 @@ def main():
     captions = manifest['captions']
     channel_name = manifest.get('channel_name', 'AI Quantum').upper()
 
+    logo_slugs = manifest.get("logo_slugs", [])
+    logo_imgs = [img for img in (fetch_logo(s) for s in logo_slugs) if img is not None]
+    combined_logo = logo_imgs[0] if logo_imgs else None
+
     total_duration = get_audio_duration(args.audio)
     seg_duration = total_duration / len(captions)
 
@@ -136,7 +179,8 @@ def main():
     elapsed = 0.0
     for i, cap in enumerate(captions):
         seg_path = f'{work_dir}/seg_{i}.mp4'
-        make_caption_segment(cap, channel_name, seg_duration, elapsed, total_duration, work_dir, i, seg_path)
+        make_caption_segment(cap, channel_name, seg_duration, elapsed, total_duration, work_dir, i, seg_path,
+                              logo_img=(combined_logo if i == 0 else None))
         seg_paths.append(seg_path)
         elapsed += seg_duration
 
