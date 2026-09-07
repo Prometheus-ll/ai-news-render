@@ -4,69 +4,78 @@ from PIL import Image, ImageDraw, ImageFont
 
 WIDTH, HEIGHT = 1080, 1920
 BG_COLOR = (245, 245, 243)
-TEXT_COLOR = (30, 30, 30)
-WATERMARK_COLOR = (150, 150, 150)
-DOT_COLOR = (225, 225, 222)
-FONT_REGULAR = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
-FONT_BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
-FONT_SIZE = 64
-WATERMARK_SIZE = 32
+TEXT_COLOR = (25, 25, 25)
+DOT_COLOR = (222, 222, 218)
+ACCENT_COLOR = (255, 107, 74)
+WATERMARK_COLOR = (140, 140, 140)
+FONT_BOLD = "render/fonts/Poppins-Bold.ttf"
+FONT_REGULAR = "render/fonts/Poppins-Regular.ttf"
+FONT_SIZE = 68
+ENTRANCE_FRAMES = 6
+FPS = 30
 
 def draw_dot_grid(draw):
-    for x in range(0, WIDTH, 60):
-        for y in range(0, HEIGHT, 60):
+    for x in range(0, WIDTH, 54):
+        for y in range(0, HEIGHT, 54):
             draw.ellipse([x-2, y-2, x+2, y+2], fill=DOT_COLOR)
 
-def parse_bold_segments(text):
-    tokens = []
-    for part in re.split(r'(\*\*.*?\*\*)', text):
-        if not part:
-            continue
-        bold = part.startswith('**') and part.endswith('**')
-        word_text = part[2:-2] if bold else part
-        for w in word_text.split(' '):
-            if w:
-                tokens.append((w, bold))
-    return tokens
-
-def wrap_and_draw_caption(draw, text, font_regular, font_bold, max_width, center_y):
-    tokens = parse_bold_segments(text)
-    space_w = draw.textlength(' ', font=font_regular)
+def wrap_words(draw, words, font, max_width):
+    space_w = draw.textlength(' ', font=font)
     lines, current, current_w = [], [], 0
-    for word, bold in tokens:
-        f = font_bold if bold else font_regular
-        w = draw.textlength(word, font=f)
-        add_w = w if not current else w + space_w
-        if current_w + add_w > max_width and current:
-            lines.append(current)
-            current, current_w = [(word, bold, w)], w
+    for w in words:
+        wlen = draw.textlength(w, font=font)
+        add = wlen if not current else wlen + space_w
+        if current_w + add > max_width and current:
+            lines.append(current); current, current_w = [w], wlen
         else:
-            current.append((word, bold, w))
-            current_w += add_w
-    if current:
-        lines.append(current)
-    line_h = FONT_SIZE * 1.35
-    y = center_y - (line_h * len(lines)) / 2
-    for line in lines:
-        line_w = sum(w for _, _, w in line) + space_w * (len(line) - 1)
-        x = (WIDTH - line_w) / 2
-        for word, bold, w in line:
-            f = font_bold if bold else font_regular
-            draw.text((x, y), word, font=f, fill=TEXT_COLOR)
-            x += w + space_w
-        y += line_h
+            current.append(w); current_w += add
+    if current: lines.append(current)
+    return lines
 
-def render_frame(caption_text, watermark_text, out_path):
-    img = Image.new('RGB', (WIDTH, HEIGHT), BG_COLOR)
+def render_caption_frame(caption_text, watermark_text, scale, opacity, out_path):
+    img = Image.new('RGBA', (WIDTH, HEIGHT), BG_COLOR + (255,))
     draw = ImageDraw.Draw(img)
     draw_dot_grid(draw)
-    font_regular = ImageFont.truetype(FONT_REGULAR, FONT_SIZE)
-    font_bold = ImageFont.truetype(FONT_BOLD, FONT_SIZE)
-    wrap_and_draw_caption(draw, caption_text, font_regular, font_bold, WIDTH - 160, HEIGHT / 2)
-    wm_font = ImageFont.truetype(FONT_REGULAR, WATERMARK_SIZE)
-    wm_w = draw.textlength(watermark_text, font=wm_font)
-    draw.text(((WIDTH - wm_w) / 2, HEIGHT - 100), watermark_text, font=wm_font, fill=WATERMARK_COLOR)
-    img.save(out_path)
+
+    font_bold = ImageFont.truetype(FONT_BOLD, int(FONT_SIZE * scale))
+    words = [w for w in caption_text.split(' ') if w]
+    lines = wrap_words(draw, words, font_bold, WIDTH - 180)
+
+    line_h = int(FONT_SIZE * scale * 1.4)
+    total_h = line_h * len(lines)
+    y = (HEIGHT - total_h) / 2
+
+    text_layer = Image.new('RGBA', (WIDTH, HEIGHT), (0, 0, 0, 0))
+    tdraw = ImageDraw.Draw(text_layer)
+
+    word_counter = 0
+    for line in lines:
+        line_w = sum(tdraw.textlength(w, font=font_bold) for w in line) + tdraw.textlength(' ', font=font_bold) * (len(line) - 1)
+        x = (WIDTH - line_w) / 2
+        for w in line:
+            ww = tdraw.textlength(w, font=font_bold)
+            if word_counter == 0:
+                pad = 14
+                asc, desc = font_bold.getmetrics()
+                box = [x - pad, y - pad * 0.4, x + ww + pad, y + asc + desc * 0.6 + pad * 0.4]
+                tdraw.rounded_rectangle(box, radius=16, fill=ACCENT_COLOR + (255,))
+                tdraw.text((x, y), w, font=font_bold, fill=(255, 255, 255, 255))
+            else:
+                tdraw.text((x, y), w, font=font_bold, fill=TEXT_COLOR + (255,))
+            x += ww + tdraw.textlength(' ', font=font_bold)
+            word_counter += 1
+        y += line_h
+
+    alpha = text_layer.split()[3].point(lambda p: int(p * opacity))
+    text_layer.putalpha(alpha)
+    img = Image.alpha_composite(img, text_layer)
+
+    wm_font = ImageFont.truetype(FONT_REGULAR, 30)
+    wdraw = ImageDraw.Draw(img)
+    wm_w = wdraw.textlength(watermark_text, font=wm_font)
+    wdraw.text(((WIDTH - wm_w) / 2, HEIGHT - 100), watermark_text, font=wm_font, fill=WATERMARK_COLOR)
+
+    img.convert('RGB').save(out_path)
 
 def get_audio_duration(audio_path):
     r = subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration',
@@ -74,18 +83,38 @@ def get_audio_duration(audio_path):
                         capture_output=True, text=True, check=True)
     return float(r.stdout.strip())
 
-def make_segment(frame_path, duration, out_path):
-    fade = min(0.15, duration / 6)
-    fps = 30
-    total_frames = max(int(duration * fps), 1)
-    zoom_expr = f"1+0.06*min(1,on/{total_frames})"
-    vf = (
-        f"scale=2160:3840,"
-        f"zoompan=z='{zoom_expr}':d={total_frames}:s=1080x1920:fps={fps},"
-        f"fade=t=in:st=0:d={fade},fade=t=out:st={max(duration-fade,0)}:d={fade}"
-    )
-    subprocess.run(['ffmpeg', '-y', '-loop', '1', '-i', frame_path, '-t', str(duration),
-                     '-vf', vf, '-pix_fmt', 'yuv420p', out_path], check=True)
+def make_caption_segment(caption, channel_name, duration, seg_start, total_duration, work_dir, idx, out_path):
+    entrance_dir = f"{work_dir}/entrance_{idx}"
+    os.makedirs(entrance_dir, exist_ok=True)
+    for i in range(ENTRANCE_FRAMES):
+        t = i / (ENTRANCE_FRAMES - 1)
+        ease = 1 - (1 - t) ** 3
+        render_caption_frame(caption, channel_name, 0.88 + 0.12 * ease, ease, f"{entrance_dir}/f_{i:02d}.png")
+    held_path = f"{entrance_dir}/held.png"
+    render_caption_frame(caption, channel_name, 1.0, 1.0, held_path)
+
+    entrance_dur = ENTRANCE_FRAMES / FPS
+    held_dur = max(duration - entrance_dur, 0.1)
+
+    entrance_clip = f"{entrance_dir}/entrance.mp4"
+    subprocess.run(['ffmpeg', '-y', '-framerate', str(FPS), '-i', f'{entrance_dir}/f_%02d.png',
+                     '-frames:v', str(ENTRANCE_FRAMES), '-pix_fmt', 'yuv420p', entrance_clip], check=True)
+
+    held_clip = f"{entrance_dir}/held.mp4"
+    total_frames = max(int(held_dur * FPS), 1)
+    zoom_expr = f"1+0.05*min(1,on/{total_frames})"
+    bar_w = f"{WIDTH}*({seg_start}+{entrance_dur}+t)/{total_duration}"
+    vf = (f"scale=2160:3840,zoompan=z='{zoom_expr}':d={total_frames}:s={WIDTH}x{HEIGHT}:fps={FPS},"
+          f"drawbox=x=0:y={HEIGHT-20}:w='{bar_w}':h=8:color=0xFF6B4A@1:t=fill")
+    subprocess.run(['ffmpeg', '-y', '-loop', '1', '-i', held_path, '-t', str(held_dur),
+                     '-vf', vf, '-pix_fmt', 'yuv420p', held_clip], check=True)
+
+    concat_list = f"{entrance_dir}/concat.txt"
+    with open(concat_list, 'w') as f:
+        f.write(f"file '{os.path.abspath(entrance_clip)}'\n")
+        f.write(f"file '{os.path.abspath(held_clip)}'\n")
+    subprocess.run(['ffmpeg', '-y', '-f', 'concat', '-safe', '0', '-i', concat_list,
+                     '-c', 'copy', out_path], check=True)
 
 def main():
     p = argparse.ArgumentParser()
@@ -96,7 +125,7 @@ def main():
 
     manifest = json.load(open(args.manifest))
     captions = manifest['captions']
-    channel_name = manifest.get('channel_name', 'AI Quantum')
+    channel_name = manifest.get('channel_name', 'AI Quantum').upper()
 
     total_duration = get_audio_duration(args.audio)
     seg_duration = total_duration / len(captions)
@@ -104,14 +133,14 @@ def main():
     work_dir = 'render_tmp'
     os.makedirs(work_dir, exist_ok=True)
     seg_paths = []
+    elapsed = 0.0
     for i, cap in enumerate(captions):
-        frame_path = f'{work_dir}/frame_{i}.png'
         seg_path = f'{work_dir}/seg_{i}.mp4'
-        render_frame(cap, channel_name, frame_path)
-        make_segment(frame_path, seg_duration, seg_path)
+        make_caption_segment(cap, channel_name, seg_duration, elapsed, total_duration, work_dir, i, seg_path)
         seg_paths.append(seg_path)
+        elapsed += seg_duration
 
-    concat_list = f'{work_dir}/concat.txt'
+    concat_list = f'{work_dir}/concat_final.txt'
     with open(concat_list, 'w') as f:
         for sp in seg_paths:
             f.write(f"file '{os.path.abspath(sp)}'\n")
