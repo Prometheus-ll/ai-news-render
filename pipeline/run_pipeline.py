@@ -96,9 +96,10 @@ Why it matters: {story['why_it_matters']}
 Write:
 1. A spoken narration script, roughly 120-150 words. Open with a strong hook. Explain what happened in simple, energetic language. Close with why it matters and a short call-to-action to follow for daily AI updates. Write ONLY the words to be spoken.
 2. On-screen captions: split the narration into short caption lines for burned-in subtitles. Each line must be a few words (max ~7 words) taken verbatim from the narration, in order, covering the ENTIRE script with no words skipped.
+3. logo_slugs: 1-2 lowercase simple-icons.org style slugs for the companies/products central to this story (examples: openai, nvidia, googlegemini, anthropic, meta, microsoft). Omit if genuinely unclear.
 
 Respond with ONLY this JSON:
-{"script": "the full narration text", "captions": ["caption line 1", "caption line 2"], "logo_slugs": ["1-2 lowercase simple-icons.org style slugs for the companies/products central to this story, e.g. openai, nvidia, googlegemini, anthropic — omit if genuinely unclear"]}
+{{"script": "the full narration text", "captions": ["caption line 1", "caption line 2"], "logo_slugs": ["slug1"]}}"""
     data = gemini_text(prompt)
 
     captions = data.get("captions", [])
@@ -108,6 +109,9 @@ Respond with ONLY this JSON:
     if not captions and data.get("script"):
         captions = [s.strip() for s in re.split(r"(?<=[.!?])\s+", data["script"]) if s.strip()]
     data["captions"] = captions
+
+    slugs = data.get("logo_slugs", [])
+    data["logo_slugs"] = [s.strip().lower() for s in slugs if isinstance(s, str) and s.strip()][:2]
     return data
 
 def write_metadata(story):
@@ -158,7 +162,8 @@ def main():
         pcm_b64 = gemini_tts(script_data["script"])
         build_wav(pcm_b64, audio_path)
 
-        manifest = {"captions": script_data["captions"], "channel_name": CHANNEL_NAME}
+        manifest = {"captions": script_data["captions"], "channel_name": CHANNEL_NAME,
+                    "logo_slugs": script_data.get("logo_slugs", [])}
         video_path = render_video(video_id, manifest, audio_path)
 
         meta = write_metadata(story)
