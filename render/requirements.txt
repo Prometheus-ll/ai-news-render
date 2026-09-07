@@ -3,3 +3,4 @@ requests
 feedparser
 gspread
 google-auth
+cairosvg
