@@ -1,0 +1,53 @@
+name: Render Video
+
+on:
+  repository_dispatch:
+    types: [render_video]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: render-video-render
+  cancel-in-progress: false
+  
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg fonts-dejavu-core
+          pip install -r render/requirements.txt
+
+      - name: Write manifest
+        env:
+          PAYLOAD: ${{ toJson(github.event.client_payload) }}
+        run: python -c "import os, json; json.dump(json.loads(os.environ['PAYLOAD']), open('manifest.json', 'w'))"
+
+      - name: Render video
+        run: |
+          mkdir -p renders/output
+          python render/render_video.py \
+            --manifest manifest.json \
+            --audio "${{ github.event.client_payload.audio_path }}" \
+            --output "renders/output/${{ github.event.client_payload.video_id }}.mp4"
+
+      - name: Commit rendered video
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add renders/output/
+          git commit -m "Render ${{ github.event.client_payload.video_id }}" || echo "Nothing to commit"
+          for i in 1 2 3 4 5; do
+            git push && break
+            echo "Push rejected, pulling latest and retrying ($i)..."
+            git pull --rebase origin main
+            sleep 3
+          done
