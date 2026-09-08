@@ -1,4 +1,4 @@
-import os, re, json, time, base64, struct, subprocess
+import os, re, json, time
 import requests
 import feedparser
 
@@ -40,35 +40,9 @@ def gemini_text(prompt, retries=3):
             text = r.json()["candidates"][0]["content"]["parts"][0]["text"]
             clean = re.sub(r"```json|```", "", text).strip()
             return json.loads(extract_json(clean))
-        print(f"Gemini text call failed ({r.status_code}), retry {i+1}/{retries}")
+        print(f"Gemini call failed ({r.status_code}), retry {i+1}/{retries}")
         time.sleep(10)
-    raise RuntimeError("Gemini text call failed after retries")
-
-def gemini_tts(script_text, retries=3):
-    for i in range(retries):
-        r = requests.post(
-            f"{GEMINI_URL}/gemini-3.1-flash-tts-preview:generateContent",
-            headers={"x-goog-api-key": GEMINI_KEY},
-            json={"contents": [{"parts": [{"text": script_text}]}],
-                  "generationConfig": {"responseModalities": ["AUDIO"],
-                      "speechConfig": {"voiceConfig": {"prebuiltVoiceConfig": {"voiceName": "Kore"}}}}}
-        )
-        if r.status_code == 200:
-            return r.json()["candidates"][0]["content"]["parts"][0]["inlineData"]["data"]
-        print(f"Gemini TTS call failed ({r.status_code}), retry {i+1}/{retries}")
-        time.sleep(10)
-    raise RuntimeError("Gemini TTS call failed after retries")
-
-def build_wav(base64_pcm, out_path):
-    pcm = base64.b64decode(base64_pcm)
-    sample_rate, channels, bits = 24000, 1, 16
-    byte_rate = sample_rate * channels * bits // 8
-    block_align = channels * bits // 8
-    header = b"RIFF" + struct.pack("<I", 36 + len(pcm)) + b"WAVEfmt "
-    header += struct.pack("<IHHIIHH", 16, 1, channels, sample_rate, byte_rate, block_align, bits)
-    header += b"data" + struct.pack("<I", len(pcm))
-    with open(out_path, "wb") as f:
-        f.write(header + pcm)
+    raise RuntimeError("Gemini call failed after retries")
 
 def fetch_stories():
     feed = feedparser.parse(RSS_URL)
@@ -85,60 +59,25 @@ Respond with ONLY a JSON array in this exact format, no markdown, no extra text:
 [{{"headline": "...", "summary": "...", "why_it_matters": "...", "source_title": "...", "source_link": "..."}}]"""
     return gemini_text(prompt)
 
-def write_script(story):
-    prompt = f"""You are a scriptwriter for a fast-paced, faceless AI-news short-form video channel (YouTube Shorts / Instagram Reels / Facebook Reels), 45-60 seconds long.
+def write_package(story):
+    prompt = f"""You are producing a short-form AI-news video package for "AI Quantum" (YouTube Shorts / Instagram Reels / Facebook Reels).
 
-Here is the story:
 Headline: {story['headline']}
 Summary: {story['summary']}
 Why it matters: {story['why_it_matters']}
-
-Write:
-1. A spoken narration script, roughly 120-150 words. Open with a strong hook. Explain what happened in simple, energetic language. Close with why it matters and a short call-to-action to follow for daily AI updates. Write ONLY the words to be spoken.
-2. On-screen captions: split the narration into short caption lines for burned-in subtitles. Each line must be a few words (max ~7 words) taken verbatim from the narration, in order, covering the ENTIRE script with no words skipped.
-3. logo_slugs: 1-2 lowercase simple-icons.org style slugs for the companies/products central to this story (examples: openai, nvidia, googlegemini, anthropic, meta, microsoft). Omit if genuinely unclear.
-
-Respond with ONLY this JSON:
-{{"script": "the full narration text", "captions": ["caption line 1", "caption line 2"], "logo_slugs": ["slug1"]}}"""
-    data = gemini_text(prompt)
-
-    captions = data.get("captions", [])
-    if isinstance(captions, str):
-        captions = re.split(r"\r?\n|(?<=[.!?])\s+", captions)
-    captions = [c.strip() for c in captions if isinstance(c, str) and c.strip()]
-    if not captions and data.get("script"):
-        captions = [s.strip() for s in re.split(r"(?<=[.!?])\s+", data["script"]) if s.strip()]
-    data["captions"] = captions
-
-    slugs = data.get("logo_slugs", [])
-    data["logo_slugs"] = [s.strip().lower() for s in slugs if isinstance(s, str) and s.strip()][:2]
-    return data
-
-def write_metadata(story):
-    prompt = f"""You are writing metadata for a short-form AI-news video on "AI Quantum".
-
-Headline: {story['headline']}
-Why it matters: {story['why_it_matters']}
 Source: {story['source_link']}
 
-Write:
-1. A short punchy video title, under 60 characters.
-2. A 2-3 sentence description ending with a follow prompt and a credit to the source.
-3. 8-10 relevant hashtags as an array.
+Produce THREE things:
+
+1. "source_text": a well-organized 200-300 word briefing document about this story (background, what happened, why it matters, who's involved). This will be the source material fed into an AI video generation tool.
+
+2. "master_prompt": detailed generation instructions for that tool. Must specify: (a) 45-60 second short-form vertical video, (b) tone: energetic, clear, fast-paced tech news, (c) open with a strong hook, (d) end with "Follow AI Quantum for daily AI updates", (e) visual style: minimal, premium, editorial motion-graphics — off-white background, clean modern sans-serif typography, restrained color palette, company/product logos and icons used as visual objects, no random unrelated stock footage, (f) channel name "AI Quantum" mentioned for branding.
+
+3. "title", "description" (2-3 sentences, ending with a follow prompt and source credit), and "hashtags" (8-10, as an array).
 
 Respond with ONLY this JSON:
-{{"title": "...", "description": "...", "hashtags": ["...", "..."]}}"""
+{{"source_text": "...", "master_prompt": "...", "title": "...", "description": "...", "hashtags": ["...", "..."]}}"""
     return gemini_text(prompt)
-
-def render_video(video_id, manifest, audio_path):
-    os.makedirs("renders/output", exist_ok=True)
-    manifest_path = f"manifest_{video_id}.json"
-    json.dump(manifest, open(manifest_path, "w"))
-    out_path = f"renders/output/{video_id}.mp4"
-    subprocess.run(["python", "render/render_video.py",
-                     "--manifest", manifest_path, "--audio", audio_path,
-                     "--output", out_path], check=True)
-    return out_path
 
 def log_to_sheets(row):
     import gspread
@@ -155,34 +94,18 @@ def main():
     print(f"Selected {len(stories)} stories")
     for i, story in enumerate(stories):
         print(f"--- Processing story {i}: {story['headline']} ---")
-        script_data = write_script(story)
-        video_id = f"{time.strftime('%Y-%m-%d-%H%M%S')}-{i}"
-        audio_path = f"{video_id}.wav"
-
-        pcm_b64 = gemini_tts(script_data["script"])
-        build_wav(pcm_b64, audio_path)
-
-        manifest = {"captions": script_data["captions"], "channel_name": CHANNEL_NAME,
-                    "logo_slugs": script_data.get("logo_slugs", [])}
-        video_path = render_video(video_id, manifest, audio_path)
-
-        meta = write_metadata(story)
-
-        subprocess.run(["git", "add", video_path], check=True)
-        subprocess.run(["git", "commit", "-m", f"Render {video_id}"], check=False)
-        for attempt in range(5):
-            push = subprocess.run(["git", "push"])
-            if push.returncode == 0:
-                break
-            subprocess.run(["git", "pull", "--rebase", "origin", "main"], check=True)
-            time.sleep(3)
-
-        video_url = f"https://raw.githubusercontent.com/Prometheus-ll/ai-news-render/main/{video_path}"
-        log_to_sheets([time.strftime("%Y-%m-%d %H:%M"), story["headline"], meta["title"],
-                       meta["description"], " ".join(meta["hashtags"]), video_url, story["source_link"]])
-        print(f"Done: {video_id}")
-
-        os.remove(audio_path)
+        pkg = write_package(story)
+        log_to_sheets([
+            time.strftime("%Y-%m-%d %H:%M"),
+            story["headline"],
+            pkg["title"],
+            pkg["description"],
+            " ".join(pkg["hashtags"]),
+            pkg["source_text"],
+            pkg["master_prompt"],
+            story["source_link"],
+        ])
+        print(f"Done: {story['headline']}")
 
 if __name__ == "__main__":
     main()
