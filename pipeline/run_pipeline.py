@@ -1,4 +1,4 @@
-import os, re, json, time
+import os, re, json, time, base64, subprocess, struct
 import requests
 import feedparser
 
@@ -6,10 +6,20 @@ GEMINI_KEY = os.environ["GEMINI_API_KEY"]
 GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models"
 RSS_URL = "https://techcrunch.com/category/artificial-intelligence/feed/"
 CHANNEL_NAME = "AI Quantum"
+HANDLE = "@aiquantum"
+
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+AUDIO_DIR = os.path.join(REPO_ROOT, "audio")
+OUTPUT_DIR = os.path.join(REPO_ROOT, "renders", "output")
+RENDER_SCRIPT = os.path.join(REPO_ROOT, "render", "render_video.py")
+
+
+# ---------------------------------------------------------------- Gemini
 
 def extract_json(s):
     start = re.search(r"[{\[]", s)
-    if not start: return s
+    if not start:
+        return s
     start = start.start()
     open_ch = s[start]
     close_ch = "}" if open_ch == "{" else "]"
@@ -18,15 +28,25 @@ def extract_json(s):
     escape = False
     for i in range(start, len(s)):
         ch = s[i]
-        if escape: escape = False; continue
-        if ch == "\\": escape = True; continue
-        if ch == '"': in_str = not in_str; continue
-        if in_str: continue
-        if ch == open_ch: depth += 1
+        if escape:
+            escape = False
+            continue
+        if ch == "\\":
+            escape = True
+            continue
+        if ch == '"':
+            in_str = not in_str
+            continue
+        if in_str:
+            continue
+        if ch == open_ch:
+            depth += 1
         elif ch == close_ch:
             depth -= 1
-            if depth == 0: return s[start:i+1]
+            if depth == 0:
+                return s[start:i + 1]
     return s[start:]
+
 
 def gemini_text(prompt, retries=3):
     for i in range(retries):
@@ -40,9 +60,10 @@ def gemini_text(prompt, retries=3):
             text = r.json()["candidates"][0]["content"]["parts"][0]["text"]
             clean = re.sub(r"```json|```", "", text).strip()
             return json.loads(extract_json(clean))
-        print(f"Gemini call failed ({r.status_code}), retry {i+1}/{retries}")
+        print(f"Gemini call failed ({r.status_code}), retry {i + 1}/{retries}")
         time.sleep(10)
     raise RuntimeError("Gemini call failed after retries")
+
 
 def fetch_stories():
     feed = feedparser.parse(RSS_URL)
@@ -59,25 +80,148 @@ Respond with ONLY a JSON array in this exact format, no markdown, no extra text:
 [{{"headline": "...", "summary": "...", "why_it_matters": "...", "source_title": "...", "source_link": "..."}}]"""
     return gemini_text(prompt)
 
-def write_package(story):
-    prompt = f"""You are producing a short-form AI-news video package for "AI Quantum" (YouTube Shorts / Instagram Reels / Facebook Reels).
 
-Headline: {story['headline']}
-Summary: {story['summary']}
-Why it matters: {story['why_it_matters']}
-Source: {story['source_link']}
+# ---------------------------------------------------------------- script -> manifest
 
-Produce THREE things:
+SCRIPT_PROMPT = """You are writing a 45-60 second short-form AI-news video script for "AI Quantum" \
+(YouTube Shorts / Instagram Reels / Facebook Reels). The visual style is bold kinetic \
+typography: short punchy phrases, numbered points, a quick bullet-point payoff, and a \
+follow call-to-action. No visuals are described here -- you are writing ONLY the words \
+that will appear on screen and be spoken by the narrator.
 
-1. "source_text": a well-organized 200-300 word briefing document about this story (background, what happened, why it matters, who's involved). This will be the source material fed into an AI video generation tool.
+Headline: {headline}
+Summary: {summary}
+Why it matters: {why_it_matters}
+Source: {source_link}
 
-2. "master_prompt": detailed generation instructions for that tool. Must specify: (a) 45-60 second short-form vertical video, (b) tone: energetic, clear, fast-paced tech news, (c) open with a strong hook, (d) end with "Follow AI Quantum for daily AI updates", (e) visual style: minimal, premium, editorial motion-graphics — off-white background, clean modern sans-serif typography, restrained color palette, company/product logos and icons used as visual objects, no random unrelated stock footage, (f) channel name "AI Quantum" mentioned for branding.
+Structure your output as a JSON object with this EXACT shape:
 
-3. "title", "description" (2-3 sentences, ending with a follow prompt and source credit), and "hashtags" (8-10, as an array).
+{{
+  "title": "a punchy YouTube/Instagram title, under 90 characters",
+  "description": "2-3 sentence description ending with a follow prompt and source credit",
+  "hashtags": ["#ai", "...", "8 to 10 total, no spaces"],
+  "hook": {{
+    "kicker": "a short 2-4 word lead-in phrase, regular weight, e.g. 'OpenAI just'",
+    "headline": "the punchy 2-5 word bold headline, ALL CAPS, e.g. 'SHIPPED GPT-6'",
+    "subline": "a short follow-up phrase, 3-6 words, e.g. 'and nobody saw it coming'"
+  }},
+  "points": [
+    {{
+      "number": 1,
+      "keyword": "a short 2-5 word bold phrase naming this point",
+      "detail_lead": "a short regular-weight lead-in sentence fragment, 3-6 words",
+      "detail_bold": "the key 2-5 word bold phrase/number/stat for this point, ALL CAPS",
+      "detail_tail": "a short regular-weight closing fragment, 3-6 words"
+    }}
+  ],
+  "bullets_title": "a short 2-3 word section title, lowercase, e.g. 'why it matters'",
+  "bullets": ["3 to 4 short punchy one-line takeaways, each under 9 words"],
+  "outro_line": "a short 3-6 word question or statement, e.g. 'Want the full breakdown?'",
+  "cta": "a short call to action, 3-6 words, e.g. 'Follow for daily AI news'",
+  "voice_script": "the FULL narration script as continuous spoken-language sentences, \
+energetic and fast-paced, covering the hook, every point (in order), the bullets, and the \
+outro/CTA -- this is what the narrator actually says, written as natural sentences, NOT \
+labeled or bulleted. 120-170 words."
+}}
 
-Respond with ONLY this JSON:
-{{"source_text": "...", "master_prompt": "...", "title": "...", "description": "...", "hashtags": ["...", "..."]}}"""
+Produce exactly 2 or 3 "points". Keep every on-screen phrase SHORT -- these are kinetic \
+type cards, not paragraphs. Respond with ONLY the JSON object, no markdown, no extra text."""
+
+
+def write_script(story):
+    prompt = SCRIPT_PROMPT.format(**story)
     return gemini_text(prompt)
+
+
+def script_to_manifest(script):
+    """Turn the Gemini script JSON into the render_video.py scene manifest."""
+    rows_hook = [
+        {"text": script["hook"]["kicker"], "weight": "regular", "size": 60, "color": [24, 24, 24]},
+        {"text": script["hook"]["headline"], "weight": "bold", "size": 88, "color": [24, 24, 24]},
+        {"text": script["hook"]["subline"], "weight": "bold", "size": 46, "highlight": True},
+    ]
+    scenes = [{"type": "title", "burst": True, "rows": rows_hook}]
+
+    for pt in script["points"]:
+        scenes.append({
+            "type": "number",
+            "number": pt["number"],
+            "rows": [{"text": pt["keyword"], "weight": "bold", "size": 60, "color": [24, 24, 24]}],
+        })
+        scenes.append({
+            "type": "detail",
+            "rows": [
+                {"text": pt["detail_lead"], "weight": "regular", "size": 50, "color": [24, 24, 24]},
+                {"text": pt["detail_bold"], "weight": "bold", "size": 74, "color": [24, 24, 24]},
+                {"text": pt["detail_tail"], "weight": "regular", "size": 50, "color": [90, 90, 90]},
+            ],
+        })
+
+    scenes.append({
+        "type": "bullets",
+        "title": [{"text": script["bullets_title"], "weight": "bold", "size": 56, "color": [24, 24, 24]}],
+        "items": script["bullets"],
+    })
+
+    scenes.append({
+        "type": "outro",
+        "rows": [{"text": script["outro_line"], "weight": "bold", "size": 58, "color": [24, 24, 24]}],
+        "cta": script["cta"],
+    })
+
+    return {"channel_name": CHANNEL_NAME, "handle": HANDLE, "scenes": scenes}
+
+
+# ---------------------------------------------------------------- TTS
+
+def gemini_tts(text, out_wav_path, retries=3):
+    for i in range(retries):
+        r = requests.post(
+            f"{GEMINI_URL}/gemini-3.1-flash-tts-preview:generateContent",
+            headers={"x-goog-api-key": GEMINI_KEY},
+            json={
+                "contents": [{"parts": [{"text": text}]}],
+                "generationConfig": {
+                    "responseModalities": ["AUDIO"],
+                    "speechConfig": {
+                        "voiceConfig": {"prebuiltVoiceConfig": {"voiceName": "Kore"}}
+                    },
+                },
+            },
+        )
+        if r.status_code == 200:
+            data = r.json()["candidates"][0]["content"]["parts"][0]["inlineData"]["data"]
+            pcm = base64.b64decode(data)
+            build_wav(pcm, out_wav_path)
+            return out_wav_path
+        print(f"TTS call failed ({r.status_code}), retry {i + 1}/{retries}")
+        time.sleep(10)
+    raise RuntimeError("Gemini TTS call failed after retries")
+
+
+def build_wav(pcm_bytes, out_path, sample_rate=24000, channels=1, bits=16):
+    byte_rate = sample_rate * channels * bits // 8
+    block_align = channels * bits // 8
+    data_size = len(pcm_bytes)
+    with open(out_path, "wb") as f:
+        f.write(b"RIFF")
+        f.write(struct.pack("<I", 36 + data_size))
+        f.write(b"WAVE")
+        f.write(b"fmt ")
+        f.write(struct.pack("<IHHIIHH", 16, 1, channels, sample_rate, byte_rate, block_align, bits))
+        f.write(b"data")
+        f.write(struct.pack("<I", data_size))
+        f.write(pcm_bytes)
+
+
+# ---------------------------------------------------------------- render + sheets
+
+def render_video(manifest_path, audio_path, output_path):
+    subprocess.run(
+        ["python3", RENDER_SCRIPT, "--manifest", manifest_path, "--audio", audio_path, "--output", output_path],
+        check=True, cwd=REPO_ROOT,
+    )
+
 
 def log_to_sheets(row):
     import gspread
@@ -89,23 +233,67 @@ def log_to_sheets(row):
     sheet = gc.open_by_key(os.environ["GOOGLE_SHEET_ID"]).sheet1
     sheet.append_row(row)
 
+
+def git_push_with_retry(message, attempts=5):
+    subprocess.run(["git", "config", "user.name", "ai-quantum-bot"], cwd=REPO_ROOT, check=True)
+    subprocess.run(["git", "config", "user.email", "bot@ai-quantum.local"], cwd=REPO_ROOT, check=True)
+    subprocess.run(["git", "add", "renders/output", "audio"], cwd=REPO_ROOT, check=True)
+    status = subprocess.run(["git", "status", "--porcelain"], cwd=REPO_ROOT, capture_output=True, text=True)
+    if not status.stdout.strip():
+        print("Nothing to commit.")
+        return
+    subprocess.run(["git", "commit", "-m", message], cwd=REPO_ROOT, check=True)
+    for i in range(attempts):
+        push = subprocess.run(["git", "push"], cwd=REPO_ROOT, capture_output=True, text=True)
+        if push.returncode == 0:
+            print("Pushed.")
+            return
+        print(f"Push failed, pulling and retrying ({i + 1}/{attempts})...")
+        subprocess.run(["git", "pull", "--rebase"], cwd=REPO_ROOT, check=True)
+        time.sleep(3)
+    raise RuntimeError("git push failed after retries")
+
+
 def main():
+    os.makedirs(AUDIO_DIR, exist_ok=True)
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+
     stories = fetch_stories()
     print(f"Selected {len(stories)} stories")
+
     for i, story in enumerate(stories):
         print(f"--- Processing story {i}: {story['headline']} ---")
-        pkg = write_package(story)
+        script = write_script(story)
+        manifest = script_to_manifest(script)
+
+        stamp = time.strftime("%Y-%m-%d-%H%M%S") + f"-{i}"
+        manifest_path = f"/tmp/manifest_{stamp}.json"
+        with open(manifest_path, "w") as f:
+            json.dump(manifest, f)
+
+        audio_path = os.path.join(AUDIO_DIR, f"{stamp}.wav")
+        gemini_tts(script["voice_script"], audio_path)
+
+        video_path = os.path.join(OUTPUT_DIR, f"{stamp}.mp4")
+        render_video(manifest_path, audio_path, video_path)
+
+        video_rel_path = os.path.relpath(video_path, REPO_ROOT)
+        git_push_with_retry(f"Add rendered video {stamp}")
+
+        repo = os.environ.get("GITHUB_REPOSITORY", "")
+        video_url = f"https://github.com/{repo}/raw/main/{video_rel_path}" if repo else video_rel_path
+
         log_to_sheets([
             time.strftime("%Y-%m-%d %H:%M"),
             story["headline"],
-            pkg["title"],
-            pkg["description"],
-            " ".join(pkg["hashtags"]),
-            pkg["source_text"],
-            pkg["master_prompt"],
+            script["title"],
+            script["description"],
+            " ".join(script["hashtags"]),
+            video_url,
             story["source_link"],
         ])
         print(f"Done: {story['headline']}")
+
 
 if __name__ == "__main__":
     main()
