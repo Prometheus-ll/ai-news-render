@@ -1,0 +1,7 @@
+file '/home/claude/ai-news-render/render_tmp/seg_0.mp4'
+file '/home/claude/ai-news-render/render_tmp/seg_1.mp4'
+file '/home/claude/ai-news-render/render_tmp/seg_2.mp4'
+file '/home/claude/ai-news-render/render_tmp/seg_3.mp4'
+file '/home/claude/ai-news-render/render_tmp/seg_4.mp4'
+file '/home/claude/ai-news-render/render_tmp/seg_5.mp4'
+file '/home/claude/ai-news-render/render_tmp/seg_6.mp4'
