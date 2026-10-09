@@ -2,52 +2,44 @@
 """
 AI Quantum motion-graphics renderer.
 
-Visual language: off-white background with a faint dotted grid, bold
-two-weight kinetic typography, jagged black ink-splat corner decorations on
-number/divider cards, a dark rounded "app mockup" card with a progressive
-line reveal (real UI-motion, not just text), small icon chips next to
-numbered points, and a red pill handle badge that stays on screen
-throughout. Text rows alternate their entrance direction (up / left / right)
-instead of all rising the same way, and every held frame keeps drifting
-(zoom + pan), so nothing in the video is ever fully static.
+Design goals, after two rounds of feedback on the first version:
+ 1. A brand mark that is NOT Anthropic's logo (distinct shape + color).
+ 2. REAL motion, continuously -- not a static card with a camera zoom.
+    Every scene bakes a seamless idle-animation loop (icons rotate/bob,
+    the spark pulses, the UI card tilts, accent bars pulse) in addition to
+    its entrance pop. There is no frame in the whole video that is frozen.
+ 3. Real icon artwork (fetched from Lucide's SVG set at render time and
+    rasterized), not crude hand-drawn polygons -- with a vector fallback
+    only for offline/dev use.
+ 4. A fresh visual beat roughly every 2-3 seconds: bullets/stats are each
+    their own scene with their own entrance pop, instead of one scene
+    holding three lines on screen for 5+ seconds.
+ 5. A punchy flash-pop at the start of every scene (a quick white flash
+    that resolves in ~3 frames) so cuts read as edited, not slideshow.
 
-Scenes are rendered frame-by-frame with PIL, turned into short mp4 clips
-with ffmpeg (entrance animation + continuous zoom/pan + progress bar), then
-concatenated and muxed against the narration track.
-
-Input: a JSON "manifest" (see pipeline/run_pipeline.py for the generator)
-shaped like:
-
-{
-  "channel_name": "AI Quantum",
-  "handle": "@aiquantum",
-  "scenes": [
-    {"type": "title",  "burst": true, "rows": [...]},
-    {"type": "number", "number": 1, "icon": "bolt", "rows": [...]},
-    {"type": "mockup", "lines": ["...", "..."]},
-    {"type": "detail", "rows": [...]},
-    {"type": "bullets", "items": ["...", "..."]},
-    {"type": "outro",  "rows": [...], "cta": "Follow for daily AI news"}
-  ]
-}
-
-Each scene's on-screen duration is proportional to its narration word count
-so the captions stay in sync with the single TTS audio track.
+All animation is baked frame-by-frame in PIL (both the entrance pop and the
+idle loop), then encoded straight to video -- no ffmpeg zoompan-on-a-still
+involved, because that was the root of the "dead" feeling.
 """
-import argparse, json, math, os, random, subprocess
+import argparse, io, json, math, os, random, subprocess
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
+import requests
+
+try:
+    import cairosvg
+    CAIROSVG_OK = True
+except Exception:
+    CAIROSVG_OK = False
 
 WIDTH, HEIGHT = 1080, 1920
-FPS = 30
+FPS = 24
 
 BG_COLOR = (234, 234, 231)
 TEXT_COLOR = (24, 24, 24)
 DOT_COLOR = (205, 205, 200)
-# Deliberately NOT orange/asterisk-shaped (that reads as Anthropic's mark).
-# AI Quantum's own accent: electric indigo, used for a 4-point "spark" shape
-# instead of an 11-petal sunburst.
-ACCENT = (79, 70, 229)          # indigo spark
-ACCENT_2 = (16, 185, 129)       # emerald, used for icon chips / stat ticks
+# Deliberately NOT orange/asterisk-shaped -- that reads as Anthropic's mark.
+ACCENT = (79, 70, 229)          # indigo spark -- AI Quantum's own accent
+ACCENT_2 = (16, 185, 129)       # emerald -- icon chips / stat ticks / progress
 CTA_PINK = (226, 28, 55)        # handle pill / CTA pill
 DARK_CARD = (22, 22, 26)
 DARK_CARD_2 = (38, 38, 44)
@@ -58,8 +50,19 @@ F_BOLD = os.path.join(FONT_DIR, "Poppins-Bold.ttf")
 F_MEDIUM = os.path.join(FONT_DIR, "Poppins-Medium.ttf")
 F_REGULAR = os.path.join(FONT_DIR, "Poppins-Regular.ttf")
 
-ENTRANCE_FRAMES = 10
-MIN_SCENE_SECONDS = 1.1
+ENTRANCE_SEC = 0.28       # fast pop-in
+FLASH_SEC = 0.09          # white flash at the very start of every cut
+LOOP_SEC = 1.2            # seamless idle-animation loop length
+MIN_SCENE_SEC = 0.9
+MAX_SCENE_SEC = 3.2       # hard cap -- forces frequent cuts/beats
+
+LUCIDE_MAP = {
+    "bolt": "zap", "chip": "cpu", "arrow_up": "trending-up",
+    "clock": "clock", "brain": "brain-circuit", "target": "target",
+    "dollar": "dollar-sign", "globe": "globe", "shield": "shield-check",
+    "spark": "sparkles",
+}
+_icon_cache = {}
 
 
 def font(weight, size):
@@ -67,36 +70,125 @@ def font(weight, size):
     return ImageFont.truetype(path, size)
 
 
-def ease_out_back(t, overshoot=1.6):
-    """Snappy 'pop in with a little overshoot' easing, used for icon/number
-    entrances so they feel like motion-graphics pops, not plain fades."""
-    t -= 1
-    return 1 + overshoot * (t ** 3) + overshoot * (t ** 2) if t != 0 else 0.0
+def ease_out_back(t, overshoot=1.8):
+    t = max(0.0, min(1.0, t)) - 1
+    return 1 + overshoot * (t ** 3) + overshoot * (t ** 2)
 
 
 def ease_out_cubic(t):
+    t = max(0.0, min(1.0, t))
     return 1 - (1 - t) ** 3
+
+
+def loop_sin(phase, cycles=1):
+    """Seamless oscillation for a looping animation: phase in [0,1)."""
+    return math.sin(phase * 2 * math.pi * cycles)
 
 
 # ---------------------------------------------------------------- backdrop
 
-def draw_dot_grid(draw, spacing=58):
-    for x in range(0, WIDTH + spacing, spacing):
-        for y in range(0, HEIGHT + spacing, spacing):
-            draw.ellipse([x - 2, y - 2, x + 2, y + 2], fill=DOT_COLOR)
+def draw_dot_grid(draw, spacing=58, shift=(0, 0)):
+    sx, sy = shift
+    for x in range(-spacing, WIDTH + spacing, spacing):
+        for y in range(-spacing, HEIGHT + spacing, spacing):
+            draw.ellipse([x + sx - 2, y + sy - 2, x + sx + 2, y + sy + 2], fill=DOT_COLOR)
 
 
-def base_canvas():
+def base_canvas(idle_phase=0.0):
     img = Image.new("RGBA", (WIDTH, HEIGHT), BG_COLOR + (255,))
-    draw_dot_grid(ImageDraw.Draw(img))
+    # the dot grid itself drifts very slightly -- cheap, constant "alive" feel
+    shift = (6 * loop_sin(idle_phase, 1), 4 * loop_sin(idle_phase + 0.25, 1))
+    draw_dot_grid(ImageDraw.Draw(img), shift=shift)
     return img
+
+
+# ---------------------------------------------------------------- real icons
+
+def fetch_icon(kind, size, color, retries=1):
+    """Fetch real Lucide icon artwork and rasterize it, tinted to `color`.
+    Falls back to a hand-drawn vector glyph if cairosvg/network aren't
+    available (e.g. local/offline testing)."""
+    key = (kind, size, color)
+    if key in _icon_cache:
+        return _icon_cache[key]
+    img = None
+    if CAIROSVG_OK:
+        name = LUCIDE_MAP.get(kind, "sparkles")
+        try:
+            r = requests.get(f"https://cdn.jsdelivr.net/npm/lucide-static@latest/icons/{name}.svg", timeout=6)
+            if r.status_code == 200:
+                hexcolor = "#%02x%02x%02x" % color
+                svg = r.text.replace('stroke="currentColor"', f'stroke="{hexcolor}"')
+                png_bytes = cairosvg.svg2png(bytestring=svg.encode(), output_width=size, output_height=size)
+                img = Image.open(io.BytesIO(png_bytes)).convert("RGBA")
+        except Exception as e:
+            print(f"Icon fetch skipped ({kind}): {e}")
+    if img is None:
+        img = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+        draw_icon_vector(ImageDraw.Draw(img), size / 2, size / 2, size * 0.36, kind, color)
+    _icon_cache[key] = img
+    return img
+
+
+def draw_icon_vector(draw, cx, cy, r, kind, color):
+    """Fallback hand-drawn glyphs, used only if the real-icon fetch fails."""
+    w = max(4, int(r * 0.26))
+    if kind == "bolt":
+        pts = [(cx + r * 0.15, cy - r), (cx - r * 0.55, cy + r * 0.15),
+               (cx - r * 0.05, cy + r * 0.15), (cx - r * 0.25, cy + r),
+               (cx + r * 0.6, cy - r * 0.1), (cx + r * 0.1, cy - r * 0.1)]
+        draw.polygon(pts, fill=color)
+    elif kind == "chip":
+        s = r * 0.7
+        draw.rounded_rectangle([cx - s, cy - s, cx + s, cy + s], radius=r * 0.18, outline=color, width=w)
+        draw.rectangle([cx - s * 0.35, cy - s * 0.35, cx + s * 0.35, cy + s * 0.35], fill=color)
+        for i in range(-1, 2):
+            off = i * s * 0.7
+            draw.line([(cx + off, cy - s), (cx + off, cy - s * 1.4)], fill=color, width=w)
+            draw.line([(cx + off, cy + s), (cx + off, cy + s * 1.4)], fill=color, width=w)
+    elif kind == "arrow_up":
+        draw.line([(cx, cy + r), (cx, cy - r * 0.3)], fill=color, width=w)
+        draw.polygon([(cx - r * 0.55, cy - r * 0.15), (cx + r * 0.55, cy - r * 0.15), (cx, cy - r)], fill=color)
+    elif kind == "clock":
+        draw.ellipse([cx - r, cy - r, cx + r, cy + r], outline=color, width=w)
+        draw.line([(cx, cy), (cx, cy - r * 0.6)], fill=color, width=w)
+        draw.line([(cx, cy), (cx + r * 0.45, cy + r * 0.15)], fill=color, width=w)
+    elif kind == "brain":
+        draw.ellipse([cx - r, cy - r * 0.8, cx + r, cy + r * 0.8], outline=color, width=w)
+        draw.line([(cx, cy - r * 0.8), (cx, cy + r * 0.8)], fill=color, width=max(3, int(r * 0.12)))
+    else:
+        pts = []
+        for i in range(8):
+            a = math.radians(i * 45)
+            rad = r if i % 2 == 0 else r * 0.35
+            pts.append((cx + rad * math.cos(a), cy + rad * math.sin(a)))
+        draw.polygon(pts, fill=color)
+
+
+def draw_icon_chip(img, cx, cy, r, kind, bg, fg, alpha=255, rotation=0, scale=1.0):
+    size = int(r * 2.6 * max(scale, 0.05))
+    if size < 4:
+        return
+    icon_png = fetch_icon(kind, int(r * 1.5), fg)
+    chip = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    cd = ImageDraw.Draw(chip)
+    cd.ellipse([0, 0, size, size], fill=bg + (alpha,))
+    ic = icon_png.copy()
+    if ic.size != (int(r * 1.5), int(r * 1.5)):
+        ic = ic.resize((int(r * 1.5), int(r * 1.5)))
+    if alpha < 255:
+        a = ic.split()[3].point(lambda p: int(p * alpha / 255))
+        ic.putalpha(a)
+    chip.alpha_composite(ic, (int((size - ic.width) / 2), int((size - ic.height) / 2)))
+    if rotation:
+        chip = chip.rotate(rotation, resample=Image.BICUBIC, expand=False)
+    img.alpha_composite(chip, (int(cx - size / 2), int(cy - size / 2)))
 
 
 # ---------------------------------------------------------------- motifs
 
-def make_spark(diameter, color, seed=0):
-    """4-point spark/asterisk mark -- a distinct shape+color from Anthropic's
-    sunburst logo, used as AI Quantum's own accent mark."""
+def make_spark(diameter, color):
+    """4-point spark mark -- distinct shape+color from Anthropic's sunburst."""
     pad = int(diameter * 0.35)
     size = diameter + pad * 2
     layer = Image.new("RGBA", (size, size), (0, 0, 0, 0))
@@ -126,7 +218,6 @@ def make_spark(diameter, color, seed=0):
 
 
 def make_ink_splat(size, seed=0, color=(20, 20, 22)):
-    """Jagged torn-paper / explosion shape used as a corner decoration."""
     rnd = random.Random(seed)
     pad = int(size * 0.25)
     canvas = size + pad * 2
@@ -148,11 +239,18 @@ def make_ink_splat(size, seed=0, color=(20, 20, 22)):
     return out
 
 
-def paste_corner_splats(img, seed=0):
-    tl = make_ink_splat(420, seed=seed * 7 + 1)
-    br = make_ink_splat(460, seed=seed * 7 + 2)
-    img.alpha_composite(tl, (-140, -140))
-    img.alpha_composite(br, (WIDTH - 300, HEIGHT - 300))
+_splat_cache = {}
+
+
+def paste_corner_splats(img, seed=0, idle_phase=0.0):
+    key = seed
+    if key not in _splat_cache:
+        _splat_cache[key] = (make_ink_splat(420, seed=seed * 7 + 1), make_ink_splat(460, seed=seed * 7 + 2))
+    tl, br = _splat_cache[key]
+    tl_off = (6 * loop_sin(idle_phase, 1), 5 * loop_sin(idle_phase + 0.3, 1))
+    br_off = (5 * loop_sin(idle_phase + 0.5, 1), 6 * loop_sin(idle_phase + 0.1, 1))
+    img.alpha_composite(tl, (int(-140 + tl_off[0]), int(-140 + tl_off[1])))
+    img.alpha_composite(br, (int(WIDTH - 300 + br_off[0]), int(HEIGHT - 300 + br_off[1])))
 
 
 def draw_pill(draw, box, fill, radius=None):
@@ -161,15 +259,16 @@ def draw_pill(draw, box, fill, radius=None):
     draw.rounded_rectangle(box, radius=radius, fill=fill)
 
 
-def handle_badge(img, handle):
+def handle_badge(img, handle, idle_phase=0.0):
     draw = ImageDraw.Draw(img)
     f = font("bold", 34)
     tw = draw.textlength(handle, font=f)
     pad_x, pad_y = 44, 20
     box_w = tw + pad_x * 2
     box_h = 34 + pad_y * 2
+    bob = 3 * loop_sin(idle_phase, 1)
     x0 = (WIDTH - box_w) / 2
-    y0 = HEIGHT - 170
+    y0 = HEIGHT - 170 + bob
     draw_pill(draw, [x0, y0, x0 + box_w, y0 + box_h], CTA_PINK)
     draw.text((x0 + pad_x, y0 + pad_y - 2), handle, font=f, fill=WHITE)
 
@@ -190,67 +289,6 @@ def wrap_text(draw, text, f, max_width):
     return [" ".join(l) for l in lines]
 
 
-# ---------------------------------------------------------------- icon chips
-
-def draw_icon(draw, cx, cy, r, kind, color):
-    """Small vector glyphs drawn from primitives -- no external assets,
-    no font glyph dependency. Gives number/point cards a real graphic
-    element instead of pure typography."""
-    if kind == "bolt":
-        pts = [(cx + r * 0.15, cy - r), (cx - r * 0.55, cy + r * 0.15),
-               (cx - r * 0.05, cy + r * 0.15), (cx - r * 0.25, cy + r),
-               (cx + r * 0.6, cy - r * 0.1), (cx + r * 0.1, cy - r * 0.1)]
-        draw.polygon(pts, fill=color)
-    elif kind == "chip":
-        s = r * 0.7
-        draw.rounded_rectangle([cx - s, cy - s, cx + s, cy + s], radius=r * 0.18, outline=color, width=max(3, int(r * 0.12)))
-        draw.rectangle([cx - s * 0.35, cy - s * 0.35, cx + s * 0.35, cy + s * 0.35], fill=color)
-        for i in range(-1, 2):
-            off = i * s * 0.7
-            draw.line([(cx + off, cy - s), (cx + off, cy - s * 1.4)], fill=color, width=max(3, int(r * 0.1)))
-            draw.line([(cx + off, cy + s), (cx + off, cy + s * 1.4)], fill=color, width=max(3, int(r * 0.1)))
-    elif kind == "arrow_up":
-        draw.line([(cx, cy + r), (cx, cy - r * 0.3)], fill=color, width=max(4, int(r * 0.22)))
-        draw.polygon([(cx - r * 0.55, cy - r * 0.15), (cx + r * 0.55, cy - r * 0.15), (cx, cy - r)], fill=color)
-    elif kind == "clock":
-        draw.ellipse([cx - r, cy - r, cx + r, cy + r], outline=color, width=max(4, int(r * 0.18)))
-        draw.line([(cx, cy), (cx, cy - r * 0.6)], fill=color, width=max(3, int(r * 0.15)))
-        draw.line([(cx, cy), (cx + r * 0.45, cy + r * 0.15)], fill=color, width=max(3, int(r * 0.15)))
-    elif kind == "brain":
-        draw.ellipse([cx - r, cy - r * 0.8, cx + r, cy + r * 0.8], outline=color, width=max(4, int(r * 0.16)))
-        draw.line([(cx, cy - r * 0.8), (cx, cy + r * 0.8)], fill=color, width=max(3, int(r * 0.12)))
-        for s in (-1, 1):
-            draw.arc([cx + s * r * 0.1 - r * 0.45, cy - r * 0.55, cx + s * r * 0.1 + r * 0.45, cy - r * 0.05],
-                      0, 360, fill=color, width=max(2, int(r * 0.08)))
-    else:  # default: spark
-        pts = []
-        for i in range(8):
-            a = math.radians(i * 45)
-            rad = r if i % 2 == 0 else r * 0.35
-            pts.append((cx + rad * math.cos(a), cy + rad * math.sin(a)))
-        draw.polygon(pts, fill=color)
-
-
-def draw_icon_chip(img, cx, cy, r, kind, bg, fg, alpha=255, rotation=0):
-    size = int(r * 2.6)
-    chip = Image.new("RGBA", (size, size), (0, 0, 0, 0))
-    cd = ImageDraw.Draw(chip)
-    cd.ellipse([0, 0, size, size], fill=bg + (alpha,))
-    draw_icon(cd, size / 2, size / 2, r * 0.85, kind, fg + (alpha,))
-    if rotation:
-        chip = chip.rotate(rotation, resample=Image.BICUBIC, expand=False)
-    img.alpha_composite(chip, (int(cx - size / 2), int(cy - size / 2)))
-
-
-def draw_sparkle(draw, cx, cy, r, color, alpha=255):
-    pts = []
-    for i in range(8):
-        a = math.radians(i * 45)
-        rad = r if i % 2 == 0 else r * 0.32
-        pts.append((cx + rad * math.cos(a), cy + rad * math.sin(a)))
-    draw.polygon(pts, fill=(*color, alpha))
-
-
 # ---------------------------------------------------------------- text rows
 
 def measure_rows(rows, max_width):
@@ -266,11 +304,13 @@ def measure_rows(rows, max_width):
     return plan
 
 
-def draw_rows_centered(img, rows, max_width=900, top=None, line_gap=1.18, reveal=1.0, alternate_slide=True):
-    """Draw stacked text rows centered horizontally. `reveal` in [0,1] lets N
-    of the rows progressively build in. Consecutive rows alternate their
-    entrance direction (left / right / up) for more varied on-screen motion
-    than a uniform rise-and-fade."""
+def draw_rows_centered(img, rows, max_width=900, top=None, line_gap=1.18, reveal=1.0,
+                        alternate_slide=True, idle_phase=None):
+    """Draw stacked text rows centered horizontally. `reveal` in [0,1] builds
+    rows in with alternating left/right/up entrance directions. Once fully
+    revealed, if `idle_phase` is given, the highlighted/bold row gets a
+    very subtle continuous breathing-scale pulse so text scenes aren't
+    completely frozen either."""
     draw = ImageDraw.Draw(img)
     plan = measure_rows(rows, max_width)
     heights = [int(p["size"] * line_gap) for p in plan]
@@ -286,7 +326,11 @@ def draw_rows_centered(img, rows, max_width=900, top=None, line_gap=1.18, reveal
             continue
         ease = ease_out_cubic(row_reveal)
         alpha = int(255 * ease)
-        tw = draw.textlength(p["text"], font=p["font"])
+        pulse = 1.0
+        if idle_phase is not None and row_reveal >= 1.0 and (p["highlight"] or idx == n - 1):
+            pulse = 1.0 + 0.025 * (0.5 + 0.5 * loop_sin(idle_phase, 1))
+        f = p["font"] if pulse == 1.0 else font("bold", int(p["size"] * pulse))
+        tw = draw.textlength(p["text"], font=f)
         x_base = (WIDTH - tw) / 2
         direction = directions[idx % 3] if alternate_slide else "up"
         if direction == "up":
@@ -298,13 +342,13 @@ def draw_rows_centered(img, rows, max_width=900, top=None, line_gap=1.18, reveal
         layer = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
         ld = ImageDraw.Draw(layer)
         if p["highlight"]:
-            asc, desc = p["font"].getmetrics()
+            asc, desc = f.getmetrics()
             pad = 16
             box = [x - pad, y + yoff - pad * 0.5, x + tw + pad, y + yoff + asc + desc * 0.55 + pad * 0.5]
             ld.rounded_rectangle(box, radius=14, fill=(*TEXT_COLOR, alpha))
-            ld.text((x, y + yoff), p["text"], font=p["font"], fill=(*WHITE, alpha))
+            ld.text((x, y + yoff), p["text"], font=f, fill=(*WHITE, alpha))
         else:
-            ld.text((x, y + yoff), p["text"], font=p["font"], fill=(*p["color"], alpha))
+            ld.text((x, y + yoff), p["text"], font=f, fill=(*p["color"], alpha))
         img.alpha_composite(layer)
         y += h
     return img
@@ -312,12 +356,8 @@ def draw_rows_centered(img, rows, max_width=900, top=None, line_gap=1.18, reveal
 
 # ---------------------------------------------------------------- app mockup
 
-def draw_mockup_card(img, lines, reveal, rotation=0.0, accent=ACCENT_2):
-    """Dark rounded 'app / chat UI' card with window-chrome dots and a
-    top-to-bottom progressive line reveal (simulated streaming response).
-    This is the genuine graphic/UI motion element -- not text on a plain
-    background -- that a kinetic-type-only approach was missing."""
-    card_w, card_h = 860, 620
+def draw_mockup_card(img, lines, reveal, rotation=0.0, bob=0.0, accent=ACCENT_2):
+    card_w, card_h = 860, 560
     card = Image.new("RGBA", (card_w + 80, card_h + 80), (0, 0, 0, 0))
     shadow = Image.new("RGBA", card.size, (0, 0, 0, 0))
     ImageDraw.Draw(shadow).rounded_rectangle([40, 50, 40 + card_w, 50 + card_h], radius=36, fill=(0, 0, 0, 90))
@@ -325,7 +365,6 @@ def draw_mockup_card(img, lines, reveal, rotation=0.0, accent=ACCENT_2):
     card.alpha_composite(shadow)
     cd = ImageDraw.Draw(card)
     cd.rounded_rectangle([40, 40, 40 + card_w, 40 + card_h], radius=36, fill=DARK_CARD + (255,))
-    # window chrome dots
     for i, col in enumerate([(237, 106, 94), (245, 191, 79), (97, 197, 79)]):
         cd.ellipse([74 + i * 34, 72, 74 + i * 34 + 18, 90], fill=col)
     cd.line([(74, 118), (40 + card_w - 34, 118)], fill=DARK_CARD_2, width=2)
@@ -346,7 +385,6 @@ def draw_mockup_card(img, lines, reveal, rotation=0.0, accent=ACCENT_2):
             ImageDraw.Draw(layer).text((74 + xoff, ly), sl, font=f_line, fill=(230, 230, 232, alpha))
             card.alpha_composite(layer)
             ly += 56
-        # a thin accent progress tick under the most-recently-revealed line
         if idx == n - 1 or line_reveal < 1.0:
             bar_w = int((card_w - 148) * min(1.0, line_reveal))
             cd.rounded_rectangle([74, ly + 6, 74 + max(bar_w, 6), ly + 12], radius=3, fill=accent)
@@ -354,167 +392,155 @@ def draw_mockup_card(img, lines, reveal, rotation=0.0, accent=ACCENT_2):
 
     if rotation:
         card = card.rotate(rotation, resample=Image.BICUBIC, expand=False)
-    img.alpha_composite(card, (int((WIDTH - card.width) / 2), int(HEIGHT * 0.30)))
+    img.alpha_composite(card, (int((WIDTH - card.width) / 2), int(HEIGHT * 0.30 + bob)))
 
 
-# ---------------------------------------------------------------- scenes
-# Each scene_* function returns a list of PIL RGBA frames for its entrance
-# animation; the caller then holds the last frame for the remaining duration.
+# ---------------------------------------------------------------- scene frame functions
+# Each scene_* function takes (data, reveal, idle_phase, seed) and returns ONE
+# composed RGBA frame. `reveal` drives the entrance (0 -> 1, then clamps at
+# 1). `idle_phase` is a seamless 0..1 loop used for continuous idle motion
+# AFTER the entrance completes (icons rotate/bob, card tilts, spark pulses).
 
-def scene_title(data, seed=0):
+def scene_title(data, reveal, idle_phase, seed=0):
     rows = data["rows"]
     show_spark = data.get("burst", False)
-    frames = []
-    for i in range(ENTRANCE_FRAMES):
-        t = i / (ENTRANCE_FRAMES - 1)
-        img = base_canvas()
-        if show_spark:
-            spark = make_spark(240, ACCENT, seed=seed)
-            pop = max(0.0, ease_out_back(min(1.0, t * 1.4)))
-            sscale = max(0.05, 0.75 + 0.30 * pop)
-            sresized = spark.resize((max(1, int(spark.width * sscale)), max(1, int(spark.height * sscale))))
-            spin = -40 + 40 * ease_out_cubic(t)
-            sresized = sresized.rotate(spin, resample=Image.BICUBIC, expand=False)
-            sx = (WIDTH - sresized.width) // 2
-            sy = int(HEIGHT * 0.25 - sresized.height / 2)
-            img.alpha_composite(sresized, (sx, sy))
-        top = HEIGHT * 0.38 if show_spark else None
-        draw_rows_centered(img, rows, top=top, reveal=t)
-        handle_badge(img, data.get("handle", "@aiquantum"))
-        frames.append(img)
-    return frames
+    img = base_canvas(idle_phase if reveal >= 1 else 0.0)
+    if show_spark:
+        spark = make_spark(240, ACCENT)
+        pop = max(0.0, ease_out_back(min(1.0, reveal * 1.6)))
+        idle_pulse = 1.0 + 0.05 * loop_sin(idle_phase, 1) if reveal >= 1 else 0.0
+        sscale = max(0.05, 0.75 + 0.30 * pop + idle_pulse * 0.0)
+        if reveal >= 1:
+            sscale = 1.0 + 0.05 * loop_sin(idle_phase, 1)
+        sresized = spark.resize((max(1, int(spark.width * sscale)), max(1, int(spark.height * sscale))))
+        spin = (-40 + 40 * ease_out_cubic(reveal)) if reveal < 1 else 10 * loop_sin(idle_phase, 1)
+        sresized = sresized.rotate(spin, resample=Image.BICUBIC, expand=False)
+        sx = (WIDTH - sresized.width) // 2
+        sy = int(HEIGHT * 0.25 - sresized.height / 2)
+        img.alpha_composite(sresized, (sx, sy))
+    top = HEIGHT * 0.38 if show_spark else None
+    draw_rows_centered(img, rows, top=top, reveal=reveal, idle_phase=idle_phase if reveal >= 1 else None)
+    handle_badge(img, data.get("handle", "@aiquantum"), idle_phase)
+    return img
 
 
-def scene_number(data, seed=0):
+def scene_number(data, reveal, idle_phase, seed=0):
     number = data["number"]
     rows = data["rows"]
     icon_kind = data.get("icon", ["bolt", "chip", "arrow_up", "clock", "brain"][seed % 5])
-    frames = []
-    for i in range(ENTRANCE_FRAMES):
-        t = i / (ENTRANCE_FRAMES - 1)
-        ease = ease_out_cubic(t)
-        pop = max(0.0, ease_out_back(min(1.0, t * 1.3)))
-        img = base_canvas()
-        paste_corner_splats(img, seed=seed)
+    ease = ease_out_cubic(reveal)
+    pop = max(0.0, ease_out_back(min(1.0, reveal * 1.4)))
+    img = base_canvas(idle_phase if reveal >= 1 else 0.0)
+    paste_corner_splats(img, seed=seed, idle_phase=idle_phase if reveal >= 1 else 0.0)
 
-        chip_cy = HEIGHT * 0.30
-        draw_icon_chip(img, WIDTH / 2, chip_cy, 54, icon_kind, ACCENT_2, WHITE,
-                        alpha=int(255 * ease), rotation=(1 - pop) * 30)
+    chip_cy = HEIGHT * 0.30
+    chip_bob = 10 * loop_sin(idle_phase, 1) if reveal >= 1 else 0
+    chip_rot = 14 * loop_sin(idle_phase, 1) if reveal >= 1 else (1 - pop) * 30
+    draw_icon_chip(img, WIDTH / 2, chip_cy + chip_bob, 54, icon_kind, ACCENT_2, WHITE,
+                   alpha=int(255 * ease), rotation=chip_rot)
 
-        draw = ImageDraw.Draw(img)
-        f_num = font("bold", int(150 * (0.8 + 0.2 * pop)))
-        num_text = f"#{number}"
-        tw = draw.textlength(num_text, font=f_num)
-        asc, desc = f_num.getmetrics()
-        ny = HEIGHT * 0.46 - (asc + desc)
-        layer = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
-        ImageDraw.Draw(layer).text(((WIDTH - tw) / 2, ny), num_text, font=f_num,
-                                    fill=(*TEXT_COLOR, int(255 * ease)))
-        img.alpha_composite(layer)
-        draw_rows_centered(img, rows, top=HEIGHT * 0.46 + (asc + desc) * 0.15, reveal=min(1.0, t * 1.3),
-                            alternate_slide=False)
-        handle_badge(img, data.get("handle", "@aiquantum"))
-        frames.append(img)
-    return frames
+    draw = ImageDraw.Draw(img)
+    num_scale = (0.8 + 0.2 * pop) if reveal < 1 else (1.0 + 0.02 * loop_sin(idle_phase, 1))
+    f_num = font("bold", int(150 * num_scale))
+    num_text = f"#{number}"
+    tw = draw.textlength(num_text, font=f_num)
+    asc, desc = f_num.getmetrics()
+    ny = HEIGHT * 0.46 - (asc + desc)
+    layer = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
+    ImageDraw.Draw(layer).text(((WIDTH - tw) / 2, ny), num_text, font=f_num,
+                                fill=(*TEXT_COLOR, int(255 * ease)))
+    img.alpha_composite(layer)
+    draw_rows_centered(img, rows, top=HEIGHT * 0.46 + (asc + desc) * 0.15, reveal=min(1.0, reveal * 1.4),
+                        alternate_slide=False)
+    handle_badge(img, data.get("handle", "@aiquantum"), idle_phase)
+    return img
 
 
-def scene_detail(data, seed=0):
+def scene_detail(data, reveal, idle_phase, seed=0):
     rows = data["rows"]
-    frames = []
-    for i in range(ENTRANCE_FRAMES):
-        t = i / (ENTRANCE_FRAMES - 1)
-        img = base_canvas()
-        draw_rows_centered(img, rows, reveal=t)
-        handle_badge(img, data.get("handle", "@aiquantum"))
-        frames.append(img)
-    return frames
+    img = base_canvas(idle_phase if reveal >= 1 else 0.0)
+    draw_rows_centered(img, rows, reveal=reveal, idle_phase=idle_phase if reveal >= 1 else None)
+    handle_badge(img, data.get("handle", "@aiquantum"), idle_phase)
+    return img
 
 
-def scene_mockup(data, seed=0):
-    """A dark app/chat-style UI card that 'types out' its lines -- the real
-    motion-graphics element: an animated object, not just moving text."""
+def scene_mockup(data, reveal, idle_phase, seed=0):
     lines = data["lines"]
     kicker_rows = data.get("rows")
-    frames = []
-    for i in range(ENTRANCE_FRAMES):
-        t = i / (ENTRANCE_FRAMES - 1)
-        img = base_canvas()
-        if kicker_rows:
-            draw_rows_centered(img, kicker_rows, top=HEIGHT * 0.13, reveal=min(1.0, t * 1.6))
-        rotation = -3.5 + 3.5 * ease_out_cubic(t)
-        draw_mockup_card(img, lines, reveal=max(0.0, (t - 0.15) / 0.85), rotation=rotation)
-        handle_badge(img, data.get("handle", "@aiquantum"))
-        frames.append(img)
-    return frames
+    img = base_canvas(idle_phase if reveal >= 1 else 0.0)
+    if kicker_rows:
+        draw_rows_centered(img, kicker_rows, top=HEIGHT * 0.13, reveal=min(1.0, reveal * 1.8))
+    if reveal < 1:
+        rotation = -4.0 + 4.0 * ease_out_cubic(reveal)
+        bob = 0
+    else:
+        rotation = 1.6 * loop_sin(idle_phase, 1)
+        bob = 10 * loop_sin(idle_phase + 0.25, 1)
+    draw_mockup_card(img, lines, reveal=max(0.0, (reveal - 0.1) / 0.9), rotation=rotation, bob=bob)
+    handle_badge(img, data.get("handle", "@aiquantum"), idle_phase)
+    return img
 
 
-def scene_bullets(data, seed=0):
-    items = data["items"]
-    frames = []
-    f_item = font("medium", 46)
-    for i in range(ENTRANCE_FRAMES):
-        t = i / (ENTRANCE_FRAMES - 1)
-        img = base_canvas()
-        draw = ImageDraw.Draw(img)
-        if data.get("title"):
-            draw_rows_centered(img, data["title"], top=HEIGHT * 0.14, reveal=1.0, alternate_slide=False)
-        n = len(items)
-        block_h = 140
-        y0 = HEIGHT * 0.38
-        for idx, item in enumerate(items):
-            reveal = max(0.0, min(1.0, t * n - idx))
-            if reveal <= 0:
-                continue
-            ease = ease_out_cubic(reveal)
-            pop = max(0.0, ease_out_back(reveal))
-            offset_x = int((1 - ease) * (60 if idx % 2 == 0 else -60))
-            alpha = int(255 * ease)
-            y = y0 + idx * block_h
-            layer = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
-            ld = ImageDraw.Draw(layer)
-            draw_sparkle(ld, 108 + offset_x, y + 30, 20 + 8 * pop, ACCENT, alpha)
-            lines = wrap_text(draw, item, f_item, 760)
-            ly = y - 6
-            for ln in lines:
-                ld.text((170 + offset_x, ly), ln, font=f_item, fill=(*TEXT_COLOR, alpha))
-                ly += 56
-            img.alpha_composite(layer)
-        handle_badge(img, data.get("handle", "@aiquantum"))
-        frames.append(img)
-    return frames
+def scene_stat(data, reveal, idle_phase, seed=0):
+    """A single bullet/stat as its own beat: sparkle icon pop + one line,
+    replacing the old 'hold 3 bullets for 5 seconds' approach."""
+    text = data["text"]
+    icon_kind = data.get("icon", "target")
+    ease = ease_out_cubic(reveal)
+    pop = max(0.0, ease_out_back(min(1.0, reveal * 1.5)))
+    img = base_canvas(idle_phase if reveal >= 1 else 0.0)
+    if data.get("title"):
+        draw_rows_centered(img, data["title"], top=HEIGHT * 0.14, reveal=1.0, alternate_slide=False)
+
+    chip_cy = HEIGHT * 0.32
+    chip_bob = 10 * loop_sin(idle_phase, 1) if reveal >= 1 else 0
+    chip_rot = 12 * loop_sin(idle_phase + 0.4, 1) if reveal >= 1 else (1 - pop) * 24
+    draw_icon_chip(img, WIDTH / 2, chip_cy + chip_bob, 58, icon_kind, ACCENT, WHITE,
+                   alpha=int(255 * ease), rotation=chip_rot)
+
+    f_item = font("bold", 56)
+    draw = ImageDraw.Draw(img)
+    lines = wrap_text(draw, text, f_item, 860)
+    ly = HEIGHT * 0.50
+    for ln in lines:
+        tw = draw.textlength(ln, font=f_item)
+        offset = int((1 - ease) * 50)
+        layer = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
+        ImageDraw.Draw(layer).text(((WIDTH - tw) / 2, ly + offset), ln, font=f_item,
+                                    fill=(*TEXT_COLOR, int(255 * ease)))
+        img.alpha_composite(layer)
+        ly += 68
+    handle_badge(img, data.get("handle", "@aiquantum"), idle_phase)
+    return img
 
 
-def scene_outro(data, seed=0):
+def scene_outro(data, reveal, idle_phase, seed=0):
     rows = data["rows"]
     cta = data.get("cta", "Follow for daily AI news")
     handle = data.get("handle", "@aiquantum")
-    frames = []
-    for i in range(ENTRANCE_FRAMES):
-        t = i / (ENTRANCE_FRAMES - 1)
-        ease = ease_out_cubic(t)
-        pop = max(0.0, ease_out_back(t))
-        img = base_canvas()
-        draw_rows_centered(img, rows, top=HEIGHT * 0.28, reveal=t)
-        draw = ImageDraw.Draw(img)
-        f_cta = font("bold", 42)
-        tw = draw.textlength(cta, font=f_cta)
-        pad_x, pad_y = 46, 26
-        box_w, box_h = tw + pad_x * 2, 42 + pad_y * 2
-        scale = 0.85 + 0.15 * pop
-        x0 = (WIDTH - box_w * scale) / 2
-        y0 = HEIGHT * 0.58
-        alpha = int(255 * ease)
-        layer = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
-        ld = ImageDraw.Draw(layer)
-        ld.rounded_rectangle([x0, y0, x0 + box_w * scale, y0 + box_h * scale], radius=box_h * scale / 2,
-                              fill=(*CTA_PINK, alpha))
-        ld.text((x0 + pad_x * scale, y0 + pad_y * scale - 4), cta, font=f_cta, fill=(*WHITE, alpha))
-        img.alpha_composite(layer)
-        f_handle = font("medium", 34)
-        tw2 = draw.textlength(handle, font=f_handle)
-        draw.text(((WIDTH - tw2) / 2, y0 + box_h * scale + 36), handle, font=f_handle, fill=(90, 90, 90))
-        frames.append(img)
-    return frames
+    ease = ease_out_cubic(reveal)
+    pop = max(0.0, ease_out_back(min(1.0, reveal * 1.4)))
+    img = base_canvas(idle_phase if reveal >= 1 else 0.0)
+    draw_rows_centered(img, rows, top=HEIGHT * 0.28, reveal=reveal)
+    draw = ImageDraw.Draw(img)
+    f_cta = font("bold", 42)
+    tw = draw.textlength(cta, font=f_cta)
+    pad_x, pad_y = 46, 26
+    box_w, box_h = tw + pad_x * 2, 42 + pad_y * 2
+    scale = (0.85 + 0.15 * pop) if reveal < 1 else (1.0 + 0.02 * loop_sin(idle_phase, 1))
+    x0 = (WIDTH - box_w * scale) / 2
+    y0 = HEIGHT * 0.58
+    alpha = int(255 * ease)
+    layer = Image.new("RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0))
+    ld = ImageDraw.Draw(layer)
+    ld.rounded_rectangle([x0, y0, x0 + box_w * scale, y0 + box_h * scale], radius=box_h * scale / 2,
+                          fill=(*CTA_PINK, alpha))
+    ld.text((x0 + pad_x * scale, y0 + pad_y * scale - 4), cta, font=f_cta, fill=(*WHITE, alpha))
+    img.alpha_composite(layer)
+    f_handle = font("medium", 34)
+    tw2 = draw.textlength(handle, font=f_handle)
+    draw.text(((WIDTH - tw2) / 2, y0 + box_h * scale + 36), handle, font=f_handle, fill=(90, 90, 90))
+    return img
 
 
 SCENE_BUILDERS = {
@@ -522,7 +548,7 @@ SCENE_BUILDERS = {
     "number": scene_number,
     "detail": scene_detail,
     "mockup": scene_mockup,
-    "bullets": scene_bullets,
+    "stat": scene_stat,
     "outro": scene_outro,
 }
 
@@ -531,11 +557,26 @@ def scene_word_count(data):
     total = 0
     if "rows" in data:
         total += sum(len(r["text"].split()) for r in data["rows"])
-    if "items" in data:
-        total += sum(len(i.split()) for i in data["items"])
+    if "text" in data:
+        total += len(data["text"].split())
     if "lines" in data:
         total += sum(len(i.split()) for i in data["lines"])
-    return total or 6
+    return total or 5
+
+
+def expand_bullets_scene(scene):
+    """A 'bullets' scene in the manifest becomes N individual 'stat' scenes
+    -- one beat per item -- instead of one static scene holding all of them."""
+    icons = ["target", "bolt", "arrow_up", "clock", "shield", "globe"]
+    out = []
+    for i, item in enumerate(scene["items"]):
+        out.append({
+            "type": "stat",
+            "title": scene.get("title") if i == 0 else None,
+            "icon": icons[i % len(icons)],
+            "text": item,
+        })
+    return out
 
 
 # ---------------------------------------------------------------- assembly
@@ -547,47 +588,50 @@ def get_audio_duration(path):
     return float(r.stdout.strip())
 
 
-def render_scene_clip(scene, duration, seg_start, total_duration, work_dir, idx, out_path, handle):
+def render_scene_clip(scene, duration, work_dir, idx, out_path, handle):
     scene = dict(scene)
     scene.setdefault("handle", handle)
     builder = SCENE_BUILDERS.get(scene["type"], scene_detail)
-    frames = builder(scene, seed=idx)
 
     seg_dir = f"{work_dir}/scene_{idx}"
     os.makedirs(seg_dir, exist_ok=True)
-    for i, frame in enumerate(frames):
-        frame.convert("RGB").save(f"{seg_dir}/f_{i:02d}.png")
 
-    entrance_dur = len(frames) / FPS
-    held_dur = max(duration - entrance_dur, 0.15)
+    # --- entrance (flash + pop), baked frame by frame
+    entrance_frames = max(3, int(ENTRANCE_SEC * FPS))
+    flash_frames = max(1, int(FLASH_SEC * FPS))
+    frame_i = 0
+    for i in range(entrance_frames):
+        t = i / (entrance_frames - 1)
+        frame = builder(scene, reveal=t, idle_phase=0.0, seed=idx)
+        if i < flash_frames:
+            flash_alpha = int(180 * (1 - i / flash_frames))
+            flash = Image.new("RGBA", frame.size, (255, 255, 255, flash_alpha))
+            frame = Image.alpha_composite(frame, flash)
+        frame.convert("RGB").save(f"{seg_dir}/f_{frame_i:03d}.png")
+        frame_i += 1
 
-    entrance_clip = f"{seg_dir}/entrance.mp4"
-    subprocess.run(["ffmpeg", "-y", "-framerate", str(FPS), "-i", f"{seg_dir}/f_%02d.png",
-                     "-frames:v", str(len(frames)), "-pix_fmt", "yuv420p", entrance_clip], check=True)
+    # --- seamless idle loop (icons/card/spark keep moving for the hold)
+    held_dur = max(duration - ENTRANCE_SEC, 0.3)
+    loop_frame_count = max(6, int(LOOP_SEC * FPS))
+    loop_frames = []
+    for j in range(loop_frame_count):
+        phase = j / loop_frame_count
+        loop_frames.append(builder(scene, reveal=1.0, idle_phase=phase, seed=idx))
 
-    held_png = f"{seg_dir}/held.png"
-    frames[-1].convert("RGB").save(held_png)
-    held_clip = f"{seg_dir}/held.mp4"
-    total_frames = max(int(held_dur * FPS), 1)
-    # Continuous motion through the whole hold, not just a static image:
-    # slow zoom + a gentle diagonal drift (sine-based pan), alternated by
-    # scene index so consecutive cards don't drift identically.
-    zoom_expr = f"1+0.05*min(1,on/{total_frames})"
-    pan_dir = 1 if idx % 2 == 0 else -1
-    x_expr = f"iw/2-(iw/zoom/2)+{pan_dir}*14*sin(on/{max(total_frames,1)}*3.14159)"
-    y_expr = f"ih/2-(ih/zoom/2)+10*sin(on/{max(total_frames,1)}*3.14159*0.6)"
-    bar_w = f"{WIDTH}*({seg_start}+{entrance_dur}+t)/{total_duration}"
-    vf = (f"scale=2160:3840,zoompan=z='{zoom_expr}':x='{x_expr}':y='{y_expr}':d={total_frames}:s={WIDTH}x{HEIGHT}:fps={FPS},"
-          f"drawbox=x=0:y={HEIGHT-14}:w='{bar_w}':h=6:color=0x4F46E5@1:t=fill")
-    subprocess.run(["ffmpeg", "-y", "-loop", "1", "-i", held_png, "-t", str(held_dur),
-                     "-vf", vf, "-pix_fmt", "yuv420p", held_clip], check=True)
+    reps = max(1, math.ceil(held_dur / LOOP_SEC))
+    for _ in range(reps):
+        for lf in loop_frames:
+            if (frame_i - entrance_frames) >= held_dur * FPS:
+                break
+            lf.convert("RGB").save(f"{seg_dir}/f_{frame_i:03d}.png")
+            frame_i += 1
+        if (frame_i - entrance_frames) >= held_dur * FPS:
+            break
 
-    concat_list = f"{seg_dir}/concat.txt"
-    with open(concat_list, "w") as f:
-        f.write(f"file '{os.path.abspath(entrance_clip)}'\n")
-        f.write(f"file '{os.path.abspath(held_clip)}'\n")
-    subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", concat_list,
-                     "-c", "copy", out_path], check=True)
+    total_frames = frame_i
+    subprocess.run(["ffmpeg", "-y", "-framerate", str(FPS), "-i", f"{seg_dir}/f_%03d.png",
+                     "-frames:v", str(total_frames), "-pix_fmt", "yuv420p", out_path], check=True)
+    return total_frames / FPS
 
 
 def main():
@@ -598,25 +642,32 @@ def main():
     args = p.parse_args()
 
     manifest = json.load(open(args.manifest))
-    scenes = manifest["scenes"]
+    raw_scenes = manifest["scenes"]
     handle = manifest.get("handle", "@aiquantum")
+
+    # Split any 'bullets' scene into individual one-beat 'stat' scenes so
+    # the pacing stays frequent instead of one long static hold.
+    scenes = []
+    for s in raw_scenes:
+        if s["type"] == "bullets":
+            scenes.extend(expand_bullets_scene(s))
+        else:
+            scenes.append(s)
 
     total_duration = get_audio_duration(args.audio)
     weights = [scene_word_count(s) for s in scenes]
     total_w = sum(weights) or len(scenes)
-    durations = [max(MIN_SCENE_SECONDS, total_duration * w / total_w) for w in weights]
+    durations = [max(MIN_SCENE_SEC, min(MAX_SCENE_SEC, total_duration * w / total_w)) for w in weights]
     scale = total_duration / sum(durations)
     durations = [d * scale for d in durations]
 
     work_dir = "render_tmp"
     os.makedirs(work_dir, exist_ok=True)
     seg_paths = []
-    elapsed = 0.0
     for i, (scene, dur) in enumerate(zip(scenes, durations)):
         seg_path = f"{work_dir}/seg_{i}.mp4"
-        render_scene_clip(scene, dur, elapsed, total_duration, work_dir, i, seg_path, handle)
+        render_scene_clip(scene, dur, work_dir, i, seg_path, handle)
         seg_paths.append(seg_path)
-        elapsed += dur
 
     concat_list = f"{work_dir}/concat_final.txt"
     with open(concat_list, "w") as f:
@@ -626,8 +677,17 @@ def main():
     silent = f"{work_dir}/silent.mp4"
     subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", concat_list,
                      "-c", "copy", silent], check=True)
-    subprocess.run(["ffmpeg", "-y", "-i", silent, "-i", args.audio,
-                     "-c:v", "copy", "-c:a", "aac", "-shortest", args.output], check=True)
+
+    # Single continuous progress bar drawn once over the whole assembled
+    # video (smoother than recomputing it per scene segment).
+    with_bar = f"{work_dir}/with_bar.mp4"
+    bar_w = f"{WIDTH}*t/{total_duration}"
+    subprocess.run(["ffmpeg", "-y", "-i", silent, "-vf",
+                     f"drawbox=x=0:y={HEIGHT-14}:w='{bar_w}':h=6:color=0x4F46E5@1:t=fill",
+                     "-pix_fmt", "yuv420p", with_bar], check=True)
+
+    subprocess.run(["ffmpeg", "-y", "-i", with_bar, "-i", args.audio,
+                     "-c:v", "libx264", "-c:a", "aac", "-shortest", args.output], check=True)
     print(f"Rendered: {args.output}")
 
 
