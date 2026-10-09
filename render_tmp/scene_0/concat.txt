@@ -1,0 +1,2 @@
+file '/home/claude/ai-news-render/render_tmp/scene_0/entrance.mp4'
+file '/home/claude/ai-news-render/render_tmp/scene_0/held.mp4'
