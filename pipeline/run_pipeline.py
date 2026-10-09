@@ -108,12 +108,15 @@ Structure your output as a JSON object with this EXACT shape:
   "points": [
     {{
       "number": 1,
+      "icon": "one of: bolt, chip, arrow_up, clock, brain -- pick whichever best fits this point",
       "keyword": "a short 2-5 word bold phrase naming this point",
       "detail_lead": "a short regular-weight lead-in sentence fragment, 3-6 words",
       "detail_bold": "the key 2-5 word bold phrase/number/stat for this point, ALL CAPS",
       "detail_tail": "a short regular-weight closing fragment, 3-6 words"
     }}
   ],
+  "mockup_kicker": "a short 2-4 word label above the mockup card, e.g. 'In their own words'",
+  "mockup_lines": ["2 to 4 short lines (under 10 words each) styled like a quoted excerpt, stat callout, or snippet from the source article -- this renders inside a dark app-style card, NOT spoken verbatim by the narrator"],
   "bullets_title": "a short 2-3 word section title, lowercase, e.g. 'why it matters'",
   "bullets": ["3 to 4 short punchy one-line takeaways, each under 9 words"],
   "outro_line": "a short 3-6 word question or statement, e.g. 'Want the full breakdown?'",
@@ -146,6 +149,7 @@ def script_to_manifest(script):
         scenes.append({
             "type": "number",
             "number": pt["number"],
+            "icon": pt.get("icon", "bolt"),
             "rows": [{"text": pt["keyword"], "weight": "bold", "size": 60, "color": [24, 24, 24]}],
         })
         scenes.append({
@@ -155,6 +159,14 @@ def script_to_manifest(script):
                 {"text": pt["detail_bold"], "weight": "bold", "size": 74, "color": [24, 24, 24]},
                 {"text": pt["detail_tail"], "weight": "regular", "size": 50, "color": [90, 90, 90]},
             ],
+        })
+
+    if script.get("mockup_lines"):
+        scenes.append({
+            "type": "mockup",
+            "rows": [{"text": script.get("mockup_kicker", "In their own words"), "weight": "bold",
+                      "size": 48, "color": [24, 24, 24]}],
+            "lines": script["mockup_lines"],
         })
 
     scenes.append({
