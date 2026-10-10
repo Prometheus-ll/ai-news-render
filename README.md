@@ -11,3 +11,11 @@ Scenes: hook card, terminal readout, alert card, timeline, monitor panel, call-t
 and scene-start pulse are global. Icons are Lucide (builtin set in `html_render.py`, others fetched from jsDelivr).
 
 Local debug: `python render/html_render.py --manifest m.json --audio a.wav --output out.mp4 --stills 1,8,20`
+
+## Variety (every video gets a new framing)
+Gemini chooses, per story, an opening (`hook` / `slam`), four different middle scenes from
+`terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist`, a closing `cta`,
+a storytelling angle, one of 8 color themes, one of 4 transitions (`fade, slide, zoom, wipe`) and a light/dark pattern.
+`state/recent.json` remembers the last 8 videos; the prompt tells Gemini not to repeat them and the pipeline
+overrides a repeated theme/transition. Add new scene types in `render/html/engine.html` (`BUILDERS`) and
+`pipeline/run_pipeline.py` (`SCENE_SPECS`, `SANITIZERS`).
