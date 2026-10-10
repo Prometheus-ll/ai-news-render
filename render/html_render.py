@@ -224,7 +224,7 @@ def main():
         page = browser.new_page(viewport={"width": 1080, "height": 1920}, device_scale_factor=1)
         page.goto("file://" + ENGINE)
         page.evaluate("m => build(m)", m)
-        page.evaluate("document.fonts.ready.then(()=>true)")
+        page.evaluate("document.fonts.ready.then(()=>{window.refit&&window.refit();return true;})")
 
         if a.stills:
             os.makedirs(a.stills_dir, exist_ok=True)
