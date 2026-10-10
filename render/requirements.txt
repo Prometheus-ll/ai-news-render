@@ -2,5 +2,4 @@ requests
 feedparser
 gspread
 google-auth
-Pillow
-cairosvg
+playwright

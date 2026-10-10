@@ -11,7 +11,7 @@ HANDLE = "@aiquantum"
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AUDIO_DIR = os.path.join(REPO_ROOT, "audio")
 OUTPUT_DIR = os.path.join(REPO_ROOT, "renders", "output")
-RENDER_SCRIPT = os.path.join(REPO_ROOT, "render", "render_video.py")
+RENDER_SCRIPT = os.path.join(REPO_ROOT, "render", "html_render.py")
 
 
 # ---------------------------------------------------------------- Gemini
@@ -83,105 +83,163 @@ Respond with ONLY a JSON array in this exact format, no markdown, no extra text:
 
 # ---------------------------------------------------------------- script -> manifest
 
-SCRIPT_PROMPT = """You are writing a 45-60 second short-form AI-news video script for "AI Quantum" \
-(YouTube Shorts / Instagram Reels / Facebook Reels). The visual style is bold kinetic \
-typography: short punchy phrases, numbered points, a quick bullet-point payoff, and a \
-follow call-to-action. No visuals are described here -- you are writing ONLY the words \
-that will appear on screen and be spoken by the narrator.
+ICON_LIST = ("zap, cpu, shield-check, lock, globe, trending-up, clock, code, terminal, search, eye, bell, "
+             "users, dollar-sign, triangle-alert, atom, check, calendar, star, sparkles, brain-circuit, rocket, "
+             "bot, building-2, plug, layers, bug, key, database, scale, megaphone, flame, trophy, file-text, "
+             "lightbulb, landmark, gavel, banknote, smartphone, monitor, cloud, server, network, workflow, "
+             "shield-alert, target, timer, gauge, activity")
+
+SCRIPT_PROMPT = """You are writing a 45-55 second short-form AI-news video for "AI Quantum" \
+(YouTube Shorts / Instagram Reels / Facebook Reels). The video is a MOTION-GRAPHICS explainer: six \
+animated scenes (hook card, terminal readout, alert card, timeline, monitor panel, call-to-action), each \
+with its own narration. Every on-screen text field is SHORT. The narrator speaks the "narration" fields.
 
 Headline: {headline}
 Summary: {summary}
 Why it matters: {why_it_matters}
 Source: {source_link}
 
-Structure your output as a JSON object with this EXACT shape:
+RULES
+- Use ONLY facts from the story above. Never invent numbers, quotes, dates, or names. If something is a claim \
+by a company, say so ("company-reported", "per OpenAI").
+- Scene 1 narration must open with a hook that makes people stay: a surprising fact, a bold claim, or a question.
+- Narration is spoken English: short punchy sentences, no lists, no emojis. Each scene narration is 2 sentences \
+(scene 6 may be 2 short sentences). Total across all scenes: 115-150 words.
+- Icons must be chosen ONLY from this list: {icons}
+
+Return ONE JSON object with EXACTLY this shape (no markdown, no commentary):
 
 {{
-  "title": "a punchy YouTube/Instagram title, under 90 characters",
+  "title": "punchy title under 90 characters",
   "description": "2-3 sentence description ending with a follow prompt and source credit",
   "hashtags": ["#ai", "...", "8 to 10 total, no spaces"],
-  "hook": {{
-    "kicker": "a short 2-4 word lead-in phrase, regular weight, e.g. 'OpenAI just'",
-    "headline": "the punchy 2-5 word bold headline, ALL CAPS, e.g. 'SHIPPED GPT-6'",
-    "subline": "a short follow-up phrase, 3-6 words, e.g. 'and nobody saw it coming'"
-  }},
-  "points": [
-    {{
-      "number": 1,
-      "icon": "one of: bolt, chip, arrow_up, clock, brain -- pick whichever best fits this point",
-      "keyword": "a short 2-5 word bold phrase naming this point",
-      "detail_lead": "a short regular-weight lead-in sentence fragment, 3-6 words",
-      "detail_bold": "the key 2-5 word bold phrase/number/stat for this point, ALL CAPS",
-      "detail_tail": "a short regular-weight closing fragment, 3-6 words"
+  "source_name": "publication name, e.g. TechCrunch",
+  "scenes": {{
+    "hook": {{
+      "headline": "4-8 word hook headline shown big on screen, sentence case",
+      "word": "ONE product/company/topic word in CAPS, max 10 characters",
+      "title": "product or topic name shown on the card, max 14 characters",
+      "subtitle": "max 38 characters, e.g. 'By OpenAI - most capable yet'",
+      "badge": "1-2 words in caps, e.g. NEW MODEL, FUNDING, POLICY, OUTAGE",
+      "icon": "icon name",
+      "chips": ["3 short tags, max 16 characters each"],
+      "narration": "..."
+    }},
+    "terminal": {{
+      "kicker": "2-3 words in caps, e.g. SOFTWARE ENGINEERING",
+      "file": "fake filename like topic_facts.exe",
+      "tag": "short label, max 28 chars, e.g. Best for coding - per OpenAI",
+      "lines": [{{"cmd": "a command-style line for one KEY FACT, max 34 characters, e.g. astra --task find-bugs", "result": "short result 1-3 words"}}],
+      "banner": "one-line takeaway, max 46 characters",
+      "note": "max 28 chars, e.g. company-reported",
+      "narration": "..."
+    }},
+    "alert": {{
+      "kicker": "2-3 words in caps",
+      "chip": "2-3 words, e.g. Dual-use capability",
+      "icon": "icon name",
+      "big": "the most striking fact/stat, max 26 characters",
+      "quote": "one supporting line, max 90 characters (attribute it if it's a claim)",
+      "label": "max 40 characters",
+      "glyphs": ["short decorative word, max 6 chars", "another, max 6 chars"],
+      "narration": "..."
+    }},
+    "timeline": {{
+      "kicker": "2-3 words in caps, e.g. ROLLOUT TIMELINE or WHAT HAPPENED",
+      "steps": [{{"icon": "icon name", "title": "max 22 characters", "sub": "max 30 characters"}}],
+      "footnote": "max 44 characters, a caveat or open question",
+      "narration": "..."
+    }},
+    "monitor": {{
+      "kicker": "2-3 words in caps, e.g. THE CONTROVERSY or THE RISKS",
+      "header": "panel title, max 28 characters",
+      "rows": ["4 short lines, max 30 characters each, steps or items"],
+      "hidden": "max 24 characters, e.g. reasoning hidden",
+      "cards": [{{"icon": "icon name", "title": "max 20 characters", "sub": "max 32 characters", "tone": "violet | blue | red"}}],
+      "footnote": "max 50 characters, e.g. *as described by TechCrunch",
+      "narration": "..."
+    }},
+    "cta": {{
+      "kicker": "2-3 words in caps",
+      "label": "max 26 characters, e.g. Our take",
+      "plate": "the verdict/punchline in caps, max 20 characters",
+      "footnote": "max 70 characters clarifying the verdict",
+      "chips": [{{"icon": "icon name", "text": "max 28 characters"}}],
+      "follow": "Follow for daily AI news",
+      "narration": "ends by asking people to follow for daily AI news"
     }}
-  ],
-  "mockup_kicker": "a short 2-4 word label above the mockup card, e.g. 'In their own words'",
-  "mockup_lines": ["2 to 4 short lines (under 10 words each) styled like a quoted excerpt, stat callout, or snippet from the source article -- this renders inside a dark app-style card, NOT spoken verbatim by the narrator"],
-  "bullets_title": "a short 2-3 word section title, lowercase, e.g. 'why it matters'",
-  "bullets": ["3 to 4 short punchy one-line takeaways, each under 9 words"],
-  "outro_line": "a short 3-6 word question or statement, e.g. 'Want the full breakdown?'",
-  "cta": "a short call to action, 3-6 words, e.g. 'Follow for daily AI news'",
-  "voice_script": "the FULL narration script as continuous spoken-language sentences, \
-energetic and fast-paced, covering the hook, every point (in order), the bullets, and the \
-outro/CTA -- this is what the narrator actually says, written as natural sentences, NOT \
-labeled or bulleted. 120-170 words."
+  }}
 }}
 
-Produce exactly 2 or 3 "points". Keep every on-screen phrase SHORT -- these are kinetic \
-type cards, not paragraphs. Respond with ONLY the JSON object, no markdown, no extra text."""
+Counts: terminal.lines = exactly 3; timeline.steps = exactly 4; monitor.rows = exactly 4; monitor.cards = exactly 3; \
+cta.chips = exactly 2; hook.chips = exactly 3; alert.glyphs = exactly 2. Respond with ONLY the JSON object."""
 
 
 def write_script(story):
-    prompt = SCRIPT_PROMPT.format(**story)
+    prompt = SCRIPT_PROMPT.format(icons=ICON_LIST, **story)
     return gemini_text(prompt)
 
 
-def script_to_manifest(script):
-    """Turn the Gemini script JSON into the render_video.py scene manifest."""
-    rows_hook = [
-        {"text": script["hook"]["kicker"], "weight": "regular", "size": 60, "color": [24, 24, 24]},
-        {"text": script["hook"]["headline"], "weight": "bold", "size": 88, "color": [24, 24, 24]},
-        {"text": script["hook"]["subline"], "weight": "bold", "size": 46, "highlight": True},
+def _clip(v, n):
+    v = " ".join(str(v or "").split())
+    return v if len(v) <= n else v[: n - 1].rstrip() + "..."
+
+
+def _fit(lst, n, filler):
+    lst = list(lst or [])[:n]
+    while len(lst) < n:
+        lst.append(filler)
+    return lst
+
+
+def script_to_manifest(script, story=None):
+    """Turn the Gemini script JSON into the html_render.py scene manifest and the full narration."""
+    sc = script["scenes"]
+    h, t, a, tl, mo, c = (sc["hook"], sc["terminal"], sc["alert"], sc["timeline"], sc["monitor"], sc["cta"])
+    tone_ok = {"violet", "blue", "red"}
+
+    scenes = [
+        {"type": "hook", "headline": _clip(h.get("headline"), 60), "word": _clip(h.get("word"), 10),
+         "title": _clip(h.get("title"), 14), "subtitle": _clip(h.get("subtitle"), 40),
+         "badge": _clip(h.get("badge"), 14), "icon": h.get("icon", "sparkles"),
+         "chips": [_clip(x, 16) for x in _fit(h.get("chips"), 3, "AI news")],
+         "narration": h["narration"]},
+        {"type": "terminal", "kicker": _clip(t.get("kicker"), 28), "file": _clip(t.get("file"), 24),
+         "tag": _clip(t.get("tag"), 30),
+         "lines": [{"cmd": _clip(x.get("cmd"), 36), "result": _clip(x.get("result"), 16)}
+                   for x in _fit(t.get("lines"), 3, {"cmd": "ai --news", "result": "done"})],
+         "banner": _clip(t.get("banner"), 48), "note": _clip(t.get("note"), 30),
+         "narration": t["narration"]},
+        {"type": "alert", "kicker": _clip(a.get("kicker"), 28), "chip": _clip(a.get("chip"), 26),
+         "icon": a.get("icon", "triangle-alert"), "big": _clip(a.get("big"), 28),
+         "quote": _clip(a.get("quote"), 100), "label": _clip(a.get("label"), 44),
+         "glyphs": [_clip(x, 6) for x in _fit(a.get("glyphs"), 2, "AI")],
+         "narration": a["narration"]},
+        {"type": "timeline", "kicker": _clip(tl.get("kicker"), 28),
+         "steps": [{"icon": x.get("icon", "clock"), "title": _clip(x.get("title"), 24), "sub": _clip(x.get("sub"), 32)}
+                   for x in _fit(tl.get("steps"), 4, {"icon": "clock", "title": "Next", "sub": ""})],
+         "footnote": _clip(tl.get("footnote"), 46), "narration": tl["narration"]},
+        {"type": "monitor", "kicker": _clip(mo.get("kicker"), 28), "header": _clip(mo.get("header"), 30),
+         "rows": [_clip(x, 32) for x in _fit(mo.get("rows"), 4, "...")],
+         "hidden": _clip(mo.get("hidden"), 26),
+         "cards": [{"icon": x.get("icon", "eye"), "title": _clip(x.get("title"), 22), "sub": _clip(x.get("sub"), 34),
+                    "tone": x.get("tone") if x.get("tone") in tone_ok else ["violet", "blue", "red"][i]}
+                   for i, x in enumerate(_fit(mo.get("cards"), 3, {"icon": "eye", "title": "Watch this", "sub": ""}))],
+         "footnote": _clip(mo.get("footnote"), 54), "narration": mo["narration"]},
+        {"type": "cta", "kicker": _clip(c.get("kicker"), 28), "label": _clip(c.get("label"), 28),
+         "plate": _clip(c.get("plate"), 22), "footnote": _clip(c.get("footnote"), 74),
+         "chips": [{"icon": x.get("icon", "star"), "text": _clip(x.get("text"), 30)}
+                   for x in _fit(c.get("chips"), 2, {"icon": "star", "text": "AI Quantum"})],
+         "bell": "bell", "follow": _clip(c.get("follow") or "Follow for daily AI news", 32),
+         "narration": c["narration"]},
     ]
-    scenes = [{"type": "title", "burst": True, "rows": rows_hook}]
-
-    for pt in script["points"]:
-        scenes.append({
-            "type": "number",
-            "number": pt["number"],
-            "icon": pt.get("icon", "bolt"),
-            "rows": [{"text": pt["keyword"], "weight": "bold", "size": 60, "color": [24, 24, 24]}],
-        })
-        scenes.append({
-            "type": "detail",
-            "rows": [
-                {"text": pt["detail_lead"], "weight": "regular", "size": 50, "color": [24, 24, 24]},
-                {"text": pt["detail_bold"], "weight": "bold", "size": 74, "color": [24, 24, 24]},
-                {"text": pt["detail_tail"], "weight": "regular", "size": 50, "color": [90, 90, 90]},
-            ],
-        })
-
-    if script.get("mockup_lines"):
-        scenes.append({
-            "type": "mockup",
-            "rows": [{"text": script.get("mockup_kicker", "In their own words"), "weight": "bold",
-                      "size": 48, "color": [24, 24, 24]}],
-            "lines": script["mockup_lines"],
-        })
-
-    scenes.append({
-        "type": "bullets",
-        "title": [{"text": script["bullets_title"], "weight": "bold", "size": 56, "color": [24, 24, 24]}],
-        "items": script["bullets"],
-    })
-
-    scenes.append({
-        "type": "outro",
-        "rows": [{"text": script["outro_line"], "weight": "bold", "size": 58, "color": [24, 24, 24]}],
-        "cta": script["cta"],
-    })
-
-    return {"channel_name": CHANNEL_NAME, "handle": HANDLE, "scenes": scenes}
+    manifest = {
+        "brand": {"name": CHANNEL_NAME, "icon": "atom"},
+        "source": script.get("source_name") or "",
+        "scenes": scenes,
+    }
+    voice = " ".join(s["narration"].strip() for s in scenes)
+    return manifest, voice
 
 
 # ---------------------------------------------------------------- TTS
@@ -276,7 +334,7 @@ def main():
     for i, story in enumerate(stories):
         print(f"--- Processing story {i}: {story['headline']} ---")
         script = write_script(story)
-        manifest = script_to_manifest(script)
+        manifest, voice_script = script_to_manifest(script, story)
 
         stamp = time.strftime("%Y-%m-%d-%H%M%S") + f"-{i}"
         manifest_path = f"/tmp/manifest_{stamp}.json"
@@ -284,7 +342,7 @@ def main():
             json.dump(manifest, f)
 
         audio_path = os.path.join(AUDIO_DIR, f"{stamp}.wav")
-        gemini_tts(script["voice_script"], audio_path)
+        gemini_tts(voice_script, audio_path)
 
         video_path = os.path.join(OUTPUT_DIR, f"{stamp}.mp4")
         render_video(manifest_path, audio_path, video_path)
