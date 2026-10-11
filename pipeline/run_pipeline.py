@@ -429,7 +429,8 @@ def script_to_manifest(script, story=None, recent=None):
 
 # ---------------------------------------------------------------- TTS
 
-def gemini_tts(text, out_wav_path, retries=3):
+def gemini_tts(text, out_wav_path, retries=5):
+    """Call Gemini TTS. On 429 (rate limit) wait long enough for the per-minute quota to reset."""
     for i in range(retries):
         r = requests.post(
             f"{GEMINI_URL}/gemini-3.1-flash-tts-preview:generateContent",
@@ -445,12 +446,19 @@ def gemini_tts(text, out_wav_path, retries=3):
             },
         )
         if r.status_code == 200:
-            data = r.json()["candidates"][0]["content"]["parts"][0]["inlineData"]["data"]
-            pcm = base64.b64decode(data)
-            build_wav(pcm, out_wav_path)
-            return out_wav_path
-        print(f"TTS call failed ({r.status_code}), retry {i + 1}/{retries}")
-        time.sleep(10)
+            try:
+                data = r.json()["candidates"][0]["content"]["parts"][0]["inlineData"]["data"]
+                build_wav(base64.b64decode(data), out_wav_path)
+                return out_wav_path
+            except (KeyError, IndexError):
+                print("TTS returned no audio, retrying")
+        wait = 20 * (i + 1)
+        if r.status_code == 429:
+            m = re.search(r"retry in ([\d.]+)s", r.text) or re.search(r'"retryDelay":\s*"(\d+)s"', r.text)
+            wait = max(wait, int(float(m.group(1))) + 5) if m else max(wait, 65)
+            print(f"TTS rate-limited (429): {r.text[:200]!r}")
+        print(f"TTS call failed ({r.status_code}), waiting {wait}s, retry {i + 1}/{retries}")
+        time.sleep(wait)
     raise RuntimeError("Gemini TTS call failed after retries")
 
 
@@ -509,48 +517,62 @@ def git_push_with_retry(message, attempts=5):
     raise RuntimeError("git push failed after retries")
 
 
+def process_story(i, story, recent_holder):
+    recent = recent_holder[0]
+    print(f"--- Processing story {i}: {story['headline']} ---")
+    script = write_script(story, recent)
+    manifest, voice_script, record = script_to_manifest(script, story, recent)
+    print(f"Framing: {record['theme']} / {record['transition']} / {record['angle']} / {' > '.join(record['scenes'])}")
+
+    stamp = time.strftime("%Y-%m-%d-%H%M%S") + f"-{i}"
+    manifest_path = f"/tmp/manifest_{stamp}.json"
+    with open(manifest_path, "w") as f:
+        json.dump(manifest, f)
+
+    audio_path = os.path.join(AUDIO_DIR, f"{stamp}.wav")
+    gemini_tts(voice_script, audio_path)
+
+    video_path = os.path.join(OUTPUT_DIR, f"{stamp}.mp4")
+    render_video(manifest_path, audio_path, video_path)
+
+    recent = save_recent(recent, record)
+    video_rel_path = os.path.relpath(video_path, REPO_ROOT)
+    git_push_with_retry(f"Add rendered video {stamp}")
+
+    repo = os.environ.get("GITHUB_REPOSITORY", "")
+    video_url = f"https://github.com/{repo}/raw/main/{video_rel_path}" if repo else video_rel_path
+
+    log_to_sheets([
+        time.strftime("%Y-%m-%d %H:%M"),
+        story["headline"],
+        script["title"],
+        script["description"],
+        " ".join(script["hashtags"]),
+        video_url,
+        story["source_link"],
+    ])
+    print(f"Done: {story['headline']}")
+    recent_holder[0] = recent
+
+
 def main():
     os.makedirs(AUDIO_DIR, exist_ok=True)
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     recent = load_recent()
+    recent_holder = [recent]
     stories = fetch_stories(recent)
     print(f"Selected {len(stories)} stories")
 
+    failures = 0
     for i, story in enumerate(stories):
-        print(f"--- Processing story {i}: {story['headline']} ---")
-        script = write_script(story, recent)
-        manifest, voice_script, record = script_to_manifest(script, story, recent)
-        print(f"Framing: {record['theme']} / {record['transition']} / {record['angle']} / {' > '.join(record['scenes'])}")
-
-        stamp = time.strftime("%Y-%m-%d-%H%M%S") + f"-{i}"
-        manifest_path = f"/tmp/manifest_{stamp}.json"
-        with open(manifest_path, "w") as f:
-            json.dump(manifest, f)
-
-        audio_path = os.path.join(AUDIO_DIR, f"{stamp}.wav")
-        gemini_tts(voice_script, audio_path)
-
-        video_path = os.path.join(OUTPUT_DIR, f"{stamp}.mp4")
-        render_video(manifest_path, audio_path, video_path)
-
-        recent = save_recent(recent, record)
-        video_rel_path = os.path.relpath(video_path, REPO_ROOT)
-        git_push_with_retry(f"Add rendered video {stamp}")
-
-        repo = os.environ.get("GITHUB_REPOSITORY", "")
-        video_url = f"https://github.com/{repo}/raw/main/{video_rel_path}" if repo else video_rel_path
-
-        log_to_sheets([
-            time.strftime("%Y-%m-%d %H:%M"),
-            story["headline"],
-            script["title"],
-            script["description"],
-            " ".join(script["hashtags"]),
-            video_url,
-            story["source_link"],
-        ])
-        print(f"Done: {story['headline']}")
+        try:
+            process_story(i, story, recent_holder)
+        except Exception as e:
+            failures += 1
+            print(f"Story {i} failed, skipping: {e}")
+    if failures == len(stories):
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":
