@@ -454,18 +454,6 @@ def gemini_tts(text, out_wav_path, retries=3):
     raise RuntimeError("Gemini TTS call failed after retries")
 
 
-TTS_STYLE = "Say in an energetic, fast-paced news-reporter voice: "
-TTS_SPEED = 1.08
-
-
-def speed_up_wav(path, factor):
-    """Speed narration up slightly (pitch preserved) so videos land near 45-50 seconds."""
-    tmp = path + ".tmp.wav"
-    r = subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", path, "-filter:a", f"atempo={factor}", tmp])
-    if r.returncode == 0 and os.path.exists(tmp):
-        os.replace(tmp, path)
-
-
 def build_wav(pcm_bytes, out_path, sample_rate=24000, channels=1, bits=16):
     byte_rate = sample_rate * channels * bits // 8
     block_align = channels * bits // 8
@@ -541,8 +529,7 @@ def main():
             json.dump(manifest, f)
 
         audio_path = os.path.join(AUDIO_DIR, f"{stamp}.wav")
-        gemini_tts(TTS_STYLE + voice_script, audio_path)
-        speed_up_wav(audio_path, TTS_SPEED)
+        gemini_tts(voice_script, audio_path)
 
         video_path = os.path.join(OUTPUT_DIR, f"{stamp}.mp4")
         render_video(manifest_path, audio_path, video_path)
