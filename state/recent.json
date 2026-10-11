@@ -104,5 +104,21 @@
   ],
   "headline": "Amazon Ends Secrecy in Data Center Negotiations to Rebuild Public Trust",
   "link": "https://techcrunch.com/video/amazon-and-others-are-done-keeping-data-center-deals-secret-is-it-enough-to-build-trust/"
+ },
+ {
+  "ts": "2026-10-11 15:01",
+  "theme": "neon",
+  "transition": "wipe",
+  "angle": "red flags",
+  "scenes": [
+   "slam",
+   "terminal",
+   "quote",
+   "checklist",
+   "alert",
+   "cta"
+  ],
+  "headline": "Microsoft CEO Satya Nadella Calls for 'Emergency Brake' on AI Models",
+  "link": "https://techcrunch.com/2026/10/10/microsofts-satya-nadella-says-ai-models-need-an-emergency-brake/"
  }
 ]
