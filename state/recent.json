@@ -43,5 +43,20 @@
    "cta"
   ],
   "headline": "Anthropic Disables Internet Access for AI Evals Following Control Failures"
+ },
+ {
+  "ts": "2026-10-11 13:37",
+  "theme": "indigo",
+  "transition": "fade",
+  "angle": "before vs after",
+  "scenes": [
+   "hook",
+   "monitor",
+   "chat",
+   "checklist",
+   "timeline",
+   "cta"
+  ],
+  "headline": "Google Launches Agentic Gemini for Enterprise"
  }
 ]
