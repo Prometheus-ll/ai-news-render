@@ -65,14 +65,20 @@ def gemini_text(prompt, retries=3):
     raise RuntimeError("Gemini call failed after retries")
 
 
-def fetch_stories():
+def fetch_stories(covered=None):
+    covered = covered or []
+    done_links = {r.get("link") for r in covered if r.get("link")}
+    done_titles = [r.get("headline", "") for r in covered[-15:] if r.get("headline")]
     feed = feedparser.parse(RSS_URL)
     articles = [{"title": e.title, "link": e.link, "summary": getattr(e, "summary", "")}
-                for e in feed.entries[:20]]
+                for e in feed.entries[:25] if e.link not in done_links][:20]
     prompt = f"""You are a news curator for a faceless AI-news channel posting to YouTube, Facebook, and Instagram.
 
 Here is today's list of AI-related articles as JSON:
 {json.dumps(articles)}
+
+Stories we already made videos about (do NOT pick these or follow-ups that are really the same news):
+{json.dumps(done_titles)}
 
 From this list, select the 2 or 3 most significant, genuinely newsworthy AI developments. Prioritize real product launches, model releases, research breakthroughs, or policy changes over opinion pieces, rumors, or anything not clearly about AI.
 
@@ -111,7 +117,7 @@ leaderboard (animated ranking/benchmark; ONLY with real numbers from the story):
 chat (an illustrative conversation showing what the product does): {"type":"chat","kicker":"2-3 words CAPS","name":"max 16 chars","icon":"<icon>","status":"illustrative example","bubbles":[{"who":"user|ai","name":"max 14 chars","text":"max 60 chars"}  (3-4, alternate user/ai)],"narration":"..."}
 quote (a REAL quote from the story): {"type":"quote","kicker":"2-3 words CAPS","quote":"max 120 chars","highlight":["1-2 phrases copied EXACTLY from the quote"],"who":"max 22 chars","role":"max 34 chars","icon":"users","narration":"..."}
 checklist (features in/out, pros/cons, dos/don'ts): {"type":"checklist","kicker":"2-3 words CAPS","title":"max 28 chars","items":[{"text":"max 30 chars","state":"yes|no|maybe"}  (4-5)],"narration":"..."}
-cta (closing, always last): {"type":"cta","kicker":"2-3 words CAPS","label":"max 26 chars","plate":"verdict/punchline CAPS, max 20 chars","footnote":"max 70 chars","chips":[{"icon":"<icon>","text":"max 28 chars"}  (exactly 2)],"follow":"Follow for daily AI news","narration":"ends by asking people to follow for daily AI news"}
+cta (closing, always last): {"type":"cta","kicker":"2-3 words CAPS","label":"max 26 chars","plate":"a punchy verdict about THIS story in CAPS, max 20 chars (never the channel name or a follow request)","footnote":"max 70 chars","chips":[{"icon":"<icon>","text":"max 28 chars"}  (exactly 2)],"follow":"Follow for daily AI news","narration":"ends by asking people to follow for daily AI news"}
 """
 
 SCRIPT_PROMPT = """You are the creative director and scriptwriter of "AI Quantum", a faceless AI-news channel \
@@ -150,7 +156,7 @@ CONTENT RULES
 If the story lacks them, choose other scene types. "chat" is an illustrative example of the product, never presented as a real quote.
 - Narration is spoken English: short punchy sentences, no lists, no emojis. Each scene has 2 sentences of narration \
 (the cta may have 2 short sentences). Scene 1's narration opens with a hook that makes people stay (surprising fact, bold claim or question). \
-Total narration across all scenes: 115-150 words.
+Total narration across all scenes: 95-115 words (about 45 seconds spoken) - be concise.
 - All on-screen text is SHORT; respect every max length.
 - Icons must come ONLY from this list: <<icons>>
 
@@ -168,7 +174,7 @@ def load_recent():
         return []
 
 
-def save_recent(recent, record, keep=8):
+def save_recent(recent, record, keep=40):
     recent = (recent + [record])[-keep:]
     os.makedirs(os.path.dirname(STATE_PATH), exist_ok=True)
     with open(STATE_PATH, "w") as f:
@@ -217,8 +223,8 @@ def validate_script(script):
         if len(str(x.get("narration", "")).split()) < 6:
             return f"scene {x.get('type')} needs a 2-sentence narration"
     words = sum(len(str(x["narration"]).split()) for x in sc)
-    if not (90 <= words <= 190):
-        return f"total narration is {words} words; it must be 115-150"
+    if not (75 <= words <= 135):
+        return f"total narration is {words} words; it must be 95-115"
     return ""
 
 
@@ -417,7 +423,7 @@ def script_to_manifest(script, story=None, recent=None):
     voice = " ".join(s["narration"] for s in scenes)
     record = {"ts": time.strftime("%Y-%m-%d %H:%M"), "theme": theme, "transition": transition,
               "angle": script.get("angle"), "scenes": [s["type"] for s in scenes],
-              "headline": (story or {}).get("headline", "")[:80]}
+              "headline": (story or {}).get("headline", "")[:80], "link": (story or {}).get("source_link", "")}
     return manifest, voice, record
 
 
@@ -446,6 +452,18 @@ def gemini_tts(text, out_wav_path, retries=3):
         print(f"TTS call failed ({r.status_code}), retry {i + 1}/{retries}")
         time.sleep(10)
     raise RuntimeError("Gemini TTS call failed after retries")
+
+
+TTS_STYLE = "Say in an energetic, fast-paced news-reporter voice: "
+TTS_SPEED = 1.08
+
+
+def speed_up_wav(path, factor):
+    """Speed narration up slightly (pitch preserved) so videos land near 45-50 seconds."""
+    tmp = path + ".tmp.wav"
+    r = subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", path, "-filter:a", f"atempo={factor}", tmp])
+    if r.returncode == 0 and os.path.exists(tmp):
+        os.replace(tmp, path)
 
 
 def build_wav(pcm_bytes, out_path, sample_rate=24000, channels=1, bits=16):
@@ -507,9 +525,9 @@ def main():
     os.makedirs(AUDIO_DIR, exist_ok=True)
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-    stories = fetch_stories()
-    print(f"Selected {len(stories)} stories")
     recent = load_recent()
+    stories = fetch_stories(recent)
+    print(f"Selected {len(stories)} stories")
 
     for i, story in enumerate(stories):
         print(f"--- Processing story {i}: {story['headline']} ---")
@@ -523,7 +541,8 @@ def main():
             json.dump(manifest, f)
 
         audio_path = os.path.join(AUDIO_DIR, f"{stamp}.wav")
-        gemini_tts(voice_script, audio_path)
+        gemini_tts(TTS_STYLE + voice_script, audio_path)
+        speed_up_wav(audio_path, TTS_SPEED)
 
         video_path = os.path.join(OUTPUT_DIR, f"{stamp}.mp4")
         render_video(manifest_path, audio_path, video_path)
