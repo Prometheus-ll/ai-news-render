@@ -152,5 +152,21 @@
   ],
   "headline": "Apple Signals AI Podcast Ambitions with Acquisition of Huxe Team and Tech",
   "link": "https://techcrunch.com/2026/10/10/apple-discloses-deal-to-hire-team-and-license-tech-from-personalized-podcast-startup-huxe/"
+ },
+ {
+  "ts": "2026-10-11 15:26",
+  "theme": "ember",
+  "transition": "wipe",
+  "angle": "the big question",
+  "scenes": [
+   "slam",
+   "versus",
+   "monitor",
+   "timeline",
+   "alert",
+   "cta"
+  ],
+  "headline": "Fired OpenAI Researchers Dispute Misconduct Claims, Warning of 'Chilling Effect'",
+  "link": "https://techcrunch.com/2026/10/08/fired-openai-safety-researchers-dispute-misconduct-claims-warn-of-chilling-effect/"
  }
 ]
