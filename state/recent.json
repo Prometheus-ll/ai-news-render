@@ -58,5 +58,20 @@
    "cta"
   ],
   "headline": "Google Launches Agentic Gemini for Enterprise"
+ },
+ {
+  "ts": "2026-10-11 13:40",
+  "theme": "ember",
+  "transition": "slide",
+  "angle": "the big question",
+  "scenes": [
+   "hook",
+   "alert",
+   "timeline",
+   "quote",
+   "terminal",
+   "cta"
+  ],
+  "headline": "Anthropic AI Model Sends False Homicide Tip to Police"
  }
 ]
