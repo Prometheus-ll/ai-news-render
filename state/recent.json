@@ -120,5 +120,21 @@
   ],
   "headline": "Microsoft CEO Satya Nadella Calls for 'Emergency Brake' on AI Models",
   "link": "https://techcrunch.com/2026/10/10/microsofts-satya-nadella-says-ai-models-need-an-emergency-brake/"
+ },
+ {
+  "ts": "2026-10-11 15:03",
+  "theme": "signal",
+  "transition": "slide",
+  "angle": "by the numbers",
+  "scenes": [
+   "slam",
+   "bignumber",
+   "timeline",
+   "monitor",
+   "checklist",
+   "cta"
+  ],
+  "headline": "AI Benchmarking Giant Arena Reaches $3.1B Valuation",
+  "link": "https://techcrunch.com/2026/10/08/popular-ai-leaderboard-arena-nearly-doubles-valuation-to-3-1b-valuation-in-10-months/"
  }
 ]
