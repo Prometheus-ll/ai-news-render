@@ -13,5 +13,20 @@
    "cta"
   ],
   "headline": "Google Unveils Agentic AI for Gemini with Autonomous Workplace Capabilities"
+ },
+ {
+  "ts": "2026-10-11 10:43",
+  "theme": "neon",
+  "transition": "slide",
+  "angle": "what changes for you",
+  "scenes": [
+   "hook",
+   "bignumber",
+   "versus",
+   "timeline",
+   "terminal",
+   "cta"
+  ],
+  "headline": "Non-Text AI Model 'Jev' Hits $7.5B Valuation on Speed and Efficiency Claims"
  }
 ]
