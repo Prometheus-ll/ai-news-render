@@ -28,5 +28,20 @@
    "cta"
   ],
   "headline": "Non-Text AI Model 'Jev' Hits $7.5B Valuation on Speed and Efficiency Claims"
+ },
+ {
+  "ts": "2026-10-11 10:46",
+  "theme": "signal",
+  "transition": "wipe",
+  "angle": "red flags",
+  "scenes": [
+   "slam",
+   "alert",
+   "terminal",
+   "monitor",
+   "checklist",
+   "cta"
+  ],
+  "headline": "Anthropic Disables Internet Access for AI Evals Following Control Failures"
  }
 ]
