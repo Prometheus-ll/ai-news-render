@@ -88,5 +88,21 @@
    "cta"
   ],
   "headline": "OpenAI Revenue Reportedly $20 Billion Below Projections"
+ },
+ {
+  "ts": "2026-10-11 14:58",
+  "theme": "forest",
+  "transition": "fade",
+  "angle": "behind the scenes",
+  "scenes": [
+   "hook",
+   "quote",
+   "monitor",
+   "versus",
+   "terminal",
+   "cta"
+  ],
+  "headline": "Amazon Ends Secrecy in Data Center Negotiations to Rebuild Public Trust",
+  "link": "https://techcrunch.com/video/amazon-and-others-are-done-keeping-data-center-deals-secret-is-it-enough-to-build-trust/"
  }
 ]
