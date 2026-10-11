@@ -1,0 +1,17 @@
+[
+ {
+  "ts": "2026-10-11 10:40",
+  "theme": "ocean",
+  "transition": "zoom",
+  "angle": "what changes for you",
+  "scenes": [
+   "slam",
+   "checklist",
+   "monitor",
+   "timeline",
+   "terminal",
+   "cta"
+  ],
+  "headline": "Google Unveils Agentic AI for Gemini with Autonomous Workplace Capabilities"
+ }
+]
