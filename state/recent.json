@@ -184,5 +184,21 @@
   ],
   "headline": "Apple\u2019s First Smart Home Hardware 'HomeView' Gets Launch Date",
   "link": "https://techcrunch.com/2026/10/11/will-the-homeview-be-apples-first-smart-home-success/"
+ },
+ {
+  "ts": "2026-10-12 10:00",
+  "theme": "forest",
+  "transition": "zoom",
+  "angle": "before vs after",
+  "scenes": [
+   "hook",
+   "terminal",
+   "versus",
+   "monitor",
+   "checklist",
+   "cta"
+  ],
+  "headline": "Danu Robotics Deploys AI and Computer Vision to Automate Recycling",
+  "link": "https://techcrunch.com/2026/10/09/danu-robotics-fight-to-build-a-better-recycling-robot/"
  }
 ]
