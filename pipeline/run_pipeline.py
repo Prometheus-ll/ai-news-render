@@ -512,7 +512,13 @@ def git_push_with_retry(message, attempts=5):
             print("Pushed.")
             return
         print(f"Push failed, pulling and retrying ({i + 1}/{attempts})...")
-        subprocess.run(["git", "pull", "--rebase"], cwd=REPO_ROOT, check=True)
+        # -X theirs: on a conflict (e.g. state/recent.json edited elsewhere) keep OUR newest commit.
+        pull = subprocess.run(["git", "pull", "--rebase", "-X", "theirs"], cwd=REPO_ROOT,
+                              capture_output=True, text=True)
+        if pull.returncode != 0:
+            print("Rebase failed, aborting it and merging instead:", pull.stdout[-300:], pull.stderr[-300:])
+            subprocess.run(["git", "rebase", "--abort"], cwd=REPO_ROOT)
+            subprocess.run(["git", "pull", "--no-rebase", "-X", "theirs", "--no-edit"], cwd=REPO_ROOT)
         time.sleep(3)
     raise RuntimeError("git push failed after retries")
 
