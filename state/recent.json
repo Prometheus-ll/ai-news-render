@@ -200,5 +200,21 @@
   ],
   "headline": "Danu Robotics Deploys AI and Computer Vision to Automate Recycling",
   "link": "https://techcrunch.com/2026/10/09/danu-robotics-fight-to-build-a-better-recycling-robot/"
+ },
+ {
+  "ts": "2026-10-12 10:05",
+  "theme": "neon",
+  "transition": "slide",
+  "angle": "behind the scenes",
+  "scenes": [
+   "slam",
+   "chat",
+   "monitor",
+   "terminal",
+   "timeline",
+   "cta"
+  ],
+  "headline": "Consumer AI Shifts Toward SMS-Based Agent Distribution",
+  "link": "https://techcrunch.com/2026/10/10/all-the-ai-agents-that-can-live-in-your-text-messages/"
  }
 ]
