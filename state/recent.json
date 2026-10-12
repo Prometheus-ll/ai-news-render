@@ -232,5 +232,21 @@
   ],
   "headline": "Meta Releases Muse Wonder, Its First Frontier-Level AI Model",
   "link": "https://techcrunch.com/2026/10/12/meta-releases-its-first-frontier-model-muse-wonder/"
+ },
+ {
+  "ts": "2026-10-12 21:06",
+  "theme": "ember",
+  "transition": "zoom",
+  "angle": "what changes for you",
+  "scenes": [
+   "slam",
+   "bignumber",
+   "profile",
+   "hubmap",
+   "monitor",
+   "cta"
+  ],
+  "headline": "AI Weather Startup WindBorne Secures $50M U.S. Air Force Contract",
+  "link": "https://techcrunch.com/2026/10/12/windborne-wins-a-hefty-us-air-force-contract-for-its-balloon-data/"
  }
 ]
