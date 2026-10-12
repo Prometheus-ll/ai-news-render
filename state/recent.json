@@ -216,5 +216,21 @@
   ],
   "headline": "Consumer AI Shifts Toward SMS-Based Agent Distribution",
   "link": "https://techcrunch.com/2026/10/10/all-the-ai-agents-that-can-live-in-your-text-messages/"
+ },
+ {
+  "ts": "2026-10-12 21:02",
+  "theme": "signal",
+  "transition": "wipe",
+  "angle": "by the numbers",
+  "scenes": [
+   "appclutter",
+   "profile",
+   "leaderboard",
+   "checklist",
+   "versus",
+   "cta"
+  ],
+  "headline": "Meta Releases Muse Wonder, Its First Frontier-Level AI Model",
+  "link": "https://techcrunch.com/2026/10/12/meta-releases-its-first-frontier-model-muse-wonder/"
  }
 ]
