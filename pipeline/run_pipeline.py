@@ -93,10 +93,12 @@ ICON_LIST = ("zap, cpu, shield-check, lock, globe, trending-up, clock, code, ter
              "users, dollar-sign, triangle-alert, atom, check, calendar, star, sparkles, brain-circuit, rocket, "
              "bot, building-2, plug, layers, bug, key, database, scale, megaphone, flame, trophy, file-text, "
              "lightbulb, landmark, gavel, banknote, smartphone, monitor, cloud, server, network, workflow, "
-             "shield-alert, target, timer, gauge, activity")
+             "shield-alert, target, timer, gauge, activity, message-circle, shopping-cart, house, list-checks, moon, sun, "
+             "book-open, calendar-check, mail, send, app-window")
 
-HOOK_TYPES = ["hook", "slam"]
-MID_TYPES = ["terminal", "alert", "timeline", "monitor", "bignumber", "versus", "leaderboard", "chat", "quote", "checklist"]
+HOOK_TYPES = ["hook", "slam", "appclutter"]
+MID_TYPES = ["terminal", "alert", "timeline", "monitor", "bignumber", "versus", "leaderboard", "chat", "quote", "checklist",
+             "profile", "hubmap", "roundup"]
 THEMES = ["indigo", "ember", "forest", "ocean", "neon", "signal", "mint", "paper"]
 TRANSITIONS = ["fade", "slide", "zoom", "wipe"]
 MODE_PATTERNS = ["alternate_light", "alternate_dark", "light_then_dark", "dark_then_light"]
@@ -107,6 +109,7 @@ STATE_PATH = os.path.join(REPO_ROOT, "state", "recent.json")
 SCENE_SPECS = """\
 hook (opening, card style): {"type":"hook","headline":"4-8 words, sentence case","word":"ONE word CAPS, max 10 chars","title":"max 14 chars","subtitle":"max 38 chars","badge":"1-2 words CAPS","icon":"<icon>","chips":["exactly 3 tags, max 16 chars each"],"narration":"..."}
 slam (opening, giant words slamming in): {"type":"slam","words":["2-3 giant words, each max 9 chars"],"accent":<0-based index of the most striking word>,"sub":"max 48 chars","badge":"1-2 words CAPS","word":"ONE ghost word CAPS, max 6 chars","narration":"..."}
+appclutter (opening, "too many apps -> just one simple thing" metaphor; best for products that replace/simplify apps or live inside chat): {"type":"appclutter","before":"max 34 chars, the pain, e.g. Another app to download?","after":"max 24 chars, the relief, e.g. Just send a text.","user":"max 40 chars illustrative request","ai":"max 24 chars illustrative reply","narration":"..."}
 terminal (key facts shown as command lines): {"type":"terminal","kicker":"2-3 words CAPS","file":"fake_filename.ext","tag":"max 28 chars","lines":[{"cmd":"max 34 chars, command-style line for ONE key fact","result":"1-3 words"}  (exactly 3)],"banner":"max 46 chars","note":"max 28 chars","narration":"..."}
 alert (a risk, warning or shock stat): {"type":"alert","kicker":"2-3 words CAPS","chip":"2-3 words","icon":"<icon>","big":"max 26 chars, the striking fact","quote":"max 90 chars, supporting line (attribute claims)","label":"max 40 chars","glyphs":["max 6 chars","max 6 chars"],"narration":"..."}
 timeline (sequence, rollout, what happened when): {"type":"timeline","kicker":"2-3 words CAPS","steps":[{"icon":"<icon>","title":"max 22 chars","sub":"max 30 chars"}  (exactly 4)],"footnote":"max 44 chars","narration":"..."}
@@ -117,6 +120,9 @@ leaderboard (animated ranking/benchmark; ONLY with real numbers from the story):
 chat (an illustrative conversation showing what the product does): {"type":"chat","kicker":"2-3 words CAPS","name":"max 16 chars","icon":"<icon>","status":"illustrative example","bubbles":[{"who":"user|ai","name":"max 14 chars","text":"max 60 chars"}  (3-4, alternate user/ai)],"narration":"..."}
 quote (a REAL quote from the story): {"type":"quote","kicker":"2-3 words CAPS","quote":"max 120 chars","highlight":["1-2 phrases copied EXACTLY from the quote"],"who":"max 22 chars","role":"max 34 chars","icon":"users","narration":"..."}
 checklist (features in/out, pros/cons, dos/don'ts): {"type":"checklist","kicker":"2-3 words CAPS","title":"max 28 chars","items":[{"text":"max 30 chars","state":"yes|no|maybe"}  (4-5)],"narration":"..."}
+profile (spotlight ONE product/agent/model: name, where it lives, what it does): {"type":"profile","kicker":"2-3 words CAPS","name":"max 12 chars","icon":"<icon>","tag":"max 34 chars","pills":["2-3 platforms/tags, max 12 chars each"],"tagline":"max 40 chars","cards":[{"icon":"<icon>","title":"max 20 chars","sub":"max 32 chars"}  (exactly 2, concrete things it does)],"narration":"..."}
+hubmap (one central thing connected to 3 parts + a summary card): {"type":"hubmap","kicker":"2-3 words CAPS","icon":"<icon>","hub":"max 16 chars","nodes":[{"icon":"<icon>","label":"max 12 chars"}  (exactly 3)],"card":{"title":"max 26 chars","rows":[{"icon":"<icon>","text":"max 30 chars"}  (exactly 3)]},"narration":"..."}
+roundup (3 items announced, 'three more X', numbered cards sliding in): {"type":"roundup","title":"max 22 chars","sub":"max 30 chars","items":[{"name":"max 12 chars","icon":"<icon>","sub":"max 34 chars"}  (exactly 3)],"narration":"..."}
 cta (closing, always last): {"type":"cta","kicker":"2-3 words CAPS","label":"max 26 chars","plate":"a punchy verdict about THIS story in CAPS, max 20 chars (never the channel name or a follow request)","footnote":"max 70 chars","chips":[{"icon":"<icon>","text":"max 28 chars"}  (exactly 2)],"follow":"Follow for daily AI news","narration":"ends by asking people to follow for daily AI news"}
 """
 
@@ -134,10 +140,10 @@ FRAMING MENU
 Scene types you can use (each at most once per video):
 <<specs>>
 Build the video as 6 scenes in this order:
- 1. exactly one OPENING scene: "hook" or "slam"
- 2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist - \
+ 1. exactly one OPENING scene: "hook", "slam" or "appclutter"
+ 2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup - \
 the ones that tell THIS story best (a funding story wants bignumber/leaderboard, a product launch wants chat/checklist/timeline, \
-a controversy wants versus/monitor/alert, a security story wants alert/terminal, etc.)
+a controversy wants versus/monitor/alert, a security story wants alert/terminal, a story about several products or agents wants roundup then profile, a platform/ecosystem story wants hubmap, etc.)
  6. "cta" (always last)
 Also choose:
  - "angle": the storytelling frame, one of <<angles>>. Let it shape how the narration is written.
@@ -152,7 +158,7 @@ from the most recent videos.
 
 CONTENT RULES
 - Use ONLY facts from the story above. Never invent numbers, quotes, dates or names. Attribute claims ("per OpenAI", "company-reported").
-- A "quote" scene needs a real quote from the story; a "leaderboard" or "bignumber" needs real figures from the story. \
+- A "quote" scene needs a real quote from the story; a "leaderboard" or "bignumber" needs real figures; "profile", "hubmap" and "roundup" must only name things from the story from the story. \
 If the story lacks them, choose other scene types. "chat" is an illustrative example of the product, never presented as a real quote.
 - Narration is spoken English: short punchy sentences, no lists, no emojis. Each scene has 2 sentences of narration \
 (the cta may have 2 short sentences). Scene 1's narration opens with a hook that makes people stay (surprising fact, bold claim or question). \
@@ -212,7 +218,7 @@ def validate_script(script):
         return "scenes must be a list of 6 scene objects"
     types = [x.get("type") for x in sc]
     if types[0] not in HOOK_TYPES:
-        return "first scene must be hook or slam"
+        return "first scene must be hook, slam or appclutter"
     if types[-1] != "cta":
         return "last scene must be cta"
     if len(set(types)) != len(types):
@@ -373,6 +379,35 @@ def _san_checklist(x):
             "items": _min_fit(items, 4, 5, {"text": "-", "state": "maybe"})}
 
 
+def _san_appclutter(x):
+    return {"before": _clip(x.get("before"), 36) or "Another app to download?", "after": _clip(x.get("after"), 26) or "Just one simple thing.",
+            "user": _clip(x.get("user"), 42) or "Hey, can you handle this?", "ai": _clip(x.get("ai"), 26) or "On it."}
+
+
+def _san_profile(x):
+    cards = [{"icon": _icon(c.get("icon"), "check"), "title": _clip(c.get("title"), 22), "sub": _clip(c.get("sub"), 34)}
+             for c in _fit(x.get("cards"), 2, {"icon": "check", "title": "Gets it done", "sub": ""})]
+    return {"kicker": _clip(x.get("kicker"), 28), "name": _clip(x.get("name"), 12) or "AI", "icon": _icon(x.get("icon"), "bot"),
+            "tag": _clip(x.get("tag"), 36), "pills": [_clip(p, 12) for p in _min_fit(x.get("pills"), 1, 3, "AI")],
+            "tagline": _clip(x.get("tagline"), 42), "cards": cards}
+
+
+def _san_hubmap(x):
+    nodes = [{"icon": _icon(n.get("icon"), "star"), "label": _clip(n.get("label"), 12)}
+             for n in _fit(x.get("nodes"), 3, {"icon": "star", "label": "..."})]
+    cd = x.get("card") or {}
+    rows = [{"icon": _icon(r.get("icon"), "check"), "text": _clip(r.get("text"), 32)}
+            for r in _fit(cd.get("rows"), 3, {"icon": "check", "text": "..."})]
+    return {"kicker": _clip(x.get("kicker"), 28), "icon": _icon(x.get("icon"), "network"), "hub": _clip(x.get("hub"), 16),
+            "nodes": nodes, "card": {"title": _clip(cd.get("title"), 28), "rows": rows}}
+
+
+def _san_roundup(x):
+    items = [{"name": _clip(i.get("name"), 12), "icon": _icon(i.get("icon"), "star"), "sub": _clip(i.get("sub"), 36)}
+             for i in _fit(x.get("items"), 3, {"name": "-", "icon": "star", "sub": ""})]
+    return {"title": _clip(x.get("title"), 24), "sub": _clip(x.get("sub"), 32), "items": items}
+
+
 def _san_cta(x):
     return {"kicker": _clip(x.get("kicker"), 28), "label": _clip(x.get("label"), 28), "plate": _clip(x.get("plate"), 22),
             "footnote": _clip(x.get("footnote"), 74),
@@ -383,7 +418,8 @@ def _san_cta(x):
 
 SANITIZERS = {"hook": _san_hook, "slam": _san_slam, "terminal": _san_terminal, "alert": _san_alert, "timeline": _san_timeline,
               "monitor": _san_monitor, "bignumber": _san_bignumber, "versus": _san_versus, "leaderboard": _san_leaderboard,
-              "chat": _san_chat, "quote": _san_quote, "checklist": _san_checklist, "cta": _san_cta}
+              "chat": _san_chat, "quote": _san_quote, "checklist": _san_checklist, "cta": _san_cta,
+              "appclutter": _san_appclutter, "profile": _san_profile, "hubmap": _san_hubmap, "roundup": _san_roundup}
 
 
 def _pick(choice, allowed, avoid, seed):
