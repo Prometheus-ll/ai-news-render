@@ -123,7 +123,7 @@ checklist (features in/out, pros/cons, dos/don'ts): {"type":"checklist","kicker"
 profile (spotlight ONE product/agent/model: name, where it lives, what it does): {"type":"profile","kicker":"2-3 words CAPS","name":"max 12 chars","icon":"<icon>","tag":"max 34 chars","pills":["2-3 platforms/tags, max 12 chars each"],"tagline":"max 40 chars","cards":[{"icon":"<icon>","title":"max 20 chars","sub":"max 32 chars"}  (exactly 2, concrete things it does)],"narration":"..."}
 hubmap (one central thing connected to 3 parts + a summary card): {"type":"hubmap","kicker":"2-3 words CAPS","icon":"<icon>","hub":"max 16 chars","nodes":[{"icon":"<icon>","label":"max 12 chars"}  (exactly 3)],"card":{"title":"max 26 chars","rows":[{"icon":"<icon>","text":"max 30 chars"}  (exactly 3)]},"narration":"..."}
 roundup (3 items announced, 'three more X', numbered cards sliding in): {"type":"roundup","title":"max 22 chars","sub":"max 30 chars","items":[{"name":"max 12 chars","icon":"<icon>","sub":"max 34 chars"}  (exactly 3)],"narration":"..."}
-cta (closing, always last): {"type":"cta","kicker":"2-3 words CAPS","label":"max 26 chars","plate":"a punchy verdict about THIS story in CAPS, max 20 chars (never the channel name or a follow request)","footnote":"max 70 chars","chips":[{"icon":"<icon>","text":"max 28 chars"}  (exactly 2)],"follow":"Follow for daily AI news","narration":"ends by asking people to follow for daily AI news"}
+cta (closing, always last): {"type":"cta","kicker":"2-3 words CAPS","label":"max 26 chars","plate":"a punchy verdict about THIS story in CAPS, max 20 chars (never the channel name or a follow request)","footnote":"max 70 chars","chips":[{"icon":"<icon>","text":"max 28 chars"}  (exactly 2)],"follow":"Follow for daily AI news","narration":"2 short sentences: first says the source link is in the comments, then asks people to follow for daily AI news"}
 """
 
 SCRIPT_PROMPT = """You are the creative director and scriptwriter of "AI Quantum", a faceless AI-news channel \
@@ -169,7 +169,7 @@ Total narration across all scenes: 95-115 words (about 45 seconds spoken) - be c
 Return ONE JSON object (no markdown, no commentary):
 {"title":"punchy title under 90 characters","description":"2-3 sentence description ending with a follow prompt and source credit",\
 "hashtags":["#ai","...","8 to 10 total, no spaces"],"source_name":"publication name","angle":"...","theme":"...","transition":"...",\
-"mode_pattern":"...","scenes":[ ...6 scene objects exactly as specified above, in order... ]}"""
+"mode_pattern":"...","product":{"name":"the main company or product this story is about","domain":"its website domain, e.g. openai.com","simple_icon":"its lowercase slug on simpleicons.org, e.g. openai, or empty"},"scenes":[ ...6 scene objects exactly as specified above, in order... ]}"""
 
 
 def load_recent():
@@ -413,7 +413,7 @@ def _san_cta(x):
             "footnote": _clip(x.get("footnote"), 74),
             "chips": [{"icon": _icon(c.get("icon"), "star"), "text": _clip(c.get("text"), 30)}
                       for c in _fit(x.get("chips"), 2, {"icon": "star", "text": "AI Quantum"})],
-            "bell": "bell", "follow": _clip(x.get("follow") or "Follow for daily AI news", 32)}
+            "bell": "bell", "comment": "Source link in the comments", "follow": _clip(x.get("follow") or "Follow for daily AI news", 32)}
 
 
 SANITIZERS = {"hook": _san_hook, "slam": _san_slam, "terminal": _san_terminal, "alert": _san_alert, "timeline": _san_timeline,
@@ -454,7 +454,10 @@ def script_to_manifest(script, story=None, recent=None):
         t = x["type"]
         sc = {"type": t, "mode": modes[i], **SANITIZERS[t](x), "narration": str(x["narration"]).strip()}
         scenes.append(sc)
-    manifest = {"brand": {"name": CHANNEL_NAME, "icon": "atom"}, "source": script.get("source_name") or "",
+    pr = script.get("product") if isinstance(script.get("product"), dict) else {}
+    product = {"name": _clip(pr.get("name"), 30), "domain": re.sub(r"[^a-z0-9.\-]", "", str(pr.get("domain") or "").lower().replace("https://", "").replace("www.", "").split("/")[0]),
+               "slug": re.sub(r"[^a-z0-9]", "", str(pr.get("simple_icon") or "").lower())}
+    manifest = {"brand": {"name": CHANNEL_NAME, "icon": "atom"}, "product": product, "source": script.get("source_name") or "",
                 "theme": theme, "transition": transition, "scenes": scenes}
     voice = " ".join(s["narration"] for s in scenes)
     record = {"ts": time.strftime("%Y-%m-%d %H:%M"), "theme": theme, "transition": transition,
@@ -463,7 +466,34 @@ def script_to_manifest(script, story=None, recent=None):
     return manifest, voice, record
 
 
+# ---------------------------------------------------------------- product logo
+
+def fetch_product_logo(product):
+    """Real brand logo of the product the story is about, as a data URI ('' if none found)."""
+    product = product or {}
+    urls = []
+    if product.get("slug"):
+        urls.append(f"https://cdn.simpleicons.org/{product['slug']}")          # official brand-coloured SVG
+    if product.get("domain"):
+        urls.append(f"https://www.google.com/s2/favicons?domain={product['domain']}&sz=256")
+        urls.append(f"https://icons.duckduckgo.com/ip3/{product['domain']}.ico")
+    for u in urls:
+        try:
+            r = requests.get(u, timeout=15)
+            ctype = (r.headers.get("content-type") or "").split(";")[0].strip()
+            if r.status_code == 200 and len(r.content) > 300 and ctype.startswith("image/"):
+                return f"data:{ctype};base64," + base64.b64encode(r.content).decode()
+        except Exception as e:  # noqa
+            print(f"[logo] {u} failed: {e}")
+    print(f"[logo] no logo found for {product}")
+    return ""
+
+
 # ---------------------------------------------------------------- TTS
+
+# Male Gemini voice (calm, informative). Alternatives: Orus, Algenib, Alnilam, Iapetus, Umbriel, Schedar.
+VOICE_NAME = os.environ.get("TTS_VOICE", "Charon")
+
 
 def gemini_tts(text, out_wav_path, retries=5):
     """Call Gemini TTS. On 429 (rate limit) wait long enough for the per-minute quota to reset."""
@@ -476,7 +506,7 @@ def gemini_tts(text, out_wav_path, retries=5):
                 "generationConfig": {
                     "responseModalities": ["AUDIO"],
                     "speechConfig": {
-                        "voiceConfig": {"prebuiltVoiceConfig": {"voiceName": "Kore"}}
+                        "voiceConfig": {"prebuiltVoiceConfig": {"voiceName": VOICE_NAME}}
                     },
                 },
             },
@@ -564,6 +594,7 @@ def process_story(i, story, recent_holder):
     print(f"--- Processing story {i}: {story['headline']} ---")
     script = write_script(story, recent)
     manifest, voice_script, record = script_to_manifest(script, story, recent)
+    manifest["product_logo"] = fetch_product_logo(manifest.get("product"))
     print(f"Framing: {record['theme']} / {record['transition']} / {record['angle']} / {' > '.join(record['scenes'])}")
 
     stamp = time.strftime("%Y-%m-%d-%H%M%S") + f"-{i}"

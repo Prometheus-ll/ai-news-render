@@ -44,8 +44,11 @@ body{font-family:'PoppinsX','Poppins','Noto Sans',sans-serif;-webkit-font-smooth
 .light .ghost{color:color-mix(in srgb,var(--acc) 8%,transparent)}.dark .ghost{color:rgba(255,255,255,.05)}
 /* brand overlay */
 #brand{position:absolute;left:54px;top:64px;z-index:30;display:flex;align-items:center;gap:14px;font-weight:700;font-size:28px;letter-spacing:.1em;color:#0f172a}
-#brand .tile{width:54px;height:54px;border-radius:16px;background:linear-gradient(135deg,#4f46e5,#10b981);color:#fff;padding:12px;box-shadow:0 6px 18px rgba(79,70,229,.4)}
-#src{position:absolute;right:54px;top:78px;z-index:30;font-size:20px;font-weight:500;letter-spacing:.08em;color:#64748b}
+#brand .tile{width:68px;height:68px;border-radius:50%;overflow:hidden;background:#000;box-shadow:0 6px 18px rgba(0,0,0,.35)}#brand .tile img{width:100%;height:100%;display:block}
+#plogo{position:absolute;right:54px;top:44px;z-index:30;width:84px;height:84px;border-radius:24px;background:#fff;padding:14px;box-shadow:0 8px 22px rgba(0,0,0,.28);display:none}#plogo img{width:100%;height:100%;object-fit:contain;display:block}
+.plg{width:150px;height:150px;border-radius:36px;background:#fff;padding:26px;box-shadow:0 14px 34px rgba(0,0,0,.28)}.plg img{width:100%;height:100%;object-fit:contain;display:block}
+.cmt{font-size:26px;font-weight:700;letter-spacing:.08em;padding:12px 26px;border-radius:99px;background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.55);color:#fff}
+#src{position:absolute;right:54px;top:142px;z-index:30;font-size:20px;font-weight:500;letter-spacing:.08em;color:#64748b}
 .ondark #brand{color:#fff}.ondark #src{color:#8b9bc7}
 /* hook */
 .hl{position:absolute;left:60px;right:60px;top:290px;text-align:center;font-weight:900;line-height:1.1;z-index:3;letter-spacing:-.01em}
@@ -241,11 +244,12 @@ body{font-family:'PoppinsX','Poppins','Noto Sans',sans-serif;-webkit-font-smooth
 <body><div id="stage">
 <div id="brand"><span class="tile i" id="brandico"></span><span id="brandname"></span></div>
 <div id="src"></div>
-<div class="beatring" id="beatring"></div>
+<div id="plogo"><img id="plimg" alt=""></div>
+
 <div id="capw"><div id="cap"></div></div>
 </div>
 <script>
-let anims=[],scenes=[],typers=[],updaters=[],CAPS=[],DARK=new Set(),KICK='pill',TRANS='fade';
+let PLOGO='',anims=[],scenes=[],typers=[],updaters=[],CAPS=[],DARK=new Set(),KICK='pill',TRANS='fade';
 const stage=document.getElementById('stage');
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -431,10 +435,12 @@ function sceneCTA(m,S,D){
   if(chips[1])mk(sc,`<div class="fl2" style="right:60px;top:1262px"><span class="ic3 i">${ico(chips[1].icon)}</span>${esc(chips[1].text)}</div>`,'right',at(.44),.65);
   const c=mk(sc,`<div class="c"><div class="fl"></div></div>`);
   const cta=H(`<div class="cta"></div>`);c.firstElementChild.appendChild(cta);A(cta,'pop',S+.25,.7);
+  if(PLOGO){const lg=H(`<div class="plg"><img src="${PLOGO}" alt=""></div>`);cta.appendChild(lg);A(lg,'pop',at(.04),.6);}
   const l=H(`<div class="l">${esc((m.label||'').toUpperCase())}</div>`);cta.appendChild(l);A(l,'fade',at(.1),.5);
   const plate=(m.plate||'').toUpperCase(),ps=fitSize(plate,[[10,110],[16,88],[24,68],[999,54]]);
   const pl=H(`<div class="plate" style="max-width:820px">${esc(plate)}</div>`);cta.appendChild(pl);fit(pl,820,ps);A(pl,'pop',at(.16),.65);
   const f=H(`<div class="f">${esc(m.footnote||'')}</div>`);cta.appendChild(f);A(f,'fade',at(.3),.6);
+  const cm=H(`<div class="cmt">${esc((m.comment||'SOURCE LINK IN THE COMMENTS').toUpperCase())}</div>`);cta.appendChild(cm);A(cm,'pop',at(.4),.6);
   const r=mk(sc,`<div class="row" style="top:1396px"><div class="dk"><span class="ic4 i">${ico(m.bell)}</span>${esc(m.follow||'Follow for daily AI news')}</div></div>`);A(r.firstElementChild,'pop',at(.66),.7);
   return sc;
 }
@@ -631,7 +637,8 @@ function applyTheme(name){
 window.build=function(M){
   applyTheme(M.theme);TRANS=M.transition||'fade';
   document.getElementById('brandname').textContent=(M.brand&&M.brand.name||'AI QUANTUM').toUpperCase();
-  document.getElementById('brandico').innerHTML=(M.brand&&M.brand.icon)||'';
+  document.getElementById('brandico').innerHTML='<img src="../assets/aq_logo.png" alt="">';
+  PLOGO=M.product_logo||'';{const pl=document.getElementById('plogo');if(PLOGO){document.getElementById('plimg').src=PLOGO;pl.style.display='block';}}
   document.getElementById('src').textContent=M.source?('SOURCE · '+M.source.toUpperCase()):'';
   CAPS=M.captions||[];
   M.scenes.forEach((s,i)=>{
@@ -640,9 +647,6 @@ window.build=function(M){
     const sec=b(s,s.start,s.end-s.start);
     sec.dataset.s=s.start;sec.dataset.e=s.end;
     stage.insertBefore(sec,document.getElementById('brand'));
-    const p=H(`<div class="pulse"></div>`);sec.appendChild(p);
-    const E_P=bez(.2,.7,.3,1);
-    updaters.push(t=>{const x=clamp((t-s.start)/.7),q=E_P(x);p.style.opacity=(x<=0||x>=1)?0:.9*(1-q);p.style.transform=`scale(${.2+4*q})`;});
     sec._beat=[...sec.querySelectorAll('.c,.mini,.fc,.fl2,.dk,.hl,.tag2')];
     scenes.push(sec);
   });
@@ -673,8 +677,6 @@ window.seek=function(t){
     if(o>0){const lp=clamp(lt/(e-s));const sk=(1+.045*lp)*(1+.035*beat);sc._beat.forEach(el=>{el.style.scale=sk;});}
   });
   stage.classList.toggle('ondark',anyDark);
-  {const br=document.getElementById('beatring');let ls=-9;for(const c of CAPS){if(c[0]<=t)ls=c[0];else break;}
-   const x=clamp((t-ls)/.7);br.style.opacity=(ls<0||x>=1)?0:.45*(1-x);br.style.transform=`scale(${.55+1.1*E_OUT(x)})`;}
   updaters.forEach(u=>u(t));
   typers.forEach(ty=>{
     const lt=t-ty.t0,n=Math.max(0,Math.min(ty.full.length,Math.floor(lt*ty.cps)));
