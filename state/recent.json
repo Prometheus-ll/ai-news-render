@@ -168,5 +168,21 @@
   ],
   "headline": "Fired OpenAI Researchers Dispute Misconduct Claims, Warning of 'Chilling Effect'",
   "link": "https://techcrunch.com/2026/10/08/fired-openai-safety-researchers-dispute-misconduct-claims-warn-of-chilling-effect/"
+ },
+ {
+  "ts": "2026-10-12 09:56",
+  "theme": "indigo",
+  "transition": "fade",
+  "angle": "who wins",
+  "scenes": [
+   "hook",
+   "timeline",
+   "versus",
+   "chat",
+   "terminal",
+   "cta"
+  ],
+  "headline": "Apple\u2019s First Smart Home Hardware 'HomeView' Gets Launch Date",
+  "link": "https://techcrunch.com/2026/10/11/will-the-homeview-be-apples-first-smart-home-success/"
  }
 ]
