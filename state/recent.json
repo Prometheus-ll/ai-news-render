@@ -264,5 +264,21 @@
   ],
   "headline": "Microsoft President Urges UK to Lead AI Regulation, Citing Lack of Safety Standa",
   "link": "https://techcrunch.com/2026/10/12/microsoft-president-says-uk-is-best-placed-to-drive-ai-regulation/"
+ },
+ {
+  "ts": "2026-10-13 11:28",
+  "theme": "ocean",
+  "transition": "wipe",
+  "angle": "before vs after",
+  "scenes": [
+   "hook",
+   "roundup",
+   "bignumber",
+   "alert",
+   "checklist",
+   "cta"
+  ],
+  "headline": "Blueprints AI Generates Permit-Ready Construction Plans from Simple Sketches",
+  "link": "https://techcrunch.com/2026/10/12/this-ai-startup-says-it-can-generate-permit-ready-blueprints-in-minutes/"
  }
 ]
