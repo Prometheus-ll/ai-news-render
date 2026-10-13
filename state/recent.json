@@ -248,5 +248,21 @@
   ],
   "headline": "AI Weather Startup WindBorne Secures $50M U.S. Air Force Contract",
   "link": "https://techcrunch.com/2026/10/12/windborne-wins-a-hefty-us-air-force-contract-for-its-balloon-data/"
+ },
+ {
+  "ts": "2026-10-13 11:22",
+  "theme": "indigo",
+  "transition": "fade",
+  "angle": "the big question",
+  "scenes": [
+   "slam",
+   "quote",
+   "versus",
+   "alert",
+   "hubmap",
+   "cta"
+  ],
+  "headline": "Microsoft President Urges UK to Lead AI Regulation, Citing Lack of Safety Standa",
+  "link": "https://techcrunch.com/2026/10/12/microsoft-president-says-uk-is-best-placed-to-drive-ai-regulation/"
  }
 ]
