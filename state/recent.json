@@ -313,5 +313,22 @@
   "kind": "news",
   "headline": "Interactive Chatbot Pioneer Character.AI Files for Bankruptcy",
   "link": "https://techcrunch.com/2026/10/13/just-5-years-in-interactive-chatbot-platform-character-ai-files-for-bankruptcy/"
+ },
+ {
+  "ts": "2026-10-13 19:50",
+  "theme": "mint",
+  "transition": "wipe",
+  "angle": "what changes for you",
+  "scenes": [
+   "appclutter",
+   "hubmap",
+   "chat",
+   "checklist",
+   "versus",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Google Play Opens Android to Private, AI-Generated 'Vibe-Coded' Apps",
+  "link": "https://techcrunch.com/2026/10/13/google-play-now-supports-private-vibe-coded-apps-built-just-for-you/"
  }
 ]
