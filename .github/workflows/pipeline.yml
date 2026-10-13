@@ -34,6 +34,8 @@ jobs:
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
           GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           GITHUB_VIDEOS: '1'
           TOTAL_VIDEOS: '3'
         run: python pipeline/run_pipeline.py

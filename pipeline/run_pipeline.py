@@ -846,6 +846,18 @@ def process_story(i, story, recent_holder):
     repo = os.environ.get("GITHUB_REPOSITORY", "")
     video_url = f"https://github.com/{repo}/raw/main/{video_rel_path}" if repo else video_rel_path
 
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import facebook
+        if facebook.enabled():
+            caption = f"{script['title']}\n\n{script['description']}\n\n{' '.join(script['hashtags'])}"
+            fb_id = facebook.post_reel(video_path, caption, story["source_link"])
+            print(f"[facebook] posted reel {fb_id}")
+        else:
+            print("[facebook] FB_PAGE_ID / FB_PAGE_TOKEN not set - skipping")
+    except Exception as e:  # noqa
+        print(f"[facebook] failed, continuing: {e}")
+
     log_to_sheets([
         time.strftime("%Y-%m-%d %H:%M"),
         story["headline"],
