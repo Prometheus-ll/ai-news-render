@@ -347,5 +347,22 @@
   "kind": "repo",
   "headline": "rea: Reverse engineer anything with agents, from app behavior down to native bin",
   "link": "https://github.com/morluto/rea"
+ },
+ {
+  "ts": "2026-10-13 20:48",
+  "theme": "ocean",
+  "transition": "zoom",
+  "angle": "behind the scenes",
+  "scenes": [
+   "slam",
+   "timeline",
+   "versus",
+   "monitor",
+   "alert",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Judge Orders OpenAI to Turn Over Apple-Related Hiring Records",
+  "link": "https://techcrunch.com/2026/10/13/judge-orders-openai-to-turn-over-hiring-records-in-apple-trade-secrets-case/"
  }
 ]
