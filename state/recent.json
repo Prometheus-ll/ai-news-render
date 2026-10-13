@@ -280,5 +280,21 @@
   ],
   "headline": "Blueprints AI Generates Permit-Ready Construction Plans from Simple Sketches",
   "link": "https://techcrunch.com/2026/10/12/this-ai-startup-says-it-can-generate-permit-ready-blueprints-in-minutes/"
+ },
+ {
+  "ts": "2026-10-13 11:33",
+  "theme": "neon",
+  "transition": "slide",
+  "angle": "red flags",
+  "scenes": [
+   "hook",
+   "bignumber",
+   "profile",
+   "terminal",
+   "alert",
+   "cta"
+  ],
+  "headline": "Former Plaud Executive Raises $26M for 'Always-On' Background AI Assistant",
+  "link": "https://techcrunch.com/2026/10/12/former-plaud-exec-raises-26m-for-ai-app-that-listens-to-you-in-the-background/"
  }
 ]
