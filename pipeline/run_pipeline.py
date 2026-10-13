@@ -87,6 +87,150 @@ Respond with ONLY a JSON array in this exact format, no markdown, no extra text:
     return gemini_text(prompt)
 
 
+# ---------------------------------------------------------------- viral MIT-licensed GitHub repos
+
+GITHUB_VIDEOS = int(os.environ.get("GITHUB_VIDEOS", "1"))   # how many repo videos per run
+TOTAL_VIDEOS = int(os.environ.get("TOTAL_VIDEOS", "3"))
+AI_WORDS = re.compile(r"\b(ai|llm|llms|gpt|agent|agents|agentic|rag|mcp|ml|machine.learning|deep.learning|neural|"
+                      r"transformer|diffusion|openai|claude|gemini|ollama|copilot|embedding|inference|prompt|chatbot|"
+                      r"vision|speech|whisper|langchain|model|models|automation)\b", re.I)
+
+
+def _gh_headers(raw=False):
+    h = {"Accept": "application/vnd.github.raw+json" if raw else "application/vnd.github+json",
+         "User-Agent": "ai-quantum-pipeline"}
+    if os.environ.get("GITHUB_TOKEN"):
+        h["Authorization"] = f"Bearer {os.environ['GITHUB_TOKEN']}"
+    return h
+
+
+def parse_trending(html):
+    """owner/name pairs in page order from github.com/trending HTML."""
+    names = re.findall(r'<h2 class="h3 lh-condensed">\s*<a[^>]*href="/([\w.\-]+/[\w.\-]+)"', html)
+    if not names:  # layout changed: fall back to any repo-looking article link
+        names = re.findall(r'<article[^>]*>.*?href="/([\w.\-]+/[\w.\-]+)"', html, re.S)
+    seen, out = set(), []
+    for n in names:
+        if n.lower() not in seen:
+            seen.add(n.lower())
+            out.append(n)
+    return out
+
+
+def clean_readme(text, limit=6000):
+    text = re.sub(r"<!--.*?-->", "", text, flags=re.S)
+    text = re.sub(r"<img[^>]*>|!\[[^\]]*\]\([^)]*\)|\[!\[[^\]]*\]\([^)]*\)\]\([^)]*\)", "", text)  # images/badges
+    text = re.sub(r"<[^>]+>", "", text)
+    text = re.sub(r"\n{3,}", "\n\n", text).strip()
+    return text[:limit]
+
+
+def repo_to_story(d, readme):
+    desc = (d.get("description") or "").strip()
+    owner = d.get("owner") or {}
+    return {
+        "kind": "repo",
+        "headline": f"{d['name']}: {desc}"[:110] if desc else d["name"],
+        "summary": f"{d['full_name']} - {desc}. {d.get('stargazers_count', 0):,} GitHub stars, language: "
+                   f"{d.get('language') or 'n/a'}, license: MIT, topics: {', '.join((d.get('topics') or [])[:8])}.",
+        "why_it_matters": "A trending open-source project under the MIT license: free to use, modify and ship in your own products.",
+        "source_link": d["html_url"],
+        "readme": clean_readme(readme or ""),
+        "repo": {"full_name": d["full_name"], "name": d["name"], "stars": d.get("stargazers_count", 0),
+                 "language": d.get("language") or "", "owner_type": owner.get("type", ""), "avatar": owner.get("avatar_url", ""),
+                 "owner": owner.get("login", "")},
+    }
+
+
+def fetch_github_repos(covered, count):
+    """Pick `count` fresh, viral, MIT-licensed repos (AI/dev-tool related first)."""
+    if count <= 0:
+        return []
+    done = {(r.get("link") or "").lower() for r in covered}
+    cands = []
+    try:
+        r = requests.get("https://github.com/trending?since=daily", headers={"User-Agent": "Mozilla/5.0"}, timeout=30)
+        if r.status_code == 200:
+            cands += parse_trending(r.text)
+        r = requests.get("https://github.com/trending?since=weekly", headers={"User-Agent": "Mozilla/5.0"}, timeout=30)
+        if r.status_code == 200:
+            cands += [n for n in parse_trending(r.text) if n not in cands]
+    except Exception as e:  # noqa
+        print(f"[github] trending page failed: {e}")
+    details = []
+    for full in dict.fromkeys(cands):
+        if f"https://github.com/{full}".lower() in done:
+            continue
+        try:
+            r = requests.get(f"https://api.github.com/repos/{full}", headers=_gh_headers(), timeout=30)
+            if r.status_code == 200:
+                details.append(r.json())
+        except Exception as e:  # noqa
+            print(f"[github] {full} failed: {e}")
+        if len(details) >= 40:
+            break
+    try:  # also: recently created, fast-rising MIT repos via the search API
+        since = time.strftime("%Y-%m-%d", time.gmtime(time.time() - 21 * 86400))
+        r = requests.get("https://api.github.com/search/repositories", headers=_gh_headers(), timeout=30,
+                         params={"q": f"license:mit created:>{since} stars:>300", "sort": "stars", "order": "desc", "per_page": 30})
+        if r.status_code == 200:
+            known = {d["full_name"].lower() for d in details}
+            details += [d for d in r.json().get("items", []) if d["full_name"].lower() not in known
+                        and d["html_url"].lower() not in done]
+    except Exception as e:  # noqa
+        print(f"[github] search failed: {e}")
+    good = [d for d in details if (d.get("license") or {}).get("spdx_id") == "MIT" and not d.get("archived")
+            and not d.get("fork") and d["html_url"].lower() not in done and (d.get("description") or "").strip()]
+    ai = lambda d: bool(AI_WORDS.search(" ".join([d.get("description") or "", " ".join(d.get("topics") or []), d["name"]])))
+    good.sort(key=lambda d: (not ai(d)))          # AI-related first, trending order kept inside each group
+    stories = []
+    for d in good[:count]:
+        readme = ""
+        try:
+            r = requests.get(f"https://api.github.com/repos/{d['full_name']}/readme", headers=_gh_headers(raw=True), timeout=30)
+            if r.status_code == 200:
+                readme = r.text
+        except Exception as e:  # noqa
+            print(f"[github] readme failed: {e}")
+        stories.append(repo_to_story(d, readme))
+    print(f"[github] selected {[s['repo']['full_name'] for s in stories]}")
+    return stories
+
+
+REPO_MODE = """
+
+ADDITIONAL INSTRUCTIONS FOR THIS VIDEO - it is a GITHUB REPO EXPLAINER (these override earlier rules where they conflict)
+The story is a viral, MIT-licensed open-source project on GitHub: <<repo_name>> (<<stars>> stars). Teach viewers three things, in this order:
+ 1. WHAT it is and why it is going viral (hook first).
+ 2. HOW IT WORKS - the idea/architecture in plain words, using only the README below.
+ 3. HOW TO USE IT - the real install/run steps. Say it is free and MIT licensed.
+Scene choices: use "terminal" for the install/run commands (copy exact commands from the README, shorten only if needed, never invent one; if the README has \
+no commands, use "checklist" for key features instead), "timeline" or "hubmap" for how it works / the steps, plus "profile", "checklist", "bignumber" (only for the star count) as fits. \
+Narration says "this open source project", never "article" or "report". Do not name any news outlet. Hashtags must include #opensource and #github.
+
+README (the ONLY source of facts besides the summary above):
+<<readme>>
+"""
+
+
+def fetch_repo_logo(story):
+    """Org avatar for organisations; the GitHub mark for individual owners (no personal photos)."""
+    repo = story.get("repo") or {}
+    urls = []
+    if repo.get("owner_type") == "Organization" and repo.get("avatar"):
+        urls.append(repo["avatar"] + ("&" if "?" in repo["avatar"] else "?") + "s=256")
+    urls.append("https://cdn.simpleicons.org/github")
+    for u in urls:
+        try:
+            r = requests.get(u, timeout=15)
+            ctype = (r.headers.get("content-type") or "").split(";")[0].strip()
+            if r.status_code == 200 and len(r.content) > 200 and ctype.startswith("image/"):
+                return f"data:{ctype};base64," + base64.b64encode(r.content).decode()
+        except Exception as e:  # noqa
+            print(f"[logo] {u} failed: {e}")
+    return ""
+
+
 # ---------------------------------------------------------------- script -> manifest
 
 ICON_LIST = ("zap, cpu, shield-check, lock, globe, trending-up, clock, code, terminal, search, eye, bell, "
@@ -134,7 +278,6 @@ color theme and transition to fit THIS story.
 Headline: <<headline>>
 Summary: <<summary>>
 Why it matters: <<why_it_matters>>
-Source: <<source_link>>
 
 FRAMING MENU
 Scene types you can use (each at most once per video):
@@ -157,6 +300,7 @@ Use a different opening type, a different theme, a different transition and a cl
 from the most recent videos.
 
 CONTENT RULES
+- NEVER name or credit the publication/outlet the story came from (no TechCrunch, Verge, Reuters, etc.) in narration, on-screen text, title or description - the source link goes in the comments. Say \"according to the company\" or \"reports say\" if attribution is needed.
 - Use ONLY facts from the story above. Never invent numbers, quotes, dates or names. Attribute claims ("per OpenAI", "company-reported").
 - A "quote" scene needs a real quote from the story; a "leaderboard" or "bignumber" needs real figures; "profile", "hubmap" and "roundup" must only name things from the story from the story. \
 If the story lacks them, choose other scene types. "chat" is an illustrative example of the product, never presented as a real quote.
@@ -167,8 +311,8 @@ Total narration across all scenes: 95-115 words (about 45 seconds spoken) - be c
 - Icons must come ONLY from this list: <<icons>>
 
 Return ONE JSON object (no markdown, no commentary):
-{"title":"punchy title under 90 characters","description":"2-3 sentence description ending with a follow prompt and source credit",\
-"hashtags":["#ai","...","8 to 10 total, no spaces"],"source_name":"publication name","angle":"...","theme":"...","transition":"...",\
+{"title":"punchy title under 90 characters","description":"2-3 sentence description ending with a follow prompt (do not name any news outlet)",\
+"hashtags":["#ai","...","8 to 10 total, no spaces"],"angle":"...","theme":"...","transition":"...",\
 "mode_pattern":"...","product":{"name":"the main company or product this story is about","domain":"its website domain, e.g. openai.com","simple_icon":"its lowercase slug on simpleicons.org, e.g. openai, or empty"},"scenes":[ ...6 scene objects exactly as specified above, in order... ]}"""
 
 
@@ -207,9 +351,15 @@ def build_script_prompt(story, recent, feedback=""):
         "recent": describe_recent(recent), "icons": ICON_LIST,
     }.items():
         p = p.replace(f"<<{k}>>", str(v))
+    if story.get("kind") == "repo":
+        rp = story.get("repo") or {}
+        p += REPO_MODE.replace("<<repo_name>>", rp.get("full_name", "")).replace("<<stars>>", f"{rp.get('stars', 0):,}").replace("<<readme>>", story.get("readme") or "(no README text available)")
     if feedback:
         p += f"\n\nYour previous attempt was rejected: {feedback}\nFix this and return the full JSON again."
     return p
+
+
+OUTLETS = ["techcrunch", "tech crunch", "the verge", "wired", "reuters", "bloomberg", "venturebeat", "the information", "cnbc", "ars technica", "engadget", "zdnet", "forbes"]
 
 
 def validate_script(script):
@@ -228,6 +378,10 @@ def validate_script(script):
             return f"unknown scene type {x.get('type')}"
         if len(str(x.get("narration", "")).split()) < 6:
             return f"scene {x.get('type')} needs a 2-sentence narration"
+    blob = json.dumps(script).lower()
+    for outlet in OUTLETS:
+        if outlet in blob:
+            return f"do not mention the news outlet '{outlet}' anywhere (narration, on-screen text, title, description)"
     words = sum(len(str(x["narration"]).split()) for x in sc)
     if not (75 <= words <= 135):
         return f"total narration is {words} words; it must be 95-115"
@@ -457,12 +611,12 @@ def script_to_manifest(script, story=None, recent=None):
     pr = script.get("product") if isinstance(script.get("product"), dict) else {}
     product = {"name": _clip(pr.get("name"), 30), "domain": re.sub(r"[^a-z0-9.\-]", "", str(pr.get("domain") or "").lower().replace("https://", "").replace("www.", "").split("/")[0]),
                "slug": re.sub(r"[^a-z0-9]", "", str(pr.get("simple_icon") or "").lower())}
-    manifest = {"brand": {"name": CHANNEL_NAME, "icon": "atom"}, "product": product, "source": script.get("source_name") or "",
+    manifest = {"brand": {"name": CHANNEL_NAME, "icon": "atom"}, "product": product, "source": "",
                 "theme": theme, "transition": transition, "scenes": scenes}
     voice = " ".join(s["narration"] for s in scenes)
     record = {"ts": time.strftime("%Y-%m-%d %H:%M"), "theme": theme, "transition": transition,
               "angle": script.get("angle"), "scenes": [s["type"] for s in scenes],
-              "headline": (story or {}).get("headline", "")[:80], "link": (story or {}).get("source_link", "")}
+              "kind": (story or {}).get("kind", "news"), "headline": (story or {}).get("headline", "")[:80], "link": (story or {}).get("source_link", "")}
     return manifest, voice, record
 
 
@@ -594,7 +748,7 @@ def process_story(i, story, recent_holder):
     print(f"--- Processing story {i}: {story['headline']} ---")
     script = write_script(story, recent)
     manifest, voice_script, record = script_to_manifest(script, story, recent)
-    manifest["product_logo"] = fetch_product_logo(manifest.get("product"))
+    manifest["product_logo"] = fetch_repo_logo(story) if story.get("kind") == "repo" else fetch_product_logo(manifest.get("product"))
     print(f"Framing: {record['theme']} / {record['transition']} / {record['angle']} / {' > '.join(record['scenes'])}")
 
     stamp = time.strftime("%Y-%m-%d-%H%M%S") + f"-{i}"
@@ -634,7 +788,12 @@ def main():
 
     recent = load_recent()
     recent_holder = [recent]
-    stories = fetch_stories(recent)
+    n_repo = min(GITHUB_VIDEOS, TOTAL_VIDEOS)
+    stories = fetch_stories(recent)[: max(1, TOTAL_VIDEOS - n_repo)]
+    try:
+        stories += fetch_github_repos(recent, n_repo)
+    except Exception as e:  # noqa
+        print(f"[github] skipped: {e}")
     print(f"Selected {len(stories)} stories")
 
     failures = 0
