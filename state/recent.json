@@ -296,5 +296,22 @@
   ],
   "headline": "Former Plaud Executive Raises $26M for 'Always-On' Background AI Assistant",
   "link": "https://techcrunch.com/2026/10/12/former-plaud-exec-raises-26m-for-ai-app-that-listens-to-you-in-the-background/"
+ },
+ {
+  "ts": "2026-10-13 19:47",
+  "theme": "signal",
+  "transition": "zoom",
+  "angle": "myth vs reality",
+  "scenes": [
+   "appclutter",
+   "bignumber",
+   "monitor",
+   "profile",
+   "alert",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Interactive Chatbot Pioneer Character.AI Files for Bankruptcy",
+  "link": "https://techcrunch.com/2026/10/13/just-5-years-in-interactive-chatbot-platform-character-ai-files-for-bankruptcy/"
  }
 ]
