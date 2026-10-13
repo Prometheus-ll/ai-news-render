@@ -1,4 +1,4 @@
-import os, re, json, time, base64, subprocess, struct
+import os, re, sys, json, time, base64, subprocess, struct
 import requests
 import feedparser
 
@@ -117,12 +117,34 @@ def parse_trending(html):
     return out
 
 
-def clean_readme(text, limit=6000):
+SKIP_SECTIONS = re.compile(r"sponsor|contribut|license|licence|star history|acknowledg|changelog|roadmap|faq|support|"
+                           r"community|follow|credits|authors|citation|translations?|table of contents", re.I)
+KEEP_SECTIONS = re.compile(r"quick ?start|getting started|install|usage|how it works|how to|features|what you get|"
+                           r"architecture|overview|examples?|why|pipelines?|requirements|prerequisites|demo|commands", re.I)
+
+
+def clean_readme(text, limit=7000):
+    """README -> compact plain text: no HTML/badges/images/sponsor blocks, key sections first."""
     text = re.sub(r"<!--.*?-->", "", text, flags=re.S)
-    text = re.sub(r"<img[^>]*>|!\[[^\]]*\]\([^)]*\)|\[!\[[^\]]*\]\([^)]*\)\]\([^)]*\)", "", text)  # images/badges
-    text = re.sub(r"<[^>]+>", "", text)
-    text = re.sub(r"\n{3,}", "\n\n", text).strip()
-    return text[:limit]
+    text = re.sub(r"<details[^>]*>.*?</details>", lambda m: m.group(0) if not SKIP_SECTIONS.search(m.group(0)[:300]) else "",
+                  text, flags=re.S)
+    text = re.sub(r"\[!\[[^\]]*\]\([^)]*\)\]\([^)]*\)|!\[[^\]]*\]\([^)]*\)|<img[^>]*>|<picture>.*?</picture>", "", text, flags=re.S)
+    text = re.sub(r"</?(p|div|a|table|tr|td|th|tbody|thead|sub|sup|em|strong|b|i|center|br|summary|details|source|picture)[^>]*>", " ", text)
+    text = re.sub(r"[ \t]+\n", "\n", text)
+    parts = re.split(r"(?m)^(?=#{1,3} )", text)
+    intro, secs = [], []
+    for part in parts:
+        head = (part.splitlines() or [""])[0]
+        if not head.startswith("#"):
+            intro.append(part)
+        elif SKIP_SECTIONS.search(head):
+            continue
+        else:
+            secs.append((0 if KEEP_SECTIONS.search(head) else 1, part))
+    secs.sort(key=lambda x: x[0])          # stable: keeps README order inside each group
+    out = "\n".join(intro[:1])[:900] + "\n" + "\n".join(p for _, p in secs)
+    out = re.sub(r"\n{3,}", "\n\n", re.sub(r"[ \t]{2,}", " ", out)).strip()
+    return out[:limit]
 
 
 def repo_to_story(d, readme):
@@ -204,7 +226,7 @@ The story is a viral, MIT-licensed open-source project on GitHub: <<repo_name>> 
  1. WHAT it is and why it is going viral (hook first).
  2. HOW IT WORKS - the idea/architecture in plain words, using only the README below.
  3. HOW TO USE IT - the real install/run steps. Say it is free and MIT licensed.
-Scene choices: use "terminal" for the install/run commands (copy exact commands from the README, shorten only if needed, never invent one; if the README has \
+Scene order is FIXED for repo videos: scene 1 hook/slam, scene 2 "reveal" (announce the repo's name), scene 3 "screenshot" (its GitHub page), then two more scenes, then cta. Scene choices: use "terminal" for the install/run commands (copy exact commands from the README, shorten only if needed, never invent one; if the README has \
 no commands, use "checklist" for key features instead), "timeline" or "hubmap" for how it works / the steps, plus "profile", "checklist", "bignumber" (only for the star count) as fits. \
 Narration says "this open source project", never "article" or "report". Do not name any news outlet. Hashtags must include #opensource and #github.
 
@@ -242,7 +264,7 @@ ICON_LIST = ("zap, cpu, shield-check, lock, globe, trending-up, clock, code, ter
 
 HOOK_TYPES = ["hook", "slam", "appclutter"]
 MID_TYPES = ["terminal", "alert", "timeline", "monitor", "bignumber", "versus", "leaderboard", "chat", "quote", "checklist",
-             "profile", "hubmap", "roundup"]
+             "profile", "hubmap", "roundup", "reveal", "screenshot"]
 THEMES = ["indigo", "ember", "forest", "ocean", "neon", "signal", "mint", "paper"]
 TRANSITIONS = ["fade", "slide", "zoom", "wipe"]
 MODE_PATTERNS = ["alternate_light", "alternate_dark", "light_then_dark", "dark_then_light"]
@@ -254,6 +276,8 @@ SCENE_SPECS = """\
 hook (opening, card style): {"type":"hook","headline":"4-8 words, sentence case","word":"ONE word CAPS, max 10 chars","title":"max 14 chars","subtitle":"max 38 chars","badge":"1-2 words CAPS","icon":"<icon>","chips":["exactly 3 tags, max 16 chars each"],"narration":"..."}
 slam (opening, giant words slamming in): {"type":"slam","words":["2-3 giant words, each max 9 chars"],"accent":<0-based index of the most striking word>,"sub":"max 48 chars","badge":"1-2 words CAPS","word":"ONE ghost word CAPS, max 6 chars","narration":"..."}
 appclutter (opening, "too many apps -> just one simple thing" metaphor; best for products that replace/simplify apps or live inside chat): {"type":"appclutter","before":"max 34 chars, the pain, e.g. Another app to download?","after":"max 24 chars, the relief, e.g. Just send a text.","user":"max 40 chars illustrative request","ai":"max 24 chars illustrative reply","narration":"..."}
+reveal (NAME REVEAL right after the opening: announces the real name of the tool/product/model/repo the story is about; its narration is ONE short sentence like "Meet X, a free tool that ..."): {"type":"reveal","kicker":"2-3 words CAPS","meet":"1-2 words CAPS e.g. MEET or INTRODUCING","name":"max 18 chars, the exact name","tagline":"max 58 chars, what it does","badges":["2-3 short tags CAPS max 14 chars, e.g. OPEN SOURCE, MIT LICENSE, FREE"],"icon":"<icon>","narration":"one short sentence naming it"}
+screenshot (ONLY for GitHub repo videos: shows a scrolling screenshot of the repo's real GitHub page/README): {"type":"screenshot","kicker":"2-3 words CAPS","caption":"max 44 chars, what the viewer sees, e.g. The README walks you through setup","narration":"..."}
 terminal (key facts shown as command lines): {"type":"terminal","kicker":"2-3 words CAPS","file":"fake_filename.ext","tag":"max 28 chars","lines":[{"cmd":"max 34 chars, command-style line for ONE key fact","result":"1-3 words"}  (exactly 3)],"banner":"max 46 chars","note":"max 28 chars","narration":"..."}
 alert (a risk, warning or shock stat): {"type":"alert","kicker":"2-3 words CAPS","chip":"2-3 words","icon":"<icon>","big":"max 26 chars, the striking fact","quote":"max 90 chars, supporting line (attribute claims)","label":"max 40 chars","glyphs":["max 6 chars","max 6 chars"],"narration":"..."}
 timeline (sequence, rollout, what happened when): {"type":"timeline","kicker":"2-3 words CAPS","steps":[{"icon":"<icon>","title":"max 22 chars","sub":"max 30 chars"}  (exactly 4)],"footnote":"max 44 chars","narration":"..."}
@@ -284,9 +308,10 @@ Scene types you can use (each at most once per video):
 <<specs>>
 Build the video as 6 scenes in this order:
  1. exactly one OPENING scene: "hook", "slam" or "appclutter"
- 2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup - \
+ 2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup, reveal, screenshot - \
 the ones that tell THIS story best (a funding story wants bignumber/leaderboard, a product launch wants chat/checklist/timeline, \
 a controversy wants versus/monitor/alert, a security story wants alert/terminal, a story about several products or agents wants roundup then profile, a platform/ecosystem story wants hubmap, etc.)
+ NAME RULE: if the story is about ONE specific named tool, product, model or repo, scene 2 MUST be "reveal" - announce its real name right after the hook. ("screenshot" is only for GitHub repo videos.)
  6. "cta" (always last)
 Also choose:
  - "angle": the storytelling frame, one of <<angles>>. Let it shape how the narration is written.
@@ -362,7 +387,7 @@ def build_script_prompt(story, recent, feedback=""):
 OUTLETS = ["techcrunch", "tech crunch", "the verge", "wired", "reuters", "bloomberg", "venturebeat", "the information", "cnbc", "ars technica", "engadget", "zdnet", "forbes"]
 
 
-def validate_script(script):
+def validate_script(script, story=None):
     sc = script.get("scenes")
     if not isinstance(sc, list) or not (5 <= len(sc) <= 7):
         return "scenes must be a list of 6 scene objects"
@@ -378,6 +403,13 @@ def validate_script(script):
             return f"unknown scene type {x.get('type')}"
         if len(str(x.get("narration", "")).split()) < 6:
             return f"scene {x.get('type')} needs a 2-sentence narration"
+    is_repo = (story or {}).get("kind") == "repo"
+    if "screenshot" in types and not is_repo:
+        return "the screenshot scene is only for GitHub repo videos"
+    if is_repo and (types[1:3] != ["reveal", "screenshot"]):
+        return "repo videos need scene 2 = reveal and scene 3 = screenshot"
+    if "reveal" in types and types.index("reveal") != 1:
+        return "the reveal scene must be scene 2, right after the opening"
     blob = json.dumps(script).lower()
     for outlet in OUTLETS:
         if outlet in blob:
@@ -394,7 +426,7 @@ def write_script(story, recent=None, attempts=3):
     for i in range(attempts):
         try:
             script = gemini_text(build_script_prompt(story, recent, feedback))
-            err = validate_script(script)
+            err = validate_script(script, story)
         except Exception as e:  # noqa
             script, err = None, f"invalid JSON or call failure ({e})"
         if not err:
@@ -562,6 +594,16 @@ def _san_roundup(x):
     return {"title": _clip(x.get("title"), 24), "sub": _clip(x.get("sub"), 32), "items": items}
 
 
+def _san_reveal(x):
+    return {"kicker": _clip(x.get("kicker"), 28), "meet": _clip(x.get("meet"), 14) or "MEET", "name": _clip(x.get("name"), 20),
+            "tagline": _clip(x.get("tagline"), 60), "badges": [_clip(b, 14) for b in _min_fit(x.get("badges"), 1, 3, "AI")],
+            "icon": _icon(x.get("icon"), "sparkles")}
+
+
+def _san_screenshot(x):
+    return {"kicker": _clip(x.get("kicker"), 28), "caption": _clip(x.get("caption"), 46)}
+
+
 def _san_cta(x):
     return {"kicker": _clip(x.get("kicker"), 28), "label": _clip(x.get("label"), 28), "plate": _clip(x.get("plate"), 22),
             "footnote": _clip(x.get("footnote"), 74),
@@ -573,7 +615,7 @@ def _san_cta(x):
 SANITIZERS = {"hook": _san_hook, "slam": _san_slam, "terminal": _san_terminal, "alert": _san_alert, "timeline": _san_timeline,
               "monitor": _san_monitor, "bignumber": _san_bignumber, "versus": _san_versus, "leaderboard": _san_leaderboard,
               "chat": _san_chat, "quote": _san_quote, "checklist": _san_checklist, "cta": _san_cta,
-              "appclutter": _san_appclutter, "profile": _san_profile, "hubmap": _san_hubmap, "roundup": _san_roundup}
+              "reveal": _san_reveal, "screenshot": _san_screenshot, "appclutter": _san_appclutter, "profile": _san_profile, "hubmap": _san_hubmap, "roundup": _san_roundup}
 
 
 def _pick(choice, allowed, avoid, seed):
@@ -641,6 +683,34 @@ def fetch_product_logo(product):
             print(f"[logo] {u} failed: {e}")
     print(f"[logo] no logo found for {product}")
     return ""
+
+
+# ---------------------------------------------------------------- repo screenshot
+
+def capture_repo_screenshot(full_name):
+    """Screenshot of the repo's real GitHub page (top of the README) as a JPEG data URI ('' on failure)."""
+    try:
+        sys.path.insert(0, os.path.join(REPO_ROOT, "render"))
+        import html_render as hr
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as p:
+            b = hr.launch(p)
+            ctx = b.new_context(viewport={"width": 800, "height": 1500}, color_scheme="dark", device_scale_factor=1.5)
+            page = ctx.new_page()
+            page.goto(f"https://github.com/{full_name}", wait_until="domcontentloaded", timeout=45000)
+            page.wait_for_timeout(3500)
+            for sel in ("button:has-text('Accept')", "button:has-text('Reject')"):  # cookie banners, if any
+                try:
+                    page.click(sel, timeout=800)
+                except Exception:  # noqa
+                    pass
+            jpg = page.screenshot(type="jpeg", quality=76, full_page=True,
+                                  clip={"x": 0, "y": 0, "width": 800, "height": 2400})
+            b.close()
+        return "data:image/jpeg;base64," + base64.b64encode(jpg).decode()
+    except Exception as e:  # noqa
+        print(f"[screenshot] failed for {full_name}: {e}")
+        return ""
 
 
 # ---------------------------------------------------------------- TTS
@@ -748,7 +818,14 @@ def process_story(i, story, recent_holder):
     print(f"--- Processing story {i}: {story['headline']} ---")
     script = write_script(story, recent)
     manifest, voice_script, record = script_to_manifest(script, story, recent)
-    manifest["product_logo"] = fetch_repo_logo(story) if story.get("kind") == "repo" else fetch_product_logo(manifest.get("product"))
+    if story.get("kind") == "repo":
+        rp = story.get("repo") or {}
+        manifest["product_logo"] = fetch_repo_logo(story)
+        manifest["repo_shot"] = capture_repo_screenshot(rp.get("full_name", ""))
+        manifest["repo_info"] = {"full_name": rp.get("full_name", ""), "description": story.get("headline", "").split(": ", 1)[-1],
+                                 "stars_text": f"{rp.get('stars', 0):,}", "language": rp.get("language", "")}
+    else:
+        manifest["product_logo"] = fetch_product_logo(manifest.get("product"))
     print(f"Framing: {record['theme']} / {record['transition']} / {record['angle']} / {' > '.join(record['scenes'])}")
 
     stamp = time.strftime("%Y-%m-%d-%H%M%S") + f"-{i}"
