@@ -364,5 +364,22 @@
   "kind": "news",
   "headline": "Judge Orders OpenAI to Turn Over Apple-Related Hiring Records",
   "link": "https://techcrunch.com/2026/10/13/judge-orders-openai-to-turn-over-hiring-records-in-apple-trade-secrets-case/"
+ },
+ {
+  "ts": "2026-10-13 20:53",
+  "theme": "indigo",
+  "transition": "slide",
+  "angle": "what changes for you",
+  "scenes": [
+   "hook",
+   "reveal",
+   "alert",
+   "monitor",
+   "hubmap",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "American Express Debuts Security Framework for AI Agent Transactions",
+  "link": "https://techcrunch.com/2026/10/13/amex-introduces-a-framework-to-prevent-ai-agents-from-making-unauthorized-purchases/"
  }
 ]
