@@ -330,5 +330,22 @@
   "kind": "news",
   "headline": "Google Play Opens Android to Private, AI-Generated 'Vibe-Coded' Apps",
   "link": "https://techcrunch.com/2026/10/13/google-play-now-supports-private-vibe-coded-apps-built-just-for-you/"
+ },
+ {
+  "ts": "2026-10-13 19:53",
+  "theme": "ember",
+  "transition": "fade",
+  "angle": "behind the scenes",
+  "scenes": [
+   "slam",
+   "bignumber",
+   "hubmap",
+   "chat",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "rea: Reverse engineer anything with agents, from app behavior down to native bin",
+  "link": "https://github.com/morluto/rea"
  }
 ]
