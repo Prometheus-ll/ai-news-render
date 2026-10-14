@@ -398,5 +398,22 @@
   "kind": "news",
   "headline": "Elon Musk\u2019s \u2018SpaceXSI\u2019 Bundles Grok AI and Cursor Coding Assistant into New Subs",
   "link": "https://techcrunch.com/2026/10/13/spacexsi-bundles-x-premium-grok-and-cursor-into-one-subscription/"
+ },
+ {
+  "ts": "2026-10-14 12:38",
+  "theme": "mint",
+  "transition": "fade",
+  "angle": "what changes for you",
+  "scenes": [
+   "hook",
+   "reveal",
+   "screenshot",
+   "hubmap",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "scientific-agent-skills: Turn any AI agent into an AI Scientist. The #1 Agent Sk",
+  "link": "https://github.com/K-Dense-AI/scientific-agent-skills"
  }
 ]
