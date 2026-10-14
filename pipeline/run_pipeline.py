@@ -48,20 +48,32 @@ def extract_json(s):
     return s[start:]
 
 
-def gemini_text(prompt, retries=3):
+TEXT_MODELS = ["gemini-3-flash-preview", "gemini-3-flash-preview", "gemini-3-flash-preview",
+               "gemini-2.5-flash", "gemini-2.5-flash", "gemini-3-flash-preview"]
+
+
+def gemini_text(prompt, retries=6):
+    """JSON text call. Rides out 503/429 overload with growing waits and a fallback model."""
+    waits = [15, 30, 60, 90, 120, 120]
     for i in range(retries):
-        r = requests.post(
-            f"{GEMINI_URL}/gemini-3-flash-preview:generateContent",
-            headers={"x-goog-api-key": GEMINI_KEY},
-            json={"contents": [{"parts": [{"text": prompt}]}],
-                  "generationConfig": {"responseModalities": ["TEXT"]}}
-        )
-        if r.status_code == 200:
-            text = r.json()["candidates"][0]["content"]["parts"][0]["text"]
-            clean = re.sub(r"```json|```", "", text).strip()
-            return json.loads(extract_json(clean))
-        print(f"Gemini call failed ({r.status_code}), retry {i + 1}/{retries}")
-        time.sleep(10)
+        model = TEXT_MODELS[min(i, len(TEXT_MODELS) - 1)]
+        try:
+            r = requests.post(
+                f"{GEMINI_URL}/{model}:generateContent",
+                headers={"x-goog-api-key": GEMINI_KEY},
+                json={"contents": [{"parts": [{"text": prompt}]}],
+                      "generationConfig": {"responseModalities": ["TEXT"]}},
+                timeout=180,
+            )
+            if r.status_code == 200:
+                text = r.json()["candidates"][0]["content"]["parts"][0]["text"]
+                clean = re.sub(r"```json|```", "", text).strip()
+                return json.loads(extract_json(clean))
+            print(f"Gemini call failed ({r.status_code}, {model}), retry {i + 1}/{retries}")
+        except (requests.RequestException, KeyError, IndexError, ValueError) as e:
+            print(f"Gemini call error ({type(e).__name__}, {model}), retry {i + 1}/{retries}")
+        if i < retries - 1:
+            time.sleep(waits[min(i, len(waits) - 1)])
     raise RuntimeError("Gemini call failed after retries")
 
 
@@ -878,12 +890,18 @@ def main():
     recent = load_recent()
     recent_holder = [recent]
     n_repo = min(GITHUB_VIDEOS, TOTAL_VIDEOS)
-    stories = fetch_stories(recent)[: max(1, TOTAL_VIDEOS - n_repo)]
+    stories = []
+    try:
+        stories = fetch_stories(recent)[: max(1, TOTAL_VIDEOS - n_repo)]
+    except Exception as e:  # noqa
+        print(f"[news] skipped: {e}")
     try:
         stories += fetch_github_repos(recent, n_repo)
     except Exception as e:  # noqa
         print(f"[github] skipped: {e}")
     print(f"Selected {len(stories)} stories")
+    if not stories:
+        raise SystemExit("No stories could be selected")
 
     failures = 0
     for i, story in enumerate(stories):
