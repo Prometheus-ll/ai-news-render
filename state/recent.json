@@ -381,5 +381,22 @@
   "kind": "news",
   "headline": "American Express Debuts Security Framework for AI Agent Transactions",
   "link": "https://techcrunch.com/2026/10/13/amex-introduces-a-framework-to-prevent-ai-agents-from-making-unauthorized-purchases/"
+ },
+ {
+  "ts": "2026-10-14 12:35",
+  "theme": "neon",
+  "transition": "wipe",
+  "angle": "what changes for you",
+  "scenes": [
+   "slam",
+   "reveal",
+   "terminal",
+   "roundup",
+   "profile",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Elon Musk\u2019s \u2018SpaceXSI\u2019 Bundles Grok AI and Cursor Coding Assistant into New Subs",
+  "link": "https://techcrunch.com/2026/10/13/spacexsi-bundles-x-premium-grok-and-cursor-into-one-subscription/"
  }
 ]
