@@ -238,7 +238,7 @@ The story is a viral, MIT-licensed open-source project on GitHub: <<repo_name>> 
  1. WHAT it is and why it is going viral (hook first).
  2. HOW IT WORKS - the idea/architecture in plain words, using only the README below.
  3. HOW TO USE IT - the real install/run steps. Say it is free and MIT licensed.
-Scene order is FIXED for repo videos: scene 1 hook/slam, scene 2 "reveal" (announce the repo's name), scene 3 "screenshot" (its GitHub page), then two more scenes, then cta. Scene choices: use "terminal" for the install/run commands (copy exact commands from the README, shorten only if needed, never invent one; if the README has \
+Scene order is FIXED for repo videos: scene 1 "repohook" (a glimpse of its GitHub page; narration starts "This GitHub repo ..."; ignore the opening-type variety rule), scene 2 "reveal" (announce the repo's name), then three more scenes, then cta. Scene choices: use "terminal" for the install/run commands (copy exact commands from the README, shorten only if needed, never invent one; if the README has \
 no commands, use "checklist" for key features instead), "timeline" or "hubmap" for how it works / the steps, plus "profile", "checklist", "bignumber" (only for the star count) as fits. \
 Narration says "this open source project", never "article" or "report". Do not name any news outlet. Hashtags must include #opensource and #github.
 
@@ -275,8 +275,9 @@ ICON_LIST = ("zap, cpu, shield-check, lock, globe, trending-up, clock, code, ter
              "book-open, calendar-check, mail, send, app-window")
 
 HOOK_TYPES = ["hook", "slam", "appclutter"]
+REPO_HOOK = "repohook"
 MID_TYPES = ["terminal", "alert", "timeline", "monitor", "bignumber", "versus", "leaderboard", "chat", "quote", "checklist",
-             "profile", "hubmap", "roundup", "reveal", "screenshot"]
+             "profile", "hubmap", "roundup", "reveal"]
 THEMES = ["indigo", "ember", "forest", "ocean", "neon", "signal", "mint", "paper"]
 TRANSITIONS = ["fade", "slide", "zoom", "wipe"]
 MODE_PATTERNS = ["alternate_light", "alternate_dark", "light_then_dark", "dark_then_light"]
@@ -284,12 +285,15 @@ ANGLES = ["myth vs reality", "countdown / top 3", "who wins", "what changes for 
           "by the numbers", "behind the scenes", "before vs after", "the big question"]
 STATE_PATH = os.path.join(REPO_ROOT, "state", "recent.json")
 
+REPOHOOK_SPEC = """\
+repohook (ONLY for GitHub repo videos, ALWAYS scene 1: the screen opens on a glimpse of the repo's real GitHub page under the words "THIS GITHUB REPO" + your headline): {"type":"repohook","headline":"max 56 chars, lowercase start, COMPLETES the sentence 'This GitHub repo ...' with the single most surprising thing it does, e.g. turns any PDF into a podcast","narration":"2 sentences. MUST begin with the exact words 'This GitHub repo' and finish the hook, e.g. 'This GitHub repo turns any PDF into a podcast. And it is completely free.'"}
+"""
+
 SCENE_SPECS = """\
 hook (opening, card style): {"type":"hook","headline":"4-8 words, sentence case","word":"ONE word CAPS, max 10 chars","title":"max 14 chars","subtitle":"max 38 chars","badge":"1-2 words CAPS","icon":"<icon>","chips":["exactly 3 tags, max 16 chars each"],"narration":"..."}
 slam (opening, giant words slamming in): {"type":"slam","words":["2-3 giant words, each max 9 chars"],"accent":<0-based index of the most striking word>,"sub":"max 48 chars","badge":"1-2 words CAPS","word":"ONE ghost word CAPS, max 6 chars","narration":"..."}
 appclutter (opening, "too many apps -> just one simple thing" metaphor; best for products that replace/simplify apps or live inside chat): {"type":"appclutter","before":"max 34 chars, the pain, e.g. Another app to download?","after":"max 24 chars, the relief, e.g. Just send a text.","user":"max 40 chars illustrative request","ai":"max 24 chars illustrative reply","narration":"..."}
 reveal (NAME REVEAL right after the opening: announces the real name of the tool/product/model/repo the story is about; its narration is ONE short sentence like "Meet X, a free tool that ..."): {"type":"reveal","kicker":"2-3 words CAPS","meet":"1-2 words CAPS e.g. MEET or INTRODUCING","name":"max 18 chars, the exact name","tagline":"max 58 chars, what it does","badges":["2-3 short tags CAPS max 14 chars, e.g. OPEN SOURCE, MIT LICENSE, FREE"],"icon":"<icon>","narration":"one short sentence naming it"}
-screenshot (ONLY for GitHub repo videos: shows a scrolling screenshot of the repo's real GitHub page/README): {"type":"screenshot","kicker":"2-3 words CAPS","caption":"max 44 chars, what the viewer sees, e.g. The README walks you through setup","narration":"..."}
 terminal (key facts shown as command lines): {"type":"terminal","kicker":"2-3 words CAPS","file":"fake_filename.ext","tag":"max 28 chars","lines":[{"cmd":"max 34 chars, command-style line for ONE key fact","result":"1-3 words"}  (exactly 3)],"banner":"max 46 chars","note":"max 28 chars","narration":"..."}
 alert (a risk, warning or shock stat): {"type":"alert","kicker":"2-3 words CAPS","chip":"2-3 words","icon":"<icon>","big":"max 26 chars, the striking fact","quote":"max 90 chars, supporting line (attribute claims)","label":"max 40 chars","glyphs":["max 6 chars","max 6 chars"],"narration":"..."}
 timeline (sequence, rollout, what happened when): {"type":"timeline","kicker":"2-3 words CAPS","steps":[{"icon":"<icon>","title":"max 22 chars","sub":"max 30 chars"}  (exactly 4)],"footnote":"max 44 chars","narration":"..."}
@@ -306,6 +310,21 @@ roundup (3 items announced, 'three more X', numbered cards sliding in): {"type":
 cta (closing, always last): {"type":"cta","kicker":"2-3 words CAPS","label":"max 26 chars","plate":"a punchy verdict about THIS story in CAPS, max 20 chars (never the channel name or a follow request)","footnote":"max 70 chars","chips":[{"icon":"<icon>","text":"max 28 chars"}  (exactly 2)],"follow":"Follow for daily AI news","narration":"2 short sentences: first says the source link is in the comments, then asks people to follow for daily AI news"}
 """
 
+NEWS_STRUCTURE = """Build the video as 6 scenes in this order:
+ 1. exactly one OPENING scene: "hook", "slam" or "appclutter"
+ 2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup, reveal - \
+the ones that tell THIS story best (a funding story wants bignumber/leaderboard, a product launch wants chat/checklist/timeline, \
+a controversy wants versus/monitor/alert, a security story wants alert/terminal, a story about several products or agents wants roundup then profile, a platform/ecosystem story wants hubmap, etc.)
+ NAME RULE: if the story is about ONE specific named tool, product, model or repo, scene 2 MUST be "reveal" - announce its real name right after the hook.
+ 6. "cta" (always last)"""
+
+REPO_STRUCTURE = """Build the video as 6 scenes in this order:
+ 1. "repohook" - the opening: a quick glimpse of the repo's real GitHub page. Its narration MUST start with "This GitHub repo".
+ 2. "reveal" - announces the repo's real name right after the opening.
+ 3-5. THREE DIFFERENT scenes chosen from: terminal, timeline, hubmap, checklist, profile, bignumber - the ones that best explain how it works and how to use it.
+ 6. "cta" (always last)"""
+
+
 SCRIPT_PROMPT = """You are the creative director and scriptwriter of "AI Quantum", a faceless AI-news channel \
 (YouTube Shorts / Instagram Reels / Facebook Reels). Each video is a 45-55 second vertical MOTION-GRAPHICS explainer \
 built from animated scenes. EVERY VIDEO MUST FEEL DIFFERENT: you choose the scene sequence, storytelling angle, \
@@ -318,13 +337,7 @@ Why it matters: <<why_it_matters>>
 FRAMING MENU
 Scene types you can use (each at most once per video):
 <<specs>>
-Build the video as 6 scenes in this order:
- 1. exactly one OPENING scene: "hook", "slam" or "appclutter"
- 2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup, reveal, screenshot - \
-the ones that tell THIS story best (a funding story wants bignumber/leaderboard, a product launch wants chat/checklist/timeline, \
-a controversy wants versus/monitor/alert, a security story wants alert/terminal, a story about several products or agents wants roundup then profile, a platform/ecosystem story wants hubmap, etc.)
- NAME RULE: if the story is about ONE specific named tool, product, model or repo, scene 2 MUST be "reveal" - announce its real name right after the hook. ("screenshot" is only for GitHub repo videos.)
- 6. "cta" (always last)
+<<structure>>
 Also choose:
  - "angle": the storytelling frame, one of <<angles>>. Let it shape how the narration is written.
  - "theme": one of <<themes>> (pick the mood that suits the story)
@@ -383,7 +396,9 @@ def build_script_prompt(story, recent, feedback=""):
     p = SCRIPT_PROMPT
     for k, v in {
         "headline": story["headline"], "summary": story["summary"], "why_it_matters": story["why_it_matters"],
-        "source_link": story["source_link"], "specs": SCENE_SPECS, "angles": ", ".join(ANGLES),
+        "source_link": story["source_link"],
+        "specs": SCENE_SPECS + (REPOHOOK_SPEC if story.get("kind") == "repo" else ""),
+        "structure": REPO_STRUCTURE if story.get("kind") == "repo" else NEWS_STRUCTURE, "angles": ", ".join(ANGLES),
         "themes": ", ".join(THEMES), "transitions": ", ".join(TRANSITIONS), "modes": ", ".join(MODE_PATTERNS),
         "recent": describe_recent(recent), "icons": ICON_LIST,
     }.items():
@@ -404,22 +419,27 @@ def validate_script(script, story=None):
     if not isinstance(sc, list) or not (5 <= len(sc) <= 7):
         return "scenes must be a list of 6 scene objects"
     types = [x.get("type") for x in sc]
-    if types[0] not in HOOK_TYPES:
+    is_repo = (story or {}).get("kind") == "repo"
+    if is_repo:
+        if types[0] != REPO_HOOK:
+            return "repo videos must open with the repohook scene"
+        if not str(sc[0].get("narration", "")).strip().lower().startswith("this github repo"):
+            return "the repohook narration must begin with the words 'This GitHub repo'"
+        if types[1] != "reveal":
+            return "repo videos need scene 2 = reveal"
+    elif types[0] not in HOOK_TYPES:
         return "first scene must be hook, slam or appclutter"
     if types[-1] != "cta":
         return "last scene must be cta"
     if len(set(types)) != len(types):
         return "each scene type may be used only once"
     for x in sc:
-        if x.get("type") not in HOOK_TYPES + MID_TYPES + ["cta"]:
+        if x.get("type") not in HOOK_TYPES + MID_TYPES + ["cta", REPO_HOOK]:
             return f"unknown scene type {x.get('type')}"
         if len(str(x.get("narration", "")).split()) < 6:
             return f"scene {x.get('type')} needs a 2-sentence narration"
-    is_repo = (story or {}).get("kind") == "repo"
-    if "screenshot" in types and not is_repo:
-        return "the screenshot scene is only for GitHub repo videos"
-    if is_repo and (types[1:3] != ["reveal", "screenshot"]):
-        return "repo videos need scene 2 = reveal and scene 3 = screenshot"
+    if REPO_HOOK in types and not is_repo:
+        return "the repohook scene is only for GitHub repo videos"
     if "reveal" in types and types.index("reveal") != 1:
         return "the reveal scene must be scene 2, right after the opening"
     blob = json.dumps(script).lower()
@@ -612,6 +632,11 @@ def _san_reveal(x):
             "icon": _icon(x.get("icon"), "sparkles")}
 
 
+def _san_repohook(x):
+    h = re.sub(r"^\s*this github repo[\s,:\-]*", "", str(x.get("headline") or ""), flags=re.I)
+    return {"kicker": "OPEN SOURCE \u00b7 MIT", "headline": _clip(h, 58) or "is going viral on GitHub"}
+
+
 def _san_screenshot(x):
     return {"kicker": _clip(x.get("kicker"), 28), "caption": _clip(x.get("caption"), 46)}
 
@@ -627,7 +652,7 @@ def _san_cta(x):
 SANITIZERS = {"hook": _san_hook, "slam": _san_slam, "terminal": _san_terminal, "alert": _san_alert, "timeline": _san_timeline,
               "monitor": _san_monitor, "bignumber": _san_bignumber, "versus": _san_versus, "leaderboard": _san_leaderboard,
               "chat": _san_chat, "quote": _san_quote, "checklist": _san_checklist, "cta": _san_cta,
-              "reveal": _san_reveal, "screenshot": _san_screenshot, "appclutter": _san_appclutter, "profile": _san_profile, "hubmap": _san_hubmap, "roundup": _san_roundup}
+              "reveal": _san_reveal, "screenshot": _san_screenshot, "repohook": _san_repohook, "appclutter": _san_appclutter, "profile": _san_profile, "hubmap": _san_hubmap, "roundup": _san_roundup}
 
 
 def _pick(choice, allowed, avoid, seed):
@@ -853,22 +878,19 @@ def process_story(i, story, recent_holder):
 
     recent = save_recent(recent, record)
     video_rel_path = os.path.relpath(video_path, REPO_ROOT)
+    # Queue the video; the "Post next video" workflow publishes one per daily slot (morning / afternoon / evening).
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import post_queue
+        caption = f"{script['title']}\n\n{script['description']}\n\n{' '.join(script['hashtags'])}"
+        post_queue.enqueue(video_rel_path, caption, story["source_link"], story["headline"])
+        print("[queue] added to the post queue")
+    except Exception as e:  # noqa
+        print(f"[queue] could not enqueue: {e}")
     git_push_with_retry(f"Add rendered video {stamp}")
 
     repo = os.environ.get("GITHUB_REPOSITORY", "")
     video_url = f"https://github.com/{repo}/raw/main/{video_rel_path}" if repo else video_rel_path
-
-    try:
-        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-        import facebook
-        if facebook.enabled():
-            caption = f"{script['title']}\n\n{script['description']}\n\n{' '.join(script['hashtags'])}"
-            fb_id = facebook.post_reel(video_path, caption, story["source_link"])
-            print(f"[facebook] posted reel {fb_id}")
-        else:
-            print("[facebook] FB_PAGE_ID / FB_PAGE_TOKEN not set - skipping")
-    except Exception as e:  # noqa
-        print(f"[facebook] failed, continuing: {e}")
 
     log_to_sheets([
         time.strftime("%Y-%m-%d %H:%M"),
