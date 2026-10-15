@@ -16,5 +16,14 @@
   "added": "2026-10-15 12:21",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-15-122204-2.mp4",
+  "caption": "Superpowers: The Professional Methodology for AI Coding Agents\n\nDiscover a viral open-source framework that brings professional software engineering standards to AI coding agents. Learn how to transform your workflow with subagent-driven development and TDD. Follow for daily AI news.\n\n#ai #coding #opensource #github #softwareengineering #productivity #developer #claude #python",
+  "source_link": "https://github.com/obra/superpowers",
+  "headline": "superpowers: An agentic skills framework & software development methodology that works.",
+  "added": "2026-10-15 12:25",
+  "status": "pending",
+  "attempts": 0
  }
 ]
