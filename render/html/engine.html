@@ -256,6 +256,14 @@ body{font-family:'PoppinsX','Poppins','Noto Sans',sans-serif;-webkit-font-smooth
 .shw .fb{padding:60px 56px;color:#e6edf3}
 .shw .fb h3{font-size:62px;font-weight:900;line-height:1.1}.shw .fb p{font-size:36px;color:#8b949e;margin-top:24px;line-height:1.35;font-weight:500}
 .shw .fb .st{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap}.shw .fb .st span{font-size:30px;font-weight:700;padding:12px 24px;border-radius:99px;background:#21262d;border:1px solid #30363d}
+/* repohook: opening glimpse of the repo's GitHub page */
+.rhbg{position:absolute;inset:0;overflow:hidden;z-index:0}
+.rhbg img{position:absolute;left:50%;top:0;width:160%;transform:translateX(-50%);filter:blur(34px) brightness(.34) saturate(1.3)}
+.rhc{gap:26px;width:960px}
+.rhl{font-size:50px;font-weight:800;letter-spacing:.2em;color:var(--kl);text-align:center;white-space:nowrap}
+.rhh{font-weight:900;line-height:1.12;text-align:center;max-width:940px;background:linear-gradient(120deg,#fff 15%,var(--kl));-webkit-background-clip:text;color:transparent;padding-bottom:6px}
+.shw.rhw{width:940px;height:790px}
+.rhw .stc{font-size:26px;font-weight:800;color:#f0b429;background:#21262d;border:1px solid #30363d;border-radius:22px;padding:6px 18px;white-space:nowrap}
 .shcap{margin-top:30px;font-size:34px;font-weight:700;text-align:center;max-width:900px;line-height:1.25}
 #capw{position:absolute;left:0;right:0;bottom:330px;display:flex;justify-content:center;z-index:20;opacity:0}
 #cap{max-width:960px;padding:22px 40px;border-radius:44px;background:rgba(10,14,30,.94);border:1.5px solid rgba(255,255,255,.14);color:#fff;font-size:38px;font-weight:500;line-height:1.3;text-align:center;box-shadow:0 14px 40px rgba(0,0,0,.28)}
@@ -661,7 +669,26 @@ function sceneScreenshot(m,S,D){
   if(m.caption){const cp=H(`<div class="shcap">${esc(m.caption)}</div>`);col.appendChild(cp);A(cp,'up',at(.3),.6);}
   return sc;
 }
-const BUILDERS={reveal:sceneReveal,screenshot:sceneScreenshot,appclutter:sceneAppClutter,profile:sceneProfile,hubmap:sceneHubMap,roundup:sceneRoundup,hook:sceneHook,slam:sceneSlam,terminal:sceneTerminal,alert:sceneAlert,timeline:sceneTimeline,monitor:sceneMonitor,cta:sceneCTA,
+function sceneRepoHook(m,S,D){
+  const sc=mkScene(m,'dark','--acc2'),at=f=>S+f*D,info=RINFO||{};
+  if(RSHOT)sc.appendChild(H(`<div class="rhbg"><img src="${RSHOT}" alt=""></div>`));
+  kicker(sc,m,S);
+  const c=mk(sc,`<div class="c"><div class="col rhc"></div></div>`),col=c.firstElementChild;
+  const lead=H(`<div class="rhl">THIS GITHUB REPO</div>`);col.appendChild(lead);
+  const hl=H(`<div class="rhh" style="font-size:${fitSize(m.headline||'',[[24,92],[40,80],[999,68]])}px">${esc(m.headline||'')}</div>`);col.appendChild(hl);
+  const w=H(`<div class="shw rhw"><div class="tb"><b style="background:#ff5f57"></b><b style="background:#febc2e"></b><b style="background:#28c840"></b><div class="url">github.com/${esc(info.full_name||'')}</div>${info.stars_text?`<div class="stc">&#9733; ${esc(info.stars_text)}</div>`:''}</div><div class="vp"></div></div>`);
+  col.appendChild(w);   /* on screen from frame 0: the glimpse IS the hook */
+  const vp=w.querySelector('.vp');let img=null;
+  if(RSHOT){img=H(`<img src="${RSHOT}" alt="">`);vp.appendChild(img);}
+  else vp.appendChild(H(`<div class="fb"><h3>${esc(info.full_name||'')}</h3><p>${esc(info.description||'')}</p><div class="st"><span>&#9733; ${esc(info.stars_text||'')}</span><span>${esc(info.language||'')}</span><span>MIT license</span></div></div>`));
+  updaters.push(t=>{
+    const x0=clamp((t-S)/.9),r=-3.2*(1-E_OUT(x0));w.style.transform=`rotate(${r}deg) scale(${.94+.06*E_OUT(x0)})`;
+    if(img){const vh=vp.clientHeight||714,ih=img.clientHeight||(img.naturalWidth?940*img.naturalHeight/img.naturalWidth:2800);
+      const x=E_INOUT(clamp((t-S)/(D*.96)));img.style.transform=`translateY(${-Math.max(0,ih-vh)*x}px)`;}
+  });
+  return sc;
+}
+const BUILDERS={repohook:sceneRepoHook,reveal:sceneReveal,screenshot:sceneScreenshot,appclutter:sceneAppClutter,profile:sceneProfile,hubmap:sceneHubMap,roundup:sceneRoundup,hook:sceneHook,slam:sceneSlam,terminal:sceneTerminal,alert:sceneAlert,timeline:sceneTimeline,monitor:sceneMonitor,cta:sceneCTA,
   bignumber:sceneBigNumber,versus:sceneVersus,leaderboard:sceneBoard,chat:sceneChat,quote:sceneQuote,checklist:sceneChecklist};
 
 /* ================= themes ================= */
