@@ -432,5 +432,22 @@
   "kind": "news",
   "headline": "Neuralink Rival Successfully Implants Vision-Restoring AI Chip",
   "link": "https://techcrunch.com/2026/10/13/science-corporation-implants-its-vision-restoring-chip-in-its-first-stargardt-disease-patient/"
+ },
+ {
+  "ts": "2026-10-15 07:47",
+  "theme": "ocean",
+  "transition": "slide",
+  "angle": "the big question",
+  "scenes": [
+   "slam",
+   "reveal",
+   "monitor",
+   "checklist",
+   "alert",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "YouTube Music Implements Official Labels for AI-Generated Content",
+  "link": "https://techcrunch.com/2026/10/14/youtube-music-launches-new-labels-as-ai-generated-music-floods-streaming-platforms/"
  }
 ]
