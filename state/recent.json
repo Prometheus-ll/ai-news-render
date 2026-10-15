@@ -415,5 +415,22 @@
   "kind": "repo",
   "headline": "scientific-agent-skills: Turn any AI agent into an AI Scientist. The #1 Agent Sk",
   "link": "https://github.com/K-Dense-AI/scientific-agent-skills"
+ },
+ {
+  "ts": "2026-10-15 07:43",
+  "theme": "ember",
+  "transition": "zoom",
+  "angle": "before vs after",
+  "scenes": [
+   "appclutter",
+   "reveal",
+   "profile",
+   "monitor",
+   "timeline",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Neuralink Rival Successfully Implants Vision-Restoring AI Chip",
+  "link": "https://techcrunch.com/2026/10/13/science-corporation-implants-its-vision-restoring-chip-in-its-first-stargardt-disease-patient/"
  }
 ]
