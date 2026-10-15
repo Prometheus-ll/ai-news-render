@@ -500,5 +500,22 @@
   "kind": "news",
   "headline": "Ricursive Intelligence Leverages AI to Automate the Design of Next-Gen Chips",
   "link": "https://techcrunch.com/2026/10/14/ricursive-intelligence-is-betting-on-ai-designed-chips-to-help-solve-the-compute-crisis/"
+ },
+ {
+  "ts": "2026-10-15 12:21",
+  "theme": "ember",
+  "transition": "slide",
+  "angle": "what changes for you",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "hubmap",
+   "checklist",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "superpowers: An agentic skills framework & software development methodology that",
+  "link": "https://github.com/obra/superpowers"
  }
 ]
