@@ -449,5 +449,22 @@
   "kind": "news",
   "headline": "YouTube Music Implements Official Labels for AI-Generated Content",
   "link": "https://techcrunch.com/2026/10/14/youtube-music-launches-new-labels-as-ai-generated-music-floods-streaming-platforms/"
+ },
+ {
+  "ts": "2026-10-15 07:51",
+  "theme": "signal",
+  "transition": "fade",
+  "angle": "what changes for you",
+  "scenes": [
+   "hook",
+   "reveal",
+   "screenshot",
+   "hubmap",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "pentagi: Fully autonomous AI Agents system capable of performing complex penetra",
+  "link": "https://github.com/vxcontrol/pentagi"
  }
 ]
