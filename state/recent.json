@@ -534,5 +534,22 @@
   "kind": "news",
   "headline": "Meta and Apple Partner to Launch 'Muse Spark Open' for Local Mac AI",
   "link": "https://techcrunch.com/2026/10/15/meta-launches-an-open-weight-model-that-runs-on-macs/"
+ },
+ {
+  "ts": "2026-10-16 12:03",
+  "theme": "signal",
+  "transition": "fade",
+  "angle": "the big question",
+  "scenes": [
+   "hook",
+   "reveal",
+   "terminal",
+   "alert",
+   "quote",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Anthropic Grants External Researchers Unprecedented 'Employee-Level' Access",
+  "link": "https://techcrunch.com/2026/10/15/anthropic-is-letting-metr-researchers-look-under-the-hood-with-employee-level-access/"
  }
 ]
