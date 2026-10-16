@@ -517,5 +517,22 @@
   "kind": "repo",
   "headline": "superpowers: An agentic skills framework & software development methodology that",
   "link": "https://github.com/obra/superpowers"
+ },
+ {
+  "ts": "2026-10-16 11:59",
+  "theme": "ocean",
+  "transition": "zoom",
+  "angle": "before vs after",
+  "scenes": [
+   "appclutter",
+   "reveal",
+   "hubmap",
+   "monitor",
+   "checklist",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Meta and Apple Partner to Launch 'Muse Spark Open' for Local Mac AI",
+  "link": "https://techcrunch.com/2026/10/15/meta-launches-an-open-weight-model-that-runs-on-macs/"
  }
 ]
