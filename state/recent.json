@@ -551,5 +551,22 @@
   "kind": "news",
   "headline": "Anthropic Grants External Researchers Unprecedented 'Employee-Level' Access",
   "link": "https://techcrunch.com/2026/10/15/anthropic-is-letting-metr-researchers-look-under-the-hood-with-employee-level-access/"
+ },
+ {
+  "ts": "2026-10-16 12:12",
+  "theme": "neon",
+  "transition": "slide",
+  "angle": "behind the scenes",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "bignumber",
+   "checklist",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "ECC: The agent harness performance optimization system. Skills, instincts, memor",
+  "link": "https://github.com/affaan-m/ECC"
  }
 ]
