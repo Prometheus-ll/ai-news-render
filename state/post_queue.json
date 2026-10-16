@@ -31,5 +31,14 @@
   "attempts": 0,
   "fb_id": "1360718262613335",
   "posted_at": "2026-10-15 23:59"
+ },
+ {
+  "video": "renders/output/2026-10-16-115944-0.mp4",
+  "caption": "Meta and Apple Partner to Launch 'Muse Spark Open' for Local Mac AI\n\nMeta and Apple have joined forces to launch Muse Spark Open, a model optimized specifically for Apple Silicon. Experience high-performance AI locally on your Mac with total privacy. Follow for daily AI news!\n\n#ai #meta #apple #macbook #musespark #localai #tech #privacy #innovation #machinelearning",
+  "source_link": "https://techcrunch.com/2026/10/15/meta-launches-an-open-weight-model-that-runs-on-macs/",
+  "headline": "Meta and Apple Partner to Launch 'Muse Spark Open' for Local Mac AI",
+  "added": "2026-10-16 12:03",
+  "status": "pending",
+  "attempts": 0
  }
 ]
