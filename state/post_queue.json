@@ -82,5 +82,14 @@
   "added": "2026-10-17 11:23",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-17-112414-2.mp4",
+  "caption": "Automate Your Job Search: 49K Star AI Repo\n\nDiscover how this viral GitHub project uses Claude Code to automate resumes, cover letters, and interview prep. It is open-source and runs on your machine. Follow for more AI tools.\n\n#ai #career #github #opensource #coding #jobsearch #claudecode #productivity",
+  "source_link": "https://github.com/MadsLorentzen/ai-job-search",
+  "headline": "ai-job-search: The job search that runs on your machine. AI job application framework built on Claude Code: ev",
+  "added": "2026-10-17 11:27",
+  "status": "pending",
+  "attempts": 0
  }
 ]
