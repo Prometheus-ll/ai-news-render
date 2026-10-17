@@ -102,6 +102,7 @@ const MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec
 const F=ms=>{if(ms==null)return '-';const d=new Date(ms);return `${MO[d.getUTCMonth()]} ${d.getUTCDate()} ${two(d.getUTCHours())}:${two(d.getUTCMinutes())}`};
 const nowD=()=>Date.now()+6*36e5;
 const J=u=>fetch(u,{cache:'no-store'}).then(r=>r.ok?r.json():[]).catch(()=>[]);
+const live=p=>LOGS.some(x=>x.platforms&&x.platforms[p]&&x.platforms[p].status==='posted');
 let LOGS=[],filter='all',qs='',sel=0,auto=true,G=null;
 // steps list
 function drawSteps(){$('steps').innerHTML=STEPS.map((s,i)=>`<div class="st ${i===sel?'on':''}" data-i="${i}"><b>${i+1}. ${esc(s.n)}</b><small>${esc(s.s)}</small></div>`).join('');document.querySelectorAll('.st').forEach(e=>e.onclick=()=>pick(+e.dataset.i))}
@@ -117,7 +118,7 @@ function build(){
     else if(i<4){x=110+i*226;y=215;dir=-90}else{x=788-(i-4)*226;y=445;dir=90}
     nodes.push({id:'s'+i,step:i,label:s.n,t:s.t,r:11,x,y,god:1,dir});
     if(i)edges.push(['s'+(i-1),'s'+i,0,1]);
-    const sats=s.sat.map(a=>({l:a[0],t:a[1],d:a[2]||0}));
+    const sats=s.sat.map(a=>({l:a[0],t:a[1],d:(a[0]==='YouTube'&&live('youtube'))||(a[0]==='Instagram'&&live('instagram'))?0:(a[2]||0)}));
     if(s.scenes)scenes.forEach(([n,c])=>sats.push({l:n+'×'+c,t:'render',d:0}));
     const dist=tall?72:(sats.length>5?100:84),tot=sats.length>1?Math.min(168,46*(sats.length-1)+26):0;
     sats.forEach((q,k)=>{const a=(dir+(sats.length>1?tot*(k/(sats.length-1)-.5):0))*Math.PI/180;
@@ -163,8 +164,9 @@ function bars(){const t0=Math.floor(nowD()/864e5)*864e5,days=Array.from({length:
   $('bars').innerHTML=days.map((d,i)=>`<div><span class="d">${MO[new Date(d).getUTCMonth()]} ${new Date(d).getUTCDate()}</span><span class="b"><span style="color:var(--cy)">${'█'.repeat(mk[i])||'·'}</span> <span style="color:var(--dim)">made ${mk[i]}</span> &nbsp;<span style="color:var(--or)">${'█'.repeat(pk[i])||'·'}</span> <span style="color:var(--dim)">posted ${pk[i]}</span></span></div>`).join('')}
 function slog(){const ev=[];LOGS.forEach(x=>{if(x.ts)ev.push([P(x.ts),'render',x.title||x.headline,'var(--gr)']);if(x.posted_at)ev.push([P(x.posted_at),'post',(x.title||x.headline),'var(--pk)']);if(x.status==='failed')ev.push([P(x.ts),'failed',x.error||x.headline,'var(--bad)'])});
   ev.sort((a,b)=>b[0]-a[0]);$('slog').innerHTML=ev.slice(0,10).map(([t,c,m,col])=>`<div><span class="t">${F(t)}</span><span class="c" style="color:${col}">${c}</span><span class="m">${esc(m)}</span></div>`).join('')||'<div style="color:var(--dim)">no events yet</div>'}
+function plat(x){const p=x.platforms;if(!p)return x.status==='posted'?'<span style="color:var(--dim)">fb✓ </span>':'';return Object.entries(p).map(([k,v])=>`<span style="color:var(--${v.status==='posted'?'gr':v.status==='failed'?'bad':'ye'})">${{facebook:'fb',instagram:'ig',youtube:'yt'}[k]||k}${v.status==='posted'?'✓':v.status==='failed'?'✗':'…'}</span> `).join('')}
 function list(){const rows=LOGS.filter(x=>(filter==='all'||x.status===filter)&&(!qs||((x.headline||'')+(x.title||'')).toLowerCase().includes(qs.toLowerCase())));
-  $('list').innerHTML=rows.map(x=>`<div class="rowlog" onclick="this.classList.toggle('open')"><div class="h"><h4>${esc(x.title||x.headline)}</h4><span class="tag t-${x.status}">[${x.status}]</span></div><div class="m">${x.kind==='repo'?'repo · ':''}made ${F(P(x.ts))}${x.posted_at?' · posted '+F(P(x.posted_at)):''}${x.theme?' · '+esc(x.theme):''}</div>
+  $('list').innerHTML=rows.map(x=>`<div class="rowlog" onclick="this.classList.toggle('open')"><div class="h"><h4>${esc(x.title||x.headline)}</h4><span class="tag t-${x.status}">${plat(x)}[${x.status}]</span></div><div class="m">${x.kind==='repo'?'repo · ':''}made ${F(P(x.ts))}${x.posted_at?' · posted '+F(P(x.posted_at)):''}${x.theme?' · '+esc(x.theme):''}</div>
   <div class="det"><div class="chips">${(x.scenes||[]).map(s=>`<span>${esc(s)}</span>`).join('')}</div>${x.angle?`<div style="color:var(--dim)">angle: ${esc(x.angle)}</div>`:''}<pre>${esc(x.caption||'')}</pre>${x.source_link?`<a href="${esc(x.source_link)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">source ↗</a>`:''}${x.error?`<div style="color:var(--bad)">${esc(x.error)}</div>`:''}</div></div>`).join('')||'<div style="color:var(--dim);padding:10px">no videos match</div>'}
 function tools(){$('tools').innerHTML=['all','posted','pending','failed'].map(f=>`<button class="${f===filter?'on':''}" data-f="${f}">${f}</button>`).join('')+`<input id="q" placeholder="grep headlines…" value="${esc(qs)}">`;
   document.querySelectorAll('#tools button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;tools();list()});$('q').oninput=e=>{qs=e.target.value;list()}}
