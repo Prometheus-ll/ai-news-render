@@ -602,5 +602,22 @@
   "kind": "news",
   "headline": "Amazon's Bee Releases $75 AI Wearable and Personal Recorder",
   "link": "https://techcrunch.com/2026/10/15/amazons-bee-launches-two-new-personal-ai-devices-starting-at-75/"
+ },
+ {
+  "ts": "2026-10-17 11:24",
+  "theme": "ocean",
+  "transition": "fade",
+  "angle": "By the numbers",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "bignumber",
+   "hubmap",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "ai-job-search: The job search that runs on your machine. AI job application fram",
+  "link": "https://github.com/MadsLorentzen/ai-job-search"
  }
 ]
