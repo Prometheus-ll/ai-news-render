@@ -1,126 +1,218 @@
 <!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI Quantum Dashboard</title>
+<title>AI Quantum · Mission Control</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap">
 <style>
-:root{--bg:#060a1a;--card:#0e1530;--card2:#131c3d;--line:#1f2a52;--tx:#e8edff;--sub:#8b97c4;--acc:#2f55e0;--acc2:#22d3ee;--ok:#34d399;--warn:#fbbf24;--bad:#fb7185}
-@media(prefers-color-scheme:light){:root{--bg:#f3f6fc;--card:#fff;--card2:#eef2fb;--line:#d9e1f3;--tx:#0f172a;--sub:#5b6785;--acc:#2f55e0;--acc2:#0891b2}}
-*{box-sizing:border-box;margin:0}body{background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:0 16px 60px}
-.w{max-width:1000px;margin:0 auto}
-header{padding:28px 0 8px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
-h1{font-size:26px;letter-spacing:-.02em}h1 span{background:linear-gradient(135deg,var(--acc),var(--acc2));-webkit-background-clip:text;color:transparent}
-.muted{color:var(--sub);font-size:13px}
-h2{font-size:18px;margin:34px 0 4px}.lead{color:var(--sub);font-size:13px;margin-bottom:14px}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:14px}
-.st{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
-.st b{font-size:30px;display:block;letter-spacing:-.02em}.st small{color:var(--sub)}
-.flow{display:flex;flex-direction:column;gap:0;position:relative}
-.step{display:flex;gap:14px;cursor:pointer;position:relative;padding-bottom:14px}
-.step:not(:last-child)::before{content:"";position:absolute;left:21px;top:44px;bottom:-2px;width:3px;background:linear-gradient(var(--acc),var(--acc2));opacity:.35;border-radius:3px}
-.dot{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none;font-size:18px;transition:.3s}
-.step.act .dot{box-shadow:0 0 0 4px color-mix(in srgb,var(--acc2) 45%,transparent);transform:scale(1.08)}
-.sc{flex:1;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 16px}
-.step.act .sc{border-color:var(--acc2)}
-.sc h3{font-size:16px}.sc .tag{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--acc2);text-transform:uppercase}
-.sc p{color:var(--sub);font-size:13.5px;margin-top:3px}
-.sc .more{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:13px}
-.step.open .more{display:block}
-.sc code{background:var(--card2);padding:1px 6px;border-radius:6px;font-size:12px}
-.pulse{position:absolute;left:19px;width:8px;height:8px;border-radius:50%;background:var(--acc2);box-shadow:0 0 12px var(--acc2);top:0;transition:top .8s;z-index:2;pointer-events:none}
-.day{position:relative;height:74px;background:var(--card);border:1px solid var(--line);border-radius:16px;margin-top:8px;overflow:hidden}
-.day .zone{position:absolute;top:0;bottom:0;background:color-mix(in srgb,var(--ok) 16%,transparent)}
-.day .zone.bad{background:color-mix(in srgb,var(--bad) 14%,transparent)}
-.day .slot{position:absolute;top:10px;transform:translateX(-50%);text-align:center;font-size:11px;font-weight:700}
-.day .slot i{display:block;width:14px;height:14px;border-radius:50%;margin:0 auto 3px;background:var(--acc2);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc2) 30%,transparent)}
-.day .slot.old i{background:var(--bad);box-shadow:none;opacity:.8;width:10px;height:10px}
-.day .slot.old{top:32px;color:var(--bad);font-weight:600}
-.ticks{display:flex;justify-content:space-between;font-size:10.5px;color:var(--sub);padding:3px 2px}
-.bars .r{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:13px}
-.bars .r span{width:92px;color:var(--sub);flex:none}.bars .r div{height:12px;border-radius:6px;background:linear-gradient(90deg,var(--acc),var(--acc2));min-width:3px}.bars .r em{font-style:normal;color:var(--sub);font-size:12px}
-.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
-.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
-.box h3{font-size:14px;margin-bottom:6px}
-.tools{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}
-.tools button,.tools input{background:var(--card);color:var(--tx);border:1px solid var(--line);border-radius:99px;padding:8px 14px;font:inherit;font-size:13px}
-.tools button.on{background:var(--acc);border-color:var(--acc);color:#fff}.tools input{flex:1;min-width:140px}
-.log{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:8px;padding:12px 14px;cursor:pointer}
-.log .top{display:flex;gap:10px;justify-content:space-between;align-items:flex-start}
-.log h4{font-size:14.5px;line-height:1.3}.log .meta{color:var(--sub);font-size:12px;margin-top:3px}
-.pill{font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px;white-space:nowrap;flex:none}
-.p-posted{background:color-mix(in srgb,var(--ok) 20%,transparent);color:var(--ok)}.p-pending,.p-queued{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}.p-failed{background:color-mix(in srgb,var(--bad) 20%,transparent);color:var(--bad)}
-.det{display:none;margin-top:10px;font-size:13px;border-top:1px dashed var(--line);padding-top:10px}.log.open .det{display:block}
-.det pre{white-space:pre-wrap;font:inherit;color:var(--sub);background:var(--card2);padding:10px;border-radius:10px;margin:6px 0}
-.chips{display:flex;gap:5px;flex-wrap:wrap;margin:4px 0}.chips span{font-size:11.5px;background:var(--card2);padding:2px 9px;border-radius:99px}
-a{color:var(--acc2)}
-.empty{color:var(--sub);text-align:center;padding:30px}
-</style></head><body><div class="w">
-<header><div><h1>AI <span>Quantum</span> · Pipeline</h1><div class="muted">Automated AI-news Reels · all times in Bangladesh time (UTC+6)</div></div><div class="muted" id="upd"></div></header>
-<div class="stats" id="stats"></div>
+:root{--bg:#04060f;--p:rgba(13,19,44,.72);--p2:rgba(22,31,66,.8);--ln:rgba(110,150,255,.16);--tx:#e8eeff;--sub:#8794c4;--c:#22d3ee;--b:#4f6bff;--o:#fb923c;--m:#ec4899;--ok:#34d399;--bad:#fb7185;--warn:#fbbf24}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font:14.5px/1.45 'Space Grotesk',system-ui,sans-serif;min-height:100vh;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(900px 600px at 15% -5%,rgba(79,107,255,.28),transparent 60%),radial-gradient(700px 500px at 100% 20%,rgba(236,72,153,.16),transparent 60%),radial-gradient(800px 500px at 50% 110%,rgba(34,211,238,.14),transparent 60%),linear-gradient(rgba(110,150,255,.05) 1px,transparent 1px) 0 0/44px 44px,linear-gradient(90deg,rgba(110,150,255,.05) 1px,transparent 1px) 0 0/44px 44px}
+.app{display:grid;grid-template-columns:76px 1fr;min-height:100vh}
+nav{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 0;border-right:1px solid var(--ln);background:rgba(6,9,22,.6);backdrop-filter:blur(14px)}
+.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--b),var(--c));display:flex;align-items:center;justify-content:center;font:900 15px Orbitron;color:#fff;box-shadow:0 0 24px rgba(34,211,238,.5);margin-bottom:14px}
+nav a{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;color:var(--sub);text-decoration:none;transition:.25s;border:1px solid transparent}
+nav a:hover,nav a.on{color:var(--c);background:rgba(34,211,238,.1);border-color:rgba(34,211,238,.35);box-shadow:0 0 18px rgba(34,211,238,.25)}
+nav svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+main{padding:0 22px 70px;max-width:1280px;width:100%;margin:0 auto}
+.top{display:flex;align-items:center;gap:14px;padding:20px 0 14px;flex-wrap:wrap}
+.top h1{font:900 22px Orbitron;letter-spacing:.04em}.top h1 b{background:linear-gradient(90deg,var(--c),var(--b),var(--m));-webkit-background-clip:text;color:transparent}
+.top .sp{flex:1}
+.search{background:var(--p);border:1px solid var(--ln);border-radius:99px;padding:10px 18px;color:var(--tx);font:inherit;min-width:200px;outline:none}
+.search:focus{border-color:var(--c);box-shadow:0 0 16px rgba(34,211,238,.25)}
+.clock{font:700 13px Orbitron;color:var(--c);padding:9px 14px;border:1px solid rgba(34,211,238,.35);border-radius:99px;background:rgba(34,211,238,.07);white-space:nowrap}
+.live{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok);margin-right:8px;animation:bl 1.6s infinite}
+@keyframes bl{50%{opacity:.35}}
+.card{background:var(--p);border:1px solid var(--ln);border-radius:22px;padding:18px;backdrop-filter:blur(12px);position:relative;overflow:hidden}
+.card h3{font:700 11.5px Orbitron;letter-spacing:.14em;color:var(--sub);text-transform:uppercase;margin-bottom:12px}
+.card h3 em{font-style:normal;color:var(--c)}
+.grid{display:grid;gap:14px;margin-top:14px}
+.kpis{grid-template-columns:repeat(4,1fr)}
+.kpi{display:flex;align-items:center;gap:14px}
+.ring{width:74px;height:74px;flex:none;position:relative}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:700 14px Orbitron}
+.kpi b{font:900 32px Orbitron;display:block;line-height:1}.kpi small{color:var(--sub);font-size:12.5px}
+.two{grid-template-columns:2fr 1fr}.three{grid-template-columns:repeat(3,1fr)}
+.sec{font:700 12px Orbitron;letter-spacing:.2em;color:var(--c);margin:34px 0 -4px;text-transform:uppercase}
+/* flow */
+#flowbox{position:relative;width:100%}
+#flowbox svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.node{position:absolute;transform:translate(-50%,-50%);width:92px;text-align:center;cursor:pointer;z-index:2}
+.node .o{width:62px;height:62px;margin:0 auto 6px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.35),rgba(79,107,255,.55) 45%,rgba(10,16,48,.95));border:1.5px solid rgba(34,211,238,.6);box-shadow:0 0 24px rgba(79,107,255,.65),inset 0 0 14px rgba(34,211,238,.35);transition:.3s;font:900 18px Orbitron}
+.node:hover .o,.node.act .o{transform:scale(1.14);box-shadow:0 0 38px rgba(34,211,238,.9),inset 0 0 18px rgba(34,211,238,.6)}
+.node.pub .o{border-color:rgba(251,146,60,.8);background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.35),rgba(251,146,60,.6) 45%,rgba(40,16,10,.95));box-shadow:0 0 26px rgba(251,146,60,.7)}
+.node small{display:block;font-size:12px;font-weight:700;line-height:1.15}.node i{display:block;font-style:normal;font-size:10.5px;color:var(--sub);margin-top:2px}
+.node.act::after{content:"";position:absolute;left:50%;top:31px;width:62px;height:62px;margin:-31px 0 0 -31px;border-radius:50%;border:2px solid var(--c);animation:pu 1.8s infinite;pointer-events:none}
+@keyframes pu{from{transform:scale(1);opacity:.9}to{transform:scale(1.9);opacity:0}}
+#detail{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin-top:6px;padding-top:14px;border-top:1px dashed var(--ln)}
+#detail h4{font:700 17px Orbitron;margin-bottom:4px}#detail p{color:var(--sub)}#detail code{background:rgba(79,107,255,.18);padding:1px 7px;border-radius:7px;font-size:12px;color:var(--c)}
+.mini{display:flex;gap:10px;flex-wrap:wrap}.mini div{flex:1;min-width:90px;background:var(--p2);border:1px solid var(--ln);border-radius:14px;padding:10px 12px}.mini b{font:700 20px Orbitron;color:var(--c);display:block}.mini small{color:var(--sub);font-size:11.5px}
+.next{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.next div{flex:1;min-width:150px;background:var(--p2);border:1px solid var(--ln);border-radius:14px;padding:10px 14px}
+.next small{color:var(--sub);font-size:11.5px;display:block}.next b{font:700 18px Orbitron}.next .o b{color:var(--o)}.next .c b{color:var(--c)}
+/* charts */
+.chart svg{width:100%;height:auto;display:block}
+.chart text{fill:var(--sub);font:10.5px 'Space Grotesk'}
+.leg{display:flex;gap:14px;font-size:12px;color:var(--sub);margin-top:6px}.leg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+#orbs{height:340px;position:relative}
+.orb{position:absolute;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-size:11px;font-weight:700;animation:fl 7s ease-in-out infinite;transform:translate(-50%,-50%);color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.orb b{font:900 15px Orbitron;display:block}
+@keyframes fl{50%{translate:0 -9px}}
+/* day bar */
+.day{position:relative;height:84px;border:1px solid var(--ln);border-radius:16px;background:rgba(10,15,36,.7);overflow:hidden;margin-top:6px}
+.day .z{position:absolute;top:0;bottom:0;background:linear-gradient(rgba(52,211,153,.18),rgba(52,211,153,.04))}.day .z.bad{background:linear-gradient(rgba(251,113,133,.2),rgba(251,113,133,.04))}
+.day .s{position:absolute;top:14px;transform:translateX(-50%);text-align:center;font:700 11px Orbitron;color:var(--o)}
+.day .s i{display:block;width:16px;height:16px;border-radius:50%;margin:0 auto 4px;background:var(--o);box-shadow:0 0 16px var(--o)}
+.day .s.old{top:46px;color:var(--bad);font:600 10px 'Space Grotesk'}.day .s.old i{width:9px;height:9px;background:var(--bad);box-shadow:none;margin-bottom:2px}
+.day .now{position:absolute;top:0;bottom:0;width:2px;background:var(--c);box-shadow:0 0 12px var(--c)}
+.ticks{display:flex;justify-content:space-between;font-size:10px;color:var(--sub);padding:4px 2px}
+/* log */
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 12px}
+.tools button{background:var(--p);color:var(--sub);border:1px solid var(--ln);border-radius:99px;padding:8px 16px;font:600 12px Orbitron;cursor:pointer;text-transform:uppercase}
+.tools button.on{color:#fff;background:linear-gradient(135deg,var(--b),var(--c));border-color:transparent;box-shadow:0 0 18px rgba(34,211,238,.4)}
+.log{background:var(--p);border:1px solid var(--ln);border-radius:18px;margin-bottom:10px;padding:14px 16px;cursor:pointer;transition:.25s;position:relative;backdrop-filter:blur(10px)}
+.log:hover{border-color:rgba(34,211,238,.4);box-shadow:0 0 22px rgba(34,211,238,.12)}
+.log .t{display:flex;gap:10px;justify-content:space-between;align-items:flex-start}.log h4{font-size:15px;line-height:1.3}.log .mt{color:var(--sub);font-size:12px;margin-top:3px}
+.pill{font:700 10.5px Orbitron;letter-spacing:.06em;padding:4px 10px;border-radius:99px;flex:none;text-transform:uppercase}
+.p-posted{color:var(--ok);background:rgba(52,211,153,.14);box-shadow:0 0 12px rgba(52,211,153,.25)}.p-pending,.p-queued,.p-rendered{color:var(--warn);background:rgba(251,191,36,.14)}.p-failed{color:var(--bad);background:rgba(251,113,133,.14)}
+.det{display:none;margin-top:12px;padding-top:12px;border-top:1px dashed var(--ln);font-size:13px}.log.open .det{display:block}
+.det pre{white-space:pre-wrap;font:inherit;color:var(--sub);background:rgba(8,12,30,.7);padding:10px 12px;border-radius:12px;margin:8px 0}
+.chips{display:flex;gap:6px;flex-wrap:wrap}.chips span{font-size:11.5px;padding:3px 10px;border-radius:99px;background:rgba(79,107,255,.18);border:1px solid rgba(79,107,255,.35)}
+a{color:var(--c)}.empty{text-align:center;color:var(--sub);padding:30px}
+@media(max-width:900px){.app{grid-template-columns:1fr}nav{position:fixed;top:auto;bottom:0;left:0;right:0;height:62px;flex-direction:row;justify-content:space-around;padding:0 8px;border-right:0;border-top:1px solid var(--ln);z-index:50}.logo{display:none}main{padding:0 14px 90px}.kpis{grid-template-columns:1fr 1fr}.two,.three,#detail{grid-template-columns:1fr}.kpi b{font-size:24px}.ring{width:60px;height:60px}.search{flex:1;min-width:0}}
+</style></head><body>
+<div class="app">
+<nav><div class="logo">AQ</div>
+<a href="#top" class="on" title="Overview"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></a>
+<a href="#flow" title="Pipeline"><svg viewBox="0 0 24 24"><circle cx="5" cy="6" r="2.5"/><circle cx="19" cy="12" r="2.5"/><circle cx="5" cy="18" r="2.5"/><path d="M7.5 6h4a3 3 0 0 1 3 3v0a3 3 0 0 0 3 3M7.5 18h4a3 3 0 0 0 3-3"/></svg></a>
+<a href="#stats" title="Analytics"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></a>
+<a href="#sched" title="Schedule"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></a>
+<a href="#logs" title="Content log"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></a>
+</nav>
+<main id="top">
+<div class="top"><h1>AI <b>QUANTUM</b> · MISSION CONTROL</h1><div class="sp"></div><input class="search" id="q" placeholder="Search videos…"><div class="clock"><span class="live"></span><span id="clk">--:--</span> DHAKA</div></div>
+<div class="grid kpis" id="kpis"></div>
 
-<h2>How the pipeline works</h2><div class="lead">Tap a step for details. The highlight walks through the pipeline.</div>
-<div class="flow" id="flow"></div>
+<div class="sec" id="flow">Live pipeline</div>
+<div class="grid"><div class="card">
+<div class="next" id="next"></div>
+<div id="flowbox"></div>
+<div id="detail"></div>
+</div></div>
 
-<h2>Posting schedule</h2>
-<div class="lead">Videos publish at 9 AM, 2 PM and 9 PM Dhaka time. The red marks show the old schedule (New York hours), which hit Bangladesh at 11:30 PM, 2 AM and 6 AM.</div>
+<div class="sec" id="stats">Analytics</div>
+<div class="grid two"><div class="card chart"><h3>Videos <em>made</em> vs <em>posted</em> · last 14 days</h3><div id="line"></div><div class="leg"><span><i style="background:var(--c)"></i>Made</span><span><i style="background:var(--o)"></i>Posted</span></div></div>
+<div class="card chart"><h3>Theme <em>radar</em></h3><div id="radar"></div></div></div>
+<div class="grid two"><div class="card"><h3>Scene <em>galaxy</em> · bigger = used more</h3><div id="orbs"></div></div>
+<div class="card chart"><h3>Posts by <em>hour</em> (Dhaka)</h3><div id="hours"></div><div class="muted" style="color:var(--sub);font-size:12px;margin-top:6px">Orange = new target slots (9 AM · 2 PM · 9 PM)</div></div></div>
+
+<div class="sec" id="sched">Posting schedule</div>
+<div class="grid"><div class="card"><h3>24 hours · Bangladesh time <em>(UTC+6)</em></h3>
 <div class="day" id="day"></div><div class="ticks" id="ticks"></div>
+<div style="color:var(--sub);font-size:12.5px;margin-top:10px">Orange dots are the new slots. Red marks are the old New-York-based times (11:30 PM, 2 AM, 6 AM Dhaka) that missed your audience. The cyan line is now.</div></div></div>
 
-<h2>What gets made</h2><div class="lead">Scene, theme and angle mix across all logged videos.</div>
-<div class="two"><div class="box bars"><h3>Scenes used</h3><div id="b-scenes"></div></div>
-<div class="box bars"><h3>Themes</h3><div id="b-themes"></div><h3 style="margin-top:14px">Story angles</h3><div id="b-angles"></div></div></div>
-
-<h2>Content log</h2><div class="lead">Every video, newest first. Tap a card for caption, scenes and source.</div>
-<div class="tools" id="tools"></div><div id="logs"></div>
-</div>
+<div class="sec" id="logs">Content log</div>
+<div class="tools" id="tools"></div><div id="list"></div>
+</main></div>
 <script>
 const STEPS=[
-["Trigger","07:00 Dhaka daily","GitHub Actions starts the Daily Pipeline at 01:00 UTC. No computer of yours is needed.","Workflow <code>pipeline.yml</code>. It can also be started by hand from the Actions tab."],
-["Find stories","News + trending repos","Reads AI news feeds and finds fast-growing MIT-licensed GitHub repos.","Mixes news with repo videos. Skips anything covered in the last runs (anti-repeat memory in <code>state/recent.json</code>)."],
-["Pick & write","Gemini","Gemini picks the best stories and writes each script: scenes, narration, caption, hashtags.","A validator rejects bad scripts (wrong structure, outlet names, length) and asks Gemini to retry. Retries and a fallback model handle overload errors."],
-["Voice","Gemini TTS","Turns the narration into a voice-over (voice Charon).","Timing of the audio decides how long each scene lasts and when each caption word lights up."],
-["Render","Chromium + HTML engine","Draws 1080×1920 motion-graphics frame by frame and encodes the MP4.","Each video gets its own theme, transition and scene mix. Captions highlight the spoken word in the brand colors."],
-["Save & queue","Git + post queue","The finished video is committed to the repo and added to <code>state/post_queue.json</code> and the content log.","This dashboard reads those files, so it updates after each commit."],
-["Publish","9 AM · 2 PM · 9 PM Dhaka","Three scheduled runs of <code>post.yml</code> each publish ONE queued video as a Facebook Reel.","Uses the Graph API Reels flow, waits until Facebook finishes processing, then comments the source link. Failed posts retry up to 3 times."],
-["Log","This dashboard","Status (queued, posted, failed), time and caption are recorded for every video.","YouTube and Instagram posting can be added as extra publish steps later."]];
-const fl=document.getElementById('flow');
-STEPS.forEach((s,i)=>{const e=document.createElement('div');e.className='step';e.innerHTML=`<div class="dot">${i+1}</div><div class="sc"><div class="tag">${s[1]}</div><h3>${s[0]}</h3><p>${s[2]}</p><div class="more">${s[3]}</div></div>`;e.onclick=()=>{e.classList.toggle('open');cur=i;hl()};fl.appendChild(e)});
-let cur=0;const els=[...fl.querySelectorAll('.step')];
-function hl(){els.forEach((e,i)=>e.classList.toggle('act',i===cur));}
-hl();setInterval(()=>{cur=(cur+1)%els.length;hl()},1800);addEventListener('resize',hl);
-// schedule bar (Dhaka hours)
-const day=document.getElementById('day');
-const zone=(a,b,c)=>`<div class="zone ${c||''}" style="left:${a/24*100}%;width:${(b-a)/24*100}%"></div>`;
-const slot=(h,t,c)=>`<div class="slot ${c||''}" style="left:${h/24*100}%"><i></i>${t}</div>`;
-day.innerHTML=zone(0,6,'bad')+zone(7,9.5)+zone(12.5,14.5)+zone(20,23)+slot(9,'9 AM')+slot(14,'2 PM')+slot(21,'9 PM')+slot(5.98,'old 6 AM','old')+slot(2.2,'old 2 AM','old')+slot(22.6,'old 11:30 PM','old');
-document.getElementById('ticks').innerHTML=[0,3,6,9,12,15,18,21,24].map(h=>`<span>${h%24===0?'12 AM':h<12?h+' AM':h===12?'12 PM':(h-12)+' PM'}</span>`).join('');
-// data
-const P=s=>{if(!s)return null;const m=s.match(/(\d+)-(\d+)-(\d+)[ T](\d+):(\d+)/);return m?Date.UTC(+m[1],m[2]-1,+m[3],+m[4]+6,+m[5]):null}; // UTC text -> Dhaka shifted
-const F=ms=>{if(ms==null)return '-';const d=new Date(ms),M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];let h=d.getUTCHours(),a=h<12?'AM':'PM';h=h%12||12;return `${M[d.getUTCMonth()]} ${d.getUTCDate()}, ${h}:${String(d.getUTCMinutes()).padStart(2,'0')} ${a}`};
-const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+{n:"Trigger",t:"07:00 Dhaka",d:"GitHub Actions wakes the pipeline once a day. No computer of yours is involved.",x:"Workflow <code>pipeline.yml</code> · cron 01:00 UTC · can be run by hand."},
+{n:"Find",t:"News + repos",d:"Reads AI news feeds and finds fast-growing MIT-licensed GitHub repos, skipping stories already covered.",x:"Anti-repeat memory: <code>state/recent.json</code>."},
+{n:"Write",t:"Gemini",d:"Gemini picks the best stories and writes each script: scenes, narration, caption, hashtags.",x:"A validator rejects weak scripts and retries; a fallback model covers overload errors."},
+{n:"Voice",t:"Gemini TTS",d:"Narration becomes a voice-over. Its timing sets scene length and the word-by-word caption highlight.",x:"Voice: Charon."},
+{n:"Render",t:"Chromium engine",d:"A browser draws 1080×1920 motion graphics frame by frame and encodes the MP4.",x:"Each video gets its own theme, transition and scene mix."},
+{n:"Queue",t:"Git + log",d:"The video is saved to the repo and added to the post queue and content log.",x:"<code>state/post_queue.json</code> · <code>state/content_log.json</code>."},
+{n:"Publish",t:"9 AM · 2 PM · 9 PM",d:"Three scheduled runs each publish ONE queued video as a Facebook Reel, then comment the source link.",x:"Up to 3 retries on failure. <code>post.yml</code>.",pub:1},
+{n:"Live",t:"Facebook Reels",d:"The Reel goes live on your page. YouTube and Instagram can be added as extra publish steps later.",x:"Results are logged here.",pub:1}];
+const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const P=s=>{if(!s)return null;const m=s.match(/(\d+)-(\d+)-(\d+)[ T](\d+):(\d+)/);return m?Date.UTC(+m[1],m[2]-1,+m[3],+m[4]+6,+m[5]):null};
+const MO=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const F=ms=>{if(ms==null)return '-';const d=new Date(ms);let h=d.getUTCHours(),a=h<12?'AM':'PM';h=h%12||12;return `${MO[d.getUTCMonth()]} ${d.getUTCDate()}, ${h}:${String(d.getUTCMinutes()).padStart(2,'0')} ${a}`};
+const nowD=()=>Date.now()+6*3600e3,two=n=>String(n).padStart(2,'0');
 const J=u=>fetch(u,{cache:'no-store'}).then(r=>r.ok?r.json():[]).catch(()=>[]);
-let LOGS=[],filter='all',q='';
+let LOGS=[],filter='all',qs='',sel=0,auto=true,DATA=false;
+// clock
+function tick(){const d=new Date(nowD());$('clk').textContent=`${two(d.getUTCHours())}:${two(d.getUTCMinutes())}:${two(d.getUTCSeconds())}`;nextBox()}
+setInterval(tick,1000);
+function nextEvt(hoursUTC){const n=Date.now(),d=new Date(n);let best=1e18;hoursUTC.forEach(h=>{let t=Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate(),h);if(t<=n)t+=864e5;best=Math.min(best,t)});return best-n}
+const CD=ms=>`${Math.floor(ms/36e5)}h ${two(Math.floor(ms%36e5/6e4))}m`;
+function nextBox(){$('next').innerHTML=`<div class="c"><small>Next render run</small><b>in ${CD(nextEvt([1]))}</b></div><div class="o"><small>Next Facebook post</small><b>in ${CD(nextEvt([3,8,15]))}</b></div><div><small>Waiting in queue</small><b>${LOGS.filter(x=>x.status==='pending').length} videos</b></div>`}
+// flow
+function layout(){
+  const box=$('flowbox'),W=box.clientWidth,vert=W<700,n=STEPS.length,pts=[];
+  if(vert){box.style.height=(n*118+40)+'px';STEPS.forEach((s,i)=>pts.push([W*(i%2?.72:.28),60+i*118]))}
+  else{box.style.height='300px';STEPS.forEach((s,i)=>pts.push([60+i*(W-120)/(n-1),i%2?205:95]))}
+  let d=`M ${pts[0][0]} ${pts[0][1]}`;
+  for(let i=1;i<n;i++){const[a,b]=[pts[i-1],pts[i]];d+=vert?` C ${a[0]} ${(a[1]+b[1])/2}, ${b[0]} ${(a[1]+b[1])/2}, ${b[0]} ${b[1]}`:` C ${(a[0]+b[0])/2} ${a[1]}, ${(a[0]+b[0])/2} ${b[1]}, ${b[0]} ${b[1]}`}
+  const parts=Array.from({length:7},(_,i)=>`<circle r="${i%2?3.5:5}" fill="${i%3===0?'#fb923c':'#22d3ee'}" filter="url(#gl)"><animateMotion dur="9s" begin="${-i*1.3}s" repeatCount="indefinite"><mpath href="#fp"/></animateMotion></circle>`).join('');
+  box.innerHTML=`<svg viewBox="0 0 ${W} ${parseFloat(box.style.height)}" preserveAspectRatio="none"><defs><linearGradient id="fg" x1="0" x2="1"><stop offset="0" stop-color="#4f6bff"/><stop offset=".6" stop-color="#22d3ee"/><stop offset="1" stop-color="#fb923c"/></linearGradient><filter id="gl" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="3"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <path d="${d}" fill="none" stroke="url(#fg)" stroke-width="16" stroke-linecap="round" opacity=".18" filter="url(#gl)"/>
+  <path id="fp" d="${d}" fill="none" stroke="url(#fg)" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="${d}" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="3 16" stroke-linecap="round"><animate attributeName="stroke-dashoffset" from="38" to="0" dur="1.4s" repeatCount="indefinite"/></path>${parts}</svg>`+
+  STEPS.map((s,i)=>`<div class="node ${s.pub?'pub':''}" data-i="${i}" style="left:${pts[i][0]}px;top:${pts[i][1]}px"><div class="o">${i+1}</div><small>${s.n}</small><i>${s.t}</i></div>`).join('');
+  box.querySelectorAll('.node').forEach(e=>{e.onclick=()=>{sel=+e.dataset.i;auto=false;mark()}});mark();
+}
+function mark(){document.querySelectorAll('.node').forEach(e=>e.classList.toggle('act',+e.dataset.i===sel));const s=STEPS[sel];
+  const c=k=>LOGS.filter(x=>x.status===k).length,wd=LOGS.length?Math.round(LOGS.reduce((a,x)=>a+(x.words||0),0)/Math.max(1,LOGS.filter(x=>x.words).length)):0;
+  const stat=[[ [LOGS.length,'videos made'],[c('posted'),'posted'] ],[ [LOGS.length,'stories handled'],[LOGS.filter(x=>x.kind==='repo').length,'repo videos'] ],[ [wd||'–','avg words'],[new Set(LOGS.flatMap(x=>x.scenes||[])).size,'scene types'] ],[ [wd||'–','avg words'],['Charon','voice'] ],[ [new Set(LOGS.map(x=>x.theme).filter(Boolean)).size,'themes'],['1080p','vertical'] ],[ [c('pending'),'in queue'],[LOGS.length,'logged'] ],[ [3,'posts / day'],[c('failed'),'failed'] ],[ [c('posted'),'live reels'],[LOGS.length?Math.round(c('posted')/LOGS.length*100)+'%':'–','success'] ]][sel];
+  $('detail').innerHTML=`<div><h4>${sel+1}. ${s.n} <span style="color:var(--sub);font:500 12px 'Space Grotesk'">· ${s.t}</span></h4><p>${s.d}</p><p style="margin-top:6px">${s.x}</p></div><div class="mini">${stat.map(([v,l])=>`<div><b>${v}</b><small>${l}</small></div>`).join('')}</div>`}
+setInterval(()=>{if(auto){sel=(sel+1)%STEPS.length;mark()}},2200);
+let lw=0;addEventListener('resize',()=>{if(innerWidth!==lw){lw=innerWidth;layout();charts()}});
+// schedule bar
+function sched(){const z=(a,b,c)=>`<div class="z ${c||''}" style="left:${a/24*100}%;width:${(b-a)/24*100}%"></div>`,s=(h,t,c)=>`<div class="s ${c||''}" style="left:${h/24*100}%"><i></i>${t}</div>`;
+  const d=new Date(nowD()),h=d.getUTCHours()+d.getUTCMinutes()/60;
+  $('day').innerHTML=z(0,6,'bad')+z(7,9.5)+z(12.5,14.5)+z(20,23)+s(9,'9 AM')+s(14,'2 PM')+s(21,'9 PM')+s(2.2,'old 2 AM','old')+s(5.98,'old 6 AM','old')+s(22.5,'old 11:30 PM','old')+`<div class="now" style="left:${h/24*100}%"></div>`;
+  $('ticks').innerHTML=[0,3,6,9,12,15,18,21,24].map(h=>`<span>${h%24===0?'12A':h<12?h+'A':h===12?'12P':(h-12)+'P'}</span>`).join('')}
+// charts
+function charts(){
+  const done=LOGS.filter(x=>x.posted_at);
+  // line
+  const days=[];const t0=Math.floor(nowD()/864e5)*864e5;for(let i=13;i>=0;i--)days.push(t0-i*864e5);
+  const dk=ms=>Math.floor(ms/864e5)*864e5,mk=days.map(()=>0),pk=days.map(()=>0);
+  LOGS.forEach(x=>{const a=dk(P(x.ts)||0),i=days.indexOf(a);if(i>=0)mk[i]++;const b=x.posted_at?dk(P(x.posted_at)):0,j=days.indexOf(b);if(j>=0)pk[j]++});
+  const mx=Math.max(4,...mk,...pk),W=600,H=220,L=28,R=10,T=14,B=26,X=i=>L+i*(W-L-R)/13,Y=v=>T+(H-T-B)*(1-v/mx);
+  const path=a=>a.map((v,i)=>(i?'L':'M')+X(i)+' '+Y(v)).join(' ');
+  const sm=a=>{let d=`M ${X(0)} ${Y(a[0])}`;for(let i=1;i<a.length;i++){const cx=(X(i-1)+X(i))/2;d+=` C ${cx} ${Y(a[i-1])}, ${cx} ${Y(a[i])}, ${X(i)} ${Y(a[i])}`}return d};
+  $('line').innerHTML=`<svg viewBox="0 0 ${W} ${H}"><defs><linearGradient id="a1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22d3ee" stop-opacity=".4"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/></linearGradient><linearGradient id="a2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fb923c" stop-opacity=".35"/><stop offset="1" stop-color="#fb923c" stop-opacity="0"/></linearGradient><filter id="g2"><feGaussianBlur stdDeviation="2.5"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  ${[0,1,2,3,4].map(i=>{const v=Math.round(mx*i/4);return `<line x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}" stroke="rgba(110,150,255,.14)"/><text x="4" y="${Y(v)+3}">${v}</text>`}).join('')}
+  <path d="${sm(mk)} L ${X(13)} ${H-B} L ${X(0)} ${H-B}Z" fill="url(#a1)"/><path d="${sm(pk)} L ${X(13)} ${H-B} L ${X(0)} ${H-B}Z" fill="url(#a2)"/>
+  <path d="${sm(mk)}" fill="none" stroke="#22d3ee" stroke-width="2.5" filter="url(#g2)"/><path d="${sm(pk)}" fill="none" stroke="#fb923c" stroke-width="2.5" filter="url(#g2)"/>
+  ${mk.map((v,i)=>v?`<circle cx="${X(i)}" cy="${Y(v)}" r="4" fill="#22d3ee"/>`:'').join('')}${pk.map((v,i)=>v?`<circle cx="${X(i)}" cy="${Y(v)}" r="4" fill="#fb923c"/>`:'').join('')}
+  ${days.map((d,i)=>i%2?'':`<text x="${X(i)}" y="${H-8}" text-anchor="middle">${new Date(d).getUTCDate()} ${MO[new Date(d).getUTCMonth()]}</text>`).join('')}</svg>`;
+  // radar
+  const TH=['indigo','ember','forest','ocean','neon','signal','mint','paper'],cnt=TH.map(t=>LOGS.filter(x=>x.theme===t).length),rm=Math.max(2,...cnt),cx=150,cy=130,r0=95;
+  const pt=(i,v)=>{const a=-Math.PI/2+i*2*Math.PI/8;return [cx+Math.cos(a)*r0*v,cy+Math.sin(a)*r0*v]};
+  $('radar').innerHTML=`<svg viewBox="0 0 300 260">${[.33,.66,1].map(k=>`<polygon points="${TH.map((_,i)=>pt(i,k).join(',')).join(' ')}" fill="none" stroke="rgba(110,150,255,.2)"/>`).join('')}${TH.map((t,i)=>{const[x,y]=pt(i,1),[lx,ly]=pt(i,1.2);return `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="rgba(110,150,255,.15)"/><text x="${lx}" y="${ly+3}" text-anchor="middle">${t}</text>`}).join('')}
+  <polygon points="${cnt.map((c,i)=>pt(i,c/rm).join(',')).join(' ')}" fill="rgba(236,72,153,.28)" stroke="#ec4899" stroke-width="2" filter="url(#g2)"/>${cnt.map((c,i)=>{const[x,y]=pt(i,c/rm);return `<circle cx="${x}" cy="${y}" r="3.5" fill="#22d3ee"/>`}).join('')}</svg>`;
+  // hours
+  const hc=Array(24).fill(0);done.forEach(x=>{hc[new Date(P(x.posted_at)).getUTCHours()]++});const hm=Math.max(2,...hc);
+  $('hours').innerHTML=`<svg viewBox="0 0 300 180">${hc.map((c,i)=>{const h=c/hm*120,slot=[9,14,21].includes(i);return `<rect x="${6+i*12}" y="${140-h}" width="9" height="${Math.max(h,2)}" rx="3" fill="${slot?'#fb923c':'#4f6bff'}" opacity="${c?1:.35}" ${c?'filter="url(#g2)"':''}/>`}).join('')}${[0,6,12,18,23].map(i=>`<text x="${10+i*12}" y="158" text-anchor="middle">${i}h</text>`).join('')}</svg>`;
+  // orbs
+  const m={};LOGS.forEach(x=>(x.scenes||[]).forEach(s=>m[s]=(m[s]||0)+1));const e=Object.entries(m).sort((a,b)=>b[1]-a[1]),M=e[0]?e[0][1]:1;
+  const box=$('orbs'),BW=box.clientWidth||500,BH=340,placed=[],cols=[['#4f6bff','#22d3ee'],['#ec4899','#7c3aed'],['#fb923c','#ec4899'],['#22d3ee','#34d399']];
+  e.forEach(([n,c],k)=>{const r=24+Math.sqrt(c/M)*(BW<500?34:46);let ok=false;for(let a=0,rad=0;a<900&&!ok;a+=1,rad+=.7){const ang=a*2.4,x=BW/2+Math.cos(ang)*rad*1.3,y=BH/2+Math.sin(ang)*rad*.85;if(x-r<4||x+r>BW-4||y-r<4||y+r>BH-4)continue;if(placed.every(p=>Math.hypot(p.x-x,p.y-y)>p.r+r+4)){placed.push({x,y,r,n,c,k});ok=true}}});
+  box.innerHTML=placed.map((p,i)=>{const[a,b]=cols[p.k%4];return `<div class="orb" style="left:${p.x}px;top:${p.y}px;width:${p.r*2}px;height:${p.r*2}px;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.55),${a} 38%,${b} 80%,rgba(0,0,0,.4));box-shadow:0 0 ${p.r}px ${a}88,inset -6px -8px 18px rgba(0,0,0,.35);animation-delay:${-i*.9}s"><b>${p.c}</b>${p.r>34?esc(p.n):''}</div>`}).join('')||'<div class="empty">No data yet</div>';
+}
+// kpis
+function kpis(){const c=k=>LOGS.filter(x=>x.status===k).length,t=LOGS.length||1,days=new Set(LOGS.map(x=>(x.ts||'').slice(0,10))).size;
+  const R=(p,col)=>`<div class="ring"><svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="32" fill="none" stroke="rgba(110,150,255,.16)" stroke-width="8"/><circle cx="40" cy="40" r="32" fill="none" stroke="${col}" stroke-width="8" stroke-linecap="round" stroke-dasharray="${2*Math.PI*32}" stroke-dashoffset="${2*Math.PI*32*(1-p)}" style="filter:drop-shadow(0 0 6px ${col})"/></svg><span>${Math.round(p*100)}%</span></div>`;
+  $('kpis').innerHTML=[['Videos made',LOGS.length,Math.min(1,LOGS.length/30),'#22d3ee'],['Posted live',c('posted'),c('posted')/t,'#34d399'],['In queue',c('pending'),c('pending')/t,'#fbbf24'],['Active days',days,Math.min(1,days/30),'#fb923c']].map(([a,b,p,col])=>`<div class="card kpi">${R(p,col)}<div><b>${b}</b><small>${a}</small></div></div>`).join('')}
+// log
+function list(){const rows=LOGS.filter(x=>(filter==='all'||x.status===filter)&&(!qs||((x.headline||'')+' '+(x.title||'')).toLowerCase().includes(qs.toLowerCase())));
+  $('list').innerHTML=rows.map(x=>`<div class="log" onclick="this.classList.toggle('open')"><div class="t"><div><h4>${esc(x.title||x.headline)}</h4><div class="mt">${x.kind==='repo'?'GitHub repo · ':''}Made ${F(P(x.ts))}${x.posted_at?' · Posted '+F(P(x.posted_at)):''}${x.theme?' · '+esc(x.theme):''}</div></div><span class="pill p-${x.status}">${x.status}</span></div>
+  <div class="det"><div class="chips">${(x.scenes||[]).map(s=>`<span>${esc(s)}</span>`).join('')}</div>${x.angle?`<div style="color:var(--sub);margin-top:6px">Angle: ${esc(x.angle)}</div>`:''}<pre>${esc(x.caption||'')}</pre>${x.source_link?`<a href="${esc(x.source_link)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Open source</a>`:''}${x.error?`<div style="color:var(--bad);margin-top:6px">${esc(x.error)}</div>`:''}</div></div>`).join('')||'<div class="empty">No videos match.</div>'}
+function tools(){$('tools').innerHTML=['all','posted','pending','failed'].map(f=>`<button class="${f===filter?'on':''}" data-f="${f}">${f}</button>`).join('');document.querySelectorAll('#tools button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;tools();list()})}
+$('q').oninput=e=>{qs=e.target.value;list()};
+// nav highlight
+const secs=['top','flow','stats','sched','logs'];addEventListener('scroll',()=>{let cur='top';secs.forEach(s=>{const e=$(s);if(e&&e.getBoundingClientRect().top<200)cur=s});document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+cur))},{passive:true});
 Promise.all([J('data/content_log.json'),J('data/post_queue.json'),J('data/recent.json')]).then(([log,queue,rec])=>{
   const by={};log.forEach(x=>by[x.video]=x);
-  queue.forEach(x=>{const b=by[x.video]||(by[x.video]={video:x.video,ts:x.added,headline:x.headline,caption:x.caption,source_link:x.source_link,scenes:[]});b.status=x.status;b.fb_id=x.fb_id;b.posted_at=x.posted_at;b.attempts=x.attempts;b.error=x.error});
+  queue.forEach(x=>{const b=by[x.video]||(by[x.video]={video:x.video,ts:x.added,headline:x.headline,caption:x.caption,source_link:x.source_link,scenes:[]});b.status=x.status;b.fb_id=x.fb_id;b.posted_at=x.posted_at;b.error=x.error});
   LOGS=Object.values(by).map(x=>({...x,status:x.status==='queued'?'pending':x.status||'pending'}));
   if(!LOGS.length)rec.forEach(r=>LOGS.push({ts:r.ts,headline:r.headline,theme:r.theme,angle:r.angle,scenes:r.scenes,status:'rendered'}));
   LOGS.sort((a,b)=>(P(b.ts)||0)-(P(a.ts)||0));
-  render();
+  lw=innerWidth;kpis();layout();sched();charts();tools();list();tick();
 });
-function count(k,get){const m={};LOGS.forEach(x=>get(x).forEach(v=>v&&(m[v]=(m[v]||0)+1)));const e=Object.entries(m).sort((a,b)=>b[1]-a[1]),mx=e[0]?e[0][1]:1;
-  document.getElementById(k).innerHTML=e.map(([n,c])=>`<div class="r"><span>${esc(n)}</span><div style="width:${c/mx*58}%"></div><em>${c}</em></div>`).join('')||'<div class="muted">No data yet</div>'}
-function render(){
-  const n=s=>LOGS.filter(x=>x.status===s).length,days=new Set(LOGS.map(x=>(x.ts||'').slice(0,10))).size;
-  document.getElementById('stats').innerHTML=[['Videos made',LOGS.length],['Posted',n('posted')],['Waiting',n('pending')],['Failed',n('failed')],['Days active',days]].map(([a,b])=>`<div class="st"><b>${b}</b><small>${a}</small></div>`).join('');
-  const last=LOGS.find(x=>x.posted_at);document.getElementById('upd').textContent=last?'Last post: '+F(P(last.posted_at)):'';
-  count('b-scenes',x=>x.scenes||[]);count('b-themes',x=>[x.theme]);count('b-angles',x=>[x.angle]);
-  document.getElementById('tools').innerHTML=['all','posted','pending','failed'].map(f=>`<button class="${f===filter?'on':''}" data-f="${f}">${f}</button>`).join('')+`<input id="q" placeholder="Search headlines" value="${esc(q)}">`;
-  document.querySelectorAll('#tools button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;render()});
-  const qi=document.getElementById('q');qi.oninput=()=>{q=qi.value;list();};list();
-}
-function list(){
-  const rows=LOGS.filter(x=>(filter==='all'||x.status===filter)&&(!q||(x.headline+' '+(x.title||'')).toLowerCase().includes(q.toLowerCase())));
-  const el=document.getElementById('logs');
-  el.innerHTML=rows.map((x,i)=>`<div class="log" onclick="this.classList.toggle('open')"><div class="top"><div><h4>${esc(x.title||x.headline)}</h4><div class="meta">${x.kind==='repo'?'GitHub repo · ':''}Made ${F(P(x.ts))}${x.posted_at?' · Posted '+F(P(x.posted_at)):''}${x.theme?' · '+esc(x.theme):''}</div></div><span class="pill p-${x.status}">${x.status}</span></div>
-  <div class="det"><div class="chips">${(x.scenes||[]).map(s=>`<span>${esc(s)}</span>`).join('')}</div>${x.angle?`<div class="muted">Angle: ${esc(x.angle)}</div>`:''}<pre>${esc(x.caption||'')}</pre>${x.source_link?`<a href="${esc(x.source_link)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Source</a>`:''}${x.error?`<div style="color:var(--bad);margin-top:6px">${esc(x.error)}</div>`:''}</div></div>`).join('')||'<div class="empty">No videos match.</div>';
-}
 </script></body></html>
