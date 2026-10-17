@@ -9,6 +9,7 @@ import json, os, subprocess, sys, time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 QUEUE_PATH = os.path.join(ROOT, "state", "post_queue.json")
+LOG_PATH = os.path.join(ROOT, "state", "content_log.json")  # permanent history for the dashboard
 MAX_ATTEMPTS = 3
 KEEP = 60
 
@@ -39,6 +40,33 @@ def enqueue(video_rel, caption, source_link, headline):
     q.append({"video": video_rel, "caption": caption, "source_link": source_link or "", "headline": headline or "",
               "added": time.strftime("%Y-%m-%d %H:%M"), "status": "pending", "attempts": 0})
     save(q)
+
+
+def _load_log():
+    try:
+        with open(LOG_PATH) as f:
+            q = json.load(f)
+        return q if isinstance(q, list) else []
+    except Exception:
+        return []
+
+
+def log_content(entry):
+    """Append one rendered video to the permanent content log (state/content_log.json)."""
+    lg = [x for x in _load_log() if x.get("video") != entry.get("video")]
+    lg.append(entry)
+    os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
+    with open(LOG_PATH, "w") as f:
+        json.dump(lg[-500:], f, indent=1)
+
+
+def update_log(video, **fields):
+    lg = _load_log()
+    for x in lg:
+        if x.get("video") == video:
+            x.update(fields)
+    with open(LOG_PATH, "w") as f:
+        json.dump(lg, f, indent=1)
 
 
 def next_pending(q):
@@ -93,12 +121,14 @@ def main():
     try:
         fb_id = facebook.post_reel(os.path.join(ROOT, item["video"]), item["caption"], item.get("source_link"))
         item.update(status="posted", fb_id=fb_id, posted_at=time.strftime("%Y-%m-%d %H:%M"))
+        update_log(item["video"], status="posted", fb_id=fb_id, posted_at=item["posted_at"])
         print(f"[facebook] posted reel {fb_id}")
     except Exception as e:  # noqa
         item["attempts"] = item.get("attempts", 0) + 1
         item["error"] = str(e)[:300]
         if item["attempts"] >= MAX_ATTEMPTS:
             item["status"] = "failed"
+            update_log(item["video"], status="failed")
         failed = e
         print(f"[facebook] failed (attempt {item['attempts']}/{MAX_ATTEMPTS}): {e}")
     save(q)
