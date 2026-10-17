@@ -907,6 +907,13 @@ def process_story(i, story, recent_holder):
         import post_queue
         caption = f"{script['title']}\n\n{script['description']}\n\n{' '.join(script['hashtags'])}"
         post_queue.enqueue(video_rel_path, caption, story["source_link"], story["headline"])
+        post_queue.log_content({
+            "video": video_rel_path, "ts": time.strftime("%Y-%m-%d %H:%M"), "kind": story.get("kind", "news"),
+            "headline": story["headline"], "title": script.get("title", ""), "source_link": story.get("source_link", ""),
+            "theme": record.get("theme", ""), "angle": record.get("angle", ""),
+            "scenes": record.get("scenes", []),
+            "words": sum(len(str(x.get("narration", "")).split()) for x in script.get("scenes", [])),
+            "caption": caption, "status": "queued"})
         print("[queue] added to the post queue")
     except Exception as e:  # noqa
         print(f"[queue] could not enqueue: {e}")

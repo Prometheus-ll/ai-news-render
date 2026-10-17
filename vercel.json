@@ -1,0 +1,7 @@
+{
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "mkdir -p dashboard/data && cp state/*.json dashboard/data/",
+  "outputDirectory": "dashboard",
+  "headers": [{"source": "/data/(.*)", "headers": [{"key": "Cache-Control", "value": "no-cache"}]}]
+}
