@@ -568,5 +568,22 @@
   "kind": "repo",
   "headline": "ECC: The agent harness performance optimization system. Skills, instincts, memor",
   "link": "https://github.com/affaan-m/ECC"
+ },
+ {
+  "ts": "2026-10-17 11:17",
+  "theme": "mint",
+  "transition": "wipe",
+  "angle": "who wins",
+  "scenes": [
+   "slam",
+   "reveal",
+   "versus",
+   "profile",
+   "monitor",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Elorian's Glimpse Model Claims Superior Visual Reasoning Over GPT-6 Astra",
+  "link": "https://techcrunch.com/2026/10/16/elorians-first-ai-model-wants-to-reason-with-images-not-just-about-them/"
  }
 ]
