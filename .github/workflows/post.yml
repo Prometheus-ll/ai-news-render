@@ -1,7 +1,7 @@
 name: Post next video
 
 # The daily pipeline (01:00 UTC = 7 AM Bangladesh) renders all videos and queues them (state/post_queue.json).
-# This workflow publishes ONE queued video per run, timed for a Bangladesh audience (UTC+6):
+# This workflow publishes ONE queued video per run, to every connected platform (Facebook, Instagram, YouTube), timed for a Bangladesh audience (UTC+6):
 #   03:00 UTC =  9 AM Dhaka  (morning scroll)
 #   08:00 UTC =  2 PM Dhaka  (after lunch)
 #   15:00 UTC =  9 PM Dhaka  (evening peak)
@@ -34,4 +34,8 @@ jobs:
         env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
         run: python pipeline/post_queue.py
