@@ -1,16 +1,16 @@
 name: Post next video
 
-# The daily pipeline (07:00 UTC) renders all videos and queues them (state/post_queue.json).
-# This workflow publishes ONE queued video per run, at three times a day:
-#   13:00 UTC = 9 AM New York  (morning)
-#   17:00 UTC = 1 PM New York  (afternoon)
-#   22:00 UTC = 6 PM New York  (evening)
+# The daily pipeline (01:00 UTC = 7 AM Bangladesh) renders all videos and queues them (state/post_queue.json).
+# This workflow publishes ONE queued video per run, timed for a Bangladesh audience (UTC+6):
+#   03:00 UTC =  9 AM Dhaka  (morning scroll)
+#   08:00 UTC =  2 PM Dhaka  (after lunch)
+#   15:00 UTC =  9 PM Dhaka  (evening peak)
 # Change the cron lines below to move the slots. GitHub can start scheduled runs a few minutes late.
 on:
   schedule:
-    - cron: '0 13 * * *'
-    - cron: '0 17 * * *'
-    - cron: '0 22 * * *'
+    - cron: '0 3 * * *'
+    - cron: '0 8 * * *'
+    - cron: '0 15 * * *'
   workflow_dispatch:
 
 permissions:

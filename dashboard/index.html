@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Quantum Dashboard</title>
+<style>
+:root{--bg:#060a1a;--card:#0e1530;--card2:#131c3d;--line:#1f2a52;--tx:#e8edff;--sub:#8b97c4;--acc:#2f55e0;--acc2:#22d3ee;--ok:#34d399;--warn:#fbbf24;--bad:#fb7185}
+@media(prefers-color-scheme:light){:root{--bg:#f3f6fc;--card:#fff;--card2:#eef2fb;--line:#d9e1f3;--tx:#0f172a;--sub:#5b6785;--acc:#2f55e0;--acc2:#0891b2}}
+*{box-sizing:border-box;margin:0}body{background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:0 16px 60px}
+.w{max-width:1000px;margin:0 auto}
+header{padding:28px 0 8px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+h1{font-size:26px;letter-spacing:-.02em}h1 span{background:linear-gradient(135deg,var(--acc),var(--acc2));-webkit-background-clip:text;color:transparent}
+.muted{color:var(--sub);font-size:13px}
+h2{font-size:18px;margin:34px 0 4px}.lead{color:var(--sub);font-size:13px;margin-bottom:14px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:14px}
+.st{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+.st b{font-size:30px;display:block;letter-spacing:-.02em}.st small{color:var(--sub)}
+.flow{display:flex;flex-direction:column;gap:0;position:relative}
+.step{display:flex;gap:14px;cursor:pointer;position:relative;padding-bottom:14px}
+.step:not(:last-child)::before{content:"";position:absolute;left:21px;top:44px;bottom:-2px;width:3px;background:linear-gradient(var(--acc),var(--acc2));opacity:.35;border-radius:3px}
+.dot{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none;font-size:18px;transition:.3s}
+.step.act .dot{box-shadow:0 0 0 4px color-mix(in srgb,var(--acc2) 45%,transparent);transform:scale(1.08)}
+.sc{flex:1;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 16px}
+.step.act .sc{border-color:var(--acc2)}
+.sc h3{font-size:16px}.sc .tag{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--acc2);text-transform:uppercase}
+.sc p{color:var(--sub);font-size:13.5px;margin-top:3px}
+.sc .more{display:none;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:13px}
+.step.open .more{display:block}
+.sc code{background:var(--card2);padding:1px 6px;border-radius:6px;font-size:12px}
+.pulse{position:absolute;left:19px;width:8px;height:8px;border-radius:50%;background:var(--acc2);box-shadow:0 0 12px var(--acc2);top:0;transition:top .8s;z-index:2;pointer-events:none}
+.day{position:relative;height:74px;background:var(--card);border:1px solid var(--line);border-radius:16px;margin-top:8px;overflow:hidden}
+.day .zone{position:absolute;top:0;bottom:0;background:color-mix(in srgb,var(--ok) 16%,transparent)}
+.day .zone.bad{background:color-mix(in srgb,var(--bad) 14%,transparent)}
+.day .slot{position:absolute;top:10px;transform:translateX(-50%);text-align:center;font-size:11px;font-weight:700}
+.day .slot i{display:block;width:14px;height:14px;border-radius:50%;margin:0 auto 3px;background:var(--acc2);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc2) 30%,transparent)}
+.day .slot.old i{background:var(--bad);box-shadow:none;opacity:.8;width:10px;height:10px}
+.day .slot.old{top:32px;color:var(--bad);font-weight:600}
+.ticks{display:flex;justify-content:space-between;font-size:10.5px;color:var(--sub);padding:3px 2px}
+.bars .r{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:13px}
+.bars .r span{width:92px;color:var(--sub);flex:none}.bars .r div{height:12px;border-radius:6px;background:linear-gradient(90deg,var(--acc),var(--acc2));min-width:3px}.bars .r em{font-style:normal;color:var(--sub);font-size:12px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.box h3{font-size:14px;margin-bottom:6px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}
+.tools button,.tools input{background:var(--card);color:var(--tx);border:1px solid var(--line);border-radius:99px;padding:8px 14px;font:inherit;font-size:13px}
+.tools button.on{background:var(--acc);border-color:var(--acc);color:#fff}.tools input{flex:1;min-width:140px}
+.log{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:8px;padding:12px 14px;cursor:pointer}
+.log .top{display:flex;gap:10px;justify-content:space-between;align-items:flex-start}
+.log h4{font-size:14.5px;line-height:1.3}.log .meta{color:var(--sub);font-size:12px;margin-top:3px}
+.pill{font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px;white-space:nowrap;flex:none}
+.p-posted{background:color-mix(in srgb,var(--ok) 20%,transparent);color:var(--ok)}.p-pending,.p-queued{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}.p-failed{background:color-mix(in srgb,var(--bad) 20%,transparent);color:var(--bad)}
+.det{display:none;margin-top:10px;font-size:13px;border-top:1px dashed var(--line);padding-top:10px}.log.open .det{display:block}
+.det pre{white-space:pre-wrap;font:inherit;color:var(--sub);background:var(--card2);padding:10px;border-radius:10px;margin:6px 0}
+.chips{display:flex;gap:5px;flex-wrap:wrap;margin:4px 0}.chips span{font-size:11.5px;background:var(--card2);padding:2px 9px;border-radius:99px}
+a{color:var(--acc2)}
+.empty{color:var(--sub);text-align:center;padding:30px}
+</style></head><body><div class="w">
+<header><div><h1>AI <span>Quantum</span> · Pipeline</h1><div class="muted">Automated AI-news Reels · all times in Bangladesh time (UTC+6)</div></div><div class="muted" id="upd"></div></header>
+<div class="stats" id="stats"></div>
+
+<h2>How the pipeline works</h2><div class="lead">Tap a step for details. The highlight walks through the pipeline.</div>
+<div class="flow" id="flow"></div>
+
+<h2>Posting schedule</h2>
+<div class="lead">Videos publish at 9 AM, 2 PM and 9 PM Dhaka time. The red marks show the old schedule (New York hours), which hit Bangladesh at 11:30 PM, 2 AM and 6 AM.</div>
+<div class="day" id="day"></div><div class="ticks" id="ticks"></div>
+
+<h2>What gets made</h2><div class="lead">Scene, theme and angle mix across all logged videos.</div>
+<div class="two"><div class="box bars"><h3>Scenes used</h3><div id="b-scenes"></div></div>
+<div class="box bars"><h3>Themes</h3><div id="b-themes"></div><h3 style="margin-top:14px">Story angles</h3><div id="b-angles"></div></div></div>
+
+<h2>Content log</h2><div class="lead">Every video, newest first. Tap a card for caption, scenes and source.</div>
+<div class="tools" id="tools"></div><div id="logs"></div>
+</div>
+<script>
+const STEPS=[
+["Trigger","07:00 Dhaka daily","GitHub Actions starts the Daily Pipeline at 01:00 UTC. No computer of yours is needed.","Workflow <code>pipeline.yml</code>. It can also be started by hand from the Actions tab."],
+["Find stories","News + trending repos","Reads AI news feeds and finds fast-growing MIT-licensed GitHub repos.","Mixes news with repo videos. Skips anything covered in the last runs (anti-repeat memory in <code>state/recent.json</code>)."],
+["Pick & write","Gemini","Gemini picks the best stories and writes each script: scenes, narration, caption, hashtags.","A validator rejects bad scripts (wrong structure, outlet names, length) and asks Gemini to retry. Retries and a fallback model handle overload errors."],
+["Voice","Gemini TTS","Turns the narration into a voice-over (voice Charon).","Timing of the audio decides how long each scene lasts and when each caption word lights up."],
+["Render","Chromium + HTML engine","Draws 1080×1920 motion-graphics frame by frame and encodes the MP4.","Each video gets its own theme, transition and scene mix. Captions highlight the spoken word in the brand colors."],
+["Save & queue","Git + post queue","The finished video is committed to the repo and added to <code>state/post_queue.json</code> and the content log.","This dashboard reads those files, so it updates after each commit."],
+["Publish","9 AM · 2 PM · 9 PM Dhaka","Three scheduled runs of <code>post.yml</code> each publish ONE queued video as a Facebook Reel.","Uses the Graph API Reels flow, waits until Facebook finishes processing, then comments the source link. Failed posts retry up to 3 times."],
+["Log","This dashboard","Status (queued, posted, failed), time and caption are recorded for every video.","YouTube and Instagram posting can be added as extra publish steps later."]];
+const fl=document.getElementById('flow');
+STEPS.forEach((s,i)=>{const e=document.createElement('div');e.className='step';e.innerHTML=`<div class="dot">${i+1}</div><div class="sc"><div class="tag">${s[1]}</div><h3>${s[0]}</h3><p>${s[2]}</p><div class="more">${s[3]}</div></div>`;e.onclick=()=>{e.classList.toggle('open');cur=i;hl()};fl.appendChild(e)});
+let cur=0;const els=[...fl.querySelectorAll('.step')];
+function hl(){els.forEach((e,i)=>e.classList.toggle('act',i===cur));}
+hl();setInterval(()=>{cur=(cur+1)%els.length;hl()},1800);addEventListener('resize',hl);
+// schedule bar (Dhaka hours)
+const day=document.getElementById('day');
+const zone=(a,b,c)=>`<div class="zone ${c||''}" style="left:${a/24*100}%;width:${(b-a)/24*100}%"></div>`;
+const slot=(h,t,c)=>`<div class="slot ${c||''}" style="left:${h/24*100}%"><i></i>${t}</div>`;
+day.innerHTML=zone(0,6,'bad')+zone(7,9.5)+zone(12.5,14.5)+zone(20,23)+slot(9,'9 AM')+slot(14,'2 PM')+slot(21,'9 PM')+slot(5.98,'old 6 AM','old')+slot(2.2,'old 2 AM','old')+slot(22.6,'old 11:30 PM','old');
+document.getElementById('ticks').innerHTML=[0,3,6,9,12,15,18,21,24].map(h=>`<span>${h%24===0?'12 AM':h<12?h+' AM':h===12?'12 PM':(h-12)+' PM'}</span>`).join('');
+// data
+const P=s=>{if(!s)return null;const m=s.match(/(\d+)-(\d+)-(\d+)[ T](\d+):(\d+)/);return m?Date.UTC(+m[1],m[2]-1,+m[3],+m[4]+6,+m[5]):null}; // UTC text -> Dhaka shifted
+const F=ms=>{if(ms==null)return '-';const d=new Date(ms),M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];let h=d.getUTCHours(),a=h<12?'AM':'PM';h=h%12||12;return `${M[d.getUTCMonth()]} ${d.getUTCDate()}, ${h}:${String(d.getUTCMinutes()).padStart(2,'0')} ${a}`};
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const J=u=>fetch(u,{cache:'no-store'}).then(r=>r.ok?r.json():[]).catch(()=>[]);
+let LOGS=[],filter='all',q='';
+Promise.all([J('data/content_log.json'),J('data/post_queue.json'),J('data/recent.json')]).then(([log,queue,rec])=>{
+  const by={};log.forEach(x=>by[x.video]=x);
+  queue.forEach(x=>{const b=by[x.video]||(by[x.video]={video:x.video,ts:x.added,headline:x.headline,caption:x.caption,source_link:x.source_link,scenes:[]});b.status=x.status;b.fb_id=x.fb_id;b.posted_at=x.posted_at;b.attempts=x.attempts;b.error=x.error});
+  LOGS=Object.values(by).map(x=>({...x,status:x.status==='queued'?'pending':x.status||'pending'}));
+  if(!LOGS.length)rec.forEach(r=>LOGS.push({ts:r.ts,headline:r.headline,theme:r.theme,angle:r.angle,scenes:r.scenes,status:'rendered'}));
+  LOGS.sort((a,b)=>(P(b.ts)||0)-(P(a.ts)||0));
+  render();
+});
+function count(k,get){const m={};LOGS.forEach(x=>get(x).forEach(v=>v&&(m[v]=(m[v]||0)+1)));const e=Object.entries(m).sort((a,b)=>b[1]-a[1]),mx=e[0]?e[0][1]:1;
+  document.getElementById(k).innerHTML=e.map(([n,c])=>`<div class="r"><span>${esc(n)}</span><div style="width:${c/mx*58}%"></div><em>${c}</em></div>`).join('')||'<div class="muted">No data yet</div>'}
+function render(){
+  const n=s=>LOGS.filter(x=>x.status===s).length,days=new Set(LOGS.map(x=>(x.ts||'').slice(0,10))).size;
+  document.getElementById('stats').innerHTML=[['Videos made',LOGS.length],['Posted',n('posted')],['Waiting',n('pending')],['Failed',n('failed')],['Days active',days]].map(([a,b])=>`<div class="st"><b>${b}</b><small>${a}</small></div>`).join('');
+  const last=LOGS.find(x=>x.posted_at);document.getElementById('upd').textContent=last?'Last post: '+F(P(last.posted_at)):'';
+  count('b-scenes',x=>x.scenes||[]);count('b-themes',x=>[x.theme]);count('b-angles',x=>[x.angle]);
+  document.getElementById('tools').innerHTML=['all','posted','pending','failed'].map(f=>`<button class="${f===filter?'on':''}" data-f="${f}">${f}</button>`).join('')+`<input id="q" placeholder="Search headlines" value="${esc(q)}">`;
+  document.querySelectorAll('#tools button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;render()});
+  const qi=document.getElementById('q');qi.oninput=()=>{q=qi.value;list();};list();
+}
+function list(){
+  const rows=LOGS.filter(x=>(filter==='all'||x.status===filter)&&(!q||(x.headline+' '+(x.title||'')).toLowerCase().includes(q.toLowerCase())));
+  const el=document.getElementById('logs');
+  el.innerHTML=rows.map((x,i)=>`<div class="log" onclick="this.classList.toggle('open')"><div class="top"><div><h4>${esc(x.title||x.headline)}</h4><div class="meta">${x.kind==='repo'?'GitHub repo · ':''}Made ${F(P(x.ts))}${x.posted_at?' · Posted '+F(P(x.posted_at)):''}${x.theme?' · '+esc(x.theme):''}</div></div><span class="pill p-${x.status}">${x.status}</span></div>
+  <div class="det"><div class="chips">${(x.scenes||[]).map(s=>`<span>${esc(s)}</span>`).join('')}</div>${x.angle?`<div class="muted">Angle: ${esc(x.angle)}</div>`:''}<pre>${esc(x.caption||'')}</pre>${x.source_link?`<a href="${esc(x.source_link)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Source</a>`:''}${x.error?`<div style="color:var(--bad);margin-top:6px">${esc(x.error)}</div>`:''}</div></div>`).join('')||'<div class="empty">No videos match.</div>';
+}
+</script></body></html>
