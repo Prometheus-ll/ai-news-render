@@ -277,7 +277,7 @@ ICON_LIST = ("zap, cpu, shield-check, lock, globe, trending-up, clock, code, ter
 HOOK_TYPES = ["hook", "slam", "appclutter"]
 REPO_HOOK = "repohook"
 MID_TYPES = ["terminal", "alert", "timeline", "monitor", "bignumber", "versus", "leaderboard", "chat", "quote", "checklist",
-             "profile", "hubmap", "roundup", "reveal"]
+             "profile", "hubmap", "roundup", "reveal", "phases", "cycle", "stars"]
 THEMES = ["indigo", "ember", "forest", "ocean", "neon", "signal", "mint", "paper"]
 TRANSITIONS = ["fade", "slide", "zoom", "wipe"]
 MODE_PATTERNS = ["alternate_light", "alternate_dark", "light_then_dark", "dark_then_light"]
@@ -307,12 +307,32 @@ checklist (features in/out, pros/cons, dos/don'ts): {"type":"checklist","kicker"
 profile (spotlight ONE product/agent/model: name, where it lives, what it does): {"type":"profile","kicker":"2-3 words CAPS","name":"max 12 chars","icon":"<icon>","tag":"max 34 chars","pills":["2-3 platforms/tags, max 12 chars each"],"tagline":"max 40 chars","cards":[{"icon":"<icon>","title":"max 20 chars","sub":"max 32 chars"}  (exactly 2, concrete things it does)],"narration":"..."}
 hubmap (one central thing connected to 3 parts + a summary card): {"type":"hubmap","kicker":"2-3 words CAPS","icon":"<icon>","hub":"max 16 chars","nodes":[{"icon":"<icon>","label":"max 12 chars"}  (exactly 3)],"card":{"title":"max 26 chars","rows":[{"icon":"<icon>","text":"max 30 chars"}  (exactly 3)]},"narration":"..."}
 roundup (3 items announced, 'three more X', numbered cards sliding in): {"type":"roundup","title":"max 22 chars","sub":"max 30 chars","items":[{"name":"max 12 chars","icon":"<icon>","sub":"max 34 chars"}  (exactly 3)],"narration":"..."}
+phases (a process in 3-4 ordered steps, cards stacking top to bottom): {"type":"phases","kicker":"2-3 words CAPS","steps":[{"title":"max 20 chars","sub":"max 32 chars"}  (3-4)],"footnote":"optional max 44 chars","narration":"..."}
+cycle (a loop / feedback cycle of 3-4 stages, e.g. plan -> build -> test -> repeat): {"type":"cycle","kicker":"2-3 words CAPS","center":"max 16 chars","nodes":[{"icon":"<icon>","label":"max 12 chars"}  (3-4)],"footnote":"optional max 44 chars","narration":"..."}
+stars (ONLY for a GitHub repo: its star count counting up): {"type":"stars","kicker":"2-3 words CAPS","value":"the real star count, e.g. 12.3k or 12345","caption":"max 30 chars","narration":"..."}
 cta (closing, always last): {"type":"cta","kicker":"2-3 words CAPS","label":"max 26 chars","plate":"a punchy verdict about THIS story in CAPS, max 20 chars (never the channel name or a follow request)","footnote":"max 70 chars","chips":[{"icon":"<icon>","text":"max 28 chars"}  (exactly 2)],"follow":"Follow for daily AI news","narration":"2 short sentences: first says the source link is in the comments, then asks people to follow for daily AI news"}
 """
 
+def _san_phases(x):
+    st = [{"title": _clip(i.get("title"), 20), "sub": _clip(i.get("sub"), 32)} for i in (x.get("steps") or [])[:4]]
+    return {"kicker": _clip(x.get("kicker"), 28), "steps": _min_fit(st, 3, 4, {"title": "Next step", "sub": ""}),
+            "footnote": _clip(x.get("footnote"), 44)}
+
+
+def _san_cycle(x):
+    nd = [{"icon": _icon(n.get("icon"), "refresh-cw"), "label": _clip(n.get("label"), 12)} for n in (x.get("nodes") or [])[:4]]
+    return {"kicker": _clip(x.get("kicker"), 28), "center": _clip(x.get("center"), 16),
+            "nodes": _min_fit(nd, 3, 4, {"icon": "refresh-cw", "label": "Repeat"}), "footnote": _clip(x.get("footnote"), 44)}
+
+
+def _san_stars(x):
+    return {"kicker": _clip(x.get("kicker"), 28) or "GITHUB STARS", "icon": "star", "value": _clip(x.get("value"), 8) or "0",
+            "caption": _clip(x.get("caption"), 30) or "GitHub stars"}
+
+
 NEWS_STRUCTURE = """Build the video as 6 scenes in this order:
  1. exactly one OPENING scene: "hook", "slam" or "appclutter"
- 2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup, reveal - \
+ 2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup, reveal, phases, cycle - \
 the ones that tell THIS story best (a funding story wants bignumber/leaderboard, a product launch wants chat/checklist/timeline, \
 a controversy wants versus/monitor/alert, a security story wants alert/terminal, a story about several products or agents wants roundup then profile, a platform/ecosystem story wants hubmap, etc.)
  NAME RULE: if the story is about ONE specific named tool, product, model or repo, scene 2 MUST be "reveal" - announce its real name right after the hook.
@@ -321,7 +341,7 @@ a controversy wants versus/monitor/alert, a security story wants alert/terminal,
 REPO_STRUCTURE = """Build the video as 6 scenes in this order:
  1. "repohook" - the opening: a quick glimpse of the repo's real GitHub page. Its narration MUST start with "This GitHub repo".
  2. "reveal" - announces the repo's real name right after the opening.
- 3-5. THREE DIFFERENT scenes chosen from: terminal, timeline, hubmap, checklist, profile, bignumber - the ones that best explain how it works and how to use it.
+ 3-5. THREE DIFFERENT scenes chosen from: terminal, timeline, hubmap, checklist, profile, phases, cycle, stars - the ones that best explain how it works and how to use it.
  6. "cta" (always last)"""
 
 
@@ -440,6 +460,8 @@ def validate_script(script, story=None):
             return f"scene {x.get('type')} needs a 2-sentence narration"
     if REPO_HOOK in types and not is_repo:
         return "the repohook scene is only for GitHub repo videos"
+    if "stars" in types and not is_repo:
+        return "the stars scene is only for GitHub repo videos"
     if "reveal" in types and types.index("reveal") != 1:
         return "the reveal scene must be scene 2, right after the opening"
     blob = json.dumps(script).lower()
@@ -652,7 +674,8 @@ def _san_cta(x):
 SANITIZERS = {"hook": _san_hook, "slam": _san_slam, "terminal": _san_terminal, "alert": _san_alert, "timeline": _san_timeline,
               "monitor": _san_monitor, "bignumber": _san_bignumber, "versus": _san_versus, "leaderboard": _san_leaderboard,
               "chat": _san_chat, "quote": _san_quote, "checklist": _san_checklist, "cta": _san_cta,
-              "reveal": _san_reveal, "screenshot": _san_screenshot, "repohook": _san_repohook, "appclutter": _san_appclutter, "profile": _san_profile, "hubmap": _san_hubmap, "roundup": _san_roundup}
+              "reveal": _san_reveal, "screenshot": _san_screenshot, "repohook": _san_repohook, "appclutter": _san_appclutter, "profile": _san_profile, "hubmap": _san_hubmap, "roundup": _san_roundup,
+              "phases": _san_phases, "cycle": _san_cycle, "stars": _san_stars}
 
 
 def _pick(choice, allowed, avoid, seed):
