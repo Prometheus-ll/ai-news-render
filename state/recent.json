@@ -585,5 +585,22 @@
   "kind": "news",
   "headline": "Elorian's Glimpse Model Claims Superior Visual Reasoning Over GPT-6 Astra",
   "link": "https://techcrunch.com/2026/10/16/elorians-first-ai-model-wants-to-reason-with-images-not-just-about-them/"
+ },
+ {
+  "ts": "2026-10-17 11:20",
+  "theme": "ember",
+  "transition": "zoom",
+  "angle": "what changes for you",
+  "scenes": [
+   "hook",
+   "reveal",
+   "profile",
+   "bignumber",
+   "chat",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Amazon's Bee Releases $75 AI Wearable and Personal Recorder",
+  "link": "https://techcrunch.com/2026/10/15/amazons-bee-launches-two-new-personal-ai-devices-starting-at-75/"
  }
 ]
