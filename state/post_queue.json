@@ -109,5 +109,14 @@
   "added": "2026-10-18 05:45",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-18-054601-2.mp4",
+  "caption": "Stop Re-Explaining Your Code to AI Agents\n\nDiscover ai-memory, the open-source solution that gives AI coding agents long-term context across different tools and platforms. Follow for more daily AI breakthroughs.\n\n#ai #coding #opensource #github #rustlang #programming #productivity #developer",
+  "source_link": "https://github.com/akitaonrails/ai-memory",
+  "headline": "ai-memory: Solution for long term memory for agent coding CLIs and to facilitate handoff between different age",
+  "added": "2026-10-18 05:48",
+  "status": "pending",
+  "attempts": 0
  }
 ]
