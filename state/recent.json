@@ -1,20 +1,5 @@
 [
  {
-  "ts": "2026-10-11 10:40",
-  "theme": "ocean",
-  "transition": "zoom",
-  "angle": "what changes for you",
-  "scenes": [
-   "slam",
-   "checklist",
-   "monitor",
-   "timeline",
-   "terminal",
-   "cta"
-  ],
-  "headline": "Google Unveils Agentic AI for Gemini with Autonomous Workplace Capabilities"
- },
- {
   "ts": "2026-10-11 10:43",
   "theme": "neon",
   "transition": "slide",
@@ -653,5 +638,22 @@
   "kind": "news",
   "headline": "Replit Swaps Anthropic for OpenAI as Default Model Provider",
   "link": "https://techcrunch.com/2026/10/17/replit-is-no-longer-working-with-anthropic-ceo-says/"
+ },
+ {
+  "ts": "2026-10-18 05:45",
+  "theme": "forest",
+  "transition": "wipe",
+  "angle": "what changes for you",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "hubmap",
+   "checklist",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "ai-memory: Solution for long term memory for agent coding CLIs and to facilitate",
+  "link": "https://github.com/akitaonrails/ai-memory"
  }
 ]
