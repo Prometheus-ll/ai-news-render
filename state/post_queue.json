@@ -71,8 +71,18 @@
   "source_link": "https://techcrunch.com/2026/10/16/elorians-first-ai-model-wants-to-reason-with-images-not-just-about-them/",
   "headline": "Elorian's Glimpse Model Claims Superior Visual Reasoning Over GPT-6 Astra",
   "added": "2026-10-17 11:20",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1612369630169453",
+    "at": "2026-10-18 07:57"
+   }
+  },
+  "posted_at": "2026-10-18 07:57",
+  "fb_id": "1612369630169453"
  },
  {
   "video": "renders/output/2026-10-17-112055-1.mp4",
