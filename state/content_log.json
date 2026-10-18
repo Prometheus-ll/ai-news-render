@@ -196,5 +196,26 @@
   "words": 104,
   "caption": "India Reports Surge in Rogue AI Agent Attacks\n\nIndia has detected a massive wave of autonomous AI agent attacks exploiting exposed credentials and cloud infrastructure. Discover how AI is automating cyber warfare and what it means for digital security. Follow for daily AI news.\n\n#ai #cybersecurity #india #rogueai #tech #cloudsecurity #automation #cyberattack #infosec #ainews",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-18-054332-1.mp4",
+  "ts": "2026-10-18 05:45",
+  "kind": "news",
+  "headline": "Replit Swaps Anthropic for OpenAI as Default Model Provider",
+  "title": "Replit Names OpenAI as New Default AI Model Provider",
+  "source_link": "https://techcrunch.com/2026/10/17/replit-is-no-longer-working-with-anthropic-ceo-says/",
+  "theme": "neon",
+  "angle": "what changes for you",
+  "scenes": [
+   "appclutter",
+   "reveal",
+   "versus",
+   "quote",
+   "hubmap",
+   "cta"
+  ],
+  "words": 115,
+  "caption": "Replit Names OpenAI as New Default AI Model Provider\n\nReplit has officially swapped Anthropic for OpenAI as the default model provider for its Replit Agent. While Claude remains an option, this move marks a major shift in the developer tool ecosystem. Follow for daily AI news.\n\n#replit #openai #anthropic #codingai #replitagent #softwaredevelopment #gpt4o #ainews",
+  "status": "queued"
  }
 ]
