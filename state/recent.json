@@ -619,5 +619,22 @@
   "kind": "repo",
   "headline": "ai-job-search: The job search that runs on your machine. AI job application fram",
   "link": "https://github.com/MadsLorentzen/ai-job-search"
+ },
+ {
+  "ts": "2026-10-18 05:40",
+  "theme": "signal",
+  "transition": "slide",
+  "angle": "red flags",
+  "scenes": [
+   "slam",
+   "alert",
+   "terminal",
+   "monitor",
+   "phases",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "India Reports Surge in Rogue AI Agent Attacks via Exposed Credentials",
+  "link": "https://techcrunch.com/2026/10/16/india-becomes-the-latest-country-to-report-rogue-ai-agent-activity/"
  }
 ]
