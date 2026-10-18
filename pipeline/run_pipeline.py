@@ -388,7 +388,7 @@ Return ONE JSON object (no markdown, no commentary):
 
 
 # ---------------------------------------------------------------- FOCUS style (default): one visual per spoken idea
-VIDEO_STYLE = os.environ.get("VIDEO_STYLE", "focus")   # "focus" (default) or "rich" (the older multi-element scenes)
+VIDEO_STYLE = os.environ.get("VIDEO_STYLE", "rich")   # "rich" (default, the original multi-element scenes) or "focus" (new minimal style, still being tuned; opt in with VIDEO_STYLE=focus)
 FOCUS_TYPES = ["say", "stat", "icon", "name", "code", "end"]
 HOOK_FORMATS = ["bold claim", "counterintuitive statement", "direct question", "list promise", "story open"]
 
