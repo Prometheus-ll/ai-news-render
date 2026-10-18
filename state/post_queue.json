@@ -100,5 +100,14 @@
   "added": "2026-10-18 05:42",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-18-054332-1.mp4",
+  "caption": "Replit Names OpenAI as New Default AI Model Provider\n\nReplit has officially swapped Anthropic for OpenAI as the default model provider for its Replit Agent. While Claude remains an option, this move marks a major shift in the developer tool ecosystem. Follow for daily AI news.\n\n#replit #openai #anthropic #codingai #replitagent #softwaredevelopment #gpt4o #ainews",
+  "source_link": "https://techcrunch.com/2026/10/17/replit-is-no-longer-working-with-anthropic-ceo-says/",
+  "headline": "Replit Swaps Anthropic for OpenAI as Default Model Provider",
+  "added": "2026-10-18 05:45",
+  "status": "pending",
+  "attempts": 0
  }
 ]
