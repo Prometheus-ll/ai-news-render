@@ -90,8 +90,18 @@
   "source_link": "https://techcrunch.com/2026/10/15/amazons-bee-launches-two-new-personal-ai-devices-starting-at-75/",
   "headline": "Amazon's Bee Releases $75 AI Wearable and Personal Recorder",
   "added": "2026-10-17 11:23",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1593554512514502",
+    "at": "2026-10-18 12:21"
+   }
+  },
+  "posted_at": "2026-10-18 12:21",
+  "fb_id": "1593554512514502"
  },
  {
   "video": "renders/output/2026-10-17-112414-2.mp4",

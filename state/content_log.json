@@ -163,9 +163,15 @@
    "cta"
   ],
   "caption": "Amazon\u2019s Bee Launches $75 Screen-Free AI Wearable\n\nAmazon-owned Bee has released a new line of low-cost AI hardware starting at $75, designed to bring ambient intelligence into your everyday life. Follow for more AI hardware updates.\n\n#ai #amazon #beeai #wearable #gadget #alexa #tech #productivity #futuretech",
-  "status": "pending",
-  "fb_id": null,
-  "posted_at": null
+  "status": "posted",
+  "fb_id": "1593554512514502",
+  "posted_at": "2026-10-18 12:21",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1593554512514502"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-17-112414-2.mp4",
