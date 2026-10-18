@@ -386,6 +386,140 @@ Return ONE JSON object (no markdown, no commentary):
 "mode_pattern":"...","product":{"name":"the main company or product this story is about","domain":"its website domain, e.g. openai.com","simple_icon":"its lowercase slug on simpleicons.org, e.g. openai, or empty"},"scenes":[ ...6 scene objects exactly as specified above, in order... ]}"""
 
 
+
+# ---------------------------------------------------------------- FOCUS style (default): one visual per spoken idea
+VIDEO_STYLE = os.environ.get("VIDEO_STYLE", "focus")   # "focus" (default) or "rich" (the older multi-element scenes)
+FOCUS_TYPES = ["say", "stat", "icon", "name", "code", "end"]
+HOOK_FORMATS = ["bold claim", "counterintuitive statement", "direct question", "list promise", "story open"]
+
+FOCUS_SPECS = """\
+say (the workhorse: ONE big phrase on screen): {"type":"say","text":"3-7 word KEY PHRASE, max 44 chars - the heart of what the voice says right now, never the whole sentence","hi":["1-2 words copied from text to highlight"],"narration":"ONE sentence, 6-14 words"}
+stat (ONE huge number counting up): {"type":"stat","value":"max 8 chars, a REAL figure from the story, e.g. 40%, $2B, 12k, 9 days","label":"max 4 words saying what it measures","narration":"ONE sentence, 6-14 words"}
+icon (ONE big symbol for a concept): {"type":"icon","icon":"<icon>","label":"max 3 words, e.g. Runs locally","narration":"ONE sentence, 6-14 words"}
+name (scene 2 only, when the story is about ONE named tool/product/model/repo): {"type":"name","name":"max 20 chars, its real name","icon":"<icon>","narration":"ONE short sentence that says the name, e.g. Meet X, a free tool that ..."}
+code (GitHub repo videos only: ONE exact command from the README): {"type":"code","cmd":"max 52 chars, copied from the README, never invented","narration":"ONE sentence telling what the command does"}
+end (always last): {"type":"end","text":"max 40 chars, the takeaway - echo or answer the opening hook so the video loops","hi":["1-2 words from text"],"narration":"ONE sentence whose last words flow naturally back into the opening line"}
+"""
+
+FOCUS_NEWS_STRUCTURE = """Build the video as 8 or 9 scenes in this order:
+ 1. "say" - the HOOK (see HOOK RULES). Its narration is at most 9 words.
+ 2. "name" - ONLY if the story is about ONE specific named tool, product or model; otherwise skip it and use another beat.
+ 3 to n-1. The body: 5-7 beats, each "say", "stat" or "icon". Never more than 2 of the same type in a row. Use "stat" only for a REAL figure from the story.
+ n. "end" (always last)"""
+
+FOCUS_REPO_STRUCTURE = """Build the video as 8 to 10 scenes in this order:
+ 1. "repohook" - the opening glimpse of the repo's real GitHub page. Its narration MUST start with "This GitHub repo" and is at most 11 words.
+ 2. "name" - the repo's real name.
+ 3 to n-1. The body: "say" beats for what it does and how it works, one "stat" for the star count, and one or two "code" scenes for the real install/run commands. Never more than 2 of the same type in a row.
+ n. "end" (always last)"""
+
+FOCUS_PROMPT = """You are the scriptwriter and creative director of "AI Quantum", a faceless AI-news channel \
+(YouTube Shorts / Instagram Reels / Facebook Reels). The video is a 28-36 second vertical explainer. \
+FOCUS RULE: the screen shows ONLY what the voice is saying right now - one big phrase, number, symbol or command per beat, \
+nothing else, no decoration. The viewer's eyes must stay on one thing at a time.
+
+Headline: <<headline>>
+Summary: <<summary>>
+Why it matters: <<why_it_matters>>
+
+SCENE TYPES (each beat is one scene):
+<<specs>>
+<<structure>>
+Also choose:
+ - "hook_format": one of <<hooks>>
+ - "angle": the storytelling frame, one of <<angles>>
+ - "theme": one of <<themes>> (mood that suits the story)
+ - "transition": one of <<transitions>>
+ - "mode_pattern": one of <<modes>>
+
+HOOK RULES (the first 3 seconds decide everything)
+- Scene 1's narration is the hook: at most 9 words (about 3 seconds spoken), specific and concrete, a bold claim, a counterintuitive statement, \
+a direct question, or a list promise. Start with the interesting thing itself - never "So", "Today", "In this video", "Did you know" or any warm-up.
+- The on-screen text of scene 1 shows the hook's most striking 3-6 words, and the voice and screen say the same thing.
+- After the hook, pay it off fast: the next beat delivers the first concrete fact.
+- The "end" scene echoes the opening so the video loops back into its first line.
+
+PACING RULES
+- One idea per beat; each beat's narration is ONE sentence of 6-14 words (about 3-4 seconds) so the screen changes every 2-4 seconds.
+- Total narration 70-95 words. Shorter is better; cut anything that does not earn its place.
+- Spoken English: short, punchy, concrete, no lists, no emojis, no jargon without a one-line explanation.
+
+VARIETY - recent videos on this channel (do NOT repeat their look or opening style):
+<<recent>>
+
+CONTENT RULES
+- NEVER name or credit the publication/outlet the story came from (no TechCrunch, Verge, Reuters, etc.) anywhere. Say "according to the company" or "reports say" if attribution is needed.
+- Use ONLY facts from the story above. Never invent numbers, quotes, dates or names.
+- On-screen text is SHORT; respect every max length. "hi" words must appear inside "text".
+- Icons must come ONLY from this list: <<icons>>
+
+Return ONE JSON object (no markdown, no commentary):
+{"title":"punchy title under 90 characters","description":"2-3 sentence description (do not name any news outlet)",\
+"hashtags":["#ai","...","8 to 10 total, no spaces"],"hook_format":"...","angle":"...","theme":"...","transition":"...",\
+"mode_pattern":"...","product":{"name":"the main company or product this story is about","domain":"its website domain, e.g. openai.com","simple_icon":"its lowercase slug on simpleicons.org, e.g. openai, or empty"},\
+"scenes":[ ...the 8-10 scene objects exactly as specified above, in order... ]}"""
+
+FOCUS_REPO_MODE = """
+
+ADDITIONAL INSTRUCTIONS - this video is a GITHUB REPO EXPLAINER (they override earlier rules where they conflict)
+The story is a viral, MIT-licensed open-source project: <<repo_name>> (<<stars>> stars). In this order: what it is and why it is spreading, \
+how it works in plain words, then the real install/run commands (each as its own "code" scene - copy exact commands from the README, shorten only if needed, never invent one; \
+if the README has no commands, use "say" beats about the key features instead). Say it is free and MIT licensed. \
+Narration says "this open source project", never "article" or "report". Do not name any news outlet. Hashtags must include #opensource and #github.
+
+README (the ONLY source of facts besides the summary above):
+<<readme>>
+"""
+
+
+def validate_focus(script, story=None):
+    sc = script.get("scenes")
+    if not isinstance(sc, list) or not (7 <= len(sc) <= 11):
+        return "scenes must be a list of 8 to 10 scene objects"
+    types = [x.get("type") for x in sc]
+    is_repo = (story or {}).get("kind") == "repo"
+    allowed = FOCUS_TYPES + [REPO_HOOK]
+    for x in sc:
+        if x.get("type") not in allowed:
+            return f"unknown scene type {x.get('type')}"
+        n = len(str(x.get("narration", "")).split())
+        if not (4 <= n <= 20):
+            return f"scene {x.get('type')} narration is {n} words; each beat is ONE sentence of 6-14 words"
+    if is_repo:
+        if types[0] != REPO_HOOK:
+            return "repo videos must open with the repohook scene"
+        if not str(sc[0].get("narration", "")).strip().lower().startswith("this github repo"):
+            return "the repohook narration must begin with the words 'This GitHub repo'"
+        if len(str(sc[0]["narration"]).split()) > 12:
+            return "the repohook narration must be at most 11 words"
+        if types[1] != "name":
+            return "repo videos need scene 2 = name"
+    else:
+        if types[0] != "say":
+            return "first scene must be a 'say' hook"
+        if len(str(sc[0]["narration"]).split()) > 10:
+            return "the hook narration must be at most 9 words (about 3 seconds)"
+        if REPO_HOOK in types or "code" in types:
+            return "repohook and code scenes are only for GitHub repo videos"
+    if types[-1] != "end":
+        return "last scene must be end"
+    if "name" in types and types.index("name") != 1:
+        return "the name scene must be scene 2"
+    if types.count("name") > 1 or types.count("end") > 1:
+        return "name and end may appear only once"
+    for i in range(2, len(types)):
+        if types[i] == types[i - 1] == types[i - 2]:
+            return f"no more than 2 '{types[i]}' scenes in a row"
+    blob = json.dumps(script).lower()
+    for outlet in OUTLETS:
+        if outlet in blob:
+            return f"do not mention the news outlet '{outlet}' anywhere"
+    words = sum(len(str(x["narration"]).split()) for x in sc)
+    if not (62 <= words <= 105):
+        return f"total narration is {words} words; it must be 70-95"
+    return ""
+
+
 def load_recent():
     try:
         with open(STATE_PATH) as f:
@@ -413,19 +547,21 @@ def describe_recent(recent):
 
 
 def build_script_prompt(story, recent, feedback=""):
-    p = SCRIPT_PROMPT
+    focus = VIDEO_STYLE == "focus"
+    p = FOCUS_PROMPT if focus else SCRIPT_PROMPT
     for k, v in {
         "headline": story["headline"], "summary": story["summary"], "why_it_matters": story["why_it_matters"],
         "source_link": story["source_link"],
-        "specs": SCENE_SPECS + (REPOHOOK_SPEC if story.get("kind") == "repo" else ""),
-        "structure": REPO_STRUCTURE if story.get("kind") == "repo" else NEWS_STRUCTURE, "angles": ", ".join(ANGLES),
+        "specs": (FOCUS_SPECS if focus else SCENE_SPECS) + (REPOHOOK_SPEC if story.get("kind") == "repo" else ""),
+        "structure": ((FOCUS_REPO_STRUCTURE if focus else REPO_STRUCTURE) if story.get("kind") == "repo" else (FOCUS_NEWS_STRUCTURE if focus else NEWS_STRUCTURE)),
+        "hooks": ", ".join(HOOK_FORMATS), "angles": ", ".join(ANGLES),
         "themes": ", ".join(THEMES), "transitions": ", ".join(TRANSITIONS), "modes": ", ".join(MODE_PATTERNS),
         "recent": describe_recent(recent), "icons": ICON_LIST,
     }.items():
         p = p.replace(f"<<{k}>>", str(v))
     if story.get("kind") == "repo":
         rp = story.get("repo") or {}
-        p += REPO_MODE.replace("<<repo_name>>", rp.get("full_name", "")).replace("<<stars>>", f"{rp.get('stars', 0):,}").replace("<<readme>>", story.get("readme") or "(no README text available)")
+        p += (FOCUS_REPO_MODE if focus else REPO_MODE).replace("<<repo_name>>", rp.get("full_name", "")).replace("<<stars>>", f"{rp.get('stars', 0):,}").replace("<<readme>>", story.get("readme") or "(no README text available)")
     if feedback:
         p += f"\n\nYour previous attempt was rejected: {feedback}\nFix this and return the full JSON again."
     return p
@@ -435,6 +571,8 @@ OUTLETS = ["techcrunch", "tech crunch", "the verge", "wired", "reuters", "bloomb
 
 
 def validate_script(script, story=None):
+    if VIDEO_STYLE == "focus":
+        return validate_focus(script, story)
     sc = script.get("scenes")
     if not isinstance(sc, list) or not (5 <= len(sc) <= 7):
         return "scenes must be a list of 6 scene objects"
@@ -671,11 +809,45 @@ def _san_cta(x):
             "bell": "bell", "comment": "Source link in the comments", "follow": _clip(x.get("follow") or "Follow for daily AI news", 32)}
 
 
+def _words_in(text, hi):
+    """Highlight words that really appear in text; fall back to the last word."""
+    have = {re.sub(r"[^a-z0-9$%.]", "", w.lower()): w for w in text.split()}
+    out = []
+    for h in (hi or [])[:2]:
+        for part in str(h).split():
+            k = re.sub(r"[^a-z0-9$%.]", "", part.lower())
+            if k in have and have[k] not in out:
+                out.append(have[k])
+    return out[:2] or ([text.split()[-1]] if text.split() else [])
+
+
+def _san_say(x):
+    t = _clip(x.get("text"), 48)
+    return {"text": t, "hi": _words_in(t, x.get("hi"))}
+
+
+def _san_stat(x):
+    return {"value": _clip(x.get("value"), 8) or "0", "label": _clip(x.get("label"), 30)}
+
+
+def _san_iconfx(x):
+    return {"icon": _icon(x.get("icon"), "zap"), "label": _clip(x.get("label"), 24)}
+
+
+def _san_name(x):
+    return {"name": _clip(x.get("name"), 22), "icon": _icon(x.get("icon"), "sparkles")}
+
+
+def _san_code(x):
+    return {"cmd": _clip(x.get("cmd"), 56)}
+
+
 SANITIZERS = {"hook": _san_hook, "slam": _san_slam, "terminal": _san_terminal, "alert": _san_alert, "timeline": _san_timeline,
               "monitor": _san_monitor, "bignumber": _san_bignumber, "versus": _san_versus, "leaderboard": _san_leaderboard,
               "chat": _san_chat, "quote": _san_quote, "checklist": _san_checklist, "cta": _san_cta,
               "reveal": _san_reveal, "screenshot": _san_screenshot, "repohook": _san_repohook, "appclutter": _san_appclutter, "profile": _san_profile, "hubmap": _san_hubmap, "roundup": _san_roundup,
-              "phases": _san_phases, "cycle": _san_cycle, "stars": _san_stars}
+              "phases": _san_phases, "cycle": _san_cycle, "stars": _san_stars,
+              "say": _san_say, "end": _san_say, "stat": _san_stat, "icon": _san_iconfx, "name": _san_name, "code": _san_code}
 
 
 def _pick(choice, allowed, avoid, seed):
@@ -715,9 +887,11 @@ def script_to_manifest(script, story=None, recent=None):
                "slug": re.sub(r"[^a-z0-9]", "", str(pr.get("simple_icon") or "").lower())}
     manifest = {"brand": {"name": CHANNEL_NAME, "icon": "atom"}, "product": product, "source": "",
                 "theme": theme, "transition": transition, "scenes": scenes}
+    if VIDEO_STYLE == "focus":
+        manifest["style"] = "focus"
     voice = " ".join(s["narration"] for s in scenes)
     record = {"ts": time.strftime("%Y-%m-%d %H:%M"), "theme": theme, "transition": transition,
-              "angle": script.get("angle"), "scenes": [s["type"] for s in scenes],
+              "angle": script.get("angle"), "hook": script.get("hook_format"), "scenes": [s["type"] for s in scenes],
               "kind": (story or {}).get("kind", "news"), "headline": (story or {}).get("headline", "")[:80], "link": (story or {}).get("source_link", "")}
     return manifest, voice, record
 
