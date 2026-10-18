@@ -109,8 +109,18 @@
   "source_link": "https://github.com/MadsLorentzen/ai-job-search",
   "headline": "ai-job-search: The job search that runs on your machine. AI job application framework built on Claude Code: ev",
   "added": "2026-10-17 11:27",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1098136979497731",
+    "at": "2026-10-18 17:59"
+   }
+  },
+  "posted_at": "2026-10-18 17:59",
+  "fb_id": "1098136979497731"
  },
  {
   "video": "renders/output/2026-10-18-054017-0.mp4",
