@@ -135,9 +135,15 @@
    "cta"
   ],
   "caption": "Glimpse: The New AI Model Challenging GPT-6 Astra in Visual Reasoning\n\nElorian has launched Glimpse, a model claiming to beat GPT-6 Astra in specialized visual reasoning. It excels at scientific charts and video analysis. Follow for more AI breakthroughs.\n\n#ai #elorian #glimpse #gpt6 #visualai #multimodal #tech #innovation #futuretech",
-  "status": "pending",
-  "fb_id": null,
-  "posted_at": null
+  "status": "posted",
+  "fb_id": "1612369630169453",
+  "posted_at": "2026-10-18 07:57",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1612369630169453"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-17-112055-1.mp4",
