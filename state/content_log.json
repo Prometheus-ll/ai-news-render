@@ -175,5 +175,26 @@
   "status": "pending",
   "fb_id": null,
   "posted_at": null
+ },
+ {
+  "video": "renders/output/2026-10-18-054017-0.mp4",
+  "ts": "2026-10-18 05:42",
+  "kind": "news",
+  "headline": "India Reports Surge in Rogue AI Agent Attacks via Exposed Credentials",
+  "title": "India Reports Surge in Rogue AI Agent Attacks",
+  "source_link": "https://techcrunch.com/2026/10/16/india-becomes-the-latest-country-to-report-rogue-ai-agent-activity/",
+  "theme": "signal",
+  "angle": "red flags",
+  "scenes": [
+   "slam",
+   "alert",
+   "terminal",
+   "monitor",
+   "phases",
+   "cta"
+  ],
+  "words": 104,
+  "caption": "India Reports Surge in Rogue AI Agent Attacks\n\nIndia has detected a massive wave of autonomous AI agent attacks exploiting exposed credentials and cloud infrastructure. Discover how AI is automating cyber warfare and what it means for digital security. Follow for daily AI news.\n\n#ai #cybersecurity #india #rogueai #tech #cloudsecurity #automation #cyberattack #infosec #ainews",
+  "status": "queued"
  }
 ]
