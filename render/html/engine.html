@@ -272,6 +272,23 @@ body{font-family:'PoppinsX','Poppins','Noto Sans',sans-serif;-webkit-font-smooth
 .stsub{font-size:40px;font-weight:800;text-align:center;line-height:1.2;max-width:860px}
 .stbars{display:flex;align-items:flex-end;gap:22px;height:380px;margin-top:30px}
 .stbars i{display:block;width:92px;border-radius:20px 20px 8px 8px;background:linear-gradient(180deg,var(--acc2),var(--acc));transform-origin:bottom}
+/* ===== focus style: one visual per spoken idea, nothing else ===== */
+.focus #brand,.focus #src,.focus #plogo,.focus .dot{display:none!important}
+.focus .scene::before{display:none}
+.fx{position:absolute;left:70px;right:70px;top:300px;bottom:560px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;z-index:2;text-align:center}
+.fx .say{font-weight:900;line-height:1.08;letter-spacing:-.015em;max-width:940px}
+.fx .say .w{display:inline-block;margin:0 .12em}
+.fx .say .w.hi{color:var(--acc)}.dark .fx .say .w.hi{color:var(--acc2)}
+.fx .say .w.hi{background:linear-gradient(transparent 70%,color-mix(in srgb,var(--acc2) 55%,transparent) 70% 94%,transparent 94%)}
+.fx .big{font-weight:900;letter-spacing:-.04em;line-height:1;white-space:nowrap;background:linear-gradient(135deg,var(--acc),var(--acc2));-webkit-background-clip:text;color:transparent;display:inline-block}
+.dark .fx .big{background:linear-gradient(135deg,#fff,var(--acc2));-webkit-background-clip:text}
+.fx .lab{font-weight:800;font-size:68px;line-height:1.1;max-width:900px}
+.fx .bigic{width:360px;height:360px;color:var(--acc)}.dark .fx .bigic{color:var(--acc2)}
+.fx .logo{width:300px;height:300px;border-radius:78px;background:#fff;padding:56px;box-shadow:0 30px 80px color-mix(in srgb,var(--acc) 40%,transparent)}.fx .logo img,.fx .logo svg{width:100%;height:100%;object-fit:contain;display:block;color:var(--acc)}
+.fx .nm2{font-weight:900;letter-spacing:-.02em;line-height:1.05;white-space:nowrap;display:inline-block;background:linear-gradient(135deg,var(--acc),var(--acc2));-webkit-background-clip:text;color:transparent}
+.dark .fx .nm2{background:linear-gradient(135deg,#fff,var(--acc2));-webkit-background-clip:text}
+.fx .code{font-family:ui-monospace,'DejaVu Sans Mono','Liberation Mono',monospace;font-weight:700;background:#0b1020;color:#e6edf3;border-radius:36px;padding:56px 54px;max-width:960px;text-align:left;word-break:break-all;line-height:1.35;box-shadow:0 30px 80px rgba(0,0,0,.4),0 0 0 3px color-mix(in srgb,var(--acc2) 55%,transparent)}
+.fx .code .pr{color:var(--acc2)}.fx .code .cur{display:inline-block;width:.5em;height:1em;background:var(--acc2);vertical-align:-.12em;margin-left:4px}
 /* repohook: opening glimpse of the repo's GitHub page */
 .rhbg{position:absolute;inset:0;overflow:hidden;z-index:0}
 .rhbg img{position:absolute;left:50%;top:0;width:160%;transform:translateX(-50%);filter:blur(34px) brightness(.34) saturate(1.3)}
@@ -339,6 +356,7 @@ function mkScene(m,defMode,kvar){
   if(mode==='dark')DARK.add(sc);return sc;
 }
 function kicker(sc,m,S){
+  if(stage.classList.contains('focus'))return;
   const idx=m.idx||1,n=m.n||6;
   const html=KICK==='tag'
     ?`<div class="row left" style="top:190px"><div class="kick tag"><b>${String(idx).padStart(2,'0')}/${String(n).padStart(2,'0')}</b>${esc(m.kicker||'')}</div></div>`
@@ -698,6 +716,49 @@ function sceneStars(m,S,D){
     bs.forEach((b,i)=>{const q=clamp((t-at(.2+i*.07))/.5);b.style.transform=`scaleY(${E_INOUT(q)})`;});});
   return sc;
 }
+
+/* ===== focus scenes ===== */
+function fxWords(txt,hi){const hs=(hi||[]).map(h=>String(h).toLowerCase().replace(/[^a-z0-9$%.]/g,''));return String(txt||'').split(/\s+/).filter(Boolean).map(w=>`<span class="w${hs.includes(w.toLowerCase().replace(/[^a-z0-9$%.]/g,''))?' hi':''}">${esc(w)}</span>`).join(' ');}
+function fxPush(sc,el,S,D){updaters.push(t=>{const p=clamp((t-S)/Math.max(.1,D));el.style.scale=1+.06*p;});}
+function sceneSay(m,S,D){
+  const sc=mkScene(m,'dark','--acc2');
+  const c=mk(sc,`<div class="c" style="padding:0"><div class="fx"></div></div>`),fx=c.firstElementChild;
+  const txt=m.text||'',fs=fitSize(txt,[[16,168],[28,140],[44,118],[64,100],[999,86]]);
+  const say=H(`<div class="say" style="font-size:${fs}px">${fxWords(txt,m.hi)}</div>`);fx.appendChild(say);
+  say.querySelectorAll('.w').forEach((w,i)=>A(w,'pop',S+(m.idx===1?0:.02)+i*.05,.38));
+  return sc;
+}
+function sceneStat(m,S,D){
+  const sc=mkScene(m,'dark','--acc2'),at=f=>S+f*D;
+  const c=mk(sc,`<div class="c" style="padding:0"><div class="fx"></div></div>`),fx=c.firstElementChild;
+  const v=String(m.value||'0'),size=Math.max(120,Math.min(330,Math.floor(900/(.64*Math.max(2,v.length)))));
+  const big=H(`<div class="big" style="font-size:${size}px">${esc(v)}</div>`);fx.appendChild(big);A(big,'pop',S+.02,.5);
+  const lab=H(`<div class="lab">${esc(m.label||'')}</div>`);fx.appendChild(lab);A(lab,'up',at(.12),.5);
+  updaters.push(t=>{const p=E_INOUT(clamp((t-(S+.05))/(Math.min(D*.5,1.8))));big.textContent=countText(v,p);});
+  return sc;
+}
+function sceneIconFx(m,S,D){
+  const sc=mkScene(m,'dark','--acc2'),at=f=>S+f*D;
+  const c=mk(sc,`<div class="c" style="padding:0"><div class="fx"></div></div>`),fx=c.firstElementChild;
+  const ic=H(`<div class="bigic i">${ico(m.icon)}</div>`);fx.appendChild(ic);A(ic,'pop',S+.02,.55);
+  const lab=H(`<div class="lab" style="font-size:84px">${esc(m.label||'')}</div>`);fx.appendChild(lab);A(lab,'up',at(.1),.5);
+  return sc;
+}
+function sceneName(m,S,D){
+  const sc=mkScene(m,'dark','--acc2'),at=f=>S+f*D;
+  const c=mk(sc,`<div class="c" style="padding:0"><div class="fx"></div></div>`),fx=c.firstElementChild;
+  const lg=H(`<div class="logo i">${PLOGO?`<img src="${PLOGO}" alt="">`:ico(m.icon)}</div>`);fx.appendChild(lg);A(lg,'pop',S+.02,.6);
+  const nm=H(`<div class="nm2">${esc(m.name||'')}</div>`);fx.appendChild(nm);nm.style.fontSize=Math.max(64,Math.min(190,Math.floor(900/(.66*Math.max(4,(m.name||'').length)))))+'px';A(nm,'slam',at(.08),.55);
+  return sc;
+}
+function sceneCode(m,S,D){
+  const sc=mkScene(m,'dark','--acc2');
+  const c=mk(sc,`<div class="c" style="padding:0"><div class="fx"></div></div>`),fx=c.firstElementChild;
+  const cmd=m.cmd||'',fs=fitSize(cmd,[[22,68],[34,54],[48,44],[999,38]]);
+  const box=H(`<div class="code" style="font-size:${fs}px"><span class="pr">$ </span><span class="ty"></span></div>`);fx.appendChild(box);A(box,'pop',S+.02,.5);
+  typers.push({el:box.querySelector('.ty'),full:cmd,t0:S+.35,cps:Math.max(8,cmd.length/Math.max(.8,D*.6))});
+  return sc;
+}
 function sceneRoundup(m,S,D){
   const sc=mkScene(m,'light','--acc'),at=f=>S+f*D;
   const c=mk(sc,`<div class="c"><div class="ru"></div></div>`),ru=c.firstElementChild;
@@ -753,7 +814,7 @@ function sceneRepoHook(m,S,D){
   });
   return sc;
 }
-const BUILDERS={phases:scenePhases,cycle:sceneCycle,stars:sceneStars,repohook:sceneRepoHook,reveal:sceneReveal,screenshot:sceneScreenshot,appclutter:sceneAppClutter,profile:sceneProfile,hubmap:sceneHubMap,roundup:sceneRoundup,hook:sceneHook,slam:sceneSlam,terminal:sceneTerminal,alert:sceneAlert,timeline:sceneTimeline,monitor:sceneMonitor,cta:sceneCTA,
+const BUILDERS={say:sceneSay,end:sceneSay,stat:sceneStat,icon:sceneIconFx,name:sceneName,code:sceneCode,phases:scenePhases,cycle:sceneCycle,stars:sceneStars,repohook:sceneRepoHook,reveal:sceneReveal,screenshot:sceneScreenshot,appclutter:sceneAppClutter,profile:sceneProfile,hubmap:sceneHubMap,roundup:sceneRoundup,hook:sceneHook,slam:sceneSlam,terminal:sceneTerminal,alert:sceneAlert,timeline:sceneTimeline,monitor:sceneMonitor,cta:sceneCTA,
   bignumber:sceneBigNumber,versus:sceneVersus,leaderboard:sceneBoard,chat:sceneChat,quote:sceneQuote,checklist:sceneChecklist};
 
 /* ================= themes ================= */
@@ -777,7 +838,7 @@ function applyTheme(name){
 
 /* ================= build + seek ================= */
 window.build=function(M){
-  applyTheme(M.theme);TRANS=M.transition||'fade';
+  applyTheme(M.theme);TRANS=M.transition||'fade';if(M.style==='focus')stage.classList.add('focus');
   document.getElementById('brandname').textContent=(M.brand&&M.brand.name||'AI QUANTUM').toUpperCase();
   document.getElementById('brandico').innerHTML='<img src="../assets/aq_logo.png" alt="">';
   PLOGO=M.product_logo||'';RSHOT=M.repo_shot||'';RINFO=M.repo_info||null;{const pl=document.getElementById('plogo');if(PLOGO){document.getElementById('plimg').src=PLOGO;pl.style.display='block';}}
