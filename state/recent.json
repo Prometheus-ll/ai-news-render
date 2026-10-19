@@ -1,20 +1,5 @@
 [
  {
-  "ts": "2026-10-11 10:46",
-  "theme": "signal",
-  "transition": "wipe",
-  "angle": "red flags",
-  "scenes": [
-   "slam",
-   "alert",
-   "terminal",
-   "monitor",
-   "checklist",
-   "cta"
-  ],
-  "headline": "Anthropic Disables Internet Access for AI Evals Following Control Failures"
- },
- {
   "ts": "2026-10-11 13:37",
   "theme": "indigo",
   "transition": "fade",
@@ -658,5 +643,23 @@
   "kind": "news",
   "headline": "Disney to Hire Majority of Character.AI Workforce in Major Talent Grab",
   "link": "https://techcrunch.com/2026/10/18/disney-agrees-to-hire-the-majority-of-character-ais-workforce/"
+ },
+ {
+  "ts": "2026-10-19 05:59",
+  "theme": "ocean",
+  "transition": "zoom",
+  "angle": "the big question",
+  "hook": null,
+  "scenes": [
+   "hook",
+   "reveal",
+   "bignumber",
+   "hubmap",
+   "quote",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Anthropic Pledges 5% of Equity to New Public Benefit Fund",
+  "link": "https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund/"
  }
 ]
