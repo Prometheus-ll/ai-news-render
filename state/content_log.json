@@ -271,7 +271,15 @@
   ],
   "words": 114,
   "caption": "Stop Re-Explaining Your Code to AI Agents\n\nDiscover ai-memory, the open-source solution that gives AI coding agents long-term context across different tools and platforms. Follow for more daily AI breakthroughs.\n\n#ai #coding #opensource #github #rustlang #programming #productivity #developer",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-10-19 20:31",
+  "fb_id": "2276275519587368",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "2276275519587368"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-19-055728-0.mp4",
