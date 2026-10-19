@@ -147,8 +147,18 @@
   "source_link": "https://techcrunch.com/2026/10/17/replit-is-no-longer-working-with-anthropic-ceo-says/",
   "headline": "Replit Swaps Anthropic for OpenAI as Default Model Provider",
   "added": "2026-10-18 05:45",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "915296638185805",
+    "at": "2026-10-19 15:12"
+   }
+  },
+  "posted_at": "2026-10-19 15:12",
+  "fb_id": "915296638185805"
  },
  {
   "video": "renders/output/2026-10-18-054601-2.mp4",
