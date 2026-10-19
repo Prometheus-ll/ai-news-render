@@ -1,20 +1,5 @@
 [
  {
-  "ts": "2026-10-11 13:37",
-  "theme": "indigo",
-  "transition": "fade",
-  "angle": "before vs after",
-  "scenes": [
-   "hook",
-   "monitor",
-   "chat",
-   "checklist",
-   "timeline",
-   "cta"
-  ],
-  "headline": "Google Launches Agentic Gemini for Enterprise"
- },
- {
   "ts": "2026-10-11 13:40",
   "theme": "ember",
   "transition": "slide",
@@ -661,5 +646,23 @@
   "kind": "news",
   "headline": "Anthropic Pledges 5% of Equity to New Public Benefit Fund",
   "link": "https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund/"
+ },
+ {
+  "ts": "2026-10-19 06:02",
+  "theme": "signal",
+  "transition": "slide",
+  "angle": "what changes for you",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "reveal",
+   "hubmap",
+   "terminal",
+   "stars",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "opencode: The open source coding agent.",
+  "link": "https://github.com/anomalyco/opencode"
  }
 ]
