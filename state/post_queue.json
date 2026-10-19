@@ -166,8 +166,18 @@
   "source_link": "https://github.com/akitaonrails/ai-memory",
   "headline": "ai-memory: Solution for long term memory for agent coding CLIs and to facilitate handoff between different age",
   "added": "2026-10-18 05:48",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2276275519587368",
+    "at": "2026-10-19 20:31"
+   }
+  },
+  "posted_at": "2026-10-19 20:31",
+  "fb_id": "2276275519587368"
  },
  {
   "video": "renders/output/2026-10-19-055728-0.mp4",
