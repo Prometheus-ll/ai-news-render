@@ -128,8 +128,18 @@
   "source_link": "https://techcrunch.com/2026/10/16/india-becomes-the-latest-country-to-report-rogue-ai-agent-activity/",
   "headline": "India Reports Surge in Rogue AI Agent Attacks via Exposed Credentials",
   "added": "2026-10-18 05:42",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2579092039270193",
+    "at": "2026-10-19 08:44"
+   }
+  },
+  "posted_at": "2026-10-19 08:44",
+  "fb_id": "2579092039270193"
  },
  {
   "video": "renders/output/2026-10-18-054332-1.mp4",
