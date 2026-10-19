@@ -213,7 +213,15 @@
   ],
   "words": 104,
   "caption": "India Reports Surge in Rogue AI Agent Attacks\n\nIndia has detected a massive wave of autonomous AI agent attacks exploiting exposed credentials and cloud infrastructure. Discover how AI is automating cyber warfare and what it means for digital security. Follow for daily AI news.\n\n#ai #cybersecurity #india #rogueai #tech #cloudsecurity #automation #cyberattack #infosec #ainews",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-10-19 08:44",
+  "fb_id": "2579092039270193",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "2579092039270193"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-18-054332-1.mp4",
