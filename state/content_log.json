@@ -298,5 +298,26 @@
   "words": 117,
   "caption": "Anthropic Pledges 5% Equity to Public Benefit Fund\n\nAnthropic is setting a new precedent for corporate governance by committing 5% of its shares to a public benefit fund. This move aims to align financial success with long-term safety. Follow for daily AI news.\n\n#ai #anthropic #aisafety #technews #governance #futureofai #startups #equity",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-19-060208-2.mp4",
+  "ts": "2026-10-19 06:04",
+  "kind": "repo",
+  "headline": "opencode: The open source coding agent.",
+  "title": "opencode: The 200K Star Open Source AI Coding Agent",
+  "source_link": "https://github.com/anomalyco/opencode",
+  "theme": "signal",
+  "angle": "what changes for you",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "hubmap",
+   "terminal",
+   "stars",
+   "cta"
+  ],
+  "words": 112,
+  "caption": "opencode: The 200K Star Open Source AI Coding Agent\n\nDiscover opencode, the massive MIT-licensed coding agent taking GitHub by storm. Learn how its dual-agent system handles building and planning for free. Follow for more AI tools.\n\n#ai #opensource #github #coding #typescript #developer #software #opencode",
+  "status": "queued"
  }
 ]

@@ -166,5 +166,14 @@
   "added": "2026-10-19 06:01",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-19-060208-2.mp4",
+  "caption": "opencode: The 200K Star Open Source AI Coding Agent\n\nDiscover opencode, the massive MIT-licensed coding agent taking GitHub by storm. Learn how its dual-agent system handles building and planning for free. Follow for more AI tools.\n\n#ai #opensource #github #coding #typescript #developer #software #opencode",
+  "source_link": "https://github.com/anomalyco/opencode",
+  "headline": "opencode: The open source coding agent.",
+  "added": "2026-10-19 06:04",
+  "status": "pending",
+  "attempts": 0
  }
 ]
