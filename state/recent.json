@@ -1,20 +1,5 @@
 [
  {
-  "ts": "2026-10-11 10:43",
-  "theme": "neon",
-  "transition": "slide",
-  "angle": "what changes for you",
-  "scenes": [
-   "hook",
-   "bignumber",
-   "versus",
-   "timeline",
-   "terminal",
-   "cta"
-  ],
-  "headline": "Non-Text AI Model 'Jev' Hits $7.5B Valuation on Speed and Efficiency Claims"
- },
- {
   "ts": "2026-10-11 10:46",
   "theme": "signal",
   "transition": "wipe",
@@ -655,5 +640,23 @@
   "kind": "repo",
   "headline": "ai-memory: Solution for long term memory for agent coding CLIs and to facilitate",
   "link": "https://github.com/akitaonrails/ai-memory"
+ },
+ {
+  "ts": "2026-10-19 05:57",
+  "theme": "ember",
+  "transition": "fade",
+  "angle": "who wins",
+  "hook": null,
+  "scenes": [
+   "hook",
+   "reveal",
+   "timeline",
+   "profile",
+   "roundup",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Disney to Hire Majority of Character.AI Workforce in Major Talent Grab",
+  "link": "https://techcrunch.com/2026/10/18/disney-agrees-to-hire-the-majority-of-character-ais-workforce/"
  }
 ]
