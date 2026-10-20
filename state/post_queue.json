@@ -223,8 +223,18 @@
   "source_link": "https://github.com/anomalyco/opencode",
   "headline": "opencode: The open source coding agent.",
   "added": "2026-10-19 06:04",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1670198918012638",
+    "at": "2026-10-20 19:08"
+   }
+  },
+  "posted_at": "2026-10-20 19:08",
+  "fb_id": "1670198918012638"
  },
  {
   "video": "renders/output/2026-10-20-055030-0.mp4",
