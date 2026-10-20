@@ -223,5 +223,14 @@
   "added": "2026-10-20 05:56",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-20-055713-2.mp4",
+  "caption": "Ruflo: The Viral 77k Star Agent Swarm Harness \ud83c\udf0a\n\nDeploy intelligent multi-player agent swarms with Ruflo, the open-source harness for Claude and Codex. Build self-learning AI systems and coordinate autonomous workflows today. Follow for more AI news!\n\n#ai #opensource #github #ruflo #agenticai #claudecode #typescript #coding",
+  "source_link": "https://github.com/ruvnet/ruflo",
+  "headline": "ruflo: \ud83c\udf0a The original agent harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, ",
+  "added": "2026-10-20 06:00",
+  "status": "pending",
+  "attempts": 0
  }
 ]
