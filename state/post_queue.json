@@ -185,8 +185,18 @@
   "source_link": "https://techcrunch.com/2026/10/18/disney-agrees-to-hire-the-majority-of-character-ais-workforce/",
   "headline": "Disney to Hire Majority of Character.AI Workforce in Major Talent Grab",
   "added": "2026-10-19 05:59",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1117962887484355",
+    "at": "2026-10-20 08:25"
+   }
+  },
+  "posted_at": "2026-10-20 08:25",
+  "fb_id": "1117962887484355"
  },
  {
   "video": "renders/output/2026-10-19-055931-1.mp4",
