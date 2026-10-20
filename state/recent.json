@@ -1,20 +1,5 @@
 [
  {
-  "ts": "2026-10-11 13:44",
-  "theme": "ocean",
-  "transition": "zoom",
-  "angle": "myth vs reality",
-  "scenes": [
-   "slam",
-   "bignumber",
-   "leaderboard",
-   "versus",
-   "alert",
-   "cta"
-  ],
-  "headline": "OpenAI Revenue Reportedly $20 Billion Below Projections"
- },
- {
   "ts": "2026-10-11 14:58",
   "theme": "forest",
   "transition": "fade",
@@ -667,5 +652,23 @@
   "kind": "news",
   "headline": "Nvidia Releases Open Models for Local and Enterprise AI Agents",
   "link": "https://techcrunch.com/2026/10/19/nvidia-launches-new-open-models-to-run-agents-in-the-enterprise-and-on-pcs/"
+ },
+ {
+  "ts": "2026-10-20 05:54",
+  "theme": "neon",
+  "transition": "wipe",
+  "angle": "behind the scenes",
+  "hook": null,
+  "scenes": [
+   "appclutter",
+   "reveal",
+   "versus",
+   "monitor",
+   "phases",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Amazon Challenges Nvidia\u2019s Software Moat with New TorchNeuron Tool",
+  "link": "https://techcrunch.com/2026/10/19/amazon-is-taking-its-biggest-shot-at-nvidia-yet-with-new-torchneuron-dev-tool/"
  }
 ]
