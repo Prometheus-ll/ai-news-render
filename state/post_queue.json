@@ -204,8 +204,18 @@
   "source_link": "https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund/",
   "headline": "Anthropic Pledges 5% of Equity to New Public Benefit Fund",
   "added": "2026-10-19 06:01",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1714079377385238",
+    "at": "2026-10-20 13:12"
+   }
+  },
+  "posted_at": "2026-10-20 13:12",
+  "fb_id": "1714079377385238"
  },
  {
   "video": "renders/output/2026-10-19-060208-2.mp4",
