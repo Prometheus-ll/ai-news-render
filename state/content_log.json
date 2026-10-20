@@ -385,5 +385,26 @@
   "words": 108,
   "caption": "Amazon's TorchNeuron: Breaking Nvidia's AI Software Monopoly\n\nAmazon has launched TorchNeuron to help developers port AI models away from Nvidia hardware. This tool could significantly lower costs and break the CUDA software lock-in. Follow for daily AI news.\n\n#amazon #aws #nvidia #torchneuron #pytorch #aihardware #cloudcomputing #technews #machinelearning",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-20-055713-2.mp4",
+  "ts": "2026-10-20 06:00",
+  "kind": "repo",
+  "headline": "ruflo: \ud83c\udf0a The original agent harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, ",
+  "title": "Ruflo: The Viral 77k Star Agent Swarm Harness \ud83c\udf0a",
+  "source_link": "https://github.com/ruvnet/ruflo",
+  "theme": "indigo",
+  "angle": "what changes for you",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "hubmap",
+   "checklist",
+   "terminal",
+   "cta"
+  ],
+  "words": 116,
+  "caption": "Ruflo: The Viral 77k Star Agent Swarm Harness \ud83c\udf0a\n\nDeploy intelligent multi-player agent swarms with Ruflo, the open-source harness for Claude and Codex. Build self-learning AI systems and coordinate autonomous workflows today. Follow for more AI news!\n\n#ai #opensource #github #ruflo #agenticai #claudecode #typescript #coding",
+  "status": "queued"
  }
 ]

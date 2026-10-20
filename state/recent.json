@@ -1,21 +1,5 @@
 [
  {
-  "ts": "2026-10-11 14:58",
-  "theme": "forest",
-  "transition": "fade",
-  "angle": "behind the scenes",
-  "scenes": [
-   "hook",
-   "quote",
-   "monitor",
-   "versus",
-   "terminal",
-   "cta"
-  ],
-  "headline": "Amazon Ends Secrecy in Data Center Negotiations to Rebuild Public Trust",
-  "link": "https://techcrunch.com/video/amazon-and-others-are-done-keeping-data-center-deals-secret-is-it-enough-to-build-trust/"
- },
- {
   "ts": "2026-10-11 15:01",
   "theme": "neon",
   "transition": "wipe",
@@ -670,5 +654,23 @@
   "kind": "news",
   "headline": "Amazon Challenges Nvidia\u2019s Software Moat with New TorchNeuron Tool",
   "link": "https://techcrunch.com/2026/10/19/amazon-is-taking-its-biggest-shot-at-nvidia-yet-with-new-torchneuron-dev-tool/"
+ },
+ {
+  "ts": "2026-10-20 05:56",
+  "theme": "indigo",
+  "transition": "slide",
+  "angle": "what changes for you",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "reveal",
+   "hubmap",
+   "checklist",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "ruflo: \ud83c\udf0a The original agent harness. Deploy intelligent multi-player swarms, coo",
+  "link": "https://github.com/ruvnet/ruflo"
  }
 ]
