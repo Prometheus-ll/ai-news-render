@@ -358,7 +358,15 @@
   ],
   "words": 112,
   "caption": "opencode: The 200K Star Open Source AI Coding Agent\n\nDiscover opencode, the massive MIT-licensed coding agent taking GitHub by storm. Learn how its dual-agent system handles building and planning for free. Follow for more AI tools.\n\n#ai #opensource #github #coding #typescript #developer #software #opencode",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-10-20 19:08",
+  "fb_id": "1670198918012638",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1670198918012638"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-20-055030-0.mp4",
