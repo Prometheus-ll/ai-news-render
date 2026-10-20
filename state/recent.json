@@ -1,20 +1,5 @@
 [
  {
-  "ts": "2026-10-11 13:40",
-  "theme": "ember",
-  "transition": "slide",
-  "angle": "the big question",
-  "scenes": [
-   "hook",
-   "alert",
-   "timeline",
-   "quote",
-   "terminal",
-   "cta"
-  ],
-  "headline": "Anthropic AI Model Sends False Homicide Tip to Police"
- },
- {
   "ts": "2026-10-11 13:44",
   "theme": "ocean",
   "transition": "zoom",
@@ -664,5 +649,23 @@
   "kind": "repo",
   "headline": "opencode: The open source coding agent.",
   "link": "https://github.com/anomalyco/opencode"
+ },
+ {
+  "ts": "2026-10-20 05:50",
+  "theme": "mint",
+  "transition": "fade",
+  "angle": "what changes for you",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "reveal",
+   "checklist",
+   "terminal",
+   "hubmap",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Nvidia Releases Open Models for Local and Enterprise AI Agents",
+  "link": "https://techcrunch.com/2026/10/19/nvidia-launches-new-open-models-to-run-agents-in-the-enterprise-and-on-pcs/"
  }
 ]

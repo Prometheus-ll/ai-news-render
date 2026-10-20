@@ -205,5 +205,14 @@
   "added": "2026-10-19 06:04",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-20-055030-0.mp4",
+  "caption": "Nvidia Kills Cloud Dependency with New Open Agent Models\n\nNvidia has launched a suite of open-source models for local and enterprise AI agents. This move allows businesses to deploy autonomous AI without sending sensitive data to the cloud. Follow for daily AI news.\n\n#ai #nvidia #opensource #privacy #tech #enterprise #localai #machinelearning #artificialintelligence",
+  "source_link": "https://techcrunch.com/2026/10/19/nvidia-launches-new-open-models-to-run-agents-in-the-enterprise-and-on-pcs/",
+  "headline": "Nvidia Releases Open Models for Local and Enterprise AI Agents",
+  "added": "2026-10-20 05:53",
+  "status": "pending",
+  "attempts": 0
  }
 ]
