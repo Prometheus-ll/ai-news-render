@@ -393,7 +393,7 @@ Total narration across all scenes: 95-115 words (about 45 seconds spoken) - be c
 - Icons must come ONLY from this list: <<icons>>
 
 Return ONE JSON object (no markdown, no commentary):
-{"title":"punchy title under 90 characters","description":"2-3 sentence description ending with a follow prompt (do not name any news outlet)",\
+{"thumb":{"text":"2-4 WORDS, max 24 chars total, the thumbnail headline: a curiosity gap or striking fact that makes people tap (e.g. FREE AI VIDEO TOOL, OPENAI JUST CHANGED EVERYTHING, STOP USING CHATGPT). Never a full sentence, never clickbait that the story does not back up","hi":"the ONE word of that text to highlight"},"title":"punchy title under 90 characters","description":"2-3 sentence description ending with a follow prompt (do not name any news outlet)",\
 "hashtags":["#ai","...","8 to 10 total, no spaces"],"angle":"...","theme":"...","transition":"...",\
 "mode_pattern":"...","product":{"name":"the main company or product this story is about","domain":"its website domain, e.g. openai.com","simple_icon":"its lowercase slug on simpleicons.org, e.g. openai, or empty"},"scenes":[ ...6 scene objects exactly as specified above, in order... ]}"""
 
@@ -476,7 +476,7 @@ CONTENT RULES
 - Icons must come ONLY from this list: <<icons>>
 
 Return ONE JSON object (no markdown, no commentary):
-{"title":"punchy title under 90 characters","description":"2-3 sentence description (do not name any news outlet)",\
+{"thumb":{"text":"2-4 WORDS, max 24 chars total, the thumbnail headline: a curiosity gap or striking fact that makes people tap (e.g. FREE AI VIDEO TOOL, OPENAI JUST CHANGED EVERYTHING, STOP USING CHATGPT). Never a full sentence, never clickbait that the story does not back up","hi":"the ONE word of that text to highlight"},"title":"punchy title under 90 characters","description":"2-3 sentence description (do not name any news outlet)",\
 "hashtags":["#ai","...","8 to 10 total, no spaces"],"hook_format":"...","angle":"...","theme":"...","transition":"...",\
 "mode_pattern":"...","product":{"name":"the main company or product this story is about","domain":"its website domain, e.g. openai.com","simple_icon":"its lowercase slug on simpleicons.org, e.g. openai, or empty"},\
 "scenes":[ ...the 8-10 scene objects exactly as specified above, in order... ]}"""
@@ -969,6 +969,24 @@ def _modes(pattern, n):
     return [first if i < half else second for i in range(n)]
 
 
+def _san_thumb(t, scenes, story):
+    """Thumbnail text: 2-4 uppercase words from Gemini, else built from the opening scene / headline."""
+    t = t if isinstance(t, dict) else {}
+    def clean(v):
+        v = re.sub(r"[.!?,;:]+", "", str(v or "")).upper()
+        return " ".join(v.split()[:4])
+    text = clean(t.get("text"))
+    if len(text) > 26 or len(text.split()) < 2:
+        first = scenes[0] if scenes else {}
+        text = clean(first.get("headline") or first.get("text") or (story or {}).get("headline", "AI NEWS"))
+        if len(text) > 26:
+            text = " ".join(text.split()[:3])
+    words = text.split()
+    hi = clean(t.get("hi")).split()[:1]
+    hi = hi[0] if hi and hi[0] in words else (max(words, key=len) if words else "")
+    return {"text": text or "AI NEWS", "hi": hi}
+
+
 def script_to_manifest(script, story=None, recent=None):
     """Gemini script -> (render manifest, voice-over text, framing record for the anti-repeat state)."""
     recent = recent or []
@@ -991,6 +1009,7 @@ def script_to_manifest(script, story=None, recent=None):
                 "theme": theme, "transition": transition, "scenes": scenes}
     if VIDEO_STYLE == "focus":
         manifest["style"] = "focus"
+    manifest["thumb"] = _san_thumb(script.get("thumb"), scenes, story)
     voice = " ".join(s["narration"] for s in scenes)
     record = {"ts": time.strftime("%Y-%m-%d %H:%M"), "theme": theme, "transition": transition,
               "angle": script.get("angle"), "hook": script.get("hook_format"), "scenes": [s["type"] for s in scenes],
@@ -1112,6 +1131,28 @@ def render_video(manifest_path, audio_path, output_path):
     )
 
 
+def render_thumbnail(manifest, story, out_path):
+    """Designed cover image (1080x1920 JPEG) for the video. Best effort: returns the path or ''."""
+    try:
+        th = manifest.get("thumb") or {}
+        repo = story.get("kind") == "repo"
+        tm = {"brand": manifest.get("brand", {}), "product": manifest.get("product", {}), "theme": manifest.get("theme"),
+              "style": "focus", "product_logo": manifest.get("product_logo", ""),
+              "scenes": [{"type": "thumb", "mode": "dark", "text": th.get("text", "AI NEWS"), "hi": th.get("hi", ""),
+                          "badge": "GITHUB REPO" if repo else "AI NEWS",
+                          "icon": (manifest["scenes"][0].get("icon") if manifest.get("scenes") else "") or "sparkles",
+                          "start": 0, "end": 2, "narration": ""}]}
+        tp = out_path + ".json"
+        with open(tp, "w") as f:
+            json.dump(tm, f)
+        subprocess.run(["python3", RENDER_SCRIPT, "--manifest", tp, "--thumb", out_path], check=True, cwd=REPO_ROOT, timeout=240)
+        os.remove(tp)
+        return out_path if os.path.getsize(out_path) > 5000 else ""
+    except Exception as e:  # noqa
+        print(f"[thumb] could not render thumbnail: {e}")
+        return ""
+
+
 def log_to_sheets(row):
     import gspread
     from google.oauth2.service_account import Credentials
@@ -1174,6 +1215,8 @@ def process_story(i, story, recent_holder):
 
     video_path = os.path.join(OUTPUT_DIR, f"{stamp}.mp4")
     render_video(manifest_path, audio_path, video_path)
+    thumb_path = render_thumbnail(manifest, story, os.path.join(OUTPUT_DIR, f"{stamp}.jpg"))
+    thumb_rel = os.path.relpath(thumb_path, REPO_ROOT) if thumb_path else ""
 
     recent = save_recent(recent, record)
     video_rel_path = os.path.relpath(video_path, REPO_ROOT)
@@ -1182,14 +1225,14 @@ def process_story(i, story, recent_holder):
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         import post_queue
         caption = f"{script['title']}\n\n{script['description']}\n\n{' '.join(script['hashtags'])}"
-        post_queue.enqueue(video_rel_path, caption, story["source_link"], story["headline"])
+        post_queue.enqueue(video_rel_path, caption, story["source_link"], story["headline"], thumb_rel)
         post_queue.log_content({
             "video": video_rel_path, "ts": time.strftime("%Y-%m-%d %H:%M"), "kind": story.get("kind", "news"),
             "headline": story["headline"], "title": script.get("title", ""), "source_link": story.get("source_link", ""),
             "theme": record.get("theme", ""), "angle": record.get("angle", ""),
             "scenes": record.get("scenes", []),
             "words": sum(len(str(x.get("narration", "")).split()) for x in script.get("scenes", [])),
-            "caption": caption, "status": "queued"})
+            "caption": caption, "thumb": thumb_rel, "status": "queued"})
         print("[queue] added to the post queue")
     except Exception as e:  # noqa
         print(f"[queue] could not enqueue: {e}")

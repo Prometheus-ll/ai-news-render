@@ -204,14 +204,32 @@ def launch(p):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--manifest", required=True)
-    ap.add_argument("--audio", required=True)
-    ap.add_argument("--output", required=True)
+    ap.add_argument("--audio", default="")
+    ap.add_argument("--output", default="")
+    ap.add_argument("--thumb", default="", help="render the manifest's single thumb scene to this JPG and exit")
     ap.add_argument("--stills", default="")
     ap.add_argument("--stills-dir", default="/tmp/stills")
     a = ap.parse_args()
 
     m = json.load(open(a.manifest))
     m = resolve_icons(m)
+    if a.thumb:
+        m["captions"], m["total"] = [], 2.0
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as p:
+            browser = launch(p)
+            page = browser.new_page(viewport={"width": 1080, "height": 1920}, device_scale_factor=1)
+            page.goto("file://" + ENGINE)
+            page.evaluate("m => build(m)", m)
+            page.evaluate("document.fonts.ready.then(()=>{window.refit&&window.refit();return true;})")
+            page.evaluate("t => seek(t)", 1.6)
+            os.makedirs(os.path.dirname(os.path.abspath(a.thumb)), exist_ok=True)
+            page.screenshot(path=a.thumb, type="jpeg", quality=92)
+            browser.close()
+        print("[html_render] wrote thumbnail", a.thumb)
+        return
+    if not a.audio or not a.output:
+        raise SystemExit("--audio and --output are required unless --thumb is used")
     total, caps = plan_timeline(m["scenes"], a.audio)
     m["captions"] = caps
     m["total"] = total
