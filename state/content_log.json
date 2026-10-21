@@ -387,7 +387,15 @@
   ],
   "words": 102,
   "caption": "Nvidia Kills Cloud Dependency with New Open Agent Models\n\nNvidia has launched a suite of open-source models for local and enterprise AI agents. This move allows businesses to deploy autonomous AI without sending sensitive data to the cloud. Follow for daily AI news.\n\n#ai #nvidia #opensource #privacy #tech #enterprise #localai #machinelearning #artificialintelligence",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-10-21 08:28",
+  "fb_id": "1457579703139319",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1457579703139319"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-20-055401-1.mp4",
