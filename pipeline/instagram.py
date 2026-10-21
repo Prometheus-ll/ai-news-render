@@ -21,13 +21,23 @@ def _check(r, what):
     return r.json()
 
 
-def post_reel(video_path, caption, wait_s=420):
+def post_reel(video_path, caption, wait_s=420, thumb_rel=""):
     """Upload `video_path` as a Reel. Returns the published media id."""
     ig, token = os.environ["IG_USER_ID"], os.environ["FB_PAGE_TOKEN"]
     # 1) create a resumable Reels container
-    c = _check(requests.post(f"{GRAPH}/{ig}/media", data={
-        "media_type": "REELS", "upload_type": "resumable", "caption": caption[:2200],
-        "share_to_feed": "true", "access_token": token}, timeout=60), "container")
+    data = {"media_type": "REELS", "upload_type": "resumable", "caption": caption[:2200],
+            "share_to_feed": "true", "access_token": token}
+    repo = os.environ.get("GITHUB_REPOSITORY", "")
+    if thumb_rel and repo:  # Instagram fetches the cover from a public URL (the thumbnail is committed to the repo)
+        data["cover_url"] = f"https://raw.githubusercontent.com/{repo}/main/{thumb_rel}"
+    try:
+        c = _check(requests.post(f"{GRAPH}/{ig}/media", data=data, timeout=60), "container")
+    except RuntimeError as e:
+        if "cover_url" not in data:
+            raise
+        print(f"[instagram] cover rejected, posting without it: {e}")
+        data.pop("cover_url")
+        c = _check(requests.post(f"{GRAPH}/{ig}/media", data=data, timeout=60), "container")
     cid = c["id"]
     upload_url = c.get("uri") or f"{RUPLOAD}/{cid}"
     # 2) upload the bytes

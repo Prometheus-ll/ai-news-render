@@ -25,7 +25,7 @@ def access_token():
     return r.json()["access_token"]
 
 
-def upload_short(video_path, title, description, tags=None):
+def upload_short(video_path, title, description, tags=None, thumb=""):
     """Upload `video_path`. Returns the YouTube video id."""
     tok = access_token()
     title = re.sub(r"\s+", " ", title).strip()
@@ -42,4 +42,14 @@ def upload_short(video_path, title, description, tags=None):
         up = requests.put(init.headers["Location"], data=f, timeout=900, headers={"Content-Type": "video/mp4"})
     if up.status_code >= 400:
         raise RuntimeError(f"YouTube upload failed ({up.status_code}): {up.text[:400]}")
-    return up.json()["id"]
+    vid = up.json()["id"]
+    if thumb:  # custom thumbnails need a phone-verified channel; never fail the post over it
+        try:
+            with open(thumb, "rb") as f:
+                t = requests.post("https://www.googleapis.com/upload/youtube/v3/thumbnails/set", params={"videoId": vid},
+                                  data=f, headers={"Authorization": f"Bearer {tok}", "Content-Type": "image/jpeg"}, timeout=120)
+            if t.status_code >= 400:
+                print(f"[youtube] thumbnail not set ({t.status_code})" + (" - verify the channel at youtube.com/verify" if t.status_code == 403 else f": {t.text[:200]}"))
+        except Exception as e:  # noqa
+            print(f"[youtube] thumbnail not set: {e}")
+    return vid

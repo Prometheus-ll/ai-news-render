@@ -32,12 +32,12 @@ def save(q):
         json.dump(q, f, indent=1)
 
 
-def enqueue(video_rel, caption, source_link, headline):
+def enqueue(video_rel, caption, source_link, headline, thumb=""):
     """Add a rendered video (path relative to the repo root) to the queue."""
     q = load()
     if any(x.get("video") == video_rel for x in q):
         return
-    q.append({"video": video_rel, "caption": caption, "source_link": source_link or "", "headline": headline or "",
+    q.append({"video": video_rel, "caption": caption, "source_link": source_link or "", "headline": headline or "", "thumb": thumb or "",
               "added": time.strftime("%Y-%m-%d %H:%M"), "status": "pending", "attempts": 0})
     save(q)
 
@@ -108,14 +108,15 @@ def _post(platform, item):
     import facebook, instagram, youtube
     path = os.path.join(ROOT, item["video"])
     cap = item["caption"]
+    thumb = os.path.join(ROOT, item["thumb"]) if item.get("thumb") and os.path.exists(os.path.join(ROOT, item["thumb"])) else ""
     if platform == "facebook":
-        return facebook.post_reel(path, cap, item.get("source_link"))
+        return facebook.post_reel(path, cap, item.get("source_link"), thumb=thumb)
     if platform == "instagram":
-        return instagram.post_reel(path, cap)
+        return instagram.post_reel(path, cap, thumb_rel=item.get("thumb", "") if thumb else "")
     title = cap.split("\n")[0] or item.get("headline", "AI news")
     tags = [t.lstrip("#") for t in cap.split() if t.startswith("#")]
     desc = cap + (f"\n\nSource: {item['source_link']}" if item.get("source_link") else "") + "\n\n#Shorts"
-    return youtube.upload_short(path, title, desc, tags)
+    return youtube.upload_short(path, title, desc, tags, thumb=thumb)
 
 
 def _enabled():

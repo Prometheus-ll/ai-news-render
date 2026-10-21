@@ -359,6 +359,17 @@ body{font-family:'PoppinsX','Poppins','Noto Sans',sans-serif;-webkit-font-smooth
 .mo-ic img,.mo-ic svg{width:56%;height:56%;object-fit:contain;display:block}
 .mo-wb{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 60% 38% at 50% 50%,#272729 0%,#020204 72%)}
 .mo-wc{position:absolute;left:0;right:0;top:50%;text-align:center;font-weight:600;color:#F3F3F5;white-space:nowrap;letter-spacing:-.025em;line-height:1;z-index:2}
+/* ===== thumbnail: one focal point, 2-4 huge words, one highlighted word, brand colours, inside the 3:4 centre crop ===== */
+.th{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:110px 50px 250px}
+.th-bg{position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 80% 45% at 50% 34%,color-mix(in srgb,var(--acc) 62%,transparent),transparent 72%),radial-gradient(ellipse 70% 40% at 50% 100%,color-mix(in srgb,var(--acc2) 30%,transparent),transparent 70%)}
+.th-badge{font-weight:800;font-size:40px;letter-spacing:.22em;color:var(--acc2);border:3px solid var(--acc2);border-radius:999px;padding:12px 38px;white-space:nowrap}
+.th-logo{margin-top:46px;width:330px;height:330px;border-radius:84px;background:#fff;padding:62px;box-shadow:0 0 0 14px color-mix(in srgb,var(--acc2) 38%,transparent),0 40px 90px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;color:var(--acc)}
+.th-logo img,.th-logo svg{width:100%;height:100%;object-fit:contain;display:block}
+.th-t{margin-top:64px;text-align:center;font-weight:900;text-transform:uppercase;letter-spacing:-.025em;line-height:1.02;color:#fff;text-shadow:0 6px 0 rgba(0,0,0,.28)}
+.th-t .l{display:block;white-space:nowrap}
+.th-t .w{display:inline-block;margin:0 .09em}
+.th-t .w.hi{background:var(--acc2);color:#0b1020;padding:0 .14em;border-radius:.14em;transform:rotate(-2.2deg);text-shadow:none}
+.th-foot{position:absolute;left:0;right:0;bottom:318px;text-align:center;font-weight:800;font-size:36px;letter-spacing:.3em;color:#fff;opacity:.85}
 </style></head>
 <body><div id="stage">
 <div id="brand"><span class="tile i" id="brandico"></span><span id="brandname"></span></div>
@@ -1130,8 +1141,27 @@ function sceneWordmark(m,S,D){
   });
   return sc;
 }
+// ---- thumb: the cover image (rendered as a still by html_render.py --thumb; never part of a video) ----
+function sceneThumb(m,S,D){
+  const sc=mkScene(m,'dark','--acc2');
+  const words=String(m.text||'').trim().split(/\s+/).filter(Boolean).slice(0,5);if(!words.length)words.push('AI','NEWS');
+  const hk=String(m.hi||'').toLowerCase().replace(/[^a-z0-9$%]/g,''),n=words.length;
+  // try every line count, keep the split that allows the biggest type
+  let pick=null;
+  for(let k=1;k<=n;k++){let best=null;
+    (function go(i,left,acc){if(left===1){const l=[...acc,words.slice(i)];const mx=Math.max(...l.map(x=>x.join(' ').length));if(!best||mx<best.mx)best={mx,l};return;}
+      for(let j=i+1;j<=n-left+1;j++)go(j,left-1,[...acc,words.slice(i,j)]);})(0,k,[]);
+    const sz=Math.min(270,Math.floor(900/(.78*Math.max(4,best.mx))),Math.floor(700/(k*1.06)));
+    if(!pick||sz>pick.sz)pick={sz,l:best.l,mx:best.mx};}
+  const lines=pick.l,maxc=pick.mx,size=Math.max(60,pick.sz);
+  const body=lines.map(l=>`<span class="l">${l.map(w=>`<span class="w${w.toLowerCase().replace(/[^a-z0-9$%]/g,'')===hk&&hk?' hi':''}">${esc(w)}</span>`).join(' ')}</span>`).join('');
+  const root=H(`<div class="th"><div class="th-badge">${esc(String(m.badge||'AI NEWS').toUpperCase())}</div><div class="th-logo i">${PLOGO?`<img src="${PLOGO}" alt="">`:ico(m.icon)}</div><div class="th-t" style="font-size:${size}px">${body}</div></div>`);
+  sc.appendChild(H(`<div class="th-bg"></div>`));sc.appendChild(root);
+  sc.appendChild(H(`<div class="th-foot" style="position:absolute;z-index:2">AI QUANTUM</div>`));
+  return sc;
+}
 
-const BUILDERS={prompt:scenePrompt,stack:sceneStack,orbit:sceneOrbit,wordmark:sceneWordmark,morph:sceneMorph,shapes:sceneShapes,bars:sceneBars,kinetic:sceneKinetic,command:sceneCommand,tabs:sceneTabs,mark:sceneMark,say:sceneSay,end:sceneSay,stat:sceneStat,icon:sceneIconFx,name:sceneName,code:sceneCode,phases:scenePhases,cycle:sceneCycle,stars:sceneStars,repohook:sceneRepoHook,reveal:sceneReveal,screenshot:sceneScreenshot,appclutter:sceneAppClutter,profile:sceneProfile,hubmap:sceneHubMap,roundup:sceneRoundup,hook:sceneHook,slam:sceneSlam,terminal:sceneTerminal,alert:sceneAlert,timeline:sceneTimeline,monitor:sceneMonitor,cta:sceneCTA,
+const BUILDERS={thumb:sceneThumb,prompt:scenePrompt,stack:sceneStack,orbit:sceneOrbit,wordmark:sceneWordmark,morph:sceneMorph,shapes:sceneShapes,bars:sceneBars,kinetic:sceneKinetic,command:sceneCommand,tabs:sceneTabs,mark:sceneMark,say:sceneSay,end:sceneSay,stat:sceneStat,icon:sceneIconFx,name:sceneName,code:sceneCode,phases:scenePhases,cycle:sceneCycle,stars:sceneStars,repohook:sceneRepoHook,reveal:sceneReveal,screenshot:sceneScreenshot,appclutter:sceneAppClutter,profile:sceneProfile,hubmap:sceneHubMap,roundup:sceneRoundup,hook:sceneHook,slam:sceneSlam,terminal:sceneTerminal,alert:sceneAlert,timeline:sceneTimeline,monitor:sceneMonitor,cta:sceneCTA,
   bignumber:sceneBigNumber,versus:sceneVersus,leaderboard:sceneBoard,chat:sceneChat,quote:sceneQuote,checklist:sceneChecklist};
 
 /* ================= themes ================= */

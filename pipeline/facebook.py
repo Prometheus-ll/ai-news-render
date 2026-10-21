@@ -20,7 +20,7 @@ def _check(r, what):
     return r.json()
 
 
-def post_reel(video_path, description, source_link=None, wait_s=300):
+def post_reel(video_path, description, source_link=None, wait_s=300, thumb=""):
     """Upload `video_path` as a Reel. Returns the video id. Comments the source link if given."""
     page, token = os.environ["FB_PAGE_ID"], os.environ["FB_PAGE_TOKEN"]
     # 1) start an upload session
@@ -46,6 +46,14 @@ def post_reel(video_path, description, source_link=None, wait_s=300):
         if status.get("video_status") == "error":
             raise RuntimeError(f"Facebook processing error: {status}")
         time.sleep(10)
+    # 5a) cover image (best effort - Facebook may ignore it for Reels)
+    if thumb:
+        try:
+            with open(thumb, "rb") as f:
+                _check(requests.post(f"{GRAPH}/{video_id}/thumbnails", data={"is_preferred": "true", "access_token": token},
+                                     files={"source": ("cover.jpg", f, "image/jpeg")}, timeout=120), "thumbnail")
+        except Exception as e:  # noqa
+            print(f"[facebook] thumbnail not set: {e}")
     # 5) first comment with the source link
     if source_link:
         try:
