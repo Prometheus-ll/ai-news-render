@@ -242,8 +242,18 @@
   "source_link": "https://techcrunch.com/2026/10/19/nvidia-launches-new-open-models-to-run-agents-in-the-enterprise-and-on-pcs/",
   "headline": "Nvidia Releases Open Models for Local and Enterprise AI Agents",
   "added": "2026-10-20 05:53",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1457579703139319",
+    "at": "2026-10-21 08:28"
+   }
+  },
+  "posted_at": "2026-10-21 08:28",
+  "fb_id": "1457579703139319"
  },
  {
   "video": "renders/output/2026-10-20-055401-1.mp4",
