@@ -472,5 +472,26 @@
   "words": 118,
   "caption": "OpenAI\u2019s Biotech Pivot: Meet the 'Rosalind' Life Sciences Model\n\nOpenAI is moving into drug discovery with the acquisition of Orchestra Bio and the launch of the Rosalind model. They are building a new ecosystem for lab scientists to accelerate medical research. Follow for daily AI news.\n\n#ai #openai #biotech #lifesciences #rosalind #drugdiscovery #healthtech #futureofmedicine",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-21-060040-2.mp4",
+  "ts": "2026-10-21 06:04",
+  "kind": "repo",
+  "headline": "security-audit-skill: A coding-agent skill for multi-phase security audits with independently verified, machin",
+  "title": "Cloudflare's New AI Security Auditor",
+  "source_link": "https://github.com/cloudflare/security-audit-skill",
+  "theme": "signal",
+  "angle": "what changes for you",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "timeline",
+   "stars",
+   "terminal",
+   "cta"
+  ],
+  "words": 114,
+  "caption": "Cloudflare's New AI Security Auditor\n\nCloudflare has released an open-source tool that turns coding agents into autonomous security auditors. Learn how to automate codebase vulnerability scans with this MIT-licensed project. Follow for daily AI news.\n\n#ai #security #cybersecurity #coding #programming #opensource #github #cloudflare #devsecops",
+  "status": "queued"
  }
 ]
