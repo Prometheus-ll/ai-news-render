@@ -430,5 +430,26 @@
   "words": 116,
   "caption": "Ruflo: The Viral 77k Star Agent Swarm Harness \ud83c\udf0a\n\nDeploy intelligent multi-player agent swarms with Ruflo, the open-source harness for Claude and Codex. Build self-learning AI systems and coordinate autonomous workflows today. Follow for more AI news!\n\n#ai #opensource #github #ruflo #agenticai #claudecode #typescript #coding",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-21-055330-0.mp4",
+  "ts": "2026-10-21 05:56",
+  "kind": "news",
+  "headline": "U.S. Government Orders Federal Ban on China\u2019s DeepSeek AI",
+  "title": "U.S. Orders Federal Ban on DeepSeek AI",
+  "source_link": "https://techcrunch.com/2026/10/20/us-orders-federal-agencies-to-remove-chinas-deepseek-ai-from-their-systems/",
+  "theme": "ember",
+  "angle": "red flags",
+  "scenes": [
+   "hook",
+   "reveal",
+   "terminal",
+   "alert",
+   "monitor",
+   "cta"
+  ],
+  "words": 121,
+  "caption": "U.S. Orders Federal Ban on DeepSeek AI\n\nThe U.S. government has ordered a mandatory removal of DeepSeek AI products from all federal civilian agencies. This escalation highlights growing concerns over national security and data integrity in the global AI race. Follow for more AI updates.\n\n#ai #deepseek #usgovernment #cybersecurity #ainews #nationalsecurity #techpolitics #chinaai",
+  "status": "queued"
  }
 ]

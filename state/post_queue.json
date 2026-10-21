@@ -262,5 +262,14 @@
   "added": "2026-10-20 06:00",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-21-055330-0.mp4",
+  "caption": "U.S. Orders Federal Ban on DeepSeek AI\n\nThe U.S. government has ordered a mandatory removal of DeepSeek AI products from all federal civilian agencies. This escalation highlights growing concerns over national security and data integrity in the global AI race. Follow for more AI updates.\n\n#ai #deepseek #usgovernment #cybersecurity #ainews #nationalsecurity #techpolitics #chinaai",
+  "source_link": "https://techcrunch.com/2026/10/20/us-orders-federal-agencies-to-remove-chinas-deepseek-ai-from-their-systems/",
+  "headline": "U.S. Government Orders Federal Ban on China\u2019s DeepSeek AI",
+  "added": "2026-10-21 05:56",
+  "status": "pending",
+  "attempts": 0
  }
 ]
