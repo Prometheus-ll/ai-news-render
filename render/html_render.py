@@ -9,7 +9,7 @@ Usage:
   python render/html_render.py --manifest m.json --audio a.wav --output out.mp4
   python render/html_render.py ... --stills 1,5,12 --stills-dir /tmp/stills   # debug frames only
 """
-import argparse, json, os, re, subprocess, sys, urllib.request
+import argparse, json, os, re, shutil, subprocess, sys, tempfile, urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ENGINE = os.path.join(HERE, "html", "engine.html")
@@ -218,6 +218,20 @@ def main():
     print(f"[html_render] duration {total:.1f}s, scenes: " +
           ", ".join(f"{s['type']}@{s['start']:.1f}-{s['end']:.1f}" for s in m["scenes"]))
 
+    # music bed + scene sound effects under the voice (synthesized, licence-free); falls back to voice only
+    audio_in = a.audio
+    tmp_audio = ""
+    if os.environ.get("MUSIC", "1") != "0" and not a.stills:
+        try:
+            sys.path.insert(0, HERE)
+            import soundtrack
+            tmp_audio = tempfile.mkdtemp(prefix="aq_snd_")
+            audio_in = soundtrack.mix(m, total, a.audio, os.path.join(tmp_audio, "mix.wav"))
+            print("[html_render] soundtrack mixed:", audio_in)
+        except Exception as e:  # noqa
+            print(f"[html_render] soundtrack skipped ({e}); using voice only")
+            audio_in = a.audio
+
     from playwright.sync_api import sync_playwright
     with sync_playwright() as p:
         browser = launch(p)
@@ -237,7 +251,7 @@ def main():
         os.makedirs(os.path.dirname(os.path.abspath(a.output)), exist_ok=True)
         ff = subprocess.Popen(
             ["ffmpeg", "-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", str(FPS),
-             "-c:v", "mjpeg", "-i", "-", "-i", a.audio,
+             "-c:v", "mjpeg", "-i", "-", "-i", audio_in,
              "-map", "0:v", "-map", "1:a", "-af", "apad",
              "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-pix_fmt", "yuv420p", "-r", str(FPS),
              "-c:a", "aac", "-b:a", "160k", "-t", f"{total:.3f}", "-movflags", "+faststart", a.output],
@@ -251,6 +265,8 @@ def main():
         ff.stdin.close()
         if ff.wait() != 0:
             raise SystemExit("ffmpeg failed")
+        if tmp_audio:
+            shutil.rmtree(tmp_audio, ignore_errors=True)
         browser.close()
     print("[html_render] wrote", a.output)
 
