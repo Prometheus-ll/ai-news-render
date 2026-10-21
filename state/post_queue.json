@@ -261,8 +261,18 @@
   "source_link": "https://techcrunch.com/2026/10/19/amazon-is-taking-its-biggest-shot-at-nvidia-yet-with-new-torchneuron-dev-tool/",
   "headline": "Amazon Challenges Nvidia\u2019s Software Moat with New TorchNeuron Tool",
   "added": "2026-10-20 05:56",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2218620252032563",
+    "at": "2026-10-21 13:22"
+   }
+  },
+  "posted_at": "2026-10-21 13:22",
+  "fb_id": "2218620252032563"
  },
  {
   "video": "renders/output/2026-10-20-055713-2.mp4",

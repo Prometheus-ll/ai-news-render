@@ -416,7 +416,15 @@
   ],
   "words": 108,
   "caption": "Amazon's TorchNeuron: Breaking Nvidia's AI Software Monopoly\n\nAmazon has launched TorchNeuron to help developers port AI models away from Nvidia hardware. This tool could significantly lower costs and break the CUDA software lock-in. Follow for daily AI news.\n\n#amazon #aws #nvidia #torchneuron #pytorch #aihardware #cloudcomputing #technews #machinelearning",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-10-21 13:22",
+  "fb_id": "2218620252032563",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "2218620252032563"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-20-055713-2.mp4",
