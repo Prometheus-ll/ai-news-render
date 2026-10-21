@@ -1,21 +1,5 @@
 [
  {
-  "ts": "2026-10-11 15:01",
-  "theme": "neon",
-  "transition": "wipe",
-  "angle": "red flags",
-  "scenes": [
-   "slam",
-   "terminal",
-   "quote",
-   "checklist",
-   "alert",
-   "cta"
-  ],
-  "headline": "Microsoft CEO Satya Nadella Calls for 'Emergency Brake' on AI Models",
-  "link": "https://techcrunch.com/2026/10/10/microsofts-satya-nadella-says-ai-models-need-an-emergency-brake/"
- },
- {
   "ts": "2026-10-11 15:03",
   "theme": "signal",
   "transition": "slide",
@@ -672,5 +656,23 @@
   "kind": "repo",
   "headline": "ruflo: \ud83c\udf0a The original agent harness. Deploy intelligent multi-player swarms, coo",
   "link": "https://github.com/ruvnet/ruflo"
+ },
+ {
+  "ts": "2026-10-21 05:53",
+  "theme": "ember",
+  "transition": "panel",
+  "angle": "red flags",
+  "hook": null,
+  "scenes": [
+   "hook",
+   "reveal",
+   "terminal",
+   "alert",
+   "monitor",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "U.S. Government Orders Federal Ban on China\u2019s DeepSeek AI",
+  "link": "https://techcrunch.com/2026/10/20/us-orders-federal-agencies-to-remove-chinas-deepseek-ai-from-their-systems/"
  }
 ]
