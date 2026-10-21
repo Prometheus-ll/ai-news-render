@@ -278,12 +278,13 @@ HOOK_TYPES = ["hook", "slam", "appclutter"]
 REPO_HOOK = "repohook"
 MID_TYPES = ["terminal", "alert", "timeline", "monitor", "bignumber", "versus", "leaderboard", "chat", "quote", "checklist",
              "profile", "hubmap", "roundup", "reveal", "phases", "cycle", "stars",
-             "morph", "shapes", "bars", "kinetic", "command", "tabs"]
+             "morph", "shapes", "bars", "kinetic", "command", "tabs", "prompt", "stack", "orbit"]
 THEMES = ["indigo", "ember", "forest", "ocean", "neon", "signal", "mint", "paper"]
 TRANSITIONS = ["fade", "slide", "zoom", "wipe", "panel"]
 MODE_PATTERNS = ["alternate_light", "alternate_dark", "light_then_dark", "dark_then_light"]
 ANGLES = ["myth vs reality", "countdown / top 3", "who wins", "what changes for you", "red flags",
-          "by the numbers", "behind the scenes", "before vs after", "the big question"]
+          "by the numbers", "behind the scenes", "before vs after", "the big question",
+          "problem, solution, 3 steps, proof"]
 STATE_PATH = os.path.join(REPO_ROOT, "state", "recent.json")
 
 REPOHOOK_SPEC = """\
@@ -317,6 +318,9 @@ bars (a REAL growth/comparison figure with a chart that grows; ONLY with real nu
 kinetic (2-4 punchy words land on the beat, hard cuts between light/dark/accent frames): {"type":"kinetic","kicker":"2-3 words CAPS","words":["2-4 words, each max 12 chars"],"narration":"..."}
 command (an AI search/command tool: a command palette, type, the list filters, Enter, a toast confirms): {"type":"command","kicker":"2-3 words CAPS","query":"max 22 chars","results":["exactly 3, max 26 chars each"],"toast":"max 28 chars","narration":"..."}
 tabs (a choice between 3 modes/plans/models; a liquid indicator slides to the one that matters): {"type":"tabs","kicker":"2-3 words CAPS","items":["exactly 3, max 12 chars each"],"pick":<0-2 index of the highlighted one>,"detail":"max 34 chars about the picked one","narration":"..."}
+prompt (an AI tool you talk to: a glass prompt box types the request, then the screen whips up to the answer; use only a prompt/answer that matches the story): {"type":"prompt","kicker":"2-3 words CAPS","prompt":"max 46 chars, what the user types","reply":"max 72 chars, the answer text","hi":"1-3 words copied EXACTLY from reply, shown in bold","narration":"..."}
+stack (2-3 named modes/features/models/modules as stacked cards with giant glass titles): {"type":"stack","kicker":"2-3 words CAPS","items":[{"title":"max 10 chars","tag":"max 12 chars"}  (2-3)],"narration":"..."}
+orbit (four related things: squares spin in around the product, lock into a cross, then slide into a labelled row): {"type":"orbit","kicker":"2-3 words CAPS","icon":"<icon>","items":["exactly 4 labels, max 10 chars each"],"narration":"..."}
 cta (closing, always last): {"type":"cta","kicker":"2-3 words CAPS","label":"max 26 chars","plate":"a punchy verdict about THIS story in CAPS, max 20 chars (never the channel name or a follow request)","footnote":"max 70 chars","chips":[{"icon":"<icon>","text":"max 28 chars"}  (exactly 2)],"follow":"Follow for daily AI news","narration":"2 short sentences: first says the source link is in the comments, then asks people to follow for daily AI news"}
 """
 
@@ -339,10 +343,10 @@ def _san_stars(x):
 
 NEWS_STRUCTURE = """Build the video as 6 scenes in this order:
  1. exactly one OPENING scene: "hook", "slam" or "appclutter"
- 2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup, reveal, phases, cycle, morph, shapes, bars, kinetic, command, tabs - \
+ 2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup, reveal, phases, cycle, morph, shapes, bars, kinetic, command, tabs, prompt, stack, orbit - \
 the ones that tell THIS story best (a funding story wants bignumber/leaderboard, a product launch wants chat/checklist/timeline, \
-a controversy wants versus/monitor/alert, a security story wants alert/terminal, a story about several products or agents wants roundup then profile, a platform/ecosystem story wants hubmap, a tool that does one thing wants morph, an AI search tool wants command, a choice of modes/plans wants tabs, a modality or pipeline chain wants shapes, a punchy 3-word contrast wants kinetic, a real growth number wants bars, etc.)
- ON-SCREEN TEXT of morph, shapes, bars, kinetic, command and tabs never ends with a full stop.
+a controversy wants versus/monitor/alert, a security story wants alert/terminal, a story about several products or agents wants roundup then profile, a platform/ecosystem story wants hubmap, a tool that does one thing wants morph, an AI search tool wants command, a choice of modes/plans wants tabs, a modality or pipeline chain wants shapes, a punchy 3-word contrast wants kinetic, a real growth number wants bars, a chatbot/assistant story wants prompt, two or three named modes or models want stack, four related products wants orbit, etc.)
+ ON-SCREEN TEXT of morph, shapes, bars, kinetic, command, tabs, prompt, stack and orbit never ends with a full stop.
  NAME RULE: if the story is about ONE specific named tool, product, model or repo, scene 2 MUST be "reveal" - announce its real name right after the hook.
  6. "cta" (always last)"""
 
@@ -397,7 +401,7 @@ Return ONE JSON object (no markdown, no commentary):
 
 # ---------------------------------------------------------------- FOCUS style (default): one visual per spoken idea
 VIDEO_STYLE = os.environ.get("VIDEO_STYLE", "rich")   # "rich" (default, the original multi-element scenes) or "focus" (new minimal style, still being tuned; opt in with VIDEO_STYLE=focus)
-FOCUS_EXTRA = ["kinetic", "morph", "shapes", "bars", "command", "tabs"]   # motion-library scenes, max 3 per video
+FOCUS_EXTRA = ["kinetic", "morph", "shapes", "bars", "command", "tabs", "prompt", "stack", "orbit"]   # motion-library scenes, max 3 per video
 FOCUS_TYPES = ["say", "stat", "icon", "name", "code", "end"] + FOCUS_EXTRA
 HOOK_FORMATS = ["bold claim", "counterintuitive statement", "direct question", "list promise", "story open"]
 
@@ -413,13 +417,16 @@ shapes (ONE shape morphs through 2-4 connected concepts, e.g. Text, Image, Video
 bars (a REAL growth figure with a chart that grows; real numbers from the story only): {"type":"bars","value":"max 8 chars, the real figure","label":"max 30 chars","series":[5-8 numbers showing the trend, ending at the headline figure],"narration":"ONE sentence, 6-14 words"}
 command (an AI search/command tool: a command palette types, filters, Enter, a toast confirms): {"type":"command","query":"max 22 chars","results":["exactly 3, max 26 chars each"],"toast":"max 28 chars","narration":"ONE sentence, 6-14 words"}
 tabs (a choice between 3 modes/plans/models; a liquid indicator slides to the one that matters): {"type":"tabs","items":["exactly 3, max 12 chars each"],"pick":<0-2>,"detail":"max 34 chars about the picked one","narration":"ONE sentence, 6-14 words"}
+prompt (an AI tool you talk to: a glass prompt box types the request, then the screen whips up to the answer): {"type":"prompt","prompt":"max 46 chars, what the user types","reply":"max 72 chars, the answer text","hi":"1-3 words copied EXACTLY from reply","narration":"ONE sentence, 6-14 words"}
+stack (2-3 named modes/features/models as stacked cards with giant glass titles): {"type":"stack","items":[{"title":"max 10 chars","tag":"max 12 chars"}  (2-3)],"narration":"ONE sentence, 6-14 words"}
+orbit (four related things: squares spin in around the product, lock into a cross, then slide into a labelled row): {"type":"orbit","icon":"<icon>","items":["exactly 4 labels, max 10 chars each"],"narration":"ONE sentence, 6-14 words"}
 end (always last): {"type":"end","text":"max 40 chars, the takeaway - echo or answer the opening hook so the video loops","hi":["1-2 words from text"],"narration":"ONE sentence whose last words flow naturally back into the opening line"}
 """
 
 FOCUS_NEWS_STRUCTURE = """Build the video as 8 or 9 scenes in this order:
  1. "say" - the HOOK (see HOOK RULES). Its narration is at most 9 words.
  2. "name" - ONLY if the story is about ONE specific named tool, product or model; otherwise skip it and use another beat.
- 3 to n-1. The body: 5-7 beats, each "say", "stat" or "icon", plus AT MOST 3 beats from the motion scenes kinetic, morph, shapes, bars, command, tabs - use one only when it truly matches what the voice says (a tool doing one thing = morph, a chain of concepts = shapes, a real growth figure = bars, an AI search tool = command, a choice of 3 modes = tabs, a quick 2-4 word contrast = kinetic). Never more than 2 of the same type in a row. Use "stat" or "bars" only for a REAL figure from the story. On-screen text of the motion scenes never ends with a full stop.
+ 3 to n-1. The body: 5-7 beats, each "say", "stat" or "icon", plus AT MOST 3 beats from the motion scenes kinetic, morph, shapes, bars, command, tabs, prompt, stack, orbit - use one only when it truly matches what the voice says (a tool doing one thing = morph, a chain of concepts = shapes, a real growth figure = bars, an AI search tool = command, a choice of 3 modes = tabs, a quick 2-4 word contrast = kinetic, a chatbot/assistant = prompt, 2-3 named modes or models = stack, four related products = orbit). Never more than 2 of the same type in a row. Use "stat" or "bars" only for a REAL figure from the story. On-screen text of the motion scenes never ends with a full stop.
  n. "end" (always last)"""
 
 FOCUS_REPO_STRUCTURE = """Build the video as 8 to 10 scenes in this order:
@@ -519,7 +526,7 @@ def validate_focus(script, story=None):
     if types[-1] != "end":
         return "last scene must be end"
     if sum(1 for t in types if t in FOCUS_EXTRA) > 3:
-        return "use at most 3 of the motion scenes (kinetic, morph, shapes, bars, command, tabs)"
+        return "use at most 3 of the motion scenes (kinetic, morph, shapes, bars, command, tabs, prompt, stack, orbit)"
     if "name" in types and types.index("name") != 1:
         return "the name scene must be scene 2"
     if types.count("name") > 1 or types.count("end") > 1:
@@ -910,7 +917,33 @@ def _san_mark(x):
     return {"kicker": "", "name": _nofs(x.get("name"), 20) or CHANNEL_NAME}
 
 
-SANITIZERS = {"morph": _san_morph, "shapes": _san_shapes, "bars": _san_bars, "kinetic": _san_kinetic, "command": _san_command,
+def _san_prompt(x):
+    rep_ = _nofs(x.get("reply"), 76) or "Here is your answer"
+    hi = _nofs(x.get("hi"), 24)
+    if not hi or hi.lower() not in rep_.lower():
+        hi = " ".join(rep_.split()[-2:])
+    return {"kicker": _clip(x.get("kicker"), 28), "prompt": _nofs(x.get("prompt"), 48) or "Make a launch video", "reply": rep_, "hi": hi}
+
+
+def _san_stack(x):
+    its = []
+    for i in (x.get("items") or [])[:3]:
+        i = i if isinstance(i, dict) else {"title": i}
+        its.append({"title": _nofs(i.get("title"), 10) or "Next", "tag": _nofs(i.get("tag"), 12)})
+    while len(its) < 2:
+        its.append({"title": "Next", "tag": ""})
+    return {"kicker": _clip(x.get("kicker"), 28), "items": its}
+
+
+def _san_orbit(x):
+    return {"kicker": _clip(x.get("kicker"), 28), "icon": _icon(x.get("icon"), "sparkles"), "items": _list_fit(x.get("items"), 4, 4, 10, "Item")}
+
+
+def _san_wordmark(x):
+    return {"name": _nofs(x.get("name"), 20) or CHANNEL_NAME}
+
+
+SANITIZERS = {"prompt": _san_prompt, "stack": _san_stack, "orbit": _san_orbit, "wordmark": _san_wordmark, "morph": _san_morph, "shapes": _san_shapes, "bars": _san_bars, "kinetic": _san_kinetic, "command": _san_command,
               "tabs": _san_tabs, "mark": _san_mark, "hook": _san_hook, "slam": _san_slam, "terminal": _san_terminal, "alert": _san_alert, "timeline": _san_timeline,
               "monitor": _san_monitor, "bignumber": _san_bignumber, "versus": _san_versus, "leaderboard": _san_leaderboard,
               "chat": _san_chat, "quote": _san_quote, "checklist": _san_checklist, "cta": _san_cta,

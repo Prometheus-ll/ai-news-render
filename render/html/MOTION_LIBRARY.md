@@ -20,6 +20,8 @@ Scene types and primitives for the HTML engine (`engine.html`). Everything is a 
 | `blurTo(el,a)` | opacity + blur swap for content that changes inside a morphing container |
 | `slotAl(t,a,b)` | fade in at `a`, out at `b` for a content slot |
 | `shapePath(s,R)` | radius-lerp morph between circle, squircle, triangle, star (`s` = 0..3) |
+| `setSmear(el,k,sx,sy)` | directional motion blur (SVG feGaussianBlur with separate x / y deviation), so blur follows the direction of a move |
+| `expo(t,t0,k)` | exponential approach: a move enters already moving and loses a fixed share of the remaining distance per second |
 | transition `panel` | accent panel sweeps across the frame; the scene hard-cuts under it |
 
 ## Scene types
@@ -31,11 +33,19 @@ Scene types and primitives for the HTML engine (`engine.html`). Everything is a 
 | `kinetic` | words (2-4) | each word lands on its own beat, hard cuts between light / dark / accent frames |
 | `command` | query, results (3), toast | command palette: types, list filters, Enter, a toast confirms |
 | `tabs` | items (3), pick, detail | liquid indicator: the leading edge rides a faster spring than the trailing edge |
+| `prompt` | prompt, reply, hi | frosted-glass prompt box springs out and types, whip-tilt up with vertical smear, the answer page scrolls in from low and blurred with one bold key phrase |
+| `stack` | items [{title, tag}] (2-3) | stacked cards with giant frosted-glass titles cut off by the card edge, blur-in with stagger |
+| `orbit` | icon, items (4) | four squares spin in around the product, lock into a cross, then slide into a labelled row |
+| `wordmark` | name | end card: the word arrives zoom-smeared (18 scaled copies) and settles on black (manual use; not offered to Gemini) |
 | `mark` | name | identity reveal: rings draw themselves, brand mark lands, wordmark tightens in (manual use; not offered to Gemini) |
 
-Gemini can choose `morph shapes bars kinetic command tabs` in both styles (`rich`: each type once, with the kicker chip;
+Gemini can choose `morph shapes bars kinetic command tabs prompt stack orbit` in both styles (`rich`: each type once, with the kicker chip;
 `focus`: at most 3 motion scenes per video). Each has a sanitizer in `pipeline/run_pipeline.py` (`_san_*`) that clamps lengths,
 strips trailing full stops and pads missing items, so a sloppy script can never break a render.
+
+## Explainer structure
+The angle "problem, solution, 3 steps, proof" is available to Gemini: problem (`say`), what it does (`say`/`name`), how it works in 3 steps (`phases` or `stack`), one proof point (`stat`/`bars`), name at the end (`end`).
+The channel's loop rule still applies in `focus` style: the last line echoes the first.
 
 ## Not built yet
 Dot-field wave (`field`), steps/editor/pivot/branch/fanout scenes from the earlier explainer files, and anything that needs the user's own footage.
