@@ -451,5 +451,26 @@
   "words": 121,
   "caption": "U.S. Orders Federal Ban on DeepSeek AI\n\nThe U.S. government has ordered a mandatory removal of DeepSeek AI products from all federal civilian agencies. This escalation highlights growing concerns over national security and data integrity in the global AI race. Follow for more AI updates.\n\n#ai #deepseek #usgovernment #cybersecurity #ainews #nationalsecurity #techpolitics #chinaai",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-21-055650-1.mp4",
+  "ts": "2026-10-21 05:59",
+  "kind": "news",
+  "headline": "OpenAI Expands into Life Sciences with 'Rosalind' Biotech Model",
+  "title": "OpenAI\u2019s Biotech Pivot: Meet the 'Rosalind' Life Sciences Model",
+  "source_link": "https://techcrunch.com/2026/10/20/openai-acquires-startup-orchestra-bio%e2%81%a0-to-beef-up-its-biotech-business/",
+  "theme": "ocean",
+  "angle": "the big question",
+  "scenes": [
+   "slam",
+   "reveal",
+   "phases",
+   "profile",
+   "shapes",
+   "cta"
+  ],
+  "words": 118,
+  "caption": "OpenAI\u2019s Biotech Pivot: Meet the 'Rosalind' Life Sciences Model\n\nOpenAI is moving into drug discovery with the acquisition of Orchestra Bio and the launch of the Rosalind model. They are building a new ecosystem for lab scientists to accelerate medical research. Follow for daily AI news.\n\n#ai #openai #biotech #lifesciences #rosalind #drugdiscovery #healthtech #futureofmedicine",
+  "status": "queued"
  }
 ]
