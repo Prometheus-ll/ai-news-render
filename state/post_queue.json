@@ -271,5 +271,14 @@
   "added": "2026-10-21 05:56",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-21-055650-1.mp4",
+  "caption": "OpenAI\u2019s Biotech Pivot: Meet the 'Rosalind' Life Sciences Model\n\nOpenAI is moving into drug discovery with the acquisition of Orchestra Bio and the launch of the Rosalind model. They are building a new ecosystem for lab scientists to accelerate medical research. Follow for daily AI news.\n\n#ai #openai #biotech #lifesciences #rosalind #drugdiscovery #healthtech #futureofmedicine",
+  "source_link": "https://techcrunch.com/2026/10/20/openai-acquires-startup-orchestra-bio%e2%81%a0-to-beef-up-its-biotech-business/",
+  "headline": "OpenAI Expands into Life Sciences with 'Rosalind' Biotech Model",
+  "added": "2026-10-21 05:59",
+  "status": "pending",
+  "attempts": 0
  }
 ]
