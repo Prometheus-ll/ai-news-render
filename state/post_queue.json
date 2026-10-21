@@ -280,8 +280,18 @@
   "source_link": "https://github.com/ruvnet/ruflo",
   "headline": "ruflo: \ud83c\udf0a The original agent harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, ",
   "added": "2026-10-20 06:00",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2107361539883040",
+    "at": "2026-10-21 19:13"
+   }
+  },
+  "posted_at": "2026-10-21 19:13",
+  "fb_id": "2107361539883040"
  },
  {
   "video": "renders/output/2026-10-21-055330-0.mp4",
