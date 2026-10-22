@@ -278,7 +278,7 @@ HOOK_TYPES = ["hook", "slam", "appclutter"]
 REPO_HOOK = "repohook"
 MID_TYPES = ["terminal", "alert", "timeline", "monitor", "bignumber", "versus", "leaderboard", "chat", "quote", "checklist",
              "profile", "hubmap", "roundup", "reveal", "phases", "cycle", "stars",
-             "morph", "shapes", "bars", "kinetic", "command", "tabs", "prompt", "stack", "orbit"]
+             "morph", "bars", "kinetic", "command", "tabs", "prompt", "stack", "orbit"]
 THEMES = ["indigo", "ember", "forest", "ocean", "neon", "signal", "mint", "paper"]
 TRANSITIONS = ["fade", "slide", "zoom", "wipe", "panel"]
 MODE_PATTERNS = ["alternate_light", "alternate_dark", "light_then_dark", "dark_then_light"]
@@ -313,7 +313,6 @@ phases (a process in 3-4 ordered steps, cards stacking top to bottom): {"type":"
 cycle (a loop / feedback cycle of 3-4 stages, e.g. plan -> build -> test -> repeat): {"type":"cycle","kicker":"2-3 words CAPS","center":"max 16 chars","nodes":[{"icon":"<icon>","label":"max 12 chars"}  (3-4)],"footnote":"optional max 44 chars","narration":"..."}
 stars (ONLY for a GitHub repo: its star count counting up): {"type":"stars","kicker":"2-3 words CAPS","value":"the real star count, e.g. 12.3k or 12345","caption":"max 30 chars","narration":"..."}
 morph (a tool/AI does ONE thing: a single pill becomes button -> loader -> check -> result as a cursor clicks it): {"type":"morph","kicker":"2-3 words CAPS","label":"max 20 chars, the button text e.g. Generate video","result":"max 26 chars, the outcome e.g. Done in 12 seconds","narration":"..."}
-shapes (ONE shape morphs through 2-4 connected concepts, e.g. Text -> Image -> Video -> Action): {"type":"shapes","kicker":"2-3 words CAPS","items":["2-4 words, each max 12 chars"],"narration":"..."}
 bars (a REAL growth/comparison figure with a chart that grows; ONLY with real numbers from the story): {"type":"bars","kicker":"2-3 words CAPS","value":"max 8 chars, the real figure e.g. 128%","label":"max 30 chars","series":[5-8 numbers showing the trend ending at the headline figure],"narration":"..."}
 kinetic (2-4 punchy words land on the beat, hard cuts between light/dark/accent frames): {"type":"kinetic","kicker":"2-3 words CAPS","words":["2-4 words, each max 12 chars"],"narration":"..."}
 command (an AI search/command tool: a command palette, type, the list filters, Enter, a toast confirms): {"type":"command","kicker":"2-3 words CAPS","query":"max 22 chars","results":["exactly 3, max 26 chars each"],"toast":"max 28 chars","narration":"..."}
@@ -343,10 +342,10 @@ def _san_stars(x):
 
 NEWS_STRUCTURE = """Build the video as 6 scenes in this order:
  1. exactly one OPENING scene: "hook", "slam" or "appclutter"
- 2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup, reveal, phases, cycle, morph, shapes, bars, kinetic, command, tabs, prompt, stack, orbit - \
+ 2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup, reveal, phases, cycle, morph, bars, kinetic, command, tabs, prompt, stack, orbit - \
 the ones that tell THIS story best (a funding story wants bignumber/leaderboard, a product launch wants chat/checklist/timeline, \
-a controversy wants versus/monitor/alert, a security story wants alert/terminal, a story about several products or agents wants roundup then profile, a platform/ecosystem story wants hubmap, a tool that does one thing wants morph, an AI search tool wants command, a choice of modes/plans wants tabs, a modality or pipeline chain wants shapes, a punchy 3-word contrast wants kinetic, a real growth number wants bars, a chatbot/assistant story wants prompt, two or three named modes or models want stack, four related products wants orbit, etc.)
- ON-SCREEN TEXT of morph, shapes, bars, kinetic, command, tabs, prompt, stack and orbit never ends with a full stop.
+a controversy wants versus/monitor/alert, a security story wants alert/terminal, a story about several products or agents wants roundup then profile, a platform/ecosystem story wants hubmap, a tool that does one thing wants morph, an AI search tool wants command, a choice of modes/plans wants tabs, a punchy 3-word contrast wants kinetic, a real growth number wants bars, a chatbot/assistant story wants prompt, two or three named modes or models want stack, four related products wants orbit, etc.)
+ ON-SCREEN TEXT of morph, bars, kinetic, command, tabs, prompt, stack and orbit never ends with a full stop.
  NAME RULE: if the story is about ONE specific named tool, product, model or repo, scene 2 MUST be "reveal" - announce its real name right after the hook.
  6. "cta" (always last)"""
 
@@ -401,7 +400,7 @@ Return ONE JSON object (no markdown, no commentary):
 
 # ---------------------------------------------------------------- FOCUS style (default): one visual per spoken idea
 VIDEO_STYLE = os.environ.get("VIDEO_STYLE", "rich")   # "rich" (default, the original multi-element scenes) or "focus" (new minimal style, still being tuned; opt in with VIDEO_STYLE=focus)
-FOCUS_EXTRA = ["kinetic", "morph", "shapes", "bars", "command", "tabs", "prompt", "stack", "orbit"]   # motion-library scenes, max 3 per video
+FOCUS_EXTRA = ["kinetic", "morph", "bars", "command", "tabs", "prompt", "stack", "orbit"]   # motion-library scenes, max 3 per video
 FOCUS_TYPES = ["say", "stat", "icon", "name", "code", "end"] + FOCUS_EXTRA
 HOOK_FORMATS = ["bold claim", "counterintuitive statement", "direct question", "list promise", "story open"]
 
@@ -413,7 +412,6 @@ name (scene 2 only, when the story is about ONE named tool/product/model/repo): 
 code (GitHub repo videos only: ONE exact command from the README): {"type":"code","cmd":"max 52 chars, copied from the README, never invented","narration":"ONE sentence telling what the command does"}
 kinetic (2-4 punchy words, each landing on its own beat; use for a quick contrast like Faster. Cheaper. Open source): {"type":"kinetic","words":["2-4 words, each max 12 chars, no full stops"],"narration":"ONE sentence, 6-14 words"}
 morph (a tool does ONE thing: a single pill becomes button -> loader -> check -> result): {"type":"morph","label":"max 20 chars, the button text","result":"max 26 chars, the outcome","narration":"ONE sentence, 6-14 words"}
-shapes (ONE shape morphs through 2-4 connected concepts, e.g. Text, Image, Video, Action): {"type":"shapes","items":["2-4 words, each max 12 chars"],"narration":"ONE sentence, 6-14 words"}
 bars (a REAL growth figure with a chart that grows; real numbers from the story only): {"type":"bars","value":"max 8 chars, the real figure","label":"max 30 chars","series":[5-8 numbers showing the trend, ending at the headline figure],"narration":"ONE sentence, 6-14 words"}
 command (an AI search/command tool: a command palette types, filters, Enter, a toast confirms): {"type":"command","query":"max 22 chars","results":["exactly 3, max 26 chars each"],"toast":"max 28 chars","narration":"ONE sentence, 6-14 words"}
 tabs (a choice between 3 modes/plans/models; a liquid indicator slides to the one that matters): {"type":"tabs","items":["exactly 3, max 12 chars each"],"pick":<0-2>,"detail":"max 34 chars about the picked one","narration":"ONE sentence, 6-14 words"}
@@ -426,7 +424,7 @@ end (always last): {"type":"end","text":"max 40 chars, the takeaway - echo or an
 FOCUS_NEWS_STRUCTURE = """Build the video as 8 or 9 scenes in this order:
  1. "say" - the HOOK (see HOOK RULES). Its narration is at most 9 words.
  2. "name" - ONLY if the story is about ONE specific named tool, product or model; otherwise skip it and use another beat.
- 3 to n-1. The body: 5-7 beats, each "say", "stat" or "icon", plus AT MOST 3 beats from the motion scenes kinetic, morph, shapes, bars, command, tabs, prompt, stack, orbit - use one only when it truly matches what the voice says (a tool doing one thing = morph, a chain of concepts = shapes, a real growth figure = bars, an AI search tool = command, a choice of 3 modes = tabs, a quick 2-4 word contrast = kinetic, a chatbot/assistant = prompt, 2-3 named modes or models = stack, four related products = orbit). Never more than 2 of the same type in a row. Use "stat" or "bars" only for a REAL figure from the story. On-screen text of the motion scenes never ends with a full stop.
+ 3 to n-1. The body: 5-7 beats, each "say", "stat" or "icon", plus AT MOST 3 beats from the motion scenes kinetic, morph, bars, command, tabs, prompt, stack, orbit - use one only when it truly matches what the voice says (a tool doing one thing = morph, a real growth figure = bars, an AI search tool = command, a choice of 3 modes = tabs, a quick 2-4 word contrast = kinetic, a chatbot/assistant = prompt, 2-3 named modes or models = stack, four related products = orbit). Never more than 2 of the same type in a row. Use "stat" or "bars" only for a REAL figure from the story. On-screen text of the motion scenes never ends with a full stop.
  n. "end" (always last)"""
 
 FOCUS_REPO_STRUCTURE = """Build the video as 8 to 10 scenes in this order:
@@ -526,7 +524,7 @@ def validate_focus(script, story=None):
     if types[-1] != "end":
         return "last scene must be end"
     if sum(1 for t in types if t in FOCUS_EXTRA) > 3:
-        return "use at most 3 of the motion scenes (kinetic, morph, shapes, bars, command, tabs, prompt, stack, orbit)"
+        return "use at most 3 of the motion scenes (kinetic, morph, bars, command, tabs, prompt, stack, orbit)"
     if "name" in types and types.index("name") != 1:
         return "the name scene must be scene 2"
     if types.count("name") > 1 or types.count("end") > 1:
