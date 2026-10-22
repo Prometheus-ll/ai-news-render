@@ -1,21 +1,5 @@
 [
  {
-  "ts": "2026-10-12 09:56",
-  "theme": "indigo",
-  "transition": "fade",
-  "angle": "who wins",
-  "scenes": [
-   "hook",
-   "timeline",
-   "versus",
-   "chat",
-   "terminal",
-   "cta"
-  ],
-  "headline": "Apple\u2019s First Smart Home Hardware 'HomeView' Gets Launch Date",
-  "link": "https://techcrunch.com/2026/10/11/will-the-homeview-be-apples-first-smart-home-success/"
- },
- {
   "ts": "2026-10-12 10:00",
   "theme": "forest",
   "transition": "zoom",
@@ -680,5 +664,23 @@
   "kind": "news",
   "headline": "Anthropic Pitches Federal AI Safety Bill with High Threshold for Intervention",
   "link": "https://techcrunch.com/2026/10/20/anthropic-pitches-ai-safety-bill-that-may-block-a-model-if-50-people-could-be-killed/"
+ },
+ {
+  "ts": "2026-10-22 06:00",
+  "theme": "forest",
+  "transition": "slide",
+  "angle": "proof",
+  "hook": null,
+  "scenes": [
+   "appclutter",
+   "reveal",
+   "cycle",
+   "profile",
+   "versus",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Recursive Debuts 'Flint,' a Coding Model Built by AI to Improve Itself",
+  "link": "https://techcrunch.com/2026/10/21/recursive-launches-flint-a-laptop-coding-model-it-says-was-largely-built-by-ai/"
  }
 ]
