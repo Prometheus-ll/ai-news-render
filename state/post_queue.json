@@ -337,8 +337,18 @@
   "source_link": "https://github.com/cloudflare/security-audit-skill",
   "headline": "security-audit-skill: A coding-agent skill for multi-phase security audits with independently verified, machin",
   "added": "2026-10-21 06:04",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "28957448667273971",
+    "at": "2026-10-22 19:09"
+   }
+  },
+  "posted_at": "2026-10-22 19:09",
+  "fb_id": "28957448667273971"
  },
  {
   "video": "renders/output/2026-10-22-055705-0.mp4",

@@ -532,7 +532,15 @@
   ],
   "words": 114,
   "caption": "Cloudflare's New AI Security Auditor\n\nCloudflare has released an open-source tool that turns coding agents into autonomous security auditors. Learn how to automate codebase vulnerability scans with this MIT-licensed project. Follow for daily AI news.\n\n#ai #security #cybersecurity #coding #programming #opensource #github #cloudflare #devsecops",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-10-22 19:09",
+  "fb_id": "28957448667273971",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "28957448667273971"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-22-055705-0.mp4",
