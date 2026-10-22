@@ -561,5 +561,27 @@
   "caption": "Recursive Flint: The AI Model That Built Itself\n\nStartup Recursive has launched Flint, a free coding model developed by its own AI research system. This self-improving architecture could signal the end of human bottlenecks in machine learning. Follow for daily AI news.\n\n#ai #coding #recursive #flint #machinelearning #software #tech #futuretech #productivity",
   "thumb": "renders/output/2026-10-22-060007-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-22-060356-2.mp4",
+  "ts": "2026-10-22 06:06",
+  "kind": "repo",
+  "headline": "orca: Orca is the place for working with a fleet of agents (e.g. Grok Bot, Claude Code). Run any coding agent ",
+  "title": "Orca: The Open Source Fleet of AI Coding Agents",
+  "source_link": "https://github.com/stablyai/orca",
+  "theme": "indigo",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "hubmap",
+   "checklist",
+   "terminal",
+   "cta"
+  ],
+  "words": 104,
+  "caption": "Orca: The Open Source Fleet of AI Coding Agents\n\nManage Claude, Grok, and Codex in a single IDE with Orca. This MIT-licensed tool supports parallel worktrees and mobile monitoring.\n\n#ai #opensource #github #coding #developer #productivity #claudecode #automation",
+  "thumb": "renders/output/2026-10-22-060356-2.jpg",
+  "status": "queued"
  }
 ]
