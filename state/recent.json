@@ -1,21 +1,5 @@
 [
  {
-  "ts": "2026-10-12 10:00",
-  "theme": "forest",
-  "transition": "zoom",
-  "angle": "before vs after",
-  "scenes": [
-   "hook",
-   "terminal",
-   "versus",
-   "monitor",
-   "checklist",
-   "cta"
-  ],
-  "headline": "Danu Robotics Deploys AI and Computer Vision to Automate Recycling",
-  "link": "https://techcrunch.com/2026/10/09/danu-robotics-fight-to-build-a-better-recycling-robot/"
- },
- {
   "ts": "2026-10-12 10:05",
   "theme": "neon",
   "transition": "slide",
@@ -682,5 +666,23 @@
   "kind": "news",
   "headline": "Recursive Debuts 'Flint,' a Coding Model Built by AI to Improve Itself",
   "link": "https://techcrunch.com/2026/10/21/recursive-launches-flint-a-laptop-coding-model-it-says-was-largely-built-by-ai/"
+ },
+ {
+  "ts": "2026-10-22 06:03",
+  "theme": "indigo",
+  "transition": "panel",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "reveal",
+   "hubmap",
+   "checklist",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "orca: Orca is the place for working with a fleet of agents (e.g. Grok Bot, Claud",
+  "link": "https://github.com/stablyai/orca"
  }
 ]

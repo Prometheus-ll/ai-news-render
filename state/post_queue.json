@@ -339,5 +339,15 @@
   "added": "2026-10-22 06:03",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-22-060356-2.mp4",
+  "caption": "Orca: The Open Source Fleet of AI Coding Agents\n\nManage Claude, Grok, and Codex in a single IDE with Orca. This MIT-licensed tool supports parallel worktrees and mobile monitoring.\n\n#ai #opensource #github #coding #developer #productivity #claudecode #automation",
+  "source_link": "https://github.com/stablyai/orca",
+  "headline": "orca: Orca is the place for working with a fleet of agents (e.g. Grok Bot, Claude Code). Run any coding agent ",
+  "thumb": "renders/output/2026-10-22-060356-2.jpg",
+  "added": "2026-10-22 06:06",
+  "status": "pending",
+  "attempts": 0
  }
 ]
