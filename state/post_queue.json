@@ -329,5 +329,15 @@
   "added": "2026-10-22 05:59",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-22-060007-1.mp4",
+  "caption": "Recursive Flint: The AI Model That Built Itself\n\nStartup Recursive has launched Flint, a free coding model developed by its own AI research system. This self-improving architecture could signal the end of human bottlenecks in machine learning. Follow for daily AI news.\n\n#ai #coding #recursive #flint #machinelearning #software #tech #futuretech #productivity",
+  "source_link": "https://techcrunch.com/2026/10/21/recursive-launches-flint-a-laptop-coding-model-it-says-was-largely-built-by-ai/",
+  "headline": "Recursive Debuts 'Flint,' a Coding Model Built by AI to Improve Itself",
+  "thumb": "renders/output/2026-10-22-060007-1.jpg",
+  "added": "2026-10-22 06:03",
+  "status": "pending",
+  "attempts": 0
  }
 ]
