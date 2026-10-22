@@ -1,21 +1,5 @@
 [
  {
-  "ts": "2026-10-11 15:26",
-  "theme": "ember",
-  "transition": "wipe",
-  "angle": "the big question",
-  "scenes": [
-   "slam",
-   "versus",
-   "monitor",
-   "timeline",
-   "alert",
-   "cta"
-  ],
-  "headline": "Fired OpenAI Researchers Dispute Misconduct Claims, Warning of 'Chilling Effect'",
-  "link": "https://techcrunch.com/2026/10/08/fired-openai-safety-researchers-dispute-misconduct-claims-warn-of-chilling-effect/"
- },
- {
   "ts": "2026-10-12 09:56",
   "theme": "indigo",
   "transition": "fade",
@@ -678,5 +662,23 @@
   "kind": "repo",
   "headline": "security-audit-skill: A coding-agent skill for multi-phase security audits with ",
   "link": "https://github.com/cloudflare/security-audit-skill"
+ },
+ {
+  "ts": "2026-10-22 05:57",
+  "theme": "neon",
+  "transition": "wipe",
+  "angle": "the big question",
+  "hook": null,
+  "scenes": [
+   "hook",
+   "reveal",
+   "bignumber",
+   "monitor",
+   "versus",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Anthropic Pitches Federal AI Safety Bill with High Threshold for Intervention",
+  "link": "https://techcrunch.com/2026/10/20/anthropic-pitches-ai-safety-bill-that-may-block-a-model-if-50-people-could-be-killed/"
  }
 ]

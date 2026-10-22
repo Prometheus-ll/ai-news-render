@@ -319,5 +319,15 @@
   "added": "2026-10-21 06:04",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-22-055705-0.mp4",
+  "caption": "Anthropic Proposes \"50 Death\" Rule for AI Regulation\n\nAnthropic has proposed a new federal safety bill that would only allow the government to block AI models if they pose a risk to at least 50 lives. The plan also requires judicial approval for any such intervention.\n\n#ai #anthropic #aisafety #techlaw #regulation #claude #artificialintelligence #futuretech",
+  "source_link": "https://techcrunch.com/2026/10/20/anthropic-pitches-ai-safety-bill-that-may-block-a-model-if-50-people-could-be-killed/",
+  "headline": "Anthropic Pitches Federal AI Safety Bill with High Threshold for Intervention",
+  "thumb": "renders/output/2026-10-22-055705-0.jpg",
+  "added": "2026-10-22 05:59",
+  "status": "pending",
+  "attempts": 0
  }
 ]
