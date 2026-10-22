@@ -517,5 +517,27 @@
   "words": 114,
   "caption": "Cloudflare's New AI Security Auditor\n\nCloudflare has released an open-source tool that turns coding agents into autonomous security auditors. Learn how to automate codebase vulnerability scans with this MIT-licensed project. Follow for daily AI news.\n\n#ai #security #cybersecurity #coding #programming #opensource #github #cloudflare #devsecops",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-22-055705-0.mp4",
+  "ts": "2026-10-22 05:59",
+  "kind": "news",
+  "headline": "Anthropic Pitches Federal AI Safety Bill with High Threshold for Intervention",
+  "title": "Anthropic Proposes \"50 Death\" Rule for AI Regulation",
+  "source_link": "https://techcrunch.com/2026/10/20/anthropic-pitches-ai-safety-bill-that-may-block-a-model-if-50-people-could-be-killed/",
+  "theme": "neon",
+  "angle": "the big question",
+  "scenes": [
+   "hook",
+   "reveal",
+   "bignumber",
+   "monitor",
+   "versus",
+   "cta"
+  ],
+  "words": 111,
+  "caption": "Anthropic Proposes \"50 Death\" Rule for AI Regulation\n\nAnthropic has proposed a new federal safety bill that would only allow the government to block AI models if they pose a risk to at least 50 lives. The plan also requires judicial approval for any such intervention.\n\n#ai #anthropic #aisafety #techlaw #regulation #claude #artificialintelligence #futuretech",
+  "thumb": "renders/output/2026-10-22-055705-0.jpg",
+  "status": "queued"
  }
 ]
