@@ -299,8 +299,18 @@
   "source_link": "https://techcrunch.com/2026/10/20/us-orders-federal-agencies-to-remove-chinas-deepseek-ai-from-their-systems/",
   "headline": "U.S. Government Orders Federal Ban on China\u2019s DeepSeek AI",
   "added": "2026-10-21 05:56",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1411243577829286",
+    "at": "2026-10-22 08:31"
+   }
+  },
+  "posted_at": "2026-10-22 08:31",
+  "fb_id": "1411243577829286"
  },
  {
   "video": "renders/output/2026-10-21-055650-1.mp4",
