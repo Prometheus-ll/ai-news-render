@@ -318,8 +318,18 @@
   "source_link": "https://techcrunch.com/2026/10/20/openai-acquires-startup-orchestra-bio%e2%81%a0-to-beef-up-its-biotech-business/",
   "headline": "OpenAI Expands into Life Sciences with 'Rosalind' Biotech Model",
   "added": "2026-10-21 05:59",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1843914800129185",
+    "at": "2026-10-22 13:23"
+   }
+  },
+  "posted_at": "2026-10-22 13:23",
+  "fb_id": "1843914800129185"
  },
  {
   "video": "renders/output/2026-10-21-060040-2.mp4",
