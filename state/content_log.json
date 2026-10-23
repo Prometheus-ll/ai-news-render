@@ -651,5 +651,27 @@
   "caption": "MIT Discovery: AI Agents Invent Games and Socialize\n\nResearchers observed AI agents developing complex social structures and even mourning items when left alone on a virtual island. This discovery suggests AGI could evolve its own culture beyond human programming. Follow for daily AI news.\n\n#ai #mit #agi #machinelearning #robotics #futureofai #tech #innovation",
   "thumb": "renders/output/2026-10-23-055706-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-23-060021-2.mp4",
+  "ts": "2026-10-23 06:03",
+  "kind": "repo",
+  "headline": "ponytail: Makes your AI agent think like the laziest senior dev in the room. The best code is the code you nev",
+  "title": "Ponytail: The AI agent skill that writes 50% less code",
+  "source_link": "https://github.com/DietrichGebert/ponytail",
+  "theme": "ocean",
+  "angle": "before vs after",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "stars",
+   "hubmap",
+   "terminal",
+   "cta"
+  ],
+  "words": 120,
+  "caption": "Ponytail: The AI agent skill that writes 50% less code\n\nDiscover Ponytail, the viral open-source project that makes AI agents think like senior developers. It slashes token costs and code bloat by forcing logic reuse over new builds. Follow for daily AI news.\n\n#ai #opensource #github #programming #coding #claude #developer #ponytail",
+  "thumb": "renders/output/2026-10-23-060021-2.jpg",
+  "status": "queued"
  }
 ]
