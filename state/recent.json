@@ -1,21 +1,5 @@
 [
  {
-  "ts": "2026-10-12 10:05",
-  "theme": "neon",
-  "transition": "slide",
-  "angle": "behind the scenes",
-  "scenes": [
-   "slam",
-   "chat",
-   "monitor",
-   "terminal",
-   "timeline",
-   "cta"
-  ],
-  "headline": "Consumer AI Shifts Toward SMS-Based Agent Distribution",
-  "link": "https://techcrunch.com/2026/10/10/all-the-ai-agents-that-can-live-in-your-text-messages/"
- },
- {
   "ts": "2026-10-12 21:02",
   "theme": "signal",
   "transition": "wipe",
@@ -684,5 +668,23 @@
   "kind": "repo",
   "headline": "orca: Orca is the place for working with a fleet of agents (e.g. Grok Bot, Claud",
   "link": "https://github.com/stablyai/orca"
+ },
+ {
+  "ts": "2026-10-23 05:54",
+  "theme": "ember",
+  "transition": "zoom",
+  "angle": "by the numbers",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "reveal",
+   "bignumber",
+   "leaderboard",
+   "timeline",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "OpenAI Eyes Record-Breaking $1.25 Trillion Valuation in New $30B Funding Round",
+  "link": "https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1-25t-valuation-ahead-of-ipo/"
  }
 ]
