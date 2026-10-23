@@ -345,6 +345,7 @@ NEWS_STRUCTURE = """Build the video as 6 scenes in this order:
  2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup, reveal, phases, cycle, morph, bars, kinetic, command, tabs, prompt, stack, orbit - \
 the ones that tell THIS story best (a funding story wants bignumber/leaderboard, a product launch wants chat/checklist/timeline, \
 a controversy wants versus/monitor/alert, a security story wants alert/terminal, a story about several products or agents wants roundup then profile, a platform/ecosystem story wants hubmap, a tool that does one thing wants morph, an AI search tool wants command, a choice of modes/plans wants tabs, a punchy 3-word contrast wants kinetic, a real growth number wants bars, a chatbot/assistant story wants prompt, two or three named modes or models want stack, four related products wants orbit, etc.)
+ MOTION RULE: AT LEAST TWO of the four middle scenes MUST come from the motion set morph, kinetic, command, tabs, prompt, stack, orbit, bars - pick the ones that fit the story best (they are the channel's signature look); the rest from the classic set.
  ON-SCREEN TEXT of morph, bars, kinetic, command, tabs, prompt, stack and orbit never ends with a full stop.
  NAME RULE: if the story is about ONE specific named tool, product, model or repo, scene 2 MUST be "reveal" - announce its real name right after the hook.
  6. "cta" (always last)"""
@@ -592,6 +593,9 @@ def build_script_prompt(story, recent, feedback=""):
 OUTLETS = ["techcrunch", "tech crunch", "the verge", "wired", "reuters", "bloomberg", "venturebeat", "the information", "cnbc", "ars technica", "engadget", "zdnet", "forbes"]
 
 
+MOTION_SET = ["morph", "kinetic", "command", "tabs", "prompt", "stack", "orbit", "bars"]
+
+
 def validate_script(script, story=None):
     if VIDEO_STYLE == "focus":
         return validate_focus(script, story)
@@ -613,6 +617,10 @@ def validate_script(script, story=None):
         return "last scene must be cta"
     if len(set(types)) != len(types):
         return "each scene type may be used only once"
+    n_motion = sum(1 for t in types if t in MOTION_SET)
+    if n_motion < (1 if is_repo else 2):
+        return ("use at least %d scene(s) from the motion set (morph, kinetic, command, tabs, prompt, stack, orbit, bars) - "
+                "e.g. kinetic for a punchy contrast, tabs for modes/plans, prompt for an assistant, stack for named modes, morph for a tool that does one thing, orbit for related products" % (1 if is_repo else 2))
     for x in sc:
         if x.get("type") not in HOOK_TYPES + MID_TYPES + ["cta", REPO_HOOK]:
             return f"unknown scene type {x.get('type')}"
