@@ -397,8 +397,18 @@
   "headline": "orca: Orca is the place for working with a fleet of agents (e.g. Grok Bot, Claude Code). Run any coding agent ",
   "thumb": "renders/output/2026-10-22-060356-2.jpg",
   "added": "2026-10-22 06:06",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "4692789667658684",
+    "at": "2026-10-23 19:04"
+   }
+  },
+  "posted_at": "2026-10-23 19:04",
+  "fb_id": "4692789667658684"
  },
  {
   "video": "renders/output/2026-10-23-055429-0.mp4",
