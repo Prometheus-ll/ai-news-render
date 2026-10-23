@@ -357,8 +357,18 @@
   "headline": "Anthropic Pitches Federal AI Safety Bill with High Threshold for Intervention",
   "thumb": "renders/output/2026-10-22-055705-0.jpg",
   "added": "2026-10-22 05:59",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1431039955122568",
+    "at": "2026-10-23 08:27"
+   }
+  },
+  "posted_at": "2026-10-23 08:27",
+  "fb_id": "1431039955122568"
  },
  {
   "video": "renders/output/2026-10-22-060007-1.mp4",
