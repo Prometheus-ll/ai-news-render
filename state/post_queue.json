@@ -399,5 +399,15 @@
   "added": "2026-10-23 05:59",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-23-060021-2.mp4",
+  "caption": "Ponytail: The AI agent skill that writes 50% less code\n\nDiscover Ponytail, the viral open-source project that makes AI agents think like senior developers. It slashes token costs and code bloat by forcing logic reuse over new builds. Follow for daily AI news.\n\n#ai #opensource #github #programming #coding #claude #developer #ponytail",
+  "source_link": "https://github.com/DietrichGebert/ponytail",
+  "headline": "ponytail: Makes your AI agent think like the laziest senior dev in the room. The best code is the code you nev",
+  "thumb": "renders/output/2026-10-23-060021-2.jpg",
+  "added": "2026-10-23 06:03",
+  "status": "pending",
+  "attempts": 0
  }
 ]
