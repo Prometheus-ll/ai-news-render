@@ -377,8 +377,18 @@
   "headline": "Recursive Debuts 'Flint,' a Coding Model Built by AI to Improve Itself",
   "thumb": "renders/output/2026-10-22-060007-1.jpg",
   "added": "2026-10-22 06:03",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1464105478964566",
+    "at": "2026-10-23 13:01"
+   }
+  },
+  "posted_at": "2026-10-23 13:01",
+  "fb_id": "1464105478964566"
  },
  {
   "video": "renders/output/2026-10-22-060356-2.mp4",
