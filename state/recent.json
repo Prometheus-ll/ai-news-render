@@ -1,21 +1,5 @@
 [
  {
-  "ts": "2026-10-12 21:02",
-  "theme": "signal",
-  "transition": "wipe",
-  "angle": "by the numbers",
-  "scenes": [
-   "appclutter",
-   "profile",
-   "leaderboard",
-   "checklist",
-   "versus",
-   "cta"
-  ],
-  "headline": "Meta Releases Muse Wonder, Its First Frontier-Level AI Model",
-  "link": "https://techcrunch.com/2026/10/12/meta-releases-its-first-frontier-model-muse-wonder/"
- },
- {
   "ts": "2026-10-12 21:06",
   "theme": "ember",
   "transition": "zoom",
@@ -686,5 +670,23 @@
   "kind": "news",
   "headline": "OpenAI Eyes Record-Breaking $1.25 Trillion Valuation in New $30B Funding Round",
   "link": "https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1-25t-valuation-ahead-of-ipo/"
+ },
+ {
+  "ts": "2026-10-23 05:57",
+  "theme": "signal",
+  "transition": "fade",
+  "angle": "behind the scenes",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "monitor",
+   "alert",
+   "checklist",
+   "phases",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "MIT Discovery: Idle AI Agents Develop Social Behaviors and Invent Their Own Game",
+  "link": "https://techcrunch.com/2026/10/22/left-alone-with-nothing-to-do-ai-agents-started-playing/"
  }
 ]
