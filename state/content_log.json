@@ -607,5 +607,27 @@
   "caption": "Orca: The Open Source Fleet of AI Coding Agents\n\nManage Claude, Grok, and Codex in a single IDE with Orca. This MIT-licensed tool supports parallel worktrees and mobile monitoring.\n\n#ai #opensource #github #coding #developer #productivity #claudecode #automation",
   "thumb": "renders/output/2026-10-22-060356-2.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-23-055429-0.mp4",
+  "ts": "2026-10-23 05:56",
+  "kind": "news",
+  "headline": "OpenAI Eyes Record-Breaking $1.25 Trillion Valuation in New $30B Funding Round",
+  "title": "OpenAI Eyes Record $1.25 Trillion Valuation in Massive Funding Move",
+  "source_link": "https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1-25t-valuation-ahead-of-ipo/",
+  "theme": "ember",
+  "angle": "by the numbers",
+  "scenes": [
+   "slam",
+   "reveal",
+   "bignumber",
+   "leaderboard",
+   "timeline",
+   "cta"
+  ],
+  "words": 119,
+  "caption": "OpenAI Eyes Record $1.25 Trillion Valuation in Massive Funding Move\n\nOpenAI is reportedly seeking a $30 billion funding round that would make it the most valuable private company ever. This capital injection is aimed at securing their lead in the race to AGI. Follow for more AI news.\n\n#ai #openai #agi #tech #finance #valuation #startup #artificialintelligence #future #technology",
+  "thumb": "renders/output/2026-10-23-055429-0.jpg",
+  "status": "queued"
  }
 ]
