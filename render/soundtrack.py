@@ -153,7 +153,7 @@ def music(dur, seed):
     L *= env
     R *= env
     rms = np.sqrt(np.mean(L ** 2) + 1e-9)
-    g = 0.105 / rms
+    g = 0.09 / rms
     return L * g, R * g
 
 
@@ -257,11 +257,12 @@ def mix(manifest, total, voice_path, out_path):
     pk = max(np.abs(fx.L[:n]).max(), np.abs(fx.R[:n]).max(), 1e-6)
     sc_ = min(1.0, .85 / pk)
     _write(base + '_sfx.wav', fx.L[:n] * sc_, fx.R[:n] * sc_)
-    fg = ("[0:a]aformat=sample_rates=44100:channel_layouts=stereo[mu];"
-          "[1:a]aformat=sample_rates=44100:channel_layouts=stereo[fx];"
+    fg = ("[0:a]aformat=sample_rates=44100:channel_layouts=stereo,lowpass=f=5200[mu];"
+          "[1:a]aformat=sample_rates=44100:channel_layouts=stereo,asplit=2[fx1][fx2];"
           "[2:a]aformat=sample_rates=44100:channel_layouts=stereo,asplit=2[v1][v2];"
           "[mu][v1]sidechaincompress=threshold=0.02:ratio=6:attack=12:release=420:makeup=1[md];"
-          "[md][fx][v2]amix=inputs=3:duration=longest:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11[o]")
+          "[md][fx1]sidechaincompress=threshold=0.015:ratio=8:attack=6:release=380:makeup=1[md2];"
+          "[md2][fx2][v2]amix=inputs=3:duration=longest:normalize=0,loudnorm=I=-14:TP=-1.5:LRA=11[o]")
     r = subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", base + '_music.wav', "-i", base + '_sfx.wav', "-i", voice_path,
                         "-filter_complex", fg, "-map", "[o]", "-ar", "44100", "-t", f"{total:.3f}", out_path],
                        capture_output=True, text=True)
