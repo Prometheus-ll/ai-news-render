@@ -389,5 +389,15 @@
   "added": "2026-10-23 05:56",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-23-055706-1.mp4",
+  "caption": "MIT Discovery: AI Agents Invent Games and Socialize\n\nResearchers observed AI agents developing complex social structures and even mourning items when left alone on a virtual island. This discovery suggests AGI could evolve its own culture beyond human programming. Follow for daily AI news.\n\n#ai #mit #agi #machinelearning #robotics #futureofai #tech #innovation",
+  "source_link": "https://techcrunch.com/2026/10/22/left-alone-with-nothing-to-do-ai-agents-started-playing/",
+  "headline": "MIT Discovery: Idle AI Agents Develop Social Behaviors and Invent Their Own Games",
+  "thumb": "renders/output/2026-10-23-055706-1.jpg",
+  "added": "2026-10-23 05:59",
+  "status": "pending",
+  "attempts": 0
  }
 ]
