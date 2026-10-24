@@ -712,7 +712,15 @@
   "words": 120,
   "caption": "Ponytail: The AI agent skill that writes 50% less code\n\nDiscover Ponytail, the viral open-source project that makes AI agents think like senior developers. It slashes token costs and code bloat by forcing logic reuse over new builds. Follow for daily AI news.\n\n#ai #opensource #github #programming #coding #claude #developer #ponytail",
   "thumb": "renders/output/2026-10-23-060021-2.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-10-24 18:03",
+  "fb_id": "1788828398819936",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1788828398819936"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-24-053814-0.mp4",
