@@ -103,7 +103,7 @@ def add_to_manifest(manifest, story, est_scene_s=7.0):
         return []
     try:
         scenes = manifest["scenes"]
-        idx = [i for i, s in enumerate(scenes) if s["type"] not in NO_REPLACE]
+        idx = [i for i, s in enumerate(scenes) if s["type"] not in NO_REPLACE and not s.get("beat")]
         if len(idx) < 2:
             return []
         i = idx[-2] if len(idx) >= 3 else idx[-1]          # a middle scene, not the first one after the reveal

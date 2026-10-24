@@ -447,13 +447,13 @@ CONTENT RULES
 - A "quote" scene needs a real quote from the story; a "leaderboard" or "bignumber" needs real figures; "profile", "hubmap" and "roundup" must only name things from the story from the story. \
 If the story lacks them, choose other scene types. "chat" is an illustrative example of the product, never presented as a real quote.
 - Narration is spoken English: short punchy sentences, no lists, no emojis. Each scene has 2 sentences of narration \
-(the cta may have 2 short sentences). Scene 1's narration opens with a hook that makes people stay (surprising fact, bold claim or question). \
+(the cta may have 2 short sentences). Scene 1's narration opens with a hook that makes people stay (surprising fact, bold claim or question) and is EXACTLY TWO very short sentences, each at most 9 words (about 3-4 seconds each): the viewer must see a new visual every 4 seconds, so the second sentence becomes its own fast follow-up scene. \
 Total narration across all scenes: 95-115 words (about 45 seconds spoken) - be concise.
 - All on-screen text is SHORT; respect every max length.
 - Icons must come ONLY from this list: <<icons>>
 
 Return ONE JSON object (no markdown, no commentary):
-{"thumb":{"text":"2-4 WORDS, max 24 chars total, the thumbnail headline: a curiosity gap or striking fact that makes people tap (e.g. FREE AI VIDEO TOOL, OPENAI JUST CHANGED EVERYTHING, STOP USING CHATGPT). Never a full sentence, never clickbait that the story does not back up","hi":"the ONE word of that text to highlight"},"title":"punchy title under 90 characters","description":"2-3 sentence description ending with a follow prompt (do not name any news outlet)",\
+{"beat":{"words":["2 or 3 punchy words that sum up the SECOND sentence of scene 1, each max 12 chars, no full stops"]},"thumb":{"text":"2-4 WORDS, max 24 chars total, the thumbnail headline: a curiosity gap or striking fact that makes people tap (e.g. FREE AI VIDEO TOOL, OPENAI JUST CHANGED EVERYTHING, STOP USING CHATGPT). Never a full sentence, never clickbait that the story does not back up","hi":"the ONE word of that text to highlight"},"title":"punchy title under 90 characters","description":"2-3 sentence description ending with a follow prompt (do not name any news outlet)",\
 "hashtags":["#ai","...","8 to 10 total, no spaces"],"angle":"...","theme":"...","transition":"...",\
 "mode_pattern":"...","product":{"name":"the main company or product this story is about","domain":"its website domain, e.g. openai.com","simple_icon":"its lowercase slug on simpleicons.org, e.g. openai, or empty"},"scenes":[ ...6 scene objects exactly as specified above, in order... ]}"""
 
@@ -1068,6 +1068,28 @@ def _san_thumb(t, scenes, story):
     return {"text": text or "AI NEWS", "hi": hi}
 
 
+_STOP = set("the a an and or of to in on for with is are was were be been it its this that these those you your they their we our as at by from but not no so if than then there here can will just now into over more most very new".split())
+
+
+def _split_opening(raw, beat):
+    """The opening scene would hold ONE visual for ~10 s. Split its two sentences: sentence 1 stays on the hook,
+    sentence 2 becomes a fast kinetic-words scene, so the picture changes every ~4 s."""
+    sents = [x for x in re.split(r"(?<=[.!?])\s+", str(raw[0].get("narration", "")).strip()) if x.strip()]
+    if len(sents) < 2:
+        return raw
+    rest = " ".join(sents[1:])
+    words = [w for w in ((beat or {}).get("words") or []) if str(w).strip()][:3]
+    if len(words) < 2:
+        toks = [re.sub(r"[^A-Za-z0-9$%+\-]", "", w) for w in rest.split()]
+        toks = [t for t in toks if t and t.lower() not in _STOP]
+        top = sorted(range(len(toks)), key=lambda i: -len(toks[i]))[:3]
+        words = [toks[i] for i in sorted(top)] or ["Here is why"]
+        if len(words) < 2:
+            words.append("Next")
+    first = dict(raw[0], narration=sents[0])
+    return [first, {"type": "kinetic", "words": words, "narration": rest, "_beat": True}] + list(raw[1:])
+
+
 def script_to_manifest(script, story=None, recent=None):
     """Gemini script -> (render manifest, voice-over text, framing record for the anti-repeat state)."""
     recent = recent or []
@@ -1083,11 +1105,15 @@ def script_to_manifest(script, story=None, recent=None):
         pattern = _pick(script.get("mode_pattern"), MODE_PATTERNS, [], seed // 5)
 
     raw = script["scenes"]
+    if not (VIDEO_STYLE == "focus" and (story or {}).get("kind") != "tutorial"):
+        raw = _split_opening(raw, script.get("beat"))
     modes = _modes(pattern, len(raw))
     scenes = []
     for i, x in enumerate(raw):
         t = x["type"]
         sc = {"type": t, "mode": modes[i], **SANITIZERS[t](x), "narration": str(x["narration"]).strip()}
+        if x.get("_beat"):
+            sc["beat"] = True
         scenes.append(sc)
     pr = script.get("product") if isinstance(script.get("product"), dict) else {}
     product = {"name": _clip(pr.get("name"), 30), "domain": re.sub(r"[^a-z0-9.\-]", "", str(pr.get("domain") or "").lower().replace("https://", "").replace("www.", "").split("/")[0]),
