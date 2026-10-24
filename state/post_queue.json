@@ -437,8 +437,18 @@
   "headline": "MIT Discovery: Idle AI Agents Develop Social Behaviors and Invent Their Own Games",
   "thumb": "renders/output/2026-10-23-055706-1.jpg",
   "added": "2026-10-23 05:59",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "29112760165076683",
+    "at": "2026-10-24 12:25"
+   }
+  },
+  "posted_at": "2026-10-24 12:25",
+  "fb_id": "29112760165076683"
  },
  {
   "video": "renders/output/2026-10-23-060021-2.mp4",
