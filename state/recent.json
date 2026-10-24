@@ -1,21 +1,5 @@
 [
  {
-  "ts": "2026-10-13 11:28",
-  "theme": "ocean",
-  "transition": "wipe",
-  "angle": "before vs after",
-  "scenes": [
-   "hook",
-   "roundup",
-   "bignumber",
-   "alert",
-   "checklist",
-   "cta"
-  ],
-  "headline": "Blueprints AI Generates Permit-Ready Construction Plans from Simple Sketches",
-  "link": "https://techcrunch.com/2026/10/12/this-ai-startup-says-it-can-generate-permit-ready-blueprints-in-minutes/"
- },
- {
   "ts": "2026-10-13 11:33",
   "theme": "neon",
   "transition": "slide",
@@ -692,5 +676,23 @@
   "kind": "news",
   "headline": "OpenAI Halts Live Internet Training Over Safety and Contamination Risks",
   "link": "https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/"
+ },
+ {
+  "ts": "2026-10-24 05:42",
+  "theme": "neon",
+  "transition": "slide",
+  "angle": "proof",
+  "hook": null,
+  "scenes": [
+   "appclutter",
+   "reveal",
+   "versus",
+   "kinetic",
+   "stack",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Microsoft's 'Medical Superintelligence' Beats Doctors in Science Study",
+  "link": "https://techcrunch.com/2026/10/22/microsofts-mustafa-suleyman-says-its-ai-outperforms-doctors-on-hard-cases-as-he-chases-medical-superintelligence/"
  }
 ]
