@@ -1209,6 +1209,13 @@ def process_story(i, story, recent_holder):
                                  "stars_text": f"{rp.get('stars', 0):,}", "language": rp.get("language", "")}
     else:
         manifest["product_logo"] = fetch_product_logo(manifest.get("product"))
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import custom_motion
+        record["motion_refs"] = custom_motion.add_to_manifest(manifest, story)
+        record["scenes"] = [x["type"] for x in manifest["scenes"]]
+    except Exception as e:  # noqa
+        print(f"[motion] skipped: {e}")
     print(f"Framing: {record['theme']} / {record['transition']} / {record['angle']} / {' > '.join(record['scenes'])}")
 
     stamp = time.strftime("%Y-%m-%d-%H%M%S") + f"-{i}"
