@@ -11,7 +11,7 @@ FORBIDDEN = re.compile(r"\b(fetch|XMLHttpRequest|WebSocket|import|eval|Function|
                        r"setInterval|requestAnimationFrame|Math\.random|Date|performance|navigator|window|globalThis|constructor|"
                        r"http|https)\b|<script|<iframe|<img|<link|url\(|@import|\.animate\(|animation\s*:|transition\s*:|"
                        r"\bdocument\.(write|cookie|location|domain)|(?<![\w.])(parent|top)\.|\.style\.transition|\.style\.animation")
-NO_REPLACE = {"hook", "slam", "appclutter", "repohook", "reveal", "stars", "cta"}
+NO_REPLACE = {"hook", "slam", "appclutter", "repohook", "reveal", "stars", "cta", "terminal"}
 
 
 def enabled():

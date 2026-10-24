@@ -247,6 +247,21 @@ README (the ONLY source of facts besides the summary above):
 """
 
 
+TUTORIAL_MODE = """
+
+ADDITIONAL INSTRUCTIONS FOR THIS VIDEO - it is a FREE TUTORIAL for the open-source tool <<repo_name>> (these override earlier rules where they conflict)
+Goal: a viewer with no experience can follow along and get it running. Cover, in order: what it is and that it is free (MIT license, open source), \
+how to download/install it, the first thing to run or do, and how it works under the hood in one idea.
+HARD RULES: every command, package name, URL and requirement comes from the README below - copy exact commands (shorten only if needed), never invent one. \
+Say honestly what is needed (for example Python, Node, Docker or an API key) ONLY if the README says so. Do not promise it is free beyond "the code is free and MIT licensed". \
+Narration is a calm, friendly step-by-step voice: about 110-125 words total, short sentences, each step says what to do. Say "this open source tool". \
+The thumbnail text must promise the tutorial (for example "RUN X FREE", "INSTALL IN 2 MIN", "FREE AI TOOL"). Hashtags must include #tutorial #opensource #howto.
+
+README (the ONLY source of facts besides the summary above):
+<<readme>>
+"""
+
+
 def fetch_repo_logo(story):
     """Org avatar for organisations; the GitHub mark for individual owners (no personal photos)."""
     repo = story.get("repo") or {}
@@ -286,6 +301,42 @@ ANGLES = ["myth vs reality", "countdown / top 3", "who wins", "what changes for 
           "by the numbers", "behind the scenes", "before vs after", "the big question",
           "problem, solution, 3 steps, proof"]
 STATE_PATH = os.path.join(REPO_ROOT, "state", "recent.json")
+
+# One "style pack" per video: the explanation scenes come mostly from the pack's set, with its own theme family, transition and
+# light/dark rhythm. The signature parts (opening, reveal with logo, cta, thumbnail) stay the same in every pack.
+STYLE_PACKS = {
+    "Terminal Ops":     {"mid": ["terminal", "command", "prompt", "checklist", "phases", "morph"], "themes": ["neon", "forest"], "transition": "wipe", "mode": "alternate_dark"},
+    "Data Story":       {"mid": ["bignumber", "bars", "leaderboard", "versus", "monitor", "kinetic"], "themes": ["ocean", "signal"], "transition": "slide", "mode": "light_then_dark"},
+    "Kinetic Editorial": {"mid": ["kinetic", "quote", "stack", "tabs", "alert", "bars"], "themes": ["ember", "paper"], "transition": "panel", "mode": "alternate_light"},
+    "Product Keynote":  {"mid": ["profile", "stack", "orbit", "morph", "tabs", "kinetic"], "themes": ["indigo", "mint"], "transition": "zoom", "mode": "dark_then_light"},
+    "Conversation":     {"mid": ["chat", "prompt", "quote", "versus", "command", "morph"], "themes": ["mint", "ocean"], "transition": "fade", "mode": "alternate_light"},
+    "Systems Map":      {"mid": ["hubmap", "orbit", "cycle", "timeline", "phases", "stack"], "themes": ["forest", "indigo"], "transition": "slide", "mode": "alternate_dark"},
+    "Playbook Steps":   {"mid": ["phases", "timeline", "checklist", "tabs", "roundup", "morph"], "themes": ["signal", "paper"], "transition": "wipe", "mode": "alternate_light"},
+    "Alert Room":       {"mid": ["alert", "monitor", "versus", "kinetic", "bignumber", "command"], "themes": ["ember", "neon"], "transition": "zoom", "mode": "dark_then_light"},
+}
+TUTORIAL_VIDEOS = int(os.environ.get("TUTORIAL_VIDEOS", "1"))   # how many "how to install and use it free" videos per run
+KINDS_WITH_REPO = ("repo", "tutorial")
+
+
+def pick_pack(recent, kind="news"):
+    """Least recently used style pack (tutorials skip the news-only packs)."""
+    names = [n for n in STYLE_PACKS if kind != "tutorial" or n in ("Terminal Ops", "Product Keynote", "Systems Map", "Playbook Steps")]
+    last = {}
+    for i, r in enumerate(recent):
+        if r.get("pack"):
+            last[r["pack"]] = i
+    return min(names, key=lambda n: (last.get(n, -1), names.index(n)))
+
+
+def pack_rule(pack, kind):
+    if not pack:
+        return ""
+    mid = STYLE_PACKS[pack]["mid"]
+    need = "AT LEAST THREE of the four" if kind == "news" else ("AT LEAST TWO of the three" if kind == "repo" else "AT LEAST TWO of the middle")
+    return (f"\n STYLE PACK for THIS video: \"{pack}\". {need} explanation scenes (everything except the opening, reveal, terminal and cta) MUST be "
+            f"chosen from: {', '.join(mid)}. Pick the ones that fit the story and order them so the video builds. "
+            f"(Theme, transition and light/dark rhythm are assigned automatically by the pack; still fill those fields.)")
+
 
 REPOHOOK_SPEC = """\
 repohook (ONLY for GitHub repo videos, ALWAYS scene 1: the screen opens on a glimpse of the repo's real GitHub page under the words "THIS GITHUB REPO" + your headline): {"type":"repohook","headline":"max 56 chars, lowercase start, COMPLETES the sentence 'This GitHub repo ...' with the single most surprising thing it does, e.g. turns any PDF into a podcast","narration":"2 sentences. MUST begin with the exact words 'This GitHub repo' and finish the hook, e.g. 'This GitHub repo turns any PDF into a podcast. And it is completely free.'"}
@@ -345,15 +396,24 @@ NEWS_STRUCTURE = """Build the video as 6 scenes in this order:
  2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup, reveal, phases, cycle, morph, bars, kinetic, command, tabs, prompt, stack, orbit - \
 the ones that tell THIS story best (a funding story wants bignumber/leaderboard, a product launch wants chat/checklist/timeline, \
 a controversy wants versus/monitor/alert, a security story wants alert/terminal, a story about several products or agents wants roundup then profile, a platform/ecosystem story wants hubmap, a tool that does one thing wants morph, an AI search tool wants command, a choice of modes/plans wants tabs, a punchy 3-word contrast wants kinetic, a real growth number wants bars, a chatbot/assistant story wants prompt, two or three named modes or models want stack, four related products wants orbit, etc.)
- MOTION RULE: AT LEAST TWO of the four middle scenes MUST come from the motion set morph, kinetic, command, tabs, prompt, stack, orbit, bars - pick the ones that fit the story best (they are the channel's signature look); the rest from the classic set.
  ON-SCREEN TEXT of morph, bars, kinetic, command, tabs, prompt, stack and orbit never ends with a full stop.
  NAME RULE: if the story is about ONE specific named tool, product, model or repo, scene 2 MUST be "reveal" - announce its real name right after the hook.
  6. "cta" (always last)"""
 
+TUTORIAL_STRUCTURE = """Build the video as 7 scenes in this order:
+ 1. exactly one OPENING scene: "hook" or "slam" - the promise: how to use <<tutorial_name>> for free (the headline/words must say it, e.g. "Use X free", "Run X in 2 minutes")
+ 2. "reveal" - announces the real name of the tool
+ 3. ONE scene that says WHAT IT IS and what you get, free: chosen from profile, checklist, stack, tabs, morph
+ 4. "terminal" - HOW TO INSTALL: the exact commands from the README (2-4 lines)
+ 5. ONE scene for FIRST USE in simple steps: chosen from phases, timeline, command, prompt
+ 6. ONE scene for HOW IT WORKS under the hood: chosen from hubmap, cycle, orbit, timeline, morph, stack
+ 7. "cta" (always last)
+ Scenes 3, 5, 6 must be three different types."""
+
 REPO_STRUCTURE = """Build the video as 6 scenes in this order:
  1. "repohook" - the opening: a quick glimpse of the repo's real GitHub page. Its narration MUST start with "This GitHub repo".
  2. "reveal" - announces the repo's real name right after the opening.
- 3-5. THREE DIFFERENT scenes chosen from: terminal, timeline, hubmap, checklist, profile, phases, cycle, stars - the ones that best explain how it works and how to use it.
+ 3-5. THREE DIFFERENT scenes chosen from: terminal, timeline, hubmap, checklist, profile, phases, cycle, stars, morph, command, tabs, prompt, stack, orbit, kinetic - the ones that best explain how it works and how to use it.
  6. "cta" (always last)"""
 
 
@@ -565,26 +625,29 @@ def describe_recent(recent):
     lines = []
     for r in recent[-4:][::-1]:
         lines.append(f"- opening={r.get('scenes', ['?'])[0]}, theme={r.get('theme')}, transition={r.get('transition')}, "
-                     f"angle={r.get('angle')}, scenes={'/'.join(r.get('scenes', []))}")
+                     f"pack={r.get('pack')}, angle={r.get('angle')}, scenes={'/'.join(r.get('scenes', []))}")
     return "\n".join(lines)
 
 
 def build_script_prompt(story, recent, feedback=""):
-    focus = VIDEO_STYLE == "focus"
+    kind = story.get("kind", "news")
+    focus = VIDEO_STYLE == "focus" and kind != "tutorial"
     p = FOCUS_PROMPT if focus else SCRIPT_PROMPT
     for k, v in {
         "headline": story["headline"], "summary": story["summary"], "why_it_matters": story["why_it_matters"],
         "source_link": story["source_link"],
         "specs": (FOCUS_SPECS if focus else SCENE_SPECS) + (REPOHOOK_SPEC if story.get("kind") == "repo" else ""),
-        "structure": ((FOCUS_REPO_STRUCTURE if focus else REPO_STRUCTURE) if story.get("kind") == "repo" else (FOCUS_NEWS_STRUCTURE if focus else NEWS_STRUCTURE)),
+        "structure": (TUTORIAL_STRUCTURE.replace("<<tutorial_name>>", (story.get("repo") or {}).get("name", "the tool")) if kind == "tutorial" else
+                      (FOCUS_REPO_STRUCTURE if focus else REPO_STRUCTURE) if kind == "repo" else (FOCUS_NEWS_STRUCTURE if focus else NEWS_STRUCTURE))
+                     + ("" if focus else pack_rule(story.get("pack"), kind)),
         "hooks": ", ".join(HOOK_FORMATS), "angles": ", ".join(ANGLES),
         "themes": ", ".join(THEMES), "transitions": ", ".join(TRANSITIONS), "modes": ", ".join(MODE_PATTERNS),
         "recent": describe_recent(recent), "icons": ICON_LIST,
     }.items():
         p = p.replace(f"<<{k}>>", str(v))
-    if story.get("kind") == "repo":
+    if kind in KINDS_WITH_REPO:
         rp = story.get("repo") or {}
-        p += (FOCUS_REPO_MODE if focus else REPO_MODE).replace("<<repo_name>>", rp.get("full_name", "")).replace("<<stars>>", f"{rp.get('stars', 0):,}").replace("<<readme>>", story.get("readme") or "(no README text available)")
+        p += (TUTORIAL_MODE if kind == "tutorial" else FOCUS_REPO_MODE if focus else REPO_MODE).replace("<<repo_name>>", rp.get("full_name", "")).replace("<<stars>>", f"{rp.get('stars', 0):,}").replace("<<readme>>", story.get("readme") or "(no README text available)")
     if feedback:
         p += f"\n\nYour previous attempt was rejected: {feedback}\nFix this and return the full JSON again."
     return p
@@ -597,14 +660,22 @@ MOTION_SET = ["morph", "kinetic", "command", "tabs", "prompt", "stack", "orbit",
 
 
 def validate_script(script, story=None):
-    if VIDEO_STYLE == "focus":
+    kind = (story or {}).get("kind", "news")
+    if VIDEO_STYLE == "focus" and kind != "tutorial":
         return validate_focus(script, story)
     sc = script.get("scenes")
     if not isinstance(sc, list) or not (5 <= len(sc) <= 7):
         return "scenes must be a list of 6 scene objects"
     types = [x.get("type") for x in sc]
-    is_repo = (story or {}).get("kind") == "repo"
-    if is_repo:
+    is_repo = kind == "repo"
+    if kind == "tutorial":
+        if types[0] not in ("hook", "slam") or types[1] != "reveal":
+            return "tutorial videos open with hook or slam, then reveal as scene 2"
+        if "terminal" not in types:
+            return "tutorial videos need a terminal scene with the install commands"
+        if not 6 <= len(sc) <= 7:
+            return "tutorial videos have 7 scenes"
+    elif is_repo:
         if types[0] != REPO_HOOK:
             return "repo videos must open with the repohook scene"
         if not str(sc[0].get("narration", "")).strip().lower().startswith("this github repo"):
@@ -617,10 +688,13 @@ def validate_script(script, story=None):
         return "last scene must be cta"
     if len(set(types)) != len(types):
         return "each scene type may be used only once"
-    n_motion = sum(1 for t in types if t in MOTION_SET)
-    if n_motion < (1 if is_repo else 2):
-        return ("use at least %d scene(s) from the motion set (morph, kinetic, command, tabs, prompt, stack, orbit, bars) - "
-                "e.g. kinetic for a punchy contrast, tabs for modes/plans, prompt for an assistant, stack for named modes, morph for a tool that does one thing, orbit for related products" % (1 if is_repo else 2))
+    pack = (story or {}).get("pack")
+    if pack and (story or {}).get("_strict", True):
+        in_pack = sum(1 for t in types if t in STYLE_PACKS[pack]["mid"] and t != "terminal")
+        need = 3 if kind == "news" else 2 if kind == "tutorial" else 2
+        if in_pack < need:
+            return (f"style pack '{pack}': at least {need} of the explanation scenes must be chosen from {', '.join(STYLE_PACKS[pack]['mid'])} "
+                    f"(you used {in_pack}); swap other scenes for pack scenes")
     for x in sc:
         if x.get("type") not in HOOK_TYPES + MID_TYPES + ["cta", REPO_HOOK]:
             return f"unknown scene type {x.get('type')}"
@@ -646,6 +720,7 @@ def write_script(story, recent=None, attempts=3):
     recent = recent or []
     feedback = ""
     for i in range(attempts):
+        story["_strict"] = i < attempts - 1      # the style-pack rule relaxes on the last attempt so a story is never lost
         try:
             script = gemini_text(build_script_prompt(story, recent, feedback))
             err = validate_script(script, story)
@@ -997,9 +1072,15 @@ def script_to_manifest(script, story=None, recent=None):
     """Gemini script -> (render manifest, voice-over text, framing record for the anti-repeat state)."""
     recent = recent or []
     seed = sum(ord(c) for c in (story or {}).get("headline", "x")) + len(recent)
-    theme = _pick(script.get("theme"), THEMES, [r.get("theme") for r in recent[-3:]], seed)
-    transition = _pick(script.get("transition"), TRANSITIONS, [r.get("transition") for r in recent[-2:]], seed // 3)
-    pattern = _pick(script.get("mode_pattern"), MODE_PATTERNS, [], seed // 5)
+    pack = (story or {}).get("pack")
+    if pack in STYLE_PACKS:
+        pk = STYLE_PACKS[pack]
+        theme = _pick(None, pk["themes"], [r.get("theme") for r in recent[-3:]], seed)
+        transition, pattern = pk["transition"], pk["mode"]
+    else:
+        theme = _pick(script.get("theme"), THEMES, [r.get("theme") for r in recent[-3:]], seed)
+        transition = _pick(script.get("transition"), TRANSITIONS, [r.get("transition") for r in recent[-2:]], seed // 3)
+        pattern = _pick(script.get("mode_pattern"), MODE_PATTERNS, [], seed // 5)
 
     raw = script["scenes"]
     modes = _modes(pattern, len(raw))
@@ -1013,11 +1094,11 @@ def script_to_manifest(script, story=None, recent=None):
                "slug": re.sub(r"[^a-z0-9]", "", str(pr.get("simple_icon") or "").lower())}
     manifest = {"brand": {"name": CHANNEL_NAME, "icon": "atom"}, "product": product, "source": "",
                 "theme": theme, "transition": transition, "scenes": scenes}
-    if VIDEO_STYLE == "focus":
+    if VIDEO_STYLE == "focus" and (story or {}).get("kind") != "tutorial":
         manifest["style"] = "focus"
     manifest["thumb"] = _san_thumb(script.get("thumb"), scenes, story)
     voice = " ".join(s["narration"] for s in scenes)
-    record = {"ts": time.strftime("%Y-%m-%d %H:%M"), "theme": theme, "transition": transition,
+    record = {"ts": time.strftime("%Y-%m-%d %H:%M"), "pack": pack, "theme": theme, "transition": transition,
               "angle": script.get("angle"), "hook": script.get("hook_format"), "scenes": [s["type"] for s in scenes],
               "kind": (story or {}).get("kind", "news"), "headline": (story or {}).get("headline", "")[:80], "link": (story or {}).get("source_link", "")}
     return manifest, voice, record
@@ -1142,10 +1223,11 @@ def render_thumbnail(manifest, story, out_path):
     try:
         th = manifest.get("thumb") or {}
         repo = story.get("kind") == "repo"
+        tut = story.get("kind") == "tutorial"
         tm = {"brand": manifest.get("brand", {}), "product": manifest.get("product", {}), "theme": manifest.get("theme"),
               "style": "focus", "product_logo": manifest.get("product_logo", ""),
               "scenes": [{"type": "thumb", "mode": "dark", "text": th.get("text", "AI NEWS"), "hi": th.get("hi", ""),
-                          "badge": "GITHUB REPO" if repo else "AI NEWS",
+                          "badge": "FREE TUTORIAL" if tut else "GITHUB REPO" if repo else "AI NEWS",
                           "icon": (manifest["scenes"][0].get("icon") if manifest.get("scenes") else "") or "sparkles",
                           "start": 0, "end": 2, "narration": ""}]}
         tp = out_path + ".json"
@@ -1199,9 +1281,11 @@ def git_push_with_retry(message, attempts=5):
 def process_story(i, story, recent_holder):
     recent = recent_holder[0]
     print(f"--- Processing story {i}: {story['headline']} ---")
+    story["pack"] = pick_pack(recent, story.get("kind", "news")) if VIDEO_STYLE != "focus" or story.get("kind") == "tutorial" else None
+    print(f"Style pack: {story['pack']}")
     script = write_script(story, recent)
     manifest, voice_script, record = script_to_manifest(script, story, recent)
-    if story.get("kind") == "repo":
+    if story.get("kind") in KINDS_WITH_REPO:
         rp = story.get("repo") or {}
         manifest["product_logo"] = fetch_repo_logo(story)
         manifest["repo_shot"] = capture_repo_screenshot(rp.get("full_name", ""))
@@ -1267,6 +1351,22 @@ def process_story(i, story, recent_holder):
     recent_holder[0] = recent
 
 
+HAS_COMMANDS = re.compile(r"```[^\n]*\n[^`]*\b(pip3? install|npm (i|install)|npx |pnpm |yarn |docker |git clone|uvx? |pipx |brew install|cargo install|go install|curl )", re.I)
+
+
+def pick_tutorials(cands, n):
+    """Repos whose README has real install commands, turned into tutorial stories."""
+    good = [c for c in cands if HAS_COMMANDS.search(c.get("readme") or "")]
+    out = []
+    for c in good[:n]:
+        t = dict(c)
+        t["kind"] = "tutorial"
+        t["why_it_matters"] = "Free and open source (MIT license): anyone can install it and run it today."
+        out.append(t)
+    print(f"[tutorial] selected {[t['repo']['full_name'] for t in out]}")
+    return out
+
+
 def main():
     os.makedirs(AUDIO_DIR, exist_ok=True)
     os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -1274,13 +1374,17 @@ def main():
     recent = load_recent()
     recent_holder = [recent]
     n_repo = min(GITHUB_VIDEOS, TOTAL_VIDEOS)
+    n_tut = min(TUTORIAL_VIDEOS, max(0, TOTAL_VIDEOS - n_repo - 1))
     stories = []
     try:
-        stories = fetch_stories(recent)[: max(1, TOTAL_VIDEOS - n_repo)]
+        stories = fetch_stories(recent)[: max(1, TOTAL_VIDEOS - n_repo - n_tut)]
     except Exception as e:  # noqa
         print(f"[news] skipped: {e}")
     try:
-        stories += fetch_github_repos(recent, n_repo)
+        cands = fetch_github_repos(recent, n_repo + n_tut + (3 if n_tut else 0))
+        stories += cands[:n_repo]
+        if n_tut:
+            stories += pick_tutorials(cands[n_repo:], n_tut)
     except Exception as e:  # noqa
         print(f"[github] skipped: {e}")
     print(f"Selected {len(stories)} stories")
