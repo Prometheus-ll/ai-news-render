@@ -417,8 +417,18 @@
   "headline": "OpenAI Eyes Record-Breaking $1.25 Trillion Valuation in New $30B Funding Round",
   "thumb": "renders/output/2026-10-23-055429-0.jpg",
   "added": "2026-10-23 05:56",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1824623075511053",
+    "at": "2026-10-24 08:03"
+   }
+  },
+  "posted_at": "2026-10-24 08:03",
+  "fb_id": "1824623075511053"
  },
  {
   "video": "renders/output/2026-10-23-055706-1.mp4",
