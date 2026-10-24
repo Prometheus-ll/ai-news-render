@@ -1,21 +1,5 @@
 [
  {
-  "ts": "2026-10-13 11:33",
-  "theme": "neon",
-  "transition": "slide",
-  "angle": "red flags",
-  "scenes": [
-   "hook",
-   "bignumber",
-   "profile",
-   "terminal",
-   "alert",
-   "cta"
-  ],
-  "headline": "Former Plaud Executive Raises $26M for 'Always-On' Background AI Assistant",
-  "link": "https://techcrunch.com/2026/10/12/former-plaud-exec-raises-26m-for-ai-app-that-listens-to-you-in-the-background/"
- },
- {
   "ts": "2026-10-13 19:47",
   "theme": "signal",
   "transition": "zoom",
@@ -694,5 +678,23 @@
   "kind": "news",
   "headline": "Microsoft's 'Medical Superintelligence' Beats Doctors in Science Study",
   "link": "https://techcrunch.com/2026/10/22/microsofts-mustafa-suleyman-says-its-ai-outperforms-doctors-on-hard-cases-as-he-chases-medical-superintelligence/"
+ },
+ {
+  "ts": "2026-10-24 05:45",
+  "theme": "ember",
+  "transition": "panel",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "reveal",
+   "stars",
+   "stack",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "Claude-Red: claude-red is a curated library of offensive security skills designe",
+  "link": "https://github.com/SnailSploit/Claude-Red"
  }
 ]

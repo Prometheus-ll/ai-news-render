@@ -741,5 +741,27 @@
   "caption": "Microsoft AI Achieves Medical Superintelligence\n\nMicrosoft's new specialized AI system has outperformed human doctors in a major scientific study. This marks a turning point as models move toward medical superintelligence. Follow for daily AI breakthroughs.\n\n#ai #microsoft #healthcare #medtech #science #future #tech #diagnostics #innovation #aiquantum",
   "thumb": "renders/output/2026-10-24-054231-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-24-054557-2.mp4",
+  "ts": "2026-10-24 05:48",
+  "kind": "repo",
+  "headline": "Claude-Red: claude-red is a curated library of offensive security skills designed for the Claude skills system",
+  "title": "Claude-Red: The AI Library for Offensive Security",
+  "source_link": "https://github.com/SnailSploit/Claude-Red",
+  "theme": "ember",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "stars",
+   "stack",
+   "terminal",
+   "cta"
+  ],
+  "words": 116,
+  "caption": "Claude-Red: The AI Library for Offensive Security\n\nCheck out this trending open-source library that turns Claude into a red team specialist. Follow for daily updates on the latest AI tools and repositories.\n\n#ai #opensource #github #redteam #cybersecurity #claude #coding #infosec",
+  "thumb": "renders/output/2026-10-24-054557-2.jpg",
+  "status": "queued"
  }
 ]
