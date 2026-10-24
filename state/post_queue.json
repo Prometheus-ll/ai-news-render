@@ -439,5 +439,15 @@
   "added": "2026-10-23 06:03",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-24-053814-0.mp4",
+  "caption": "OpenAI Halts Live Internet Training: Why the Move to Controlled Data?\n\nOpenAI is stopping its models from training on the live internet to prevent model collapse and contamination. This massive strategy shift prioritizes safety over real-time knowledge. Follow for more AI news.\n\n#ai #openai #machinelearning #safety #technews #llm #data #artificialintelligence",
+  "source_link": "https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/",
+  "headline": "OpenAI Halts Live Internet Training Over Safety and Contamination Risks",
+  "thumb": "renders/output/2026-10-24-053814-0.jpg",
+  "added": "2026-10-24 05:41",
+  "status": "pending",
+  "attempts": 0
  }
 ]

@@ -1,21 +1,5 @@
 [
  {
-  "ts": "2026-10-13 11:22",
-  "theme": "indigo",
-  "transition": "fade",
-  "angle": "the big question",
-  "scenes": [
-   "slam",
-   "quote",
-   "versus",
-   "alert",
-   "hubmap",
-   "cta"
-  ],
-  "headline": "Microsoft President Urges UK to Lead AI Regulation, Citing Lack of Safety Standa",
-  "link": "https://techcrunch.com/2026/10/12/microsoft-president-says-uk-is-best-placed-to-drive-ai-regulation/"
- },
- {
   "ts": "2026-10-13 11:28",
   "theme": "ocean",
   "transition": "wipe",
@@ -690,5 +674,23 @@
   "kind": "repo",
   "headline": "ponytail: Makes your AI agent think like the laziest senior dev in the room. The",
   "link": "https://github.com/DietrichGebert/ponytail"
+ },
+ {
+  "ts": "2026-10-24 05:38",
+  "theme": "mint",
+  "transition": "zoom",
+  "angle": "the big question",
+  "hook": null,
+  "scenes": [
+   "hook",
+   "stack",
+   "alert",
+   "kinetic",
+   "monitor",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "OpenAI Halts Live Internet Training Over Safety and Contamination Risks",
+  "link": "https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/"
  }
 ]
