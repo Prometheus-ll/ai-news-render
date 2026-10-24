@@ -459,5 +459,15 @@
   "added": "2026-10-24 05:45",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-24-054557-2.mp4",
+  "caption": "Claude-Red: The AI Library for Offensive Security\n\nCheck out this trending open-source library that turns Claude into a red team specialist. Follow for daily updates on the latest AI tools and repositories.\n\n#ai #opensource #github #redteam #cybersecurity #claude #coding #infosec",
+  "source_link": "https://github.com/SnailSploit/Claude-Red",
+  "headline": "Claude-Red: claude-red is a curated library of offensive security skills designed for the Claude skills system",
+  "thumb": "renders/output/2026-10-24-054557-2.jpg",
+  "added": "2026-10-24 05:48",
+  "status": "pending",
+  "attempts": 0
  }
 ]
