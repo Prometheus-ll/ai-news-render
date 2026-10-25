@@ -13,6 +13,7 @@ import argparse, json, os, re, shutil, subprocess, sys, tempfile, urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ENGINE = os.path.join(HERE, "html", "engine.html")
+PAPER = os.path.join(HERE, "html", "paper.html")   # "paper edition" explainer engine (tutorial videos)
 ICON_DIR = os.path.join(HERE, "icons")
 FPS = 30
 TAIL = 0.6  # seconds of video after the narration ends
@@ -219,7 +220,7 @@ def main():
         with sync_playwright() as p:
             browser = launch(p)
             page = browser.new_page(viewport={"width": 1080, "height": 1920}, device_scale_factor=1)
-            page.goto("file://" + ENGINE)
+            page.goto("file://" + (PAPER if m.get("engine") == "paper" else ENGINE))
             page.evaluate("m => build(m)", m)
             page.evaluate("document.fonts.ready.then(()=>{window.refit&&window.refit();return true;})")
             page.evaluate("t => seek(t)", 1.6)
@@ -254,7 +255,7 @@ def main():
     with sync_playwright() as p:
         browser = launch(p)
         page = browser.new_page(viewport={"width": 1080, "height": 1920}, device_scale_factor=1)
-        page.goto("file://" + ENGINE)
+        page.goto("file://" + (PAPER if m.get("engine") == "paper" else ENGINE))
         page.evaluate("m => build(m)", m)
         page.evaluate("document.fonts.ready.then(()=>{window.refit&&window.refit();return true;})")
 

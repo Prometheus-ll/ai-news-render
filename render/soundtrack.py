@@ -168,12 +168,64 @@ def _typing(fx, t0, dur, n, rng, g=.16):
         t += step * (.8 + .4 * rng.random())
 
 
+_PAPER_REF = {'hook': 5, 'meet': 7, 'grid': 5, 'path': 5, 'example': 5, 'step': 5.5, 'stats': 6, 'cta': 6}
+
+
+def paper_sfx(fx, sc, rng, S, D):
+    """Sounds for the explainer scenes. Their animation clock is scaled by ref/duration, so event times are mapped back."""
+    ty, d = sc.get('type'), sc.get('data') or {}
+    k = min(1.6, max(.65, _PAPER_REF.get(ty, 5) / D))
+    at = lambda t: S + t / k
+    if ty == 'hook':
+        for i in range(min(8, len(d.get('chips', [])))):
+            fx.put(pop(420 + 55 * i), at(.9 + i * .22), .10)
+        fx.put(thump(), at(3.2), .22)
+    elif ty == 'meet':
+        fx.put(thump(), at(.25), .30); fx.put(chime(1174.7, .8), at(.35), .14)
+        for tt in (1.5, 2.3, 4.0):
+            fx.put(pop(560), at(tt), .10)
+    elif ty == 'grid':
+        for i in range(min(10, len(d.get('items', [])))):
+            fx.put(tick(1300 + 70 * i), at(.4 + i * .28), .11)
+    elif ty == 'path':
+        for i in range(min(5, len(d.get('steps', [])))):
+            fx.put(pop(380 + 90 * i), at(.4 + i * .45), .12)
+    elif ty == 'example':
+        fx.put(pop(500), at(.2), .12)
+        for i in range(3):
+            fx.put(pop(420 + 100 * i), at(1.8 + i * .35), .11)
+        fx.put(chime(1318.5, .6), at(2.6), .12)
+    elif ty == 'step':
+        fx.put(pop(520), at(.1), .14)
+        ts = .6
+        for l in d.get('terminal', []):
+            n = max(1, len(l.get('text', ''))); dur = n / 34
+            _typing(fx, at(ts), dur / k, n, rng, .12); ts += dur + .35
+        fx.put(click(), at(ts), .3); fx.put(chime(1568, .5), at(ts + .12), .12)
+    elif ty == 'stats':
+        n = 28
+        for i in range(n):
+            fx.put(tick(1400 + 1500 * i / n), at(.5 + i * 2.0 / n), .09)
+        fx.put(chime(1568, .5), at(2.55), .15)
+        for tt in (1.8, 2.8, 3.6):
+            fx.put(pop(600), at(tt), .10)
+    elif ty == 'cta':
+        n = max(4, len(d.get('search', '')))
+        _typing(fx, at(1.4), 1.5 / k, n, rng, .12)
+        fx.put(click(), at(4.9), .4); fx.put(chime(1760, .7), at(4.95), .14)
+    else:
+        fx.put(pop(560), S + .05, .12)
+
+
 def scene_sfx(fx, sc, rng, first):
     S, E = sc['start'], sc['end']
     D = max(.5, E - S)
     ty = sc.get('type')
     if not first:
         fx.put(whoosh(rng, .5, .0), S - .25, .16)          # cut: whoosh peaks on the scene start
+    if sc.get('data') is not None:                       # explainer (paper engine) scenes
+        paper_sfx(fx, sc, rng, S, D)
+        return
     if ty == 'morph':
         tc = S + min(D * .2, .9); tl = tc + .05; tk = tl + max(.55, D * .2); tr = tk + max(.5, D * .17)
         fx.put(click(), tc, .5); fx.put(thump(), tc, .22); fx.put(tick(900), tl + .05, .12)
