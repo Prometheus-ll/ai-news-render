@@ -742,7 +742,15 @@
   "words": 112,
   "caption": "OpenAI Halts Live Internet Training: Why the Move to Controlled Data?\n\nOpenAI is stopping its models from training on the live internet to prevent model collapse and contamination. This massive strategy shift prioritizes safety over real-time knowledge. Follow for more AI news.\n\n#ai #openai #machinelearning #safety #technews #llm #data #artificialintelligence",
   "thumb": "renders/output/2026-10-24-053814-0.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-10-25 08:20",
+  "fb_id": "1115516004741819",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1115516004741819"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-24-054231-1.mp4",

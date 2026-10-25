@@ -477,8 +477,18 @@
   "headline": "OpenAI Halts Live Internet Training Over Safety and Contamination Risks",
   "thumb": "renders/output/2026-10-24-053814-0.jpg",
   "added": "2026-10-24 05:41",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1115516004741819",
+    "at": "2026-10-25 08:20"
+   }
+  },
+  "posted_at": "2026-10-25 08:20",
+  "fb_id": "1115516004741819"
  },
  {
   "video": "renders/output/2026-10-24-054231-1.mp4",
