@@ -499,5 +499,15 @@
   "added": "2026-10-24 05:48",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-25-055505-0.mp4",
+  "caption": "OpenAI Releases New 'Decision Model' to Take on Industry Leader Jev\n\nOpenAI has officially launched its new decision-making model to the public. It moves beyond text generation into high-stakes logical reasoning to compete with Jev. Follow for more AI breakthroughs.\n\n#ai #openai #artificialintelligence #tech #logic #strategy #enterprise #future #machinelearning",
+  "source_link": "https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/",
+  "headline": "OpenAI Releases Public 'Decision Model' to Rival Industry-Leader Jev",
+  "thumb": "renders/output/2026-10-25-055505-0.jpg",
+  "added": "2026-10-25 05:58",
+  "status": "pending",
+  "attempts": 0
  }
 ]
