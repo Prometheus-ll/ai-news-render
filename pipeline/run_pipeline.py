@@ -1081,7 +1081,12 @@ def _split_opening(raw, beat):
         if len(words) < 2:
             words.append("Next")
     first = dict(raw[0], narration=sents[0])
-    return [first, {"type": "stack", "items": [{"title": w, "tag": ""} for w in words[:3]], "narration": rest, "_beat": True}] + list(raw[1:])
+    used = {x.get("type") for x in raw}
+    if "stack" in used and "morph" not in used:      # never two stack scenes in one video: the beat becomes a button that morphs
+        beat_scene = {"type": "morph", "label": words[0], "result": words[1], "narration": rest, "_beat": True}
+    else:
+        beat_scene = {"type": "stack", "items": [{"title": w, "tag": ""} for w in words[:3]], "narration": rest, "_beat": True}
+    return [first, beat_scene] + list(raw[1:])
 
 
 def script_to_manifest(script, story=None, recent=None):
