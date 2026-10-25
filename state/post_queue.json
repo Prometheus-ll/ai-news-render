@@ -497,8 +497,18 @@
   "headline": "Microsoft's 'Medical Superintelligence' Beats Doctors in Science Study",
   "thumb": "renders/output/2026-10-24-054231-1.jpg",
   "added": "2026-10-24 05:45",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1293601502882484",
+    "at": "2026-10-25 12:55"
+   }
+  },
+  "posted_at": "2026-10-25 12:55",
+  "fb_id": "1293601502882484"
  },
  {
   "video": "renders/output/2026-10-24-054557-2.mp4",
