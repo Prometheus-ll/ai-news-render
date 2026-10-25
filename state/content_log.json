@@ -802,7 +802,15 @@
   "words": 116,
   "caption": "Claude-Red: The AI Library for Offensive Security\n\nCheck out this trending open-source library that turns Claude into a red team specialist. Follow for daily updates on the latest AI tools and repositories.\n\n#ai #opensource #github #redteam #cybersecurity #claude #coding #infosec",
   "thumb": "renders/output/2026-10-24-054557-2.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-10-25 18:21",
+  "fb_id": "2192748295002255",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "2192748295002255"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-25-055505-0.mp4",

@@ -517,8 +517,18 @@
   "headline": "Claude-Red: claude-red is a curated library of offensive security skills designed for the Claude skills system",
   "thumb": "renders/output/2026-10-24-054557-2.jpg",
   "added": "2026-10-24 05:48",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2192748295002255",
+    "at": "2026-10-25 18:21"
+   }
+  },
+  "posted_at": "2026-10-25 18:21",
+  "fb_id": "2192748295002255"
  },
  {
   "video": "renders/output/2026-10-25-055505-0.mp4",
