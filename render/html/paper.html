@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080,height=1920">
+<title>AI Quantum - explainer engine</title>
+<style>
+@font-face{font-family:'PoppinsX';src:url('../fonts/Poppins-Regular.ttf');font-weight:400}
+@font-face{font-family:'PoppinsX';src:url('../fonts/Poppins-Medium.ttf');font-weight:500}
+@font-face{font-family:'PoppinsX';src:url('../fonts/Poppins-Bold.ttf');font-weight:600 900}
+html,body{margin:0;background:#060a1a;overflow:hidden}
+canvas{display:block;width:1080px;height:1920px}
+.pre{position:absolute;left:-9999px;font-family:'PoppinsX'}
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<span class="pre" style="font-weight:500">a</span><span class="pre" style="font-weight:900">a</span>
+<script>
+/* ======================================================================
+   Explainer engine - the explanation video layout (hook wall, meet card, module grid, learning path, example,
+   numbered steps with a terminal, stats, call to action) drawn in the AI Quantum brand look:
+   Poppins, the channel theme colours, dark/light scenes, glass panels with soft glows, the brand overlay and caption pill.
+   Data driven: build(manifest) then seek(t). Every frame is a pure function of t. No bounce, no particles.
+   Scene types: hook, meet, grid, path, example, step, stats, cta  (see MOTION_LIBRARY.md)
+   ====================================================================== */
+const W = 1080, H = 1920;
+const cv = document.getElementById('c'), g = cv.getContext('2d');
+const THEMES = {
+ indigo:{acc:'#2f55e0',acc2:'#22d3ee',lightbg:'#f3f6fc',darkbg:'#060a1a',t1:'#22d3ee',al:'#ff4d5e',vi:'#a78bfa',cta1:'#0fb894',plate:'#fbbf24',bg:'grid'},
+ ember:{acc:'#e11d48',acc2:'#fb923c',lightbg:'#fff6f4',darkbg:'#14070b',t1:'#fb923c',al:'#fb7185',vi:'#f0abfc',cta1:'#e11d48',plate:'#fde047',bg:'dots'},
+ forest:{acc:'#059669',acc2:'#84cc16',lightbg:'#f1fbf5',darkbg:'#04120c',t1:'#34d399',al:'#f87171',vi:'#5eead4',cta1:'#4f46e5',plate:'#fde047',bg:'diag'},
+ ocean:{acc:'#0284c7',acc2:'#22d3ee',lightbg:'#eff8ff',darkbg:'#031525',t1:'#38bdf8',al:'#fb7185',vi:'#818cf8',cta1:'#0284c7',plate:'#fbbf24',bg:'stripes'},
+ neon:{acc:'#7c3aed',acc2:'#ec4899',lightbg:'#faf5ff',darkbg:'#0b0620',t1:'#e879f9',al:'#fb7185',vi:'#c4b5fd',cta1:'#7c3aed',plate:'#a3e635',bg:'dots'},
+ signal:{acc:'#111827',acc2:'#f59e0b',lightbg:'#fffbeb',darkbg:'#0a0a0a',t1:'#fbbf24',al:'#ef4444',vi:'#fcd34d',cta1:'#111827',plate:'#fbbf24',bg:'stripes'},
+ mint:{acc:'#0d9488',acc2:'#6366f1',lightbg:'#effdfa',darkbg:'#031a18',t1:'#2dd4bf',al:'#fb7185',vi:'#a5b4fc',cta1:'#0d9488',plate:'#fde047',bg:'diag'},
+ paper:{acc:'#1d4ed8',acc2:'#f43f5e',lightbg:'#fafaf9',darkbg:'#0c0a09',t1:'#60a5fa',al:'#f43f5e',vi:'#d6d3d1',cta1:'#1d4ed8',plate:'#fde047',bg:'plain'}
+};
+let T = THEMES.indigo, P = {}, AC = [];
+const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+const rgba = (h, a) => { const [r, gg, b] = hex(h); return `rgba(${r},${gg},${b},${a})`; };
+const mixc = (a, b, t) => { const A = hex(a), B = hex(b); return '#' + A.map((v, i) => Math.round(v + (B[i] - v) * t).toString(16).padStart(2, '0')).join(''); };
+const lum = h => { const [r, gg, b] = hex(h); return (.299 * r + .587 * gg + .114 * b) / 255; };
+const onc = h => lum(h) > .55 ? '#0b1020' : '#ffffff';
+function setScene(mode) {
+  const dark = mode !== 'light', k = dark ? T.acc2 : T.acc;
+  P = { dark, k, bg: dark ? T.darkbg : T.lightbg, tx: dark ? '#ffffff' : '#0f172a', sub: dark ? '#94a3c4' : '#64748b',
+        panel: dark ? mixc(T.darkbg, '#262e63', .28) : '#ffffff', edge: dark ? rgba(k, .38) : rgba(T.acc, .10),
+        glow: dark ? rgba(k, .26) : rgba(T.acc, .22), term: dark ? '#050813' : '#0b1020' };
+}
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const ramp = (t, t0, d) => clamp((t - t0) / d);
+const eo = x => 1 - Math.pow(1 - x, 3);
+const eio = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const pop = (t, t0, d = .5) => eo(ramp(t, t0, d));                 // smooth settle, no overshoot
+const lerp = (a, b, u) => a + (b - a) * u;
+const SANS = '"PoppinsX", "Poppins", system-ui, sans-serif';
+const MONO = '"DejaVu Sans Mono", "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace';
+const font = (wt, size, mono) => `${wt} ${Math.round(size)}px ${mono ? MONO : SANS}`;
+const mw = (s, wt, size, mono) => { g.font = font(wt, size, mono); return g.measureText(s).width; };
+const fit = (s, wt, size, maxw, mono) => Math.min(size, size * maxw / Math.max(1, mw(s, wt, size, mono)));
+
+function rr(x, y, w, h, r) { r = Math.min(r, w / 2, h / 2); g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r);
+  g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); }
+// glass / white panel: soft glow, hairline border. inner() draws in local coords (origin = centre)
+function card(cx, cy, w, h, o = {}, inner) {
+  const { fill = P.panel, r = 36, lw = 1.5, rot = 0, sc = 1, a = 1, stroke = P.edge, glow = P.glow, blur = 54, dy = 16 } = o;
+  if (a <= .01 || sc <= .01) return;
+  g.save(); g.globalAlpha *= a; g.translate(cx, cy); g.rotate(rot * Math.PI / 180); g.scale(sc, sc);
+  g.shadowColor = glow; g.shadowBlur = blur; g.shadowOffsetY = P.dark ? 0 : dy;
+  rr(-w / 2, -h / 2, w, h, r); g.fillStyle = fill; g.fill();
+  g.shadowColor = 'transparent'; g.shadowBlur = 0; g.shadowOffsetY = 0;
+  if (lw) { g.lineWidth = lw; g.strokeStyle = stroke; g.stroke(); }
+  if (inner) inner();
+  g.restore();
+}
+function txt(s, x, y, o = {}) {
+  const { size = 40, wt = 800, fill = P.tx, al = 'center', a = 1, mono = false, rot = 0, sc = 1 } = o;
+  if (a <= .01 || !s || sc <= .01) return;
+  g.save(); g.globalAlpha *= a; g.translate(x, y); g.rotate(rot * Math.PI / 180); g.scale(sc, sc);
+  g.font = font(wt, size, mono); g.fillStyle = fill; g.textAlign = al; g.textBaseline = 'middle'; g.fillText(s, 0, 0); g.restore();
+}
+function line(x0, y0, x1, y1, w, col, a = 1) { if (a <= .01) return; g.save(); g.globalAlpha *= a; g.strokeStyle = col; g.lineWidth = w; g.lineCap = 'round';
+  g.beginPath(); g.moveTo(x0, y0); g.lineTo(x1, y1); g.stroke(); g.restore(); }
+function dot(x, y, r, fill, lw = 0, stroke = 'transparent') { g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fillStyle = fill; g.fill(); if (lw) { g.lineWidth = lw; g.strokeStyle = stroke; g.stroke(); } }
+// soft highlight band behind a headline
+function marker(cx, cy, w, h, col, u = 1) { if (u <= .01) return; g.save(); g.translate(cx - w / 2, cy - h / 2); g.globalAlpha *= P.dark ? .55 : .5; rr(0, 0, w * u, h, h / 2); g.fillStyle = col; g.fill(); g.restore(); }
+// pill chip
+function sticker(t, t0, s, cx, cy, fill, rot = 0, size = 42, tf) {
+  const p = pop(t, t0, .5); if (p <= .01) return; tf = tf || onc(fill);
+  size = Math.min(size, size * 880 / (mw(s, 700, size) + 70));
+  const w = mw(s, 700, size) + 70, h = size * 1.9;
+  card(cx, cy, w, h, { fill, rot: rot * .6, sc: .9 + .1 * p, a: p, r: h / 2, lw: 0, glow: rgba(fill, .45), blur: 34, dy: 10 }, () => txt(s, 0, 2, { size, wt: 700, fill: tf }));
+}
+function stickerIcon(t, t0, s, kind, cx, cy, fill, rot = 0, size = 40, tf) {
+  const p = pop(t, t0, .5); if (p <= .01) return; tf = tf || onc(fill);
+  size = Math.min(size, size * 880 / (mw(s, 700, size) + 70 + size * 1.5));
+  const w = mw(s, 700, size) + 70 + size * 1.5, h = size * 1.9;
+  card(cx, cy, w, h, { fill, rot: rot * .6, sc: .9 + .1 * p, a: p, r: h / 2, lw: 0, glow: rgba(fill, .45), blur: 34, dy: 10 }, () => {
+    ico(kind, -w / 2 + 38 + size * .45, 0, size * 1.1, { fill: tf, lw: 0, solid: true });
+    txt(s, size * .7, 2, { size, wt: 700, fill: tf });
+  });
+}
+// call-out badge (replaces the stamp): gradient pill that eases in
+function stamp(t, t0, s, cx, cy, col, rot = -3, size = 50) {
+  const p = pop(t, t0, .5); if (p <= .01) return;
+  size = Math.min(size, size * 900 / (mw(s, 800, size) + 90));
+  const w = mw(s, 800, size) + 90, h = size * 1.9;
+  g.save(); g.translate(cx, cy); g.rotate(rot * Math.PI / 180); g.scale(.92 + .08 * p, .92 + .08 * p); g.globalAlpha *= p;
+  g.shadowColor = rgba(T.acc2, .45); g.shadowBlur = 46; g.shadowOffsetY = P.dark ? 0 : 14;
+  rr(-w / 2, -h / 2, w, h, h / 2); const gr = g.createLinearGradient(-w / 2, 0, w / 2, 0); gr.addColorStop(0, T.acc); gr.addColorStop(1, T.acc2); g.fillStyle = gr; g.fill();
+  g.shadowColor = 'transparent'; g.shadowBlur = 0; g.shadowOffsetY = 0;
+  txt(s, 0, 3, { size, wt: 800, fill: '#fff', al: 'center' }); g.restore();
+}
+function headline(t, t0, s, y, size, o = {}) {
+  const { fill = P.tx, mk = null, maxw = 940, a = 1 } = o;
+  const sz = fit(s, 900, size, maxw), p = pop(t, t0, .6), w = mw(s, 900, sz);
+  if (mk) marker(540, y + sz * .24, w + 44, sz * .5, mk, eo(ramp(t, t0 + .35, .55)));
+  txt(s, 540, y + (1 - p) * 46, { size: sz, wt: 900, fill, a: clamp(p * 2) });
+}
+function starPts(cx, cy, R, r) { const p = []; for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rad = i % 2 ? r : R; p.push([cx + rad * Math.cos(a), cy + rad * Math.sin(a)]); } return p; }
+
+// flat icons drawn in a 100-unit box centred on (x, y)
+function ico(kind, x, y, s, o = {}) {
+  const { fill = T.acc2, lw = 4, a = 1, rot = 0, solid = false } = o; if (a <= .01 || s <= 1) return;
+  g.save(); g.globalAlpha *= a; g.translate(x, y); g.rotate(rot * Math.PI / 180); g.scale(s / 100, s / 100);
+  const ink = solid ? fill : 'rgba(11,16,32,.9)';
+  g.lineWidth = Math.max(lw, solid ? 0 : 3) * 100 / s; g.lineJoin = 'round'; g.lineCap = 'round'; g.strokeStyle = ink; g.fillStyle = fill;
+  const dr = () => { if (!solid) g.stroke(); };
+  const poly = (p, f = true) => { g.beginPath(); p.forEach(([a_, b_], i) => i ? g.lineTo(a_, b_) : g.moveTo(a_, b_)); g.closePath(); if (f) g.fill(); dr(); };
+  const ln = p => { g.beginPath(); p.forEach(([a_, b_], i) => i ? g.lineTo(a_, b_) : g.moveTo(a_, b_)); g.stroke(); };
+  const circ = (cx, cy, r, f = true) => { g.beginPath(); g.arc(cx, cy, r, 0, 7); if (f) g.fill(); dr(); };
+  const rect = (x_, y_, w_, h_, r_) => { g.beginPath(); g.roundRect(x_, y_, w_, h_, r_); g.fill(); dr(); };
+  switch (kind) {
+    case 'bolt': poly([[12, -50], [-28, 6], [-4, 6], [-14, 50], [30, -8], [6, -8], [18, -50]]); break;
+    case 'star': poly(starPts(0, 4, 50, 21)); break;
+    case 'check': g.strokeStyle = solid ? fill : ink; g.lineWidth = (solid ? 9 : 8) * 100 / s * (s / 100); ln([[-30, 2], [-10, 24], [30, -22]]); break;
+    case 'robot': g.strokeStyle = ink; ln([[0, -24], [0, -38]]); rect(-46, -6, 10, 24, 4); rect(36, -6, 10, 24, 4); rect(-36, -24, 72, 60, 16);
+      g.fillStyle = '#ff4d5e'; circ(0, -43, 7); g.fillStyle = '#fff'; circ(-16, 5, 9); circ(16, 5, 9);
+      g.fillStyle = '#0b1020'; circ(-16, 5, 3.5); circ(16, 5, 3.5); ln([[-14, 25], [14, 25]]); break;
+    case 'bug': g.strokeStyle = ink; ln([[-18, -4], [-40, -12]]); ln([[18, -4], [40, -12]]); ln([[-18, 10], [-42, 12]]); ln([[18, 10], [42, 12]]);
+      ln([[-16, 24], [-36, 38]]); ln([[16, 24], [36, 38]]); ln([[-6, -32], [-16, -46]]); ln([[6, -32], [16, -46]]);
+      g.beginPath(); g.ellipse(0, 8, 21, 28, 0, 0, 7); g.fill(); dr(); circ(0, -24, 13); break;
+    case 'folder': rect(-46, -42, 46, 26, 7); rect(-48, -28, 96, 72, 10); break;
+    case 'mag': circ(-8, -8, 28); g.strokeStyle = ink; g.lineWidth = 8 * 100 / s * (s / 100); ln([[13, 13], [40, 40]]); break;
+    case 'cursor': poly([[-18, -34], [-18, 26], [-4, 12], [8, 38], [18, 33], [7, 8], [26, 8]]); break;
+    case 'doc': default: poly([[-30, -46], [14, -46], [32, -28], [32, 46], [-30, 46]]); g.strokeStyle = ink; ln([[14, -46], [14, -28], [32, -28]]);
+      ln([[-18, -6], [20, -6]]); ln([[-18, 10], [20, 10]]); ln([[-18, 26], [6, 26]]);
+  }
+  g.restore();
+}
+const GLYPHS = ['doc', 'bolt', 'robot', 'bug', 'folder', 'mag', 'star'];
+function arrow(x0, y0, x1, y1, w, col, u = 1) { if (u <= .01) return; const dx = x1 - x0, dy = y1 - y0, L = Math.hypot(dx, dy), a = Math.atan2(dy, dx), e = L * u;
+  line(x0, y0, x0 + Math.cos(a) * (e - 14), y0 + Math.sin(a) * (e - 14), w, col);
+  if (u > .85) { g.save(); g.translate(x0 + Math.cos(a) * e, y0 + Math.sin(a) * e); g.rotate(a); g.beginPath(); g.moveTo(0, 0); g.lineTo(-28, -17); g.lineTo(-28, 17); g.closePath(); g.fillStyle = col; g.fill(); g.restore(); } }
+function stepHead(t, n, title, col, size = 92) {
+  const p = pop(t, .05, .5); card(540, 270, 112, 112, { fill: col, r: 56, lw: 0, sc: .85 + .15 * p, a: p, glow: rgba(col, .5), blur: 40, dy: 10 }, () => txt(String(n), 0, 3, { size: 62, wt: 900, fill: onc(col) }));
+  headline(t, .25, title, 410, size, { mk: T.acc2 });
+}
+// dark terminal. lines: [text, startTime, charsPerSec, colour]
+function term(cx, cy, w, h, t, t0, lines, fs = 26, lh = 50) {
+  const p = pop(t, t0, .55); if (p <= .01) return;
+  card(cx, cy, w, h, { fill: P.term, sc: .94 + .06 * p, a: p, r: 30, stroke: rgba(P.k, .4), glow: rgba(P.k, .3) }, () => {
+    [T.al, T.plate, T.cta1].forEach((c, i) => dot(-w / 2 + 44 + i * 34, -h / 2 + 38, 10, c));
+    lines.forEach(([s, ts, cps, col], i) => { if (t < ts) return; const n = Math.min(s.length, Math.floor((t - ts) * cps)), y = -h / 2 + 104 + i * lh;
+      const f2 = fit(s, 600, fs, w - 90, true);
+      txt(s.slice(0, n), -w / 2 + 42, y, { size: f2, wt: 600, mono: true, al: 'left', fill: col || '#e2e8f0' });
+      if (n < s.length) { const ww = mw(s.slice(0, n), 600, f2, true); g.fillStyle = T.acc2; g.fillRect(-w / 2 + 44 + ww, y - f2 * .6, f2 * .55, f2 * 1.2); } });
+  });
+}
+
+/* ======================================================================
+   SCENES - fn(t, d)   t = seconds into the scene (time-scaled), d = data
+   ====================================================================== */
+const up = s => String(s || '').toUpperCase();
+const A = i => AC[i % AC.length];
+function sHook(t, d) {
+  headline(t, .15, d.lines[0], 330, 118);
+  headline(t, .55, d.lines[1], 470, 118, { mk: T.acc2 });
+  d.chips.slice(0, 8).forEach((nm, i) => { const x = i % 2 ? 790 : 290, y = 680 + Math.floor(i / 2) * 150, t0 = .9 + i * .22, p = pop(t, t0, .5); if (p <= .01) return;
+    card(x, y + Math.sin(t * 2 + i) * 4, 440, 108, { sc: .9 + .1 * p, a: p, r: 54 }, () => { dot(-170, 0, 17, A(i)); txt(nm, 22, 2, { size: fit(nm, 700, 38, 300, true), wt: 700, mono: true }); }); });
+  if (d.stamp) stamp(t, 3.2, d.stamp, 540, 1380, T.acc, -3, 48);
+}
+function sMeet(t, d) {
+  txt(up(d.meet || 'MEET'), 540, 290, { size: 42, wt: 700, fill: P.sub, a: eo(ramp(t, .1, .4)) });
+  const pl = pop(t, .2, .6);
+  card(540, 480, 250, 250, { fill: '#ffffff', r: 56, sc: .85 + .15 * pl, a: pl, glow: rgba(T.acc2, .5), blur: 70 }, () => {
+    if (LOGO && LOGO.complete && LOGO.naturalWidth) { const k = Math.min(170 / LOGO.naturalWidth, 170 / LOGO.naturalHeight); g.drawImage(LOGO, -LOGO.naturalWidth * k / 2, -LOGO.naturalHeight * k / 2, LOGO.naturalWidth * k, LOGO.naturalHeight * k); }
+    else ico(GLYPHS.includes(d.glyph) ? d.glyph : 'doc', 0, 0, 150, { fill: T.acc, lw: 0, solid: true });
+  });
+  const np = pop(t, .6, .6), nm = d.name, sz = fit(nm, 900, 130, 800);
+  card(540, 800, 930, 250, { sc: .94 + .06 * np, a: np, r: 44 }, () => { txt(d.owner || '', 0, -70, { size: fit(d.owner || 'x', 600, 42, 840, true), wt: 600, mono: true, fill: P.sub }); txt(nm, 0, 26, { size: sz, wt: 900 }); });
+  const st = d.stickers || [];
+  if (st[0]) sticker(t, 1.5, st[0], 300, 1010, T.acc, -3, 42);
+  if (st[1]) sticker(t, 2.3, st[1], 750, 1050, T.vi, 3, 42);
+  if (st[2]) sticker(t, 4.0, st[2], 540, 1180, T.cta1, -2, 42);
+  if (d.stamp) stamp(t, 6.0, d.stamp, 540, 1370, T.acc, -3, 48);
+}
+function sGrid(t, d) {
+  headline(t, .1, d.title, 330, 118, { mk: T.acc2 });
+  const items = d.items.slice(0, 10), rows = Math.ceil(items.length / 2), gap = Math.min(160, Math.floor(780 / rows));
+  items.forEach((it, i) => { const x = i % 2 ? 790 : 290, y = 530 + Math.floor(i / 2) * gap, p = pop(t, .4 + i * .28, .5); if (p <= .01) return; const ch = Math.min(130, gap - 24), col = A(i);
+    card(x, y, 470, ch, { sc: .92 + .08 * p, a: p, r: 34 }, () => {
+      card(-168, 0, 78, 78, { fill: col, r: 22, lw: 0, glow: rgba(col, .4), blur: 24, dy: 6 }, () => txt(String(it.n || i + 1).padStart(2, '0'), 0, 3, { size: 32, wt: 800, mono: true, fill: onc(col) }));
+      txt(it.label, -112, 2, { size: fit(it.label, 700, 30, 270, true), wt: 700, mono: true, al: 'left' }); }); });
+  if (d.sticker) sticker(t, 3.4, d.sticker, 540, 1430, T.acc, -2, 40);
+}
+function sPath(t, d) {
+  headline(t, .1, d.title, 330, 108, { mk: T.acc2 });
+  const steps = d.steps.slice(0, 5), n = steps.length;
+  const ry = i => 560 + i * 150, ru = eo(ramp(t, .3, 2.2));
+  line(170, ry(0), 170, lerp(ry(0), ry(n - 1), ru), 8, rgba(P.k, .5));
+  steps.forEach((s, i) => { const t0 = .4 + i * .45, p = pop(t, t0, .5); if (p <= .01) return; const hot = i < 2 && t > 2.8, col = A(i);
+    dot(170, ry(i), 44 * (.8 + .2 * p), col); g.save(); g.shadowColor = rgba(col, .5); g.shadowBlur = 30; dot(170, ry(i), 44 * (.8 + .2 * p), col); g.restore();
+    txt(String(i + 1), 170, ry(i) + 3, { size: 38, wt: 800, fill: onc(col), a: p });
+    card(640, ry(i), 760, 118, { fill: hot ? T.acc : P.panel, sc: .94 + .06 * p, a: p, r: 34, glow: hot ? rgba(T.acc, .45) : P.glow }, () => { txt(s.name, -340, 2, { size: fit(s.name, 700, 42, 520), wt: 700, al: 'left', fill: hot ? onc(T.acc) : P.tx });
+      if (s.tag) txt(s.tag, 340, 4, { size: 30, wt: 700, mono: true, al: 'right', fill: hot ? onc(T.acc) : P.sub }); }); });
+  if (d.stamp) stamp(t, 3.0, d.stamp, 540, 1390, T.acc, -3, 46);
+}
+function sExample(t, d) {
+  headline(t, .1, d.title, 320, 104, { mk: T.acc2 });
+  const p0 = pop(t, .2, .55);
+  card(540, 690, 900, 400, { sc: .94 + .06 * p0, a: p0, r: 40 }, () => {
+    ico('doc', -380, -140, 64, { fill: T.acc2, lw: 0, solid: true }); txt(d.file, -330, -140, { size: fit(d.file, 700, 42, 640, true), wt: 700, mono: true, al: 'left' });
+    d.lines.slice(0, 4).forEach((s, i) => { const q = eo(ramp(t, .7 + i * .35, .3));
+      txt(s, -390, -50 + i * 66, { size: fit(s, i ? 500 : 700, 34, 780, true), wt: i ? 500 : 700, mono: true, al: 'left', a: q, fill: i ? P.sub : T.acc2 }); }); });
+  if (d.stamp) stamp(t, 2.6, d.stamp, 540, 990, T.acc, -3, 46);
+  const fl = d.flow || ['Idea', 'Command', 'Result'], p1 = pop(t, 1.4, .55);
+  card(540, 1250, 900, 290, { sc: .94 + .06 * p1, a: p1, r: 40 }, () => {
+    [[-310, fl[0], A(0)], [0, fl[1], A(2)], [310, fl[2], A(3)]].forEach(([x, s, col], i) => { const q = pop(t, 1.8 + i * .35, .45);
+      card(x, -10, 230, 110, { fill: col, sc: .9 + .1 * q, a: q, r: 55, lw: 0, glow: rgba(col, .4), blur: 28, dy: 8 }, () => txt(s, 0, 2, { size: fit(s, 700, 34, 190), wt: 700, fill: onc(col) })); });
+    arrow(-190, -10, -125, -10, 7, P.sub, eo(ramp(t, 2.1, .3))); arrow(120, -10, 185, -10, 7, P.sub, eo(ramp(t, 2.5, .3)));
+  });
+  if (d.sticker) sticker(t, 2.9, d.sticker, 540, 1090, T.acc, 2, 34);
+}
+function sStep(t, d) {
+  const ex = d.extra || {}, term_ = d.terminal || [];
+  if (ex.type === 'output') {
+    stepHead(t, d.n, d.title, T.acc, 110);
+    const pp = pop(t, .2, .55);
+    card(540, 690, 920, 130, { sc: .94 + .06 * pp, a: pp, r: 65 }, () => { txt('>', -390, 2, { size: 50, wt: 800, mono: true, fill: T.acc2, al: 'left' });
+      const s = ex.cmd, n = Math.min(s.length, Math.floor(Math.max(0, t - .7) * 11)); txt(s.slice(0, n), -330, 4, { size: fit(s, 700, 50, 600, true), wt: 700, mono: true, al: 'left' }); });
+    const po = pop(t, 1.6, .55);
+    card(540, 1090, 920, 460, { sc: .94 + .06 * po, a: po, r: 40 }, () => {
+      txt('example output', 0, 190, { size: 26, wt: 600, mono: true, fill: P.sub });
+      ex.lines.slice(0, 4).forEach((s, i) => { const q = eo(ramp(t, 2.0 + i * .5, .3));
+        ico('check', -380, -150 + i * 85, 46 * (.8 + .2 * q), { fill: T.cta1, solid: true, a: q }); txt(s, -330, -150 + i * 85, { size: fit(s, 600, 38, 700), wt: 600, al: 'left', a: q }); }); });
+    if (ex.stamp) stamp(t, 3.9, d.stampText || ex.stamp, 540, 1430, T.cta1, -3, 54);
+    return;
+  }
+  stepHead(t, d.n, d.title, T.acc, 80);
+  const n = term_.length, lh = 60, h = 110 + n * lh + 40, cy = ex.type === 'move' ? 780 : ex.type === 'alts' ? 810 : 800;
+  let ts = .6; const lines = term_.map(l => { const cps = 34, s = [l.text, ts, cps, l.kind === 'out' ? '#5ce0a0' : '#e2e8f0']; ts += l.text.length / cps + .35; return s; });
+  term(540, cy, 960, h, t, .2, lines, 28, lh);
+  if (ex.type === 'alts') {
+    txt(ex.label || 'or use one of these', 540, 1040, { size: 28, wt: 600, fill: P.sub, a: eo(ramp(t, ts, .4)) });
+    ex.items.slice(0, 2).forEach((it, i) => { const p = pop(t, ts + .1 + i * .4, .5), col = i ? T.vi : T.acc;
+      card(540, 1130 + i * 130, 930, 100, { sc: .94 + .06 * p, a: p, r: 50 }, () => { txt(it.text, -430, 2, { size: fit(it.text, 600, 25, 600, true), wt: 600, mono: true, al: 'left' });
+        card(350, 0, 170, 56, { fill: col, lw: 0, r: 28, glow: rgba(col, .4), blur: 20, dy: 4 }, () => txt(it.tag || '', 0, 2, { size: fit(it.tag || 'x', 700, 26, 140), wt: 700, fill: onc(col) })); }); });
+  } else if (ex.type === 'tree') {
+    const p = pop(t, ts + .1, .55);
+    card(540, 1260, 900, 380, { sc: .94 + .06 * p, a: p, r: 40 }, () => {
+      ico('folder', -370, -120, 72, { fill: T.plate, lw: 0, solid: true }); txt(ex.name, -310, -120, { size: fit(ex.name, 700, 40, 620, true), wt: 700, mono: true, al: 'left' });
+      ex.items.slice(0, 4).forEach((s, i) => txt(s, -310, -30 + i * 62, { size: fit(s, 500, 32, 620, true), wt: 500, mono: true, al: 'left', fill: P.sub, a: eo(ramp(t, ts + .5 + i * .3, .3)) })); });
+  } else if (ex.type === 'move') {
+    const a = { x: 230, y: 1230 }, b = { x: 850, y: 1230 };
+    const fo = (o, nm, col, t0) => { const p = pop(t, t0, .55); ico('folder', o.x, o.y, 190 * (.85 + .15 * p), { fill: col, solid: true, a: p }); txt(nm, o.x, o.y + 135, { size: fit(nm, 700, 28, 400, true), wt: 700, mono: true, a: p }); };
+    fo(a, ex.from, T.plate, ts + .1); fo(b, ex.to, T.cta1, ts + .5);
+    const u = ramp(t, ts + 1.1, 1.1); if (u > 0 && u < 1) { const e = eio(u); ico('doc', lerp(a.x, b.x, e), lerp(a.y, b.y, e) - Math.sin(Math.PI * e) * 150, 100, { fill: T.acc2, solid: true }); }
+    if (t > ts + 2.2) stickerIcon(t, ts + 2.2, ex.label || 'done', 'check', 850, 1430, T.cta1, 3, 30);
+  }
+}
+function sStats(t, d) {
+  headline(t, .1, d.title, 330, 112, { mk: T.acc2 });
+  const cx = 540, cy = 700, R = 190, fu = eo(ramp(t, .5, 2.0)), sp = .85 + .15 * pop(t, .3, .6);
+  g.save(); g.translate(cx, cy); g.scale(sp, sp); g.translate(-cx, -cy); g.globalAlpha *= pop(t, .3, .5);
+  const sp_ = () => { g.beginPath(); starPts(cx, cy, R, R * .42).forEach(([x, y], i) => i ? g.lineTo(x, y) : g.moveTo(x, y)); g.closePath(); };
+  g.shadowColor = rgba(T.plate, .5); g.shadowBlur = 60; sp_(); g.fillStyle = P.dark ? 'rgba(255,255,255,.08)' : 'rgba(15,23,42,.08)'; g.fill(); g.shadowColor = 'transparent'; g.shadowBlur = 0;
+  g.save(); sp_(); g.clip(); const gr = g.createLinearGradient(0, cy + R, 0, cy - R); gr.addColorStop(0, T.acc2); gr.addColorStop(1, T.plate); g.fillStyle = gr; g.fillRect(cx - R, cy + R - 2 * R * fu, 2 * R, 2 * R * fu + 10); g.restore();
+  sp_(); g.lineWidth = 3; g.strokeStyle = rgba(T.plate, .7); g.lineJoin = 'round'; g.stroke(); g.restore();
+  const val = +d.value || 0, dec = d.decimals || 0, v = val * fu, s = (v < val - .05 * Math.max(1, val / 100) ? Math.floor(v) : val.toFixed(dec)) + (d.suffix || '');
+  txt(s, 540, 1010, { size: fit(s, 900, 190, 480), wt: 900, a: ramp(t, .5, .3) });
+  txt(up(d.label || 'GITHUB STARS'), 540, 1120, { size: 38, wt: 700, fill: P.sub, a: eo(ramp(t, 1.0, .4)) });
+  const st = d.stickers || [];
+  if (st[0]) sticker(t, 1.8, st[0], 300, 1250, T.acc, -3, 38);
+  if (st[1]) stickerIcon(t, 2.8, st[1], 'doc', 750, 1270, T.cta1, 3, 38);
+  if (st[2]) sticker(t, 3.6, st[2], 540, 1370, T.vi, -2, 38);
+  if (st[3]) sticker(t, 4.3, st[3], 540, 1470, T.acc2, 2, 34);
+}
+function sCta(t, d) {
+  headline(t, .15, d.lines[0], 320, 96); headline(t, .55, d.lines[1], 440, 116, { mk: T.acc2 });
+  const sp = pop(t, 1.0, .55), full = d.search, n = Math.floor(full.length * ramp(t, 1.4, 1.5)), fs = fit(full, 700, 48, 640, true);
+  card(540, 680, 920, 130, { sc: .94 + .06 * sp, a: sp, r: 65 }, () => {
+    ico('mag', -385, 0, 62, { fill: T.acc2, solid: true }); txt(full.slice(0, n), -330, 4, { size: fs, wt: 700, mono: true, al: 'left' });
+    if (n < full.length || Math.floor(t * 3) % 2 === 0) { const w = mw(full.slice(0, n), 700, fs, true); g.fillStyle = T.acc2; g.fillRect(-330 + w + 4, -32, 6, 64); } });
+  const cd = d.card || {}, pc = pop(t, 3.0, .55);
+  card(540, 1030, 920, 400, { sc: .94 + .06 * pc, a: pc, r: 40 }, () => {
+    txt(cd.title || full, -420, -140, { size: fit(cd.title || full, 900, 50, 840), wt: 900, fill: P.dark ? T.acc2 : T.acc, al: 'left' });
+    let ln = '', ly = -60; String(cd.desc || '').split(' ').forEach(w => { const tt = (ln + ' ' + w).trim(); if (mw(tt, 500, 30) > 820) { txt(ln, -420, ly, { size: 30, wt: 500, al: 'left', fill: P.sub }); ly += 42; ln = w; } else ln = tt; });
+    txt(ln, -420, ly, { size: 30, wt: 500, al: 'left', fill: P.sub });
+    let x = -420; (cd.chips || []).slice(0, 2).forEach((c, i) => { const col = i ? T.cta1 : T.plate, w = Math.max(120, mw(c, 700, 30) + 56); card(x + w / 2, 135, w, 62, { fill: col, r: 31, lw: 0, glow: rgba(col, .35), blur: 18, dy: 4 }, () => txt(c, 0, 2, { size: 30, wt: 700, fill: onc(col) })); x += w + 18; });
+  });
+  const starred = t >= 4.9, press = t > 4.9 && t < 5.15 ? .94 : 1, bx = 810, by = 1175;
+  const pb = pop(t, 3.4, .45), bf = starred ? T.plate : P.panel;
+  card(bx, by, 250, 84, { fill: bf, sc: (.9 + .1 * pb) * press, a: pb, r: 42, glow: starred ? rgba(T.plate, .55) : P.glow }, () => { ico('star', -62, 0, 44, { fill: starred ? '#fff' : P.sub, solid: true }); txt('Star', 32, 2, { size: 36, wt: 700, fill: starred ? onc(T.plate) : P.tx }); });
+  const cu = eio(ramp(t, 4.0, .8)); if (t > 3.9) ico('cursor', lerp(960, bx + 40, cu), lerp(1440, by + 30, cu), 76, { fill: '#fff', rot: -10 });
+  if (d.sticker) sticker(t, 5.2, d.sticker, 540, 1400, T.acc, -1, 32);
+}
+const SCENES = { hook: [5, sHook, 'THE HOOK'], meet: [7, sMeet, 'MEET THE TOOL'], grid: [5, sGrid, 'WHAT YOU GET'], path: [5, sPath, 'THE PATH'], example: [5, sExample, 'EXAMPLE'],
+                 step: [5.5, sStep, 'STEP'], stats: [6, sStats, 'THE NUMBERS'], cta: [6, sCta, 'GET IT NOW'] };
+
+/* ======================================================================
+   BRAND OVERLAY, KICKER PILL, CAPTION PILL (the channel signature)
+   ====================================================================== */
+let M = null, S = [], CAPS = [], DUR = 1, LOGO = null, BRAND = null, curT = 0, patCache = {};
+function pattern() {
+  const key = T.bg + P.dark; if (patCache[key]) return patCache[key];
+  const c = document.createElement('canvas'); c.width = c.height = 270; const x = c.getContext('2d'), col = P.dark ? rgba(P.k, .09) : rgba(T.acc, .08);
+  x.fillStyle = col; x.strokeStyle = col; x.lineWidth = 1.5;
+  if (T.bg === 'grid') { for (let i = 0; i <= 270; i += 54) { x.beginPath(); x.moveTo(i, 0); x.lineTo(i, 270); x.stroke(); x.beginPath(); x.moveTo(0, i); x.lineTo(270, i); x.stroke(); } }
+  else if (T.bg === 'dots') { x.fillStyle = P.dark ? rgba(P.k, .28) : rgba(T.acc, .22); for (let i = 0; i < 270; i += 46) for (let j = 0; j < 270; j += 46) { x.beginPath(); x.arc(i + 23, j + 23, 2.8, 0, 7); x.fill(); } }
+  else if (T.bg === 'diag') { x.lineWidth = 3; for (let i = -270; i < 540; i += 37) { x.beginPath(); x.moveTo(i, 0); x.lineTo(i + 270, 270); x.stroke(); } }
+  else if (T.bg === 'stripes') { x.fillStyle = P.dark ? rgba(P.k, .07) : rgba(T.acc, .05); x.fillRect(135, 0, 135, 270); }
+  return patCache[key] = g.createPattern(c, 'repeat');
+}
+function bg() {
+  g.fillStyle = P.bg; g.fillRect(0, 0, W, H);
+  if (T.bg !== 'plain') { g.fillStyle = pattern(); g.fillRect(0, 0, W, H); }
+  g.save(); g.translate(540, 1000); g.scale(1, .52); const gr = g.createRadialGradient(0, 0, 0, 0, 0, 760);
+  gr.addColorStop(0, P.dark ? rgba(P.k, .26) : rgba(T.acc, .17)); gr.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gr; g.fillRect(-800, -800, 1600, 1600); g.restore();
+}
+function brand(si, sc) {
+  // logo tile + channel name (top left), product logo tile (top right), source line
+  g.save(); g.shadowColor = 'rgba(0,0,0,.35)'; g.shadowBlur = 18; g.shadowOffsetY = 6; dot(88, 98, 34, '#000'); g.restore();
+  if (BRAND && BRAND.complete && BRAND.naturalWidth) { g.save(); g.beginPath(); g.arc(88, 98, 34, 0, 7); g.clip(); g.drawImage(BRAND, 54, 64, 68, 68); g.restore(); }
+  txt(up((M.brand && M.brand.name) || 'AI Quantum'), 138, 100, { size: 27, wt: 700, al: 'left', fill: P.tx });
+  if (LOGO && LOGO.complete && LOGO.naturalWidth) { g.save(); g.shadowColor = 'rgba(0,0,0,.28)'; g.shadowBlur = 22; g.shadowOffsetY = 8; rr(942, 56, 84, 84, 24); g.fillStyle = '#fff'; g.fill(); g.restore();
+    const k = Math.min(56 / LOGO.naturalWidth, 56 / LOGO.naturalHeight); g.drawImage(LOGO, 984 - LOGO.naturalWidth * k / 2, 98 - LOGO.naturalHeight * k / 2, LOGO.naturalWidth * k, LOGO.naturalHeight * k); }
+  if (M.footer) txt(M.footer, 1026, 168, { size: fit(M.footer, 500, 19, 560, true), wt: 500, al: 'right', fill: P.dark ? '#8b9bc7' : '#64748b', mono: true });
+  // kicker pill "03/09  STEP 1"
+  const spec = SCENES[sc.type] || SCENES.hook, label = up(sc.kicker || (sc.type === 'step' ? 'STEP ' + (sc.data.n || '') : spec[2])), num = String(si + 1).padStart(2, '0') + '/' + String(S.length).padStart(2, '0');
+  const f = 25, w1 = mw(num, 700, f) + 24, w2 = mw(label, 700, f) + label.length * 3.5, w = w1 + w2 + 56, h = 54, x0 = 54, y0 = 172;
+  g.save(); g.shadowColor = P.dark ? rgba(P.k, .3) : rgba(P.k, .18); g.shadowBlur = P.dark ? 30 : 24; g.shadowOffsetY = P.dark ? 0 : 6;
+  rr(x0, y0, w, h, 27); g.fillStyle = P.dark ? rgba(P.k, .1) : '#fff'; g.fill(); g.restore();
+  if (P.dark) { g.lineWidth = 1.5; g.strokeStyle = rgba(P.k, .55); rr(x0, y0, w, h, 27); g.stroke(); }
+  const kc = P.dark ? mixc(P.k, '#ffffff', .55) : mixc(P.k, '#0b1020', .38);
+  txt(num, x0 + 28, y0 + h / 2 + 2, { size: f, wt: 700, al: 'left', fill: kc, a: .6 });
+  g.save(); g.font = font(700, f); g.letterSpacing = '3px'; g.fillStyle = kc; g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillText(label, x0 + 28 + w1, y0 + h / 2 + 2); g.restore();
+}
+function caption(t) {
+  for (let i = 0; i < CAPS.length; i++) {
+    const [s, e, txt_] = CAPS[i]; if (t < s || t >= e) continue;
+    const gapB = i === 0 || s - CAPS[i - 1][1] > .05, gapA = i === CAPS.length - 1 || CAPS[i + 1][0] - e > .05;
+    const words = txt_.split(' '), wt_ = words.map(w => w.length + 1.5), tot = wt_.reduce((a, b) => a + b, 0); let acc_ = 0, cur = 0;
+    for (let k = 0; k < words.length; k++) { acc_ += wt_[k]; if (s + (e - s) * acc_ / tot > t) { cur = k; break; } cur = k; }
+    const F_ = 44, sp = mw(' ', 800, F_) + 4; let maxw = 880;
+    const wrapAt = mx => { const L = []; let row = [], rw = 0; words.forEach((w, k) => { const ww = mw(w, 800, F_) + 24; if (row.length && rw + sp + ww > mx) { L.push(row); row = []; rw = 0; } rw += (row.length ? sp : 0) + ww; row.push(k); }); L.push(row); return L; };
+    let lines = wrapAt(maxw); const nl = lines.length; for (let m = 880; m > 300; m -= 10) { if (wrapAt(m).length > nl) break; maxw = m; } lines = wrapAt(maxw);
+    const lh = 61, lw = r => r.reduce((a, k) => a + mw(words[k], 800, F_) + 24, 0) + sp * (r.length - 1), bw = Math.max(...lines.map(lw)) + 68, bh = lines.length * lh + 40;
+    const p = gapB ? pop(t, s, .25) : 1, al = gapA ? 1 - ramp(t, e - .12, .12) : 1, cy = 1920 - 330 - bh / 2;
+    g.save(); g.globalAlpha *= al * clamp(p * 1.5); g.translate(540, cy + (1 - p) * 14);
+    // the brand caption pill: dark glass, accent border, offset accent shadow
+    rr(-bw / 2 + 8, -bh / 2 + 10, bw, bh, 40); g.fillStyle = mixc(T.acc2, '#000000', .3); g.fill();
+    rr(-bw / 2, -bh / 2, bw, bh, 40); g.fillStyle = 'rgba(10,14,30,.95)'; g.fill(); g.lineWidth = 2; g.strokeStyle = rgba(T.acc2, .55); g.stroke();
+    lines.forEach((row, li) => { let x = -lw(row) / 2; const y = -bh / 2 + 20 + lh / 2 + li * lh;
+      row.forEach(k => { const ww = mw(words[k], 800, F_) + 24; if (k === cur) { rr(x, y - 31, ww, 62, 16); g.fillStyle = T.acc2; g.fill(); }
+        txt(words[k], x + 12, y + 2, { size: F_, wt: 800, fill: k === cur ? onc(T.acc2) : '#fff', al: 'left' }); x += ww + sp; }); });
+    g.restore(); return;
+  }
+}
+// scene change: a theme-coloured panel sweeps across (no flash, no shake)
+function sweep(u) {
+  if (u <= 0 || u >= 1) return; g.save();
+  const grd = (x0, x1) => { const gr = g.createLinearGradient(x0, 0, x1, 0); gr.addColorStop(0, T.acc); gr.addColorStop(1, T.acc2); return gr; };
+  if (u < .5) { const x = W * eio(u * 2); g.fillStyle = grd(0, W); g.fillRect(0, 0, x, H); }
+  else { const x = W * eio((u - .5) * 2); g.fillStyle = grd(0, W); g.fillRect(x, 0, W - x, H); }
+  g.restore();
+}
+function renderAt(t) {
+  curT = t; t = clamp(t, 0, DUR - 1e-6); let si = 0; S.forEach(([s], i) => { if (t >= s - .001) si = i; });
+  const [s0, s1, , sc] = S[si], spec = SCENES[sc.type] || SCENES.hook, k = clamp(spec[0] / Math.max(1, s1 - s0), .65, 1.6);
+  g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; setScene(sc.mode); bg();
+  try { spec[1]((t - s0) * k, sc.data || {}); } catch (e) { console.log('[paper] scene error', sc.type, e); }
+  // keep the transition colours and the overlay of the scene we are drawing
+  brand(si, sc);
+  for (let i = 1; i < S.length; i++) sweep((t - (S[i][0] - .25)) / .5);
+  caption(t);
+}
+function build(m) {
+  M = m; T = THEMES[m.theme] || THEMES.indigo; AC = [T.acc, T.acc2, T.vi, T.cta1, T.plate, T.al, T.t1];
+  DUR = m.total || 60; CAPS = m.captions || []; patCache = {};
+  S = m.scenes.map((sc, i) => [sc.start, sc.end, 0, { ...sc, mode: sc.mode || (i % 2 ? 'light' : 'dark') }]);
+  if (m.product_logo) { LOGO = new Image(); LOGO.src = m.product_logo; }
+  BRAND = new Image(); BRAND.src = '../assets/aq_logo.png';
+  const jobs = ['500', '700', '900'].map(w => document.fonts.load(w + ' 40px PoppinsX').catch(() => 0));
+  [LOGO, BRAND].forEach(im => { if (im) jobs.push(im.decode().catch(() => 0)); });
+  return Promise.all(jobs).then(() => { renderAt(0); return true; });
+}
+window.build = build; window.seek = renderAt; window.refit = () => renderAt(curT);
+</script>
+</body>
+</html>

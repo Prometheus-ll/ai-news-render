@@ -56,3 +56,9 @@ Every video gets a synthesized music bed and scene sound effects, mixed under th
 - **Sound effects:** a whoosh peaking on every scene cut, plus clicks, chimes, typing ticks and thumps timed to each motion scene's own animation events (the formulas mirror `engine.html`).
 - **Mix:** the music ducks under the voice (about 16-19 dB below it while speaking, rising in the pauses), effects stay clear, final loudness -14 LUFS with true peak under -1.5 dBFS.
 - **Safety:** any failure falls back to the plain voice track. Set the environment variable `MUSIC=0` to turn the whole thing off. Temporary audio goes to a temp folder that is deleted after the render.
+
+## Explainer engine (paper.html) - free tutorial videos
+Canvas engine in the AI Quantum brand look (Poppins, theme colours, dark/light alternation, glass cards, brand caption pill).
+Scenes: hook (chip wall), meet (name card), grid, path, example, step (numbered, terminal + alts/tree/move/output), stats, cta (search + Star click).
+Selected with `"engine":"paper"` in the manifest. Script prompt, validation and manifest builder: `pipeline/explainer.py`. Sound effects: `paper_sfx` in `render/soundtrack.py`.
+Commands must come from the repo README (validated).

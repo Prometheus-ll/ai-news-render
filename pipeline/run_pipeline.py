@@ -247,21 +247,6 @@ README (the ONLY source of facts besides the summary above):
 """
 
 
-TUTORIAL_MODE = """
-
-ADDITIONAL INSTRUCTIONS FOR THIS VIDEO - it is a FREE TUTORIAL for the open-source tool <<repo_name>> (these override earlier rules where they conflict)
-Goal: a viewer with no experience can follow along and get it running. Cover, in order: what it is and that it is free (MIT license, open source), \
-how to download/install it, the first thing to run or do, and how it works under the hood in one idea.
-HARD RULES: every command, package name, URL and requirement comes from the README below - copy exact commands (shorten only if needed), never invent one. \
-Say honestly what is needed (for example Python, Node, Docker or an API key) ONLY if the README says so. Do not promise it is free beyond "the code is free and MIT licensed". \
-Narration is a calm, friendly step-by-step voice: about 110-125 words total, short sentences, each step says what to do. Say "this open source tool". \
-The thumbnail text must promise the tutorial (for example "RUN X FREE", "INSTALL IN 2 MIN", "FREE AI TOOL"). Hashtags must include #tutorial #opensource #howto.
-
-README (the ONLY source of facts besides the summary above):
-<<readme>>
-"""
-
-
 def fetch_repo_logo(story):
     """Org avatar for organisations; the GitHub mark for individual owners (no personal photos)."""
     repo = story.get("repo") or {}
@@ -399,86 +384,6 @@ a controversy wants versus/monitor/alert, a security story wants alert/terminal,
  NAME RULE: if the story is about ONE specific named tool, product, model or repo, scene 2 MUST be "reveal" - announce its real name right after the hook.
  6. "cta" (always last)"""
 
-TUTORIAL_STRUCTURE = """Build the video as 7 scenes in this order:
- 1. exactly one OPENING scene: "hook" or "slam" - the promise: how to use <<tutorial_name>> for free (the headline/words must say it, e.g. "Use X free", "Run X in 2 minutes")
- 2. "reveal" - announces the real name of the tool
- 3. ONE scene that says WHAT IT IS and what you get, free: chosen from profile, checklist, stack (2-3 things you get, as glass cards), tabs, morph
- 4. "terminal" - HOW TO INSTALL: the exact commands from the README (2-4 lines)
- 5. ONE scene for FIRST USE in simple steps: chosen from phases, timeline, command, prompt, stack (the 2-3 steps as glass cards, titles like Install / Run / Use)
- 6. ONE scene for HOW IT WORKS under the hood: chosen from hubmap, cycle, orbit, timeline, morph, stack
- 7. "cta" (always last)
- Scenes 3, 5, 6 must be three different types."""
-
-REPO_STRUCTURE = """Build the video as 6 scenes in this order:
- 1. "repohook" - the opening: a quick glimpse of the repo's real GitHub page. Its narration MUST start with "This GitHub repo".
- 2. "reveal" - announces the repo's real name right after the opening.
- 3-5. THREE DIFFERENT scenes chosen from: terminal, timeline, hubmap, checklist, profile, phases, cycle, stars, morph, command, tabs, prompt, stack, orbit - the ones that best explain how it works and how to use it.
- 6. "cta" (always last)"""
-
-
-SCRIPT_PROMPT = """You are the creative director and scriptwriter of "AI Quantum", a faceless AI-news channel \
-(YouTube Shorts / Instagram Reels / Facebook Reels). Each video is a 45-55 second vertical MOTION-GRAPHICS explainer \
-built from animated scenes. EVERY VIDEO MUST FEEL DIFFERENT: you choose the scene sequence, storytelling angle, \
-color theme and transition to fit THIS story.
-
-Headline: <<headline>>
-Summary: <<summary>>
-Why it matters: <<why_it_matters>>
-
-FRAMING MENU
-Scene types you can use (each at most once per video):
-<<specs>>
-<<structure>>
-Also choose:
- - "angle": the storytelling frame, one of <<angles>>. Let it shape how the narration is written.
- - "theme": one of <<themes>> (pick the mood that suits the story)
- - "transition": one of <<transitions>>
- - "mode_pattern": one of <<modes>>
-
-VARIETY RULES - recent videos on this channel (do NOT repeat their look):
-<<recent>>
-Use a different opening type, a different theme, a different transition and a clearly different set of middle scenes \
-from the most recent videos.
-
-CONTENT RULES
-- NEVER name or credit the publication/outlet the story came from (no TechCrunch, Verge, Reuters, etc.) in narration, on-screen text, title or description - the source link goes in the comments. Say \"according to the company\" or \"reports say\" if attribution is needed.
-- Use ONLY facts from the story above. Never invent numbers, quotes, dates or names. Attribute claims ("per OpenAI", "company-reported").
-- A "quote" scene needs a real quote from the story; a "leaderboard" or "bignumber" needs real figures; "profile", "hubmap" and "roundup" must only name things from the story from the story. \
-If the story lacks them, choose other scene types. "chat" is an illustrative example of the product, never presented as a real quote.
-- Narration is spoken English: short punchy sentences, no lists, no emojis. Each scene has 2 sentences of narration \
-(the cta may have 2 short sentences). Scene 1's narration opens with a hook that makes people stay (surprising fact, bold claim or question) and is EXACTLY TWO very short sentences, each at most 9 words (about 3-4 seconds each): the viewer must see a new visual every 4 seconds, so the second sentence becomes its own fast follow-up scene. \
-Total narration across all scenes: 95-115 words (about 45 seconds spoken) - be concise.
-- All on-screen text is SHORT; respect every max length.
-- Icons must come ONLY from this list: <<icons>>
-
-Return ONE JSON object (no markdown, no commentary):
-{"beat":{"words":["2 or 3 punchy words that sum up the SECOND sentence of scene 1, each max 10 chars, no full stops"]},"thumb":{"text":"2-4 WORDS, max 24 chars total, the thumbnail headline: a curiosity gap or striking fact that makes people tap (e.g. FREE AI VIDEO TOOL, OPENAI JUST CHANGED EVERYTHING, STOP USING CHATGPT). Never a full sentence, never clickbait that the story does not back up","hi":"the ONE word of that text to highlight"},"title":"punchy title under 90 characters","description":"2-3 sentence description ending with a follow prompt (do not name any news outlet)",\
-"hashtags":["#ai","...","8 to 10 total, no spaces"],"angle":"...","theme":"...","transition":"...",\
-"mode_pattern":"...","product":{"name":"the main company or product this story is about","domain":"its website domain, e.g. openai.com","simple_icon":"its lowercase slug on simpleicons.org, e.g. openai, or empty"},"scenes":[ ...6 scene objects exactly as specified above, in order... ]}"""
-
-
-
-# ---------------------------------------------------------------- FOCUS style (default): one visual per spoken idea
-VIDEO_STYLE = os.environ.get("VIDEO_STYLE", "rich")   # "rich" (default, the original multi-element scenes) or "focus" (new minimal style, still being tuned; opt in with VIDEO_STYLE=focus)
-FOCUS_EXTRA = ["morph", "bars", "command", "tabs", "prompt", "stack", "orbit"]   # motion-library scenes, max 3 per video
-FOCUS_TYPES = ["say", "stat", "icon", "name", "code", "end"] + FOCUS_EXTRA
-HOOK_FORMATS = ["bold claim", "counterintuitive statement", "direct question", "list promise", "story open"]
-
-FOCUS_SPECS = """\
-say (the workhorse: ONE big phrase on screen): {"type":"say","text":"3-7 word KEY PHRASE, max 44 chars - the heart of what the voice says right now, never the whole sentence","hi":["1-2 words copied from text to highlight"],"narration":"ONE sentence, 6-14 words"}
-stat (ONE huge number counting up): {"type":"stat","value":"max 8 chars, a REAL figure from the story, e.g. 40%, $2B, 12k, 9 days","label":"max 4 words saying what it measures","narration":"ONE sentence, 6-14 words"}
-icon (ONE big symbol for a concept): {"type":"icon","icon":"<icon>","label":"max 3 words, e.g. Runs locally","narration":"ONE sentence, 6-14 words"}
-name (scene 2 only, when the story is about ONE named tool/product/model/repo): {"type":"name","name":"max 20 chars, its real name","icon":"<icon>","narration":"ONE short sentence that says the name, e.g. Meet X, a free tool that ..."}
-code (GitHub repo videos only: ONE exact command from the README): {"type":"code","cmd":"max 52 chars, copied from the README, never invented","narration":"ONE sentence telling what the command does"}
-morph (a tool does ONE thing: a single pill becomes button -> loader -> check -> result): {"type":"morph","label":"max 20 chars, the button text","result":"max 26 chars, the outcome","narration":"ONE sentence, 6-14 words"}
-bars (a REAL growth figure with a chart that grows; real numbers from the story only): {"type":"bars","value":"max 8 chars, the real figure","label":"max 30 chars","series":[5-8 numbers showing the trend, ending at the headline figure],"narration":"ONE sentence, 6-14 words"}
-command (an AI search/command tool: a command palette types, filters, Enter, a toast confirms): {"type":"command","query":"max 22 chars","results":["exactly 3, max 26 chars each"],"toast":"max 28 chars","narration":"ONE sentence, 6-14 words"}
-tabs (a choice between 3 modes/plans/models; a liquid indicator slides to the one that matters): {"type":"tabs","items":["exactly 3, max 12 chars each"],"pick":<0-2>,"detail":"max 34 chars about the picked one","narration":"ONE sentence, 6-14 words"}
-prompt (an AI tool you talk to: a glass prompt box types the request, then the screen whips up to the answer): {"type":"prompt","prompt":"max 46 chars, what the user types","reply":"max 72 chars, the answer text","hi":"1-3 words copied EXACTLY from reply","narration":"ONE sentence, 6-14 words"}
-stack (2-3 named modes/features/models as stacked cards with giant glass titles): {"type":"stack","items":[{"title":"max 10 chars","tag":"max 12 chars"}  (2-3)],"narration":"ONE sentence, 6-14 words"}
-orbit (four related things: squares spin in around the product, lock into a cross, then slide into a labelled row): {"type":"orbit","icon":"<icon>","items":["exactly 4 labels, max 10 chars each"],"narration":"ONE sentence, 6-14 words"}
-end (always last): {"type":"end","text":"max 40 chars, the takeaway - echo or answer the opening hook so the video loops","hi":["1-2 words from text"],"narration":"ONE sentence whose last words flow naturally back into the opening line"}
-"""
 
 FOCUS_NEWS_STRUCTURE = """Build the video as 8 or 9 scenes in this order:
  1. "say" - the HOOK (see HOOK RULES). Its narration is at most 9 words.
@@ -629,14 +534,16 @@ def describe_recent(recent):
 
 def build_script_prompt(story, recent, feedback=""):
     kind = story.get("kind", "news")
+    if kind == "tutorial":
+        import explainer
+        return explainer.prompt(story, feedback)
     focus = VIDEO_STYLE == "focus" and kind != "tutorial"
     p = FOCUS_PROMPT if focus else SCRIPT_PROMPT
     for k, v in {
         "headline": story["headline"], "summary": story["summary"], "why_it_matters": story["why_it_matters"],
         "source_link": story["source_link"],
         "specs": (FOCUS_SPECS if focus else SCENE_SPECS) + (REPOHOOK_SPEC if story.get("kind") == "repo" else ""),
-        "structure": (TUTORIAL_STRUCTURE.replace("<<tutorial_name>>", (story.get("repo") or {}).get("name", "the tool")) if kind == "tutorial" else
-                      (FOCUS_REPO_STRUCTURE if focus else REPO_STRUCTURE) if kind == "repo" else (FOCUS_NEWS_STRUCTURE if focus else NEWS_STRUCTURE))
+        "structure": ((FOCUS_REPO_STRUCTURE if focus else REPO_STRUCTURE) if kind == "repo" else (FOCUS_NEWS_STRUCTURE if focus else NEWS_STRUCTURE))
                      + ("" if focus else pack_rule(story.get("pack"), kind)),
         "hooks": ", ".join(HOOK_FORMATS), "angles": ", ".join(ANGLES),
         "themes": ", ".join(THEMES), "transitions": ", ".join(TRANSITIONS), "modes": ", ".join(MODE_PATTERNS),
@@ -645,7 +552,7 @@ def build_script_prompt(story, recent, feedback=""):
         p = p.replace(f"<<{k}>>", str(v))
     if kind in KINDS_WITH_REPO:
         rp = story.get("repo") or {}
-        p += (TUTORIAL_MODE if kind == "tutorial" else FOCUS_REPO_MODE if focus else REPO_MODE).replace("<<repo_name>>", rp.get("full_name", "")).replace("<<stars>>", f"{rp.get('stars', 0):,}").replace("<<readme>>", story.get("readme") or "(no README text available)")
+        p += (FOCUS_REPO_MODE if focus else REPO_MODE).replace("<<repo_name>>", rp.get("full_name", "")).replace("<<stars>>", f"{rp.get('stars', 0):,}").replace("<<readme>>", story.get("readme") or "(no README text available)")
     if feedback:
         p += f"\n\nYour previous attempt was rejected: {feedback}\nFix this and return the full JSON again."
     return p
@@ -659,6 +566,9 @@ MOTION_SET = ["morph", "command", "tabs", "prompt", "stack", "orbit", "bars"]
 
 def validate_script(script, story=None):
     kind = (story or {}).get("kind", "news")
+    if kind == "tutorial":
+        import explainer
+        return explainer.validate(script, story or {})
     if VIDEO_STYLE == "focus" and kind != "tutorial":
         return validate_focus(script, story)
     sc = script.get("scenes")
@@ -1093,6 +1003,15 @@ def script_to_manifest(script, story=None, recent=None):
     """Gemini script -> (render manifest, voice-over text, framing record for the anti-repeat state)."""
     recent = recent or []
     seed = sum(ord(c) for c in (story or {}).get("headline", "x")) + len(recent)
+    if (story or {}).get("kind") == "tutorial":
+        import explainer
+        theme = _pick(None, THEMES, [r.get("theme") for r in recent[-3:]], seed)
+        manifest = explainer.to_manifest(script, story, theme, CHANNEL_NAME)
+        manifest["thumb"] = _san_thumb(script.get("thumb"), [], story)
+        record = {"ts": time.strftime("%Y-%m-%d %H:%M"), "pack": "Explainer", "theme": theme, "transition": "sweep", "angle": "tutorial",
+                  "hook": "", "scenes": [x["type"] for x in manifest["scenes"]], "kind": "tutorial",
+                  "headline": story.get("headline", "")[:80], "link": story.get("source_link", "")}
+        return manifest, " ".join(x["narration"] for x in manifest["scenes"]), record
     pack = (story or {}).get("pack")
     if pack in STYLE_PACKS:
         pk = STYLE_PACKS[pack]
@@ -1306,7 +1225,7 @@ def git_push_with_retry(message, attempts=5):
 def process_story(i, story, recent_holder):
     recent = recent_holder[0]
     print(f"--- Processing story {i}: {story['headline']} ---")
-    story["pack"] = pick_pack(recent, story.get("kind", "news")) if VIDEO_STYLE != "focus" or story.get("kind") == "tutorial" else None
+    story["pack"] = pick_pack(recent, story.get("kind", "news")) if VIDEO_STYLE != "focus" and story.get("kind") != "tutorial" else None
     print(f"Style pack: {story['pack']}")
     script = write_script(story, recent)
     manifest, voice_script, record = script_to_manifest(script, story, recent)
@@ -1319,6 +1238,8 @@ def process_story(i, story, recent_holder):
     else:
         manifest["product_logo"] = fetch_product_logo(manifest.get("product"))
     try:
+        if manifest.get("engine") == "paper":
+            raise RuntimeError("explainer videos use their own scene set")
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         import custom_motion
         record["motion_refs"] = custom_motion.add_to_manifest(manifest, story)
