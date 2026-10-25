@@ -239,7 +239,7 @@ The story is a viral, MIT-licensed open-source project on GitHub: <<repo_name>> 
  2. HOW IT WORKS - the idea/architecture in plain words, using only the README below.
  3. HOW TO USE IT - the real install/run steps. Say it is free and MIT licensed.
 Scene order is FIXED for repo videos: scene 1 "repohook" (a glimpse of its GitHub page; narration starts "This GitHub repo ..."; ignore the opening-type variety rule), scene 2 "reveal" (announce the repo's name), then three more scenes, then cta. Scene choices: use "terminal" for the install/run commands (copy exact commands from the README, shorten only if needed, never invent one; if the README has \
-no commands, use "checklist" for key features instead), "timeline" or "hubmap" for how it works / the steps, plus "profile", "checklist", "bignumber" (only for the star count) as fits. \
+no commands, use "checklist" for key features instead), "timeline" or "hubmap" for how it works / the steps, plus "profile", "checklist", "bignumber" (only for the star count) as fits; "stack" (2-3 key features or steps as glass cards) and "kinetic" (2-3 giant words naming the key ideas) are great for explaining. \
 Narration says "this open source project", never "article" or "report". Do not name any news outlet. Hashtags must include #opensource and #github.
 
 README (the ONLY source of facts besides the summary above):
@@ -320,7 +320,7 @@ KINDS_WITH_REPO = ("repo", "tutorial")
 
 def pick_pack(recent, kind="news"):
     """Least recently used style pack (tutorials skip the news-only packs)."""
-    names = [n for n in STYLE_PACKS if kind != "tutorial" or n in ("Terminal Ops", "Product Keynote", "Systems Map", "Playbook Steps")]
+    names = [n for n in STYLE_PACKS if kind != "tutorial" or n in ("Terminal Ops", "Product Keynote", "Systems Map", "Playbook Steps", "Kinetic Editorial")]
     last = {}
     for i, r in enumerate(recent):
         if r.get("pack"):
@@ -403,9 +403,9 @@ a controversy wants versus/monitor/alert, a security story wants alert/terminal,
 TUTORIAL_STRUCTURE = """Build the video as 7 scenes in this order:
  1. exactly one OPENING scene: "hook" or "slam" - the promise: how to use <<tutorial_name>> for free (the headline/words must say it, e.g. "Use X free", "Run X in 2 minutes")
  2. "reveal" - announces the real name of the tool
- 3. ONE scene that says WHAT IT IS and what you get, free: chosen from profile, checklist, stack, tabs, morph
+ 3. ONE scene that says WHAT IT IS and what you get, free: chosen from profile, checklist, stack (2-3 things you get, as glass cards), tabs, morph, kinetic (2-3 giant words naming the idea, e.g. FREE / OPEN / LOCAL)
  4. "terminal" - HOW TO INSTALL: the exact commands from the README (2-4 lines)
- 5. ONE scene for FIRST USE in simple steps: chosen from phases, timeline, command, prompt
+ 5. ONE scene for FIRST USE in simple steps: chosen from phases, timeline, command, prompt, stack (the 2-3 steps as glass cards, titles like Install / Run / Use), kinetic (the steps as giant words, e.g. CLONE / INSTALL / RUN)
  6. ONE scene for HOW IT WORKS under the hood: chosen from hubmap, cycle, orbit, timeline, morph, stack
  7. "cta" (always last)
  Scenes 3, 5, 6 must be three different types."""
