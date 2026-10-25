@@ -519,5 +519,15 @@
   "added": "2026-10-25 06:03",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-25-060348-2.mp4",
+  "caption": "Master Claude Code for Free: Claude How-To Visual Guide\n\nLearn how to master Claude Code with this open-source visual guide featuring production-ready templates. Follow for daily AI news and tutorials.\n\n#ai #tutorial #opensource #howto #claudecode #python #coding #productivity",
+  "source_link": "https://github.com/luongnv89/claude-howto",
+  "headline": "claude-howto: A visual, example-driven guide to Claude Code \u2014 from basic concepts to advanced agents, with cop",
+  "thumb": "renders/output/2026-10-25-060348-2.jpg",
+  "added": "2026-10-25 06:06",
+  "status": "pending",
+  "attempts": 0
  }
 ]

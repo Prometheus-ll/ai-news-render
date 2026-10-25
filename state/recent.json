@@ -1,22 +1,5 @@
 [
  {
-  "ts": "2026-10-13 19:53",
-  "theme": "ember",
-  "transition": "fade",
-  "angle": "behind the scenes",
-  "scenes": [
-   "slam",
-   "bignumber",
-   "hubmap",
-   "chat",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "rea: Reverse engineer anything with agents, from app behavior down to native bin",
-  "link": "https://github.com/morluto/rea"
- },
- {
   "ts": "2026-10-13 20:48",
   "theme": "ocean",
   "transition": "zoom",
@@ -711,6 +694,32 @@
    "ai9app-989009",
    "federicoaltepo1-312496",
    "koushikde-937635"
+  ]
+ },
+ {
+  "ts": "2026-10-25 06:03",
+  "pack": "Product Keynote",
+  "theme": "indigo",
+  "transition": "zoom",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "hook",
+   "kinetic",
+   "reveal",
+   "profile",
+   "terminal",
+   "custom",
+   "orbit",
+   "cta"
+  ],
+  "kind": "tutorial",
+  "headline": "claude-howto: A visual, example-driven guide to Claude Code \u2014 from basic concept",
+  "link": "https://github.com/luongnv89/claude-howto",
+  "motion_refs": [
+   "daniel-mac8-306214",
+   "abderrahmen-g-899031",
+   "imryven-495965"
   ]
  }
 ]
