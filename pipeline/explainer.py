@@ -38,7 +38,7 @@ Scene 1 is EXACTLY two very short sentences (each at most 9 words) so the pictur
 - NEVER name or credit a news outlet.
 
 Return ONE JSON object (no markdown):
-{"thumb":{"text":"2-4 WORDS, max 24 chars, a thumbnail headline that promises the tutorial (e.g. RUN X FREE, INSTALL IN 2 MIN, FREE AI TOOL)","hi":"the ONE word to highlight"},"title":"punchy title under 90 characters that starts with How to","description":"2-3 sentence description ending with a follow prompt","hashtags":["#tutorial","#opensource","#howto","...","8 to 10 total, no spaces"],"scenes":[ ...scene objects exactly as specified, in order... ]}
+{"thumb":{"text":"2-4 WORDS, max 24 chars, a thumbnail headline that promises the tutorial (e.g. RUN X FREE, INSTALL IN 2 MIN, FREE AI TOOL)","hi":"the ONE word to highlight","gap":<optional, pick ONE: {"kind":"steps","items":["INSTALL","RUN","DONE"]} (3 words, max 9 chars) | {"kind":"number","text":"a real number from the README or the star count, max 8 chars"} | {"kind":"chyron","text":"max 26 chars, a short true line"} | omit>},"title":"punchy title under 90 characters that starts with How to","description":"2-3 sentence description ending with a follow prompt","hashtags":["#tutorial","#opensource","#howto","...","8 to 10 total, no spaces"],"scenes":[ ...scene objects exactly as specified, in order... ]}
 
 README (the ONLY source of facts besides the summary):
 <<readme>>

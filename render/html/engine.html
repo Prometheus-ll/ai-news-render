@@ -370,6 +370,13 @@ body{font-family:'PoppinsX','Poppins','Noto Sans',sans-serif;-webkit-font-smooth
 .th-t .l{display:block;white-space:nowrap}
 .th-t .w{display:inline-block;margin:0 .09em}
 .th-t .w.hi{background:var(--acc2);color:#0b1020;padding:0 .14em;border-radius:.14em;transform:rotate(-2.2deg);text-shadow:none}
+.th-gap{margin-top:46px;display:flex;align-items:center;justify-content:center;gap:22px;font-weight:900;text-transform:uppercase;color:#fff}
+.th-gap .n{font-size:150px;letter-spacing:-.03em;color:var(--acc2);text-shadow:0 6px 0 rgba(0,0,0,.28)}
+.th-gap .s{font-size:44px;padding:16px 30px;border-radius:22px;background:rgba(255,255,255,.12);border:3px solid var(--acc2);white-space:nowrap}
+.th-gap .a{font-size:52px;color:var(--acc2)}
+.th-gap .v{font-size:46px;padding:16px 28px;border-radius:22px;background:var(--acc2);color:#0b1020;white-space:nowrap}
+.th-gap .vs{font-size:36px;opacity:.85}
+.th-gap .c{font-size:44px;padding:18px 34px;background:#d62828;border-radius:10px;white-space:nowrap}
 .th-foot{position:absolute;left:0;right:0;bottom:318px;text-align:center;font-weight:800;font-size:36px;letter-spacing:.3em;color:#fff;opacity:.85}
 </style></head>
 <body><div id="stage">
@@ -1165,6 +1172,15 @@ function sceneWordmark(m,S,D){
   return sc;
 }
 // ---- thumb: the cover image (rendered as a still by html_render.py --thumb; never part of a video) ----
+function gapHtml(g){
+  if(!g||!g.kind)return '';
+  const E=v=>esc(String(v||'').toUpperCase());
+  if(g.kind==='number')return `<div class="th-gap"><span class="n">${E(g.text)}</span></div>`;
+  if(g.kind==='steps')return `<div class="th-gap">${(g.items||[]).map(v=>`<span class="s">${E(v)}</span>`).join('<span class="a">&#9654;</span>')}</div>`;
+  if(g.kind==='versus'&&(g.items||[]).length>1)return `<div class="th-gap"><span class="v">${E(g.items[0])}</span><span class="vs">VS</span><span class="v">${E(g.items[1])}</span></div>`;
+  if(g.kind==='chyron')return `<div class="th-gap"><span class="c">${E(g.text)}</span></div>`;
+  return '';
+}
 function sceneThumb(m,S,D){
   const sc=mkScene(m,'dark','--acc2');
   const words=String(m.text||'').trim().split(/\s+/).filter(Boolean).slice(0,5);if(!words.length)words.push('AI','NEWS');
@@ -1178,7 +1194,7 @@ function sceneThumb(m,S,D){
     if(!pick||sz>pick.sz)pick={sz,l:best.l,mx:best.mx};}
   const lines=pick.l,maxc=pick.mx,size=Math.max(60,pick.sz);
   const body=lines.map(l=>`<span class="l">${l.map(w=>`<span class="w${w.toLowerCase().replace(/[^a-z0-9$%]/g,'')===hk&&hk?' hi':''}">${esc(w)}</span>`).join(' ')}</span>`).join('');
-  const root=H(`<div class="th"><div class="th-badge">${esc(String(m.badge||'AI NEWS').toUpperCase())}</div><div class="th-logo i">${PLOGO?`<img src="${PLOGO}" alt="">`:ico(m.icon)}</div><div class="th-t" style="font-size:${size}px">${body}</div></div>`);
+  const root=H(`<div class="th"><div class="th-badge">${esc(String(m.badge||'AI NEWS').toUpperCase())}</div><div class="th-logo i">${PLOGO?`<img src="${PLOGO}" alt="">`:ico(m.icon)}</div><div class="th-t" style="font-size:${size}px">${body}</div>${gapHtml(m.gap)}</div>`);
   sc.appendChild(H(`<div class="th-bg"></div>`));sc.appendChild(root);
   sc.appendChild(H(`<div class="th-foot" style="position:absolute;z-index:2">AI QUANTUM</div>`));
   return sc;

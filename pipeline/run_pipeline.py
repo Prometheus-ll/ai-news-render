@@ -438,7 +438,7 @@ CONTENT RULES
 - Icons must come ONLY from this list: <<icons>>
 
 Return ONE JSON object (no markdown, no commentary):
-{"thumb":{"text":"2-4 WORDS, max 24 chars total, the thumbnail headline: a curiosity gap or striking fact that makes people tap (e.g. FREE AI VIDEO TOOL, OPENAI JUST CHANGED EVERYTHING, STOP USING CHATGPT). Never a full sentence, never clickbait that the story does not back up","hi":"the ONE word of that text to highlight"},"title":"punchy title under 90 characters","description":"2-3 sentence description (do not name any news outlet)",\
+{"thumb":{"text":"2-4 WORDS, max 24 chars total, the thumbnail headline: a curiosity gap or striking fact that makes people tap (e.g. FREE AI VIDEO TOOL, OPENAI JUST CHANGED EVERYTHING, STOP USING CHATGPT). Never a full sentence, never clickbait that the story does not back up","hi":"the ONE word of that text to highlight","gap":<optional ONE extra element that opens an information gap the video answers, readable at 120px wide, must be TRUE to the video; pick ONE: {"kind":"number","text":"a real number from the story, max 8 chars, e.g. 42K or 10X or $0"} | {"kind":"steps","items":["3 words, max 9 chars each, e.g. INSTALL","RUN","DONE"]} | {"kind":"versus","items":["max 11 chars","max 11 chars"]} | {"kind":"chyron","text":"max 26 chars, a short true line"} | omit when nothing fits>},"title":"punchy title under 90 characters","description":"2-3 sentence description (do not name any news outlet)",\
 "hashtags":["#ai","...","8 to 10 total, no spaces"],"hook_format":"...","angle":"...","theme":"...","transition":"...",\
 "mode_pattern":"...","product":{"name":"the main company or product this story is about","domain":"its website domain, e.g. openai.com","simple_icon":"its lowercase slug on simpleicons.org, e.g. openai, or empty"},\
 "scenes":[ ...the 8-10 scene objects exactly as specified above, in order... ]}"""
@@ -969,7 +969,39 @@ def _san_thumb(t, scenes, story):
     words = text.split()
     hi = clean(t.get("hi")).split()[:1]
     hi = hi[0] if hi and hi[0] in words else (max(words, key=len) if words else "")
-    return {"text": text or "AI NEWS", "hi": hi}
+    out = {"text": text or "AI NEWS", "hi": hi}
+    gap = _san_gap(t.get("gap"), story)
+    if gap:
+        out["gap"] = gap
+    return out
+
+
+def _san_gap(g, story):
+    """Optional thumbnail information-gap element. Numbers must exist in the story; everything is short and has no full stops."""
+    if not isinstance(g, dict):
+        return None
+    kind = g.get("kind")
+    def c(v, n):
+        return re.sub(r"[.!?]+", "", " ".join(str(v or "").split()))[:n].strip().upper()
+    st = story or {}
+    rp = st.get("repo") or {}
+    hay = " ".join(str(st.get(k, "")) for k in ("headline", "summary", "why_it_matters", "readme")).lower() + f" {rp.get('stars', 0)}"
+    if kind == "number":
+        t = c(g.get("text"), 8)
+        digits = re.sub(r"[^0-9]", "", t)
+        stars = int(rp.get("stars") or 0)
+        ok = t and digits and (digits in re.sub(r"[^0-9 ]", "", hay.replace(",", "")) or (stars >= 1000 and digits.startswith(str(stars)[:2])) or t in ("$0", "0"))
+        return {"kind": "number", "text": t} if ok else None
+    if kind == "steps":
+        it = [c(x, 9) for x in (g.get("items") or []) if c(x, 9)][:3]
+        return {"kind": "steps", "items": it} if len(it) == 3 else None
+    if kind == "versus":
+        it = [c(x, 11) for x in (g.get("items") or []) if c(x, 11)][:2]
+        return {"kind": "versus", "items": it} if len(it) == 2 else None
+    if kind == "chyron":
+        t = c(g.get("text"), 26)
+        return {"kind": "chyron", "text": t} if len(t) >= 6 else None
+    return None
 
 
 _STOP = set("the a an and or of to in on for with is are was were be been it its this that these those you your they their we our as at by from but not no so if than then there here can will just now into over more most very new".split())
@@ -1172,7 +1204,7 @@ def render_thumbnail(manifest, story, out_path):
               "style": "focus", "product_logo": manifest.get("product_logo", ""),
               "scenes": [{"type": "thumb", "mode": "dark", "text": th.get("text", "AI NEWS"), "hi": th.get("hi", ""),
                           "badge": "FREE TUTORIAL" if tut else "GITHUB REPO" if repo else "AI NEWS",
-                          "icon": (manifest["scenes"][0].get("icon") if manifest.get("scenes") else "") or "sparkles",
+                          "icon": (manifest["scenes"][0].get("icon") if manifest.get("scenes") else "") or "sparkles", "gap": th.get("gap"),
                           "start": 0, "end": 2, "narration": ""}]}
         tp = out_path + ".json"
         with open(tp, "w") as f:
