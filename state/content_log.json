@@ -833,5 +833,29 @@
   "caption": "Hallmark: The Anti-AI-Slop Design Tool for Developers\n\nHallmark is a viral open-source design skill that prevents AI agents from generating generic websites. It uses 48 custom themes and strict quality gates to ensure your code looks professional. Follow for more daily AI repo finds.\n\n#ai #opensource #github #coding #webdesign #claude #cursor #uidesign",
   "thumb": "renders/output/2026-10-25-055947-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-25-060348-2.mp4",
+  "ts": "2026-10-25 06:06",
+  "kind": "tutorial",
+  "headline": "claude-howto: A visual, example-driven guide to Claude Code \u2014 from basic concepts to advanced agents, with cop",
+  "title": "Master Claude Code for Free: Claude How-To Visual Guide",
+  "source_link": "https://github.com/luongnv89/claude-howto",
+  "theme": "indigo",
+  "angle": "solution",
+  "scenes": [
+   "hook",
+   "kinetic",
+   "reveal",
+   "profile",
+   "terminal",
+   "custom",
+   "orbit",
+   "cta"
+  ],
+  "words": 115,
+  "caption": "Master Claude Code for Free: Claude How-To Visual Guide\n\nLearn how to master Claude Code with this open-source visual guide featuring production-ready templates. Follow for daily AI news and tutorials.\n\n#ai #tutorial #opensource #howto #claudecode #python #coding #productivity",
+  "thumb": "renders/output/2026-10-25-060348-2.jpg",
+  "status": "queued"
  }
 ]
