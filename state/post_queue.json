@@ -509,5 +509,15 @@
   "added": "2026-10-25 05:58",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-25-055947-1.mp4",
+  "caption": "Hallmark: The Anti-AI-Slop Design Tool for Developers\n\nHallmark is a viral open-source design skill that prevents AI agents from generating generic websites. It uses 48 custom themes and strict quality gates to ensure your code looks professional. Follow for more daily AI repo finds.\n\n#ai #opensource #github #coding #webdesign #claude #cursor #uidesign",
+  "source_link": "https://github.com/Nutlope/hallmark",
+  "headline": "hallmark: Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
+  "thumb": "renders/output/2026-10-25-055947-1.jpg",
+  "added": "2026-10-25 06:03",
+  "status": "pending",
+  "attempts": 0
  }
 ]

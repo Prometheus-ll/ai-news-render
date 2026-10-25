@@ -810,5 +810,28 @@
   "caption": "OpenAI Releases New 'Decision Model' to Take on Industry Leader Jev\n\nOpenAI has officially launched its new decision-making model to the public. It moves beyond text generation into high-stakes logical reasoning to compete with Jev. Follow for more AI breakthroughs.\n\n#ai #openai #artificialintelligence #tech #logic #strategy #enterprise #future #machinelearning",
   "thumb": "renders/output/2026-10-25-055505-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-25-055947-1.mp4",
+  "ts": "2026-10-25 06:03",
+  "kind": "repo",
+  "headline": "hallmark: Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
+  "title": "Hallmark: The Anti-AI-Slop Design Tool for Developers",
+  "source_link": "https://github.com/Nutlope/hallmark",
+  "theme": "signal",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "kinetic",
+   "reveal",
+   "monitor",
+   "terminal",
+   "custom",
+   "cta"
+  ],
+  "words": 119,
+  "caption": "Hallmark: The Anti-AI-Slop Design Tool for Developers\n\nHallmark is a viral open-source design skill that prevents AI agents from generating generic websites. It uses 48 custom themes and strict quality gates to ensure your code looks professional. Follow for more daily AI repo finds.\n\n#ai #opensource #github #coding #webdesign #claude #cursor #uidesign",
+  "thumb": "renders/output/2026-10-25-055947-1.jpg",
+  "status": "queued"
  }
 ]

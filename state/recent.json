@@ -1,22 +1,5 @@
 [
  {
-  "ts": "2026-10-13 19:50",
-  "theme": "mint",
-  "transition": "wipe",
-  "angle": "what changes for you",
-  "scenes": [
-   "appclutter",
-   "hubmap",
-   "chat",
-   "checklist",
-   "versus",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Google Play Opens Android to Private, AI-Generated 'Vibe-Coded' Apps",
-  "link": "https://techcrunch.com/2026/10/13/google-play-now-supports-private-vibe-coded-apps-built-just-for-you/"
- },
- {
   "ts": "2026-10-13 19:53",
   "theme": "ember",
   "transition": "fade",
@@ -703,6 +686,31 @@
    "leanzubrezki-766171",
    "hsanat-012699",
    "pbteja1998-651644"
+  ]
+ },
+ {
+  "ts": "2026-10-25 05:58",
+  "pack": "Data Story",
+  "theme": "signal",
+  "transition": "slide",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "kinetic",
+   "reveal",
+   "monitor",
+   "terminal",
+   "custom",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "hallmark: Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
+  "link": "https://github.com/Nutlope/hallmark",
+  "motion_refs": [
+   "ai9app-989009",
+   "federicoaltepo1-312496",
+   "koushikde-937635"
   ]
  }
 ]
