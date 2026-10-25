@@ -1,22 +1,5 @@
 [
  {
-  "ts": "2026-10-13 19:47",
-  "theme": "signal",
-  "transition": "zoom",
-  "angle": "myth vs reality",
-  "scenes": [
-   "appclutter",
-   "bignumber",
-   "monitor",
-   "profile",
-   "alert",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Interactive Chatbot Pioneer Character.AI Files for Bankruptcy",
-  "link": "https://techcrunch.com/2026/10/13/just-5-years-in-interactive-chatbot-platform-character-ai-files-for-bankruptcy/"
- },
- {
   "ts": "2026-10-13 19:50",
   "theme": "mint",
   "transition": "wipe",
@@ -696,5 +679,30 @@
   "kind": "repo",
   "headline": "Claude-Red: claude-red is a curated library of offensive security skills designe",
   "link": "https://github.com/SnailSploit/Claude-Red"
+ },
+ {
+  "ts": "2026-10-25 05:54",
+  "pack": "Terminal Ops",
+  "theme": "forest",
+  "transition": "wipe",
+  "angle": "what changes for you",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "kinetic",
+   "reveal",
+   "phases",
+   "custom",
+   "morph",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "OpenAI Releases Public 'Decision Model' to Rival Industry-Leader Jev",
+  "link": "https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/",
+  "motion_refs": [
+   "leanzubrezki-766171",
+   "hsanat-012699",
+   "pbteja1998-651644"
+  ]
  }
 ]

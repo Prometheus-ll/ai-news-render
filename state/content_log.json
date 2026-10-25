@@ -787,5 +787,28 @@
   "caption": "Claude-Red: The AI Library for Offensive Security\n\nCheck out this trending open-source library that turns Claude into a red team specialist. Follow for daily updates on the latest AI tools and repositories.\n\n#ai #opensource #github #redteam #cybersecurity #claude #coding #infosec",
   "thumb": "renders/output/2026-10-24-054557-2.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-25-055505-0.mp4",
+  "ts": "2026-10-25 05:58",
+  "kind": "news",
+  "headline": "OpenAI Releases Public 'Decision Model' to Rival Industry-Leader Jev",
+  "title": "OpenAI Releases New 'Decision Model' to Take on Industry Leader Jev",
+  "source_link": "https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/",
+  "theme": "forest",
+  "angle": "what changes for you",
+  "scenes": [
+   "slam",
+   "kinetic",
+   "reveal",
+   "phases",
+   "custom",
+   "morph",
+   "cta"
+  ],
+  "words": 112,
+  "caption": "OpenAI Releases New 'Decision Model' to Take on Industry Leader Jev\n\nOpenAI has officially launched its new decision-making model to the public. It moves beyond text generation into high-stakes logical reasoning to compete with Jev. Follow for more AI breakthroughs.\n\n#ai #openai #artificialintelligence #tech #logic #strategy #enterprise #future #machinelearning",
+  "thumb": "renders/output/2026-10-25-055505-0.jpg",
+  "status": "queued"
  }
 ]
