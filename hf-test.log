@@ -1,0 +1,24 @@
+[html_render] duration 49.8s, scenes: slam@0.0-3.3, morph@3.3-6.1, reveal@6.1-11.8, stack@11.8-19.4, bignumber@19.4-26.5, versus@26.5-33.5, alert@33.5-40.5, cta@40.5-49.8
+[hf] slam rendered: 99 frames for 3.3s
+[hf] bignumber rendered: 213 frames for 7.1s
+[html_render] soundtrack mixed: /tmp/aq_snd_8uxk3hmr/mix.wav
+[html_render] frame 0/1493
+[html_render] frame 150/1493
+[html_render] frame 300/1493
+[html_render] frame 450/1493
+[html_render] frame 600/1493
+[html_render] frame 750/1493
+[html_render] frame 900/1493
+[html_render] frame 1050/1493
+[html_render] frame 1200/1493
+[html_render] frame 1350/1493
+[html_render] wrote out/hf-demo.mp4
+
+real	3m41.426s
+user	3m26.432s
+sys	0m18.649s
+total 7180
+drwxr-xr-x  2 runner runner    4096 Oct 26 19:57 .
+drwxr-xr-x 11 runner runner    4096 Oct 26 19:56 ..
+-rw-r--r--  1 runner runner 7339266 Oct 26 20:00 hf-demo.mp4
+-rw-r--r--  1 runner runner     688 Oct 26 20:00 hf-test.log
