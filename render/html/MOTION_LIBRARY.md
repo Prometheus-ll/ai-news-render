@@ -67,3 +67,7 @@ Commands must come from the repo README (validated).
 Applied engine-wide in engine.html: arrivals use a long-tailed expo ease with no overshoot; fast moves carry a soft blur that peaks at the fastest frame;
 scene changes are a blur swap on one stage (no crossfades); exits are shorter than entrances; titles land and stay still.
 Removed: screen shake, tilt on slam words, floating loops, creeping scale, drifting particles, caption overshoot.
+
+## HyperFrames scenes (render/hf_scenes.py)
+The hook (slam) and the key-fact scene (bignumber) are drawn by HyperFrames (HTML + GSAP, Apache 2.0) when Node 22 is available; the engine adds the brand bar and captions on top.
+Any failure falls back to the normal engine scene. Switch off with HYPERFRAMES=0. Test workflow: "HyperFrames scene test" (manual, output on branch lab-output).
