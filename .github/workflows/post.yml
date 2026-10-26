@@ -11,6 +11,8 @@ on:
     - cron: '0 3 * * *'
     - cron: '0 8 * * *'
     - cron: '0 15 * * *'
+    # backup runs: GitHub often starts scheduled runs hours late or skips them. These only post when a slot is due and unused.
+    - cron: '40 4,6,10,12,17 * * *'
   workflow_dispatch:
 
 permissions:
@@ -38,4 +40,5 @@ jobs:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
           YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          CATCHUP: ${{ github.event.schedule != '0 3 * * *' && github.event.schedule != '0 8 * * *' && github.event.schedule != '0 15 * * *' && '1' || '' }}
         run: python pipeline/post_queue.py
