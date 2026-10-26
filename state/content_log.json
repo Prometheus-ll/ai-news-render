@@ -864,7 +864,15 @@
   "words": 119,
   "caption": "Hallmark: The Anti-AI-Slop Design Tool for Developers\n\nHallmark is a viral open-source design skill that prevents AI agents from generating generic websites. It uses 48 custom themes and strict quality gates to ensure your code looks professional. Follow for more daily AI repo finds.\n\n#ai #opensource #github #coding #webdesign #claude #cursor #uidesign",
   "thumb": "renders/output/2026-10-25-055947-1.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-10-26 14:44",
+  "fb_id": "2245778769700560",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "2245778769700560"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-25-060348-2.mp4",
