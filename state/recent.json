@@ -1,22 +1,5 @@
 [
  {
-  "ts": "2026-10-14 12:35",
-  "theme": "neon",
-  "transition": "wipe",
-  "angle": "what changes for you",
-  "scenes": [
-   "slam",
-   "reveal",
-   "terminal",
-   "roundup",
-   "profile",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Elon Musk\u2019s \u2018SpaceXSI\u2019 Bundles Grok AI and Cursor Coding Assistant into New Subs",
-  "link": "https://techcrunch.com/2026/10/13/spacexsi-bundles-x-premium-grok-and-cursor-into-one-subscription/"
- },
- {
   "ts": "2026-10-14 12:38",
   "theme": "mint",
   "transition": "fade",
@@ -737,5 +720,26 @@
    "deedydas-407965",
    "imryven-495965"
   ]
+ },
+ {
+  "ts": "2026-10-26 08:09",
+  "pack": "Explainer",
+  "theme": "neon",
+  "transition": "sweep",
+  "angle": "tutorial",
+  "hook": "",
+  "scenes": [
+   "hook",
+   "meet",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "kind": "tutorial",
+  "headline": "anatomy: An agent skill for creating detailed, interactive isometric illustratio",
+  "link": "https://github.com/wheresryan22/anatomy"
  }
 ]

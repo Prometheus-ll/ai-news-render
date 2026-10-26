@@ -579,5 +579,15 @@
   "added": "2026-10-26 08:09",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-26-080939-2.mp4",
+  "caption": "How to visualize complex systems with wheresryan22/anatomy\n\nLearn how to install Anatomy to turn technical concepts into interactive isometric diagrams. This free open-source tool works with Claude Code and other AI agents. Follow for more AI tutorials.\n\n#tutorial #opensource #howto #svg #visualization #webgl #claudecode #javascript #aiagents",
+  "source_link": "https://github.com/wheresryan22/anatomy",
+  "headline": "anatomy: An agent skill for creating detailed, interactive isometric illustrations of real-world machines and ",
+  "thumb": "renders/output/2026-10-26-080939-2.jpg",
+  "added": "2026-10-26 08:11",
+  "status": "pending",
+  "attempts": 0
  }
 ]
