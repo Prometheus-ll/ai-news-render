@@ -620,6 +620,10 @@ def build_script_prompt(story, recent, feedback=""):
         "recent": describe_recent(recent), "icons": ICON_LIST,
     }.items():
         p = p.replace(f"<<{k}>>", str(v))
+    if story.get("facts") and kind == "news":
+        p += ("\n\nFACT SHEET - researched across several sources. It OVERRIDES the headline and summary wherever they disagree or are vague "
+              "(for example it says what the product really is). Build the video from these facts; use their exact numbers and dates, attribute company claims "
+              "('per the company'), never mention an outlet, and say what is still unknown rather than guessing:\n" + story["facts"])
     if kind in KINDS_WITH_REPO:
         rp = story.get("repo") or {}
         p += (FOCUS_REPO_MODE if focus else REPO_MODE).replace("<<repo_name>>", rp.get("full_name", "")).replace("<<stars>>", f"{rp.get('stars', 0):,}").replace("<<readme>>", story.get("readme") or "(no README text available)")
@@ -641,6 +645,17 @@ def validate_script(script, story=None):
         return explainer.validate(script, story or {})
     if VIDEO_STYLE == "focus" and kind != "tutorial":
         return validate_focus(script, story)
+    if kind == "news" and (story or {}).get("facts") and (story or {}).get("_strict", True):
+        src = re.sub(r"[^0-9a-z. ]", " ", " ".join(str((story or {}).get(k, "")) for k in ("headline", "summary", "why_it_matters", "facts")).lower().replace(",", ""))
+        words = {"ten": "10", "hundred": "100", "thousand": "1000", "million": "m", "billion": "b", "twice": "2", "double": "2", "triple": "3"}
+        text = json.dumps(script.get("scenes", [])).lower().replace(",", "")
+        bad = []
+        for n in set(re.findall(r"(?<![\w.])\$?(\d[\d.]*)\s*(?:x|k|m|b|%)?", text)):
+            n = n.rstrip(".")
+            if len(n.replace(".", "")) >= 2 and not re.search(r"(?<![0-9])" + re.escape(n) + r"(?![0-9])", src) and n not in ("1080", "1920"):
+                bad.append(n)
+        if bad:
+            return f"the numbers {sorted(bad)[:4]} are not in the fact sheet or summary; use only numbers from the fact sheet"
     sc = script.get("scenes")
     if not isinstance(sc, list) or not (5 <= len(sc) <= 7):
         return "scenes must be a list of 6 scene objects"
@@ -1329,6 +1344,12 @@ def process_story(i, story, recent_holder):
     print(f"--- Processing story {i}: {story['headline']} ---")
     story["pack"] = pick_pack(recent, story.get("kind", "news")) if VIDEO_STYLE != "focus" and story.get("kind") != "tutorial" else None
     print(f"Style pack: {story['pack']}")
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import research
+        research.enrich(story)
+    except Exception as e:  # noqa
+        print(f"[research] skipped: {e}")
     script = write_script(story, recent)
     manifest, voice_script, record = script_to_manifest(script, story, recent)
     if story.get("kind") in KINDS_WITH_REPO:
