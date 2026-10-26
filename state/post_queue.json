@@ -557,8 +557,18 @@
   "headline": "hallmark: Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
   "thumb": "renders/output/2026-10-25-055947-1.jpg",
   "added": "2026-10-25 06:03",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2245778769700560",
+    "at": "2026-10-26 14:44"
+   }
+  },
+  "posted_at": "2026-10-26 14:44",
+  "fb_id": "2245778769700560"
  },
  {
   "video": "renders/output/2026-10-25-060348-2.mp4",
