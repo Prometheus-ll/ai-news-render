@@ -9,6 +9,9 @@
 html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
 body{font-family:'PoppinsX','Poppins','Noto Sans',sans-serif;-webkit-font-smoothing:antialiased}
 #stage{position:relative;width:1080px;height:1920px;overflow:hidden}
+.hfmode,.hfmode body{background:transparent!important}
+#stage.hfmode{background:none!important}
+#stage.hfmode .scene{display:none!important}
 .scene{position:absolute;inset:0;opacity:0}
 .light{background:var(--lightbg);color:var(--ink);--sub:#64748b}
 .dark{background:var(--darkbg);color:#fff;--sub:#94a3c4;--kl:color-mix(in srgb,var(--k) 55%,#fff)}
@@ -1242,6 +1245,7 @@ window.build=function(M){
   for(let i=0;i<6;i++)stage.appendChild(H(`<div class="dot" id="d${i}"></div>`));
   window.seek(0);
 };
+window.setHF=function(on){stage.classList.toggle('hfmode',!!on);document.documentElement.classList.toggle('hfmode',!!on);};
 window.seek=function(t){
   window.__t=t;
   stage.style.setProperty('--bgp',`${(t*16).toFixed(1)}px ${(t*11).toFixed(1)}px`);

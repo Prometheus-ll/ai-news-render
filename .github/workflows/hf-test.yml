@@ -1,0 +1,41 @@
+name: HyperFrames scene test
+
+# Manual only: renders the demo video with HyperFrames hook/key-fact scenes and pushes the result to the branch "lab-output".
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install ffmpeg and fonts
+        run: sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ffmpeg fonts-dejavu-core fonts-noto-color-emoji
+      - name: Install dependencies
+        run: pip install -r render/requirements.txt && python -m playwright install --with-deps chromium
+      - name: Render
+        run: |
+          mkdir -p out
+          ( time python render/html_render.py --manifest lab/demo/m.json --audio lab/demo/voice.wav --output out/hf-demo.mp4 ) > out/hf-test.log 2>&1 || true
+          ls -la out >> out/hf-test.log
+      - name: Push results to lab-output
+        run: |
+          git config user.name ai-quantum-bot
+          git config user.email bot@ai-quantum.local
+          git checkout --orphan lab-output
+          git rm -rf --cached . > /dev/null 2>&1 || true
+          find . -mindepth 1 -maxdepth 1 ! -name out ! -name .git -exec rm -rf {} +
+          mv out/* . && rmdir out
+          git add -A
+          git commit -m "HyperFrames scene test results"
+          git push --force origin lab-output
