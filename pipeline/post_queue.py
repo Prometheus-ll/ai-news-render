@@ -32,13 +32,14 @@ def save(q):
         json.dump(q, f, indent=1)
 
 
-def enqueue(video_rel, caption, source_link, headline, thumb=""):
+def enqueue(video_rel, caption, source_link, headline, thumb="", asset=None):
     """Add a rendered video (path relative to the repo root) to the queue."""
     q = load()
     if any(x.get("video") == video_rel for x in q):
         return
     q.append({"video": video_rel, "caption": caption, "source_link": source_link or "", "headline": headline or "", "thumb": thumb or "",
-              "added": time.strftime("%Y-%m-%d %H:%M"), "status": "pending", "attempts": 0})
+              "added": time.strftime("%Y-%m-%d %H:%M"), "status": "pending", "attempts": 0,
+              **({"asset_id": asset["id"]} if asset else {})})
     save(q)
 
 
@@ -108,6 +109,9 @@ def _post(platform, item):
     """Publish one queued item to one platform. Returns the platform's post id."""
     import facebook, instagram, youtube
     path = os.path.join(ROOT, item["video"])
+    if not os.path.exists(path) and item.get("asset_id"):
+        import store
+        path = store.download(item["asset_id"], os.path.join("/tmp", "queue", os.path.basename(item["video"])))
     cap = item["caption"]
     thumb = os.path.join(ROOT, item["thumb"]) if item.get("thumb") and os.path.exists(os.path.join(ROOT, item["thumb"])) else ""
     if platform == "facebook":
@@ -208,7 +212,7 @@ def main():
     print(f"[post] platforms: {', '.join(enabled)}")
     q = load()
     for x in q:  # skip entries whose video file is gone
-        if x.get("status") == "pending" and not os.path.exists(os.path.join(ROOT, x["video"])):
+        if x.get("status") == "pending" and not x.get("asset_id") and not os.path.exists(os.path.join(ROOT, x["video"])):
             x["status"], x["error"] = "failed", "video file missing"
     prune_files(q)
     if os.environ.get("CATCHUP"):      # extra backup runs only post when a slot is due and not yet used
@@ -256,6 +260,9 @@ def main():
         item["error"] = "; ".join(f"{p}: {pl[p].get('error', '')}" for p in failures)[:300]
     else:
         item.pop("error", None)
+    if item.get("status") in ("posted", "failed") and item.get("asset_id"):
+        import store
+        store.delete(item.pop("asset_id"))     # the video is no longer needed once every platform is done
     _log(item)
     save(q)
     push_state("Update post queue")

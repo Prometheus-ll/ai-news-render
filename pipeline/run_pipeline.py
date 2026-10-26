@@ -1362,6 +1362,16 @@ def process_story(i, story, recent_holder):
     render_video(manifest_path, audio_path, video_path)
     thumb_path = render_thumbnail(manifest, story, os.path.join(OUTPUT_DIR, f"{stamp}.jpg"))
     thumb_rel = os.path.relpath(thumb_path, REPO_ROOT) if thumb_path else ""
+    asset = None
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import store
+        asset = store.upload(video_path)
+        if asset:                                   # the video now lives in a release, not in git history
+            os.remove(video_path)
+            os.remove(audio_path)
+    except Exception as e:  # noqa
+        print(f"[store] skipped: {e}")
 
     recent = save_recent(recent, record)
     video_rel_path = os.path.relpath(video_path, REPO_ROOT)
@@ -1370,7 +1380,7 @@ def process_story(i, story, recent_holder):
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
         import post_queue
         caption = f"{script['title']}\n\n{script['description']}\n\n{' '.join(script['hashtags'])}"
-        post_queue.enqueue(video_rel_path, caption, story["source_link"], story["headline"], thumb_rel)
+        post_queue.enqueue(video_rel_path, caption, story["source_link"], story["headline"], thumb_rel, asset)
         post_queue.log_content({
             "video": video_rel_path, "ts": time.strftime("%Y-%m-%d %H:%M"), "kind": story.get("kind", "news"),
             "headline": story["headline"], "title": script.get("title", ""), "source_link": story.get("source_link", ""),
@@ -1384,7 +1394,7 @@ def process_story(i, story, recent_holder):
     git_push_with_retry(f"Add rendered video {stamp}")
 
     repo = os.environ.get("GITHUB_REPOSITORY", "")
-    video_url = f"https://github.com/{repo}/raw/main/{video_rel_path}" if repo else video_rel_path
+    video_url = (asset or {}).get("url") or (f"https://github.com/{repo}/raw/main/{video_rel_path}" if repo else video_rel_path)
 
     log_to_sheets([
         time.strftime("%Y-%m-%d %H:%M"),
