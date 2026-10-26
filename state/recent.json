@@ -1,22 +1,5 @@
 [
  {
-  "ts": "2026-10-13 20:48",
-  "theme": "ocean",
-  "transition": "zoom",
-  "angle": "behind the scenes",
-  "scenes": [
-   "slam",
-   "timeline",
-   "versus",
-   "monitor",
-   "alert",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Judge Orders OpenAI to Turn Over Apple-Related Hiring Records",
-  "link": "https://techcrunch.com/2026/10/13/judge-orders-openai-to-turn-over-hiring-records-in-apple-trade-secrets-case/"
- },
- {
   "ts": "2026-10-13 20:53",
   "theme": "indigo",
   "transition": "slide",
@@ -720,6 +703,31 @@
    "daniel-mac8-306214",
    "abderrahmen-g-899031",
    "imryven-495965"
+  ]
+ },
+ {
+  "ts": "2026-10-26 08:04",
+  "pack": "Editorial",
+  "theme": "paper",
+  "transition": "panel",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "appclutter",
+   "morph",
+   "reveal",
+   "stack",
+   "custom",
+   "tabs",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Block Releases Human-Like Voice Model for Local Execution",
+  "link": "https://techcrunch.com/2026/10/24/blocks-new-voice-model-sounds-eerily-human/",
+  "motion_refs": [
+   "deedydas-407965",
+   "imryven-495965",
+   "aichrislee-961335"
   ]
  }
 ]

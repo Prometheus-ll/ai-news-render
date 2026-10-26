@@ -559,5 +559,15 @@
   "added": "2026-10-25 06:06",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-26-080428-0.mp4",
+  "caption": "Block Releases Human-Like Voice AI for Local Execution\n\nBlock has unveiled a new voice AI model that runs locally on MacBook M4 hardware. It delivers high-fidelity speech with zero cloud latency. Follow for more AI news.\n\n#ai #block #voicemodel #macbookm4 #edgecomputing #privacy #tech #artificialintelligence",
+  "source_link": "https://techcrunch.com/2026/10/24/blocks-new-voice-model-sounds-eerily-human/",
+  "headline": "Block Releases Human-Like Voice Model for Local Execution",
+  "thumb": "renders/output/2026-10-26-080428-0.jpg",
+  "added": "2026-10-26 08:05",
+  "status": "pending",
+  "attempts": 0
  }
 ]
