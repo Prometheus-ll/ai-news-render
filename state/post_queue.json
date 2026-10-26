@@ -569,5 +569,15 @@
   "added": "2026-10-26 08:05",
   "status": "pending",
   "attempts": 0
+ },
+ {
+  "video": "renders/output/2026-10-26-080633-1.mp4",
+  "caption": "Claude SEO: The Universal AI Search Plugin for Claude Code\n\nTransform Claude Code into a professional SEO consultant with this open-source tool. It automates technical audits and AI search optimization using nineteen specialized agents. Follow for daily AI news.\n\n#ai #opensource #github #seo #claudecode #marketing #automation #coding",
+  "source_link": "https://github.com/AgriciDaniel/claude-seo",
+  "headline": "claude-seo: Universal SEO skill for Claude Code. 26 sub-skills + 19 sub-agents covering technical SEO, E-E-A-T",
+  "thumb": "renders/output/2026-10-26-080633-1.jpg",
+  "added": "2026-10-26 08:09",
+  "status": "pending",
+  "attempts": 0
  }
 ]
