@@ -237,6 +237,26 @@ def main():
     print(f"[html_render] duration {total:.1f}s, scenes: " +
           ", ".join(f"{s['type']}@{s['start']:.1f}-{s['end']:.1f}" for s in m["scenes"]))
 
+    # optional HyperFrames scenes (hook + key fact); each becomes a directory of frames, the engine draws brand bar and captions on top
+    hf = {}
+    if not a.stills and m.get("engine") != "paper":
+        try:
+            sys.path.insert(0, HERE)
+            import hf_scenes
+            from PIL import Image  # noqa: F401
+            if hf_scenes.enabled():
+                workdir = tempfile.mkdtemp(prefix="aq_hfw_")
+                done_types = set()
+                for si, sc in enumerate(m["scenes"]):
+                    if sc.get("type") in hf_scenes.SUPPORTED and sc["type"] not in done_types:
+                        fr = hf_scenes.render_clip(sc, m.get("theme"), sc["end"] - sc["start"], workdir)
+                        if fr:
+                            hf[si] = fr
+                        done_types.add(sc["type"])
+        except Exception as e:  # noqa
+            print(f"[html_render] HyperFrames scenes skipped: {e}")
+            hf = {}
+
     # music bed + scene sound effects under the voice (synthesized, licence-free); falls back to voice only
     audio_in = a.audio
     tmp_audio = ""
@@ -276,9 +296,28 @@ def main():
              "-c:a", "aac", "-b:a", "160k", "-t", f"{total:.3f}", "-movflags", "+faststart", a.output],
             stdin=subprocess.PIPE)
         n = int(total * FPS)
+        hfn = {}
+        if hf:
+            from PIL import Image
+            import io
+            page.add_style_tag(content="html.hfmode,html.hfmode body{background:transparent!important}")
         for i in range(n):
-            page.evaluate("t => seek(t)", i / FPS)
-            ff.stdin.write(page.screenshot(type="jpeg", quality=90))
+            t = i / FPS
+            cur = next((si for si in hf if m["scenes"][si]["start"] <= t < m["scenes"][si]["end"]), None)
+            if hf:
+                page.evaluate("on => setHF(on)", cur is not None)
+            page.evaluate("t => seek(t)", t)
+            if cur is not None:
+                sc = m["scenes"][cur]
+                nfr = hfn.setdefault(cur, len(os.listdir(hf[cur])))
+                k = min(max(int(round((t - sc["start"]) * FPS)) + 1, 1), nfr)
+                base = Image.open(os.path.join(hf[cur], f"f{k:05d}.jpg")).convert("RGBA")
+                over = Image.open(io.BytesIO(page.screenshot(type="png", omit_background=True))).convert("RGBA")
+                buf = io.BytesIO()
+                Image.alpha_composite(base, over).convert("RGB").save(buf, "JPEG", quality=90)
+                ff.stdin.write(buf.getvalue())
+            else:
+                ff.stdin.write(page.screenshot(type="jpeg", quality=90))
             if i % 150 == 0:
                 print(f"[html_render] frame {i}/{n}", flush=True)
         ff.stdin.close()
