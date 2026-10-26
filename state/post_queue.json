@@ -577,8 +577,18 @@
   "headline": "claude-howto: A visual, example-driven guide to Claude Code \u2014 from basic concepts to advanced agents, with cop",
   "thumb": "renders/output/2026-10-25-060348-2.jpg",
   "added": "2026-10-25 06:06",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1120326424025965",
+    "at": "2026-10-26 20:24"
+   }
+  },
+  "posted_at": "2026-10-26 20:24",
+  "fb_id": "1120326424025965"
  },
  {
   "video": "renders/output/2026-10-26-080428-0.mp4",
