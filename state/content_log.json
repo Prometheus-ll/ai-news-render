@@ -881,5 +881,28 @@
   "caption": "Master Claude Code for Free: Claude How-To Visual Guide\n\nLearn how to master Claude Code with this open-source visual guide featuring production-ready templates. Follow for daily AI news and tutorials.\n\n#ai #tutorial #opensource #howto #claudecode #python #coding #productivity",
   "thumb": "renders/output/2026-10-25-060348-2.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-26-080428-0.mp4",
+  "ts": "2026-10-26 08:05",
+  "kind": "news",
+  "headline": "Block Releases Human-Like Voice Model for Local Execution",
+  "title": "Block Releases Human-Like Voice AI for Local Execution",
+  "source_link": "https://techcrunch.com/2026/10/24/blocks-new-voice-model-sounds-eerily-human/",
+  "theme": "paper",
+  "angle": "solution",
+  "scenes": [
+   "appclutter",
+   "morph",
+   "reveal",
+   "stack",
+   "custom",
+   "tabs",
+   "cta"
+  ],
+  "words": 93,
+  "caption": "Block Releases Human-Like Voice AI for Local Execution\n\nBlock has unveiled a new voice AI model that runs locally on MacBook M4 hardware. It delivers high-fidelity speech with zero cloud latency. Follow for more AI news.\n\n#ai #block #voicemodel #macbookm4 #edgecomputing #privacy #tech #artificialintelligence",
+  "thumb": "renders/output/2026-10-26-080428-0.jpg",
+  "status": "queued"
  }
 ]
