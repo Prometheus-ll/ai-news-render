@@ -1,22 +1,5 @@
 [
  {
-  "ts": "2026-10-13 20:53",
-  "theme": "indigo",
-  "transition": "slide",
-  "angle": "what changes for you",
-  "scenes": [
-   "hook",
-   "reveal",
-   "alert",
-   "monitor",
-   "hubmap",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "American Express Debuts Security Framework for AI Agent Transactions",
-  "link": "https://techcrunch.com/2026/10/13/amex-introduces-a-framework-to-prevent-ai-agents-from-making-unauthorized-purchases/"
- },
- {
   "ts": "2026-10-14 12:35",
   "theme": "neon",
   "transition": "wipe",
@@ -728,6 +711,31 @@
    "deedydas-407965",
    "imryven-495965",
    "aichrislee-961335"
+  ]
+ },
+ {
+  "ts": "2026-10-26 08:06",
+  "pack": "Conversation",
+  "theme": "ocean",
+  "transition": "fade",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "stack",
+   "reveal",
+   "morph",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "claude-seo: Universal SEO skill for Claude Code. 26 sub-skills + 19 sub-agents c",
+  "link": "https://github.com/AgriciDaniel/claude-seo",
+  "motion_refs": [
+   "koushikde-937635",
+   "deedydas-407965",
+   "imryven-495965"
   ]
  }
 ]
