@@ -62,3 +62,8 @@ Canvas engine in the AI Quantum brand look (Poppins, theme colours, dark/light a
 Scenes: hook (chip wall), meet (name card), grid, path, example, step (numbered, terminal + alts/tree/move/output), stats, cta (search + Star click).
 Selected with `"engine":"paper"` in the manifest. Script prompt, validation and manifest builder: `pipeline/explainer.py`. Sound effects: `paper_sfx` in `render/soundtrack.py`.
 Commands must come from the repo README (validated).
+
+## Motion craft rules (from HyperFrames, Apache 2.0)
+Applied engine-wide in engine.html: arrivals use a long-tailed expo ease with no overshoot; fast moves carry a soft blur that peaks at the fastest frame;
+scene changes are a blur swap on one stage (no crossfades); exits are shorter than entrances; titles land and stay still.
+Removed: screen shake, tilt on slam words, floating loops, creeping scale, drifting particles, caption overshoot.
