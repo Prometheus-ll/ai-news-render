@@ -537,8 +537,18 @@
   "headline": "OpenAI Releases Public 'Decision Model' to Rival Industry-Leader Jev",
   "thumb": "renders/output/2026-10-25-055505-0.jpg",
   "added": "2026-10-25 05:58",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2565934117220645",
+    "at": "2026-10-26 08:46"
+   }
+  },
+  "posted_at": "2026-10-26 08:46",
+  "fb_id": "2565934117220645"
  },
  {
   "video": "renders/output/2026-10-25-055947-1.mp4",
