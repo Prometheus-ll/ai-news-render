@@ -1,0 +1,53 @@
+name: Motion lab
+
+# Manual only. Renders the same short test scene with HyperFrames (HTML + GSAP) and Remotion (React) so they can be compared
+# with the home-made engine. Output (videos, logs, frames) is pushed to the separate branch "lab-output", never to main.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  lab:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-inter fonts-noto-color-emoji
+      - name: Render both
+        run: |
+          mkdir -p out
+          {
+            echo "=== versions"; node -v; ffmpeg -version | head -1
+            echo "=== HyperFrames"
+            cd lab/hf
+            ( time (npx --yes hyperframes@latest doctor --json || true) ) 2>&1 | tail -40
+            ( npx --yes hyperframes@latest lint || true ) 2>&1 | tail -40
+            ( npx --yes hyperframes@latest check --json || true ) 2>&1 | tail -60
+            ( npx --yes hyperframes@latest snapshot --at 0.6,2.2,5,9.9 || true ) 2>&1 | tail -20
+            ( time npx --yes hyperframes@latest render --quality looks --output ../../out/hyperframes.mp4 ) 2>&1 | tail -40
+            cd ../..
+            echo "=== Remotion"
+            cd lab/remotion
+            npm install --no-audit --no-fund 2>&1 | tail -5
+            ( time npx remotion render src/index.ts Main ../../out/remotion.mp4 --concurrency=2 ) 2>&1 | tail -40
+            cd ../..
+          } > out/lab.log 2>&1 || true
+          cp -r lab/hf/.hyperframes/artifacts/snapshots out/hf-snapshots 2>/dev/null || true
+          ls -la out >> out/lab.log
+      - name: Push results to lab-output
+        run: |
+          git config user.name ai-quantum-bot
+          git config user.email bot@ai-quantum.local
+          git checkout --orphan lab-output
+          git rm -rf --cached . > /dev/null 2>&1 || true
+          find . -mindepth 1 -maxdepth 1 ! -name out ! -name .git -exec rm -rf {} +
+          mv out/* . && rmdir out
+          git add -A
+          git commit -m "Motion lab results"
+          git push --force origin lab-output

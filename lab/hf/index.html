@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#050b1a;overflow:hidden;width:1080px;height:1920px;font-family:"Inter","Poppins",sans-serif}
+#root{position:absolute;inset:0;background:radial-gradient(ellipse 80% 45% at 50% 34%,#0e4a6b,#050b1a 70%);color:#fff}
+.scene{position:absolute;inset:0}
+.big{position:absolute;left:0;right:0;text-align:center;font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:1}
+.hi{color:#22d3ee}
+.sub{position:absolute;left:90px;right:90px;text-align:center;font-size:44px;font-weight:600;opacity:.9}
+.card{position:absolute;left:110px;right:110px;height:210px;border-radius:44px;background:linear-gradient(135deg,#22d3ee,#3b6cf5);display:flex;align-items:center;padding:0 60px;font-size:84px;font-weight:900}
+.card small{font-size:34px;font-weight:600;margin-left:auto;opacity:.85}
+.num{position:absolute;left:0;right:0;top:640px;text-align:center;font-size:360px;font-weight:900;color:#22d3ee;letter-spacing:-.04em}
+.cap{position:absolute;left:0;right:0;top:960px;text-align:center;font-size:52px;font-weight:700}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="12" data-width="1080" data-height="1920">
+  <div id="s1" class="scene clip" data-start="0" data-duration="4">
+    <div class="big" id="w1" style="top:420px;font-size:300px">No</div>
+    <div class="big" id="w2" style="top:700px;font-size:300px">More</div>
+    <div class="big hi" id="w3" style="top:980px;font-size:300px">Text</div>
+    <div class="sub" id="s1sub" style="top:1380px">OpenAI's new API only returns answers</div>
+  </div>
+  <div id="s2" class="scene clip" data-start="4" data-duration="4">
+    <div class="card" id="c1" style="top:520px">Predicate<small>true or false</small></div>
+    <div class="card" id="c2" style="top:790px">Choice<small>pick one</small></div>
+    <div class="card" id="c3" style="top:1060px">Score<small>rated</small></div>
+  </div>
+  <div id="s3" class="scene clip" data-start="8" data-duration="4">
+    <div class="num" id="n10">10x</div>
+    <div class="cap" id="cap10">faster than the Responses API</div>
+    <div class="sub" id="s3sub" style="top:1100px;font-size:36px">Company claim, using GPT-6 Luna</div>
+  </div>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+const arrive = { duration: .8, ease: "expo.out" };
+// scene 1: words arrive from a soft blur, no bounce; the title then stays still
+["#w1","#w2","#w3"].forEach((id,i)=>tl.fromTo(id,{opacity:0,scale:1.14,filter:"blur(18px)"},{opacity:1,scale:1,filter:"blur(0px)",...arrive},.1+i*.28));
+tl.fromTo("#s1sub",{opacity:0,y:50,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",...arrive},1.2);
+tl.to("#s1",{opacity:0,filter:"blur(10px)",duration:.2,ease:"power3.in"},3.78);
+// scene 2: cards slide in with a stagger and blur
+["#c1","#c2","#c3"].forEach((id,i)=>tl.fromTo(id,{opacity:0,x:-140,filter:"blur(10px)"},{opacity:1,x:0,filter:"blur(0px)",...arrive},4.15+i*.22));
+tl.to("#s2",{opacity:0,filter:"blur(10px)",duration:.2,ease:"power3.in"},7.78);
+// scene 3: number counts up, caption arrives after it lands
+const o={v:0};
+tl.fromTo("#n10",{opacity:0,filter:"blur(14px)"},{opacity:1,filter:"blur(0px)",duration:.7,ease:"expo.out"},8.15);
+tl.to(o,{v:10,duration:.9,ease:"power2.out",onUpdate:()=>{document.getElementById("n10").textContent=Math.round(o.v)+"x";}},8.15);
+tl.fromTo("#cap10",{opacity:0,y:40,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",...arrive},9.1);
+tl.fromTo("#s3sub",{opacity:0},{opacity:.85,duration:.6,ease:"power2.out"},9.7);
+window.__timelines["main"] = tl;
+</script>
+</body>
+</html>
