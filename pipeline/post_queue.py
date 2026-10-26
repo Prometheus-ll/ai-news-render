@@ -5,7 +5,7 @@ the 'Post next video' workflow (3 time slots a day) publishes ONE queued video p
 
 Needs FB_PAGE_ID / FB_PAGE_TOKEN (see facebook.py). Without them it does nothing.
 """
-import json, os, subprocess, sys, time
+import calendar, json, os, subprocess, sys, time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 QUEUE_PATH = os.path.join(ROOT, "state", "post_queue.json")
@@ -84,6 +84,7 @@ def push_state(message, attempts=5):
     _git("config", "user.name", "ai-quantum-bot")
     _git("config", "user.email", "bot@ai-quantum.local")
     _git("add", "state")
+    _git("add", "-A", "renders/output", "audio")      # also stages the pruned (deleted) files
     if not _git("status", "--porcelain").stdout.strip():
         return
     _git("commit", "-m", message)
@@ -150,6 +151,54 @@ def _log(item):
                platforms={p: {"status": v.get("status"), "id": v.get("id")} for p, v in item.get("platforms", {}).items()})
 
 
+SLOTS_DHAKA = (9, 14, 21)     # same three daily slots as post.yml (Bangladesh time)
+KEEP_DAYS = 2
+
+
+def _dhaka(ts=None):
+    return time.gmtime((ts if ts is not None else time.time()) + 6 * 3600)
+
+
+def slots_due_and_posted(q):
+    """(slots already passed today in Dhaka, videos already posted today in Dhaka). Runner clock is UTC."""
+    now = _dhaka()
+    today = time.strftime("%Y-%m-%d", now)
+    due = sum(1 for h in SLOTS_DHAKA if now.tm_hour >= h)
+    posted = 0
+    for x in q:
+        at = x.get("posted_at")
+        if x.get("status") == "posted" and at:
+            try:
+                t = calendar.timegm(time.strptime(at, "%Y-%m-%d %H:%M"))      # stored in UTC
+                posted += time.strftime("%Y-%m-%d", _dhaka(t)) == today
+            except ValueError:
+                pass
+    return due, posted
+
+
+def prune_files(q):
+    """Delete the mp4/wav of videos posted more than KEEP_DAYS ago (thumbnails stay) so the repo stops growing."""
+    n = 0
+    for x in q:
+        at = x.get("posted_at")
+        if x.get("status") != "posted" or not at:
+            continue
+        try:
+            age = time.time() - calendar.timegm(time.strptime(at, "%Y-%m-%d %H:%M"))
+        except ValueError:
+            continue
+        if age < KEEP_DAYS * 86400:
+            continue
+        base = os.path.splitext(x["video"])[0]
+        for path in (x["video"], os.path.join("audio", os.path.basename(base) + ".wav")):
+            full = os.path.join(ROOT, path)
+            if os.path.exists(full):
+                os.remove(full)
+                n += 1
+    if n:
+        print(f"[prune] removed {n} old files")
+
+
 def main():
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     enabled = _enabled()
@@ -161,6 +210,14 @@ def main():
     for x in q:  # skip entries whose video file is gone
         if x.get("status") == "pending" and not os.path.exists(os.path.join(ROOT, x["video"])):
             x["status"], x["error"] = "failed", "video file missing"
+    prune_files(q)
+    if os.environ.get("CATCHUP"):      # extra backup runs only post when a slot is due and not yet used
+        due, posted = slots_due_and_posted(q)
+        if posted >= due:
+            print(f"[post] backup run: {posted} posted today, {due} slots due - nothing to do")
+            save(q)
+            push_state("Update post queue")
+            return
     item = next((x for x in q if x.get("status") == "pending" and _remaining(x, enabled)), None)
     if not item:
         print("[post] queue is empty - nothing to post this slot")
