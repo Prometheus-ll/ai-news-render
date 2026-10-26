@@ -833,7 +833,15 @@
   "words": 112,
   "caption": "OpenAI Releases New 'Decision Model' to Take on Industry Leader Jev\n\nOpenAI has officially launched its new decision-making model to the public. It moves beyond text generation into high-stakes logical reasoning to compete with Jev. Follow for more AI breakthroughs.\n\n#ai #openai #artificialintelligence #tech #logic #strategy #enterprise #future #machinelearning",
   "thumb": "renders/output/2026-10-25-055505-0.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-10-26 08:46",
+  "fb_id": "2565934117220645",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "2565934117220645"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-25-055947-1.mp4",
