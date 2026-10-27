@@ -990,7 +990,15 @@
   "words": 147,
   "caption": "How to visualize complex systems with wheresryan22/anatomy\n\nLearn how to install Anatomy to turn technical concepts into interactive isometric diagrams. This free open-source tool works with Claude Code and other AI agents. Follow for more AI tutorials.\n\n#tutorial #opensource #howto #svg #visualization #webgl #claudecode #javascript #aiagents",
   "thumb": "renders/output/2026-10-26-080939-2.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-10-27 19:59",
+  "fb_id": "2017238102520519",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "2017238102520519"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-27-060911-0.mp4",
