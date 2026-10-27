@@ -1,22 +1,5 @@
 [
  {
-  "ts": "2026-10-15 07:43",
-  "theme": "ember",
-  "transition": "zoom",
-  "angle": "before vs after",
-  "scenes": [
-   "appclutter",
-   "reveal",
-   "profile",
-   "monitor",
-   "timeline",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Neuralink Rival Successfully Implants Vision-Restoring AI Chip",
-  "link": "https://techcrunch.com/2026/10/13/science-corporation-implants-its-vision-restoring-chip-in-its-first-stargardt-disease-patient/"
- },
- {
   "ts": "2026-10-15 07:47",
   "theme": "ocean",
   "transition": "slide",
@@ -748,6 +731,31 @@
    "kamstudiolabs-100086",
    "daniel-mac8-306214",
    "abderrahmen-g-899031"
+  ]
+ },
+ {
+  "ts": "2026-10-27 06:11",
+  "pack": "Playbook Steps",
+  "theme": "signal",
+  "transition": "wipe",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "stack",
+   "reveal",
+   "morph",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "Agent-Reach: Give your AI agent eyes to see the entire internet. Read & search T",
+  "link": "https://github.com/Panniantong/Agent-Reach",
+  "motion_refs": [
+   "kloss-xyz-941143",
+   "n01ennn-597182",
+   "daniel-mac8-306214"
   ]
  }
 ]
