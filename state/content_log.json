@@ -1021,5 +1021,30 @@
   "caption": "Agent-Reach: Give Your AI Agent Internet Eyes\n\nGive your AI agent eyes to access platforms like Twitter, Reddit, and YouTube without expensive API fees. This MIT-licensed tool connects your AI to the real world through a simple CLI. Follow for daily AI news.\n\n#ai #opensource #github #automation #python #programming #agents #tech",
   "thumb": "renders/output/2026-10-27-061213-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-27-061459-2.mp4",
+  "ts": "2026-10-27 06:16",
+  "kind": "tutorial",
+  "headline": "huashu-design: Huashu Design 3.0 \u00b7 \u5728 agent \u91cc\u6253\u4e00\u53e5\u8bdd\uff0c\u62ff\u56de\u80fd\u4ea4\u4ed8\u7684\u8bbe\u8ba1\uff1a\u7f51\u9875 / App \u539f\u578b / \u53ef\u7f16\u8f91 PPTX / \u52a8\u753b / \u4fe1\u606f\u56fe \u00b7 \u516d\u4e2a\u5019\u9009\u6311\u4e09\u4e2a\u65b9\u5411 \u00b7 84 \u79cd",
+  "title": "How to install Huashu Design for pro AI design skills",
+  "source_link": "https://github.com/alchaincyf/huashu-design",
+  "theme": "paper",
+  "angle": "tutorial",
+  "scenes": [
+   "hook",
+   "meet",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "example",
+   "stats",
+   "cta"
+  ],
+  "words": 148,
+  "caption": "How to install Huashu Design for pro AI design skills\n\nLearn how to turn simple prompts into professional App prototypes, websites, and PPTs using Huashu Design. This open-source tool works with Claude Code and Cursor. Follow for more AI tutorials!\n\n#tutorial #opensource #howto #aidesign #github #coding #webdesign #claude",
+  "thumb": "renders/output/2026-10-27-061459-2.jpg",
+  "status": "queued"
  }
 ]
