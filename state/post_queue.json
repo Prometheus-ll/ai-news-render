@@ -597,8 +597,18 @@
   "headline": "Block Releases Human-Like Voice Model for Local Execution",
   "thumb": "renders/output/2026-10-26-080428-0.jpg",
   "added": "2026-10-26 08:05",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2798574713869912",
+    "at": "2026-10-27 08:51"
+   }
+  },
+  "posted_at": "2026-10-27 08:51",
+  "fb_id": "2798574713869912"
  },
  {
   "video": "renders/output/2026-10-26-080633-1.mp4",

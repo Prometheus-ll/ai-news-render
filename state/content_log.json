@@ -927,7 +927,15 @@
   "words": 93,
   "caption": "Block Releases Human-Like Voice AI for Local Execution\n\nBlock has unveiled a new voice AI model that runs locally on MacBook M4 hardware. It delivers high-fidelity speech with zero cloud latency. Follow for more AI news.\n\n#ai #block #voicemodel #macbookm4 #edgecomputing #privacy #tech #artificialintelligence",
   "thumb": "renders/output/2026-10-26-080428-0.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-10-27 08:51",
+  "fb_id": "2798574713869912",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "2798574713869912"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-26-080633-1.mp4",
