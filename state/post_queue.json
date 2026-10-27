@@ -630,5 +630,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 680649466
+ },
+ {
+  "video": "renders/output/2026-10-27-061213-1.mp4",
+  "caption": "Agent-Reach: Give Your AI Agent Internet Eyes\n\nGive your AI agent eyes to access platforms like Twitter, Reddit, and YouTube without expensive API fees. This MIT-licensed tool connects your AI to the real world through a simple CLI. Follow for daily AI news.\n\n#ai #opensource #github #automation #python #programming #agents #tech",
+  "source_link": "https://github.com/Panniantong/Agent-Reach",
+  "headline": "Agent-Reach: Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHu",
+  "thumb": "renders/output/2026-10-27-061213-1.jpg",
+  "added": "2026-10-27 06:14",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 680655408
  }
 ]
