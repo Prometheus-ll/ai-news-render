@@ -168,7 +168,7 @@ def _typing(fx, t0, dur, n, rng, g=.16):
         t += step * (.8 + .4 * rng.random())
 
 
-_PAPER_REF = {'hook': 5, 'meet': 7, 'grid': 5, 'path': 5, 'example': 5, 'step': 5.5, 'stats': 6, 'cta': 6}
+_PAPER_REF = {'shot': 4, 'hook': 5, 'meet': 7, 'grid': 5, 'path': 5, 'example': 5, 'step': 5.5, 'stats': 6, 'cta': 6}
 
 
 def paper_sfx(fx, sc, rng, S, D):
@@ -180,6 +180,8 @@ def paper_sfx(fx, sc, rng, S, D):
         for i in range(min(8, len(d.get('chips', [])))):
             fx.put(pop(420 + 55 * i), at(.9 + i * .22), .10)
         fx.put(thump(), at(3.2), .22)
+    elif ty == 'shot':
+        fx.put(thump(), at(.2), .22); fx.put(chime(880, .7), at(.3), .10)
     elif ty == 'meet':
         fx.put(thump(), at(.25), .30); fx.put(chime(1174.7, .8), at(.35), .14)
         for tt in (1.5, 2.3, 4.0):

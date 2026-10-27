@@ -306,13 +306,32 @@ function sCta(t, d) {
   const cu = eio(ramp(t, 4.0, .8)); if (t > 3.9) ico('cursor', lerp(960, bx + 40, cu), lerp(1440, by + 30, cu), 76, { fill: '#fff', rot: -10 });
   if (d.sticker) sticker(t, 5.2, d.sticker, 540, 1400, T.acc, -1, 32);
 }
-const SCENES = { hook: [5, sHook, 'THE HOOK'], meet: [7, sMeet, 'MEET THE TOOL'], grid: [5, sGrid, 'WHAT YOU GET'], path: [5, sPath, 'THE PATH'], example: [5, sExample, 'EXAMPLE'],
+function sShot(t, d) {
+  const p = pop(t, .1, .6), cy = 800, w = 940, h = 1040, bar = 92;
+  card(540, cy, w, h, { sc: .94 + .06 * p, a: p, r: 38, glow: rgba(T.acc2, .35), blur: 70 }, () => {
+    [['#ff5f57', -400], ['#febc2e', -362], ['#28c840', -324]].forEach(([c, x]) => dot(x, -h / 2 + bar / 2, 9, c));
+    const url = 'github.com/' + ((M.repo_info || {}).full_name || ''), st = (M.repo_info || {}).stars_text;
+    card(-30, -h / 2 + bar / 2, 560, 50, { fill: P.dark ? 'rgba(255,255,255,.08)' : 'rgba(11,16,32,.07)', r: 25, lw: 0, glow: 'transparent' }, () => txt(url, -250, 2, { size: fit(url, 600, 26, 500, true), wt: 600, mono: true, al: 'left', fill: P.sub }));
+    if (st) card(350, -h / 2 + bar / 2, 190, 50, { fill: '#21262d', r: 25, lw: 1, stroke: '#30363d', glow: 'transparent' }, () => txt('\u2605 ' + st, 0, 2, { size: 26, wt: 800, fill: '#f0b429' }));
+    const vx = -w / 2, vy = -h / 2 + bar, vw = w, vh = h - bar;
+    g.save(); rr(vx, vy, vw, vh, 0); g.beginPath(); g.moveTo(vx, vy); g.lineTo(vx + vw, vy); g.lineTo(vx + vw, vy + vh - 38); g.arcTo(vx + vw, vy + vh, vx + vw - 38, vy + vh, 38);
+    g.lineTo(vx + 38, vy + vh); g.arcTo(vx, vy + vh, vx, vy + vh - 38, 38); g.closePath(); g.clip();
+    g.fillStyle = '#0d1117'; g.fillRect(vx, vy, vw, vh);
+    if (SHOT && SHOT.complete && SHOT.naturalWidth) {
+      const ih = SHOT.naturalHeight * vw / SHOT.naturalWidth, sc_ = Math.max(0, ih - vh) * eo(ramp(t, .5, 3.4));
+      g.drawImage(SHOT, vx, vy - sc_, vw, ih);
+    }
+    g.restore();
+  });
+  if (d.stamp) stamp(t, 2.2, d.stamp, 540, 1400, T.acc, -3, 46);
+}
+const SCENES = { shot: [4, sShot, 'THE REAL REPO'], hook: [5, sHook, 'THE HOOK'], meet: [7, sMeet, 'MEET THE TOOL'], grid: [5, sGrid, 'WHAT YOU GET'], path: [5, sPath, 'THE PATH'], example: [5, sExample, 'EXAMPLE'],
                  step: [5.5, sStep, 'STEP'], stats: [6, sStats, 'THE NUMBERS'], cta: [6, sCta, 'GET IT NOW'] };
 
 /* ======================================================================
    BRAND OVERLAY, KICKER PILL, CAPTION PILL (the channel signature)
    ====================================================================== */
-let M = null, S = [], CAPS = [], DUR = 1, LOGO = null, BRAND = null, curT = 0, patCache = {};
+let M = null, S = [], CAPS = [], DUR = 1, LOGO = null, SHOT = null, BRAND = null, curT = 0, patCache = {};
 function pattern() {
   const key = T.bg + P.dark; if (patCache[key]) return patCache[key];
   const c = document.createElement('canvas'); c.width = c.height = 270; const x = c.getContext('2d'), col = P.dark ? rgba(P.k, .09) : rgba(T.acc, .08);
@@ -391,9 +410,10 @@ function build(m) {
   DUR = m.total || 60; CAPS = m.captions || []; patCache = {};
   S = m.scenes.map((sc, i) => [sc.start, sc.end, 0, { ...sc, mode: sc.mode || (i % 2 ? 'light' : 'dark') }]);
   if (m.product_logo) { LOGO = new Image(); LOGO.src = m.product_logo; }
+  if (m.repo_shot) { SHOT = new Image(); SHOT.src = m.repo_shot; }
   BRAND = new Image(); BRAND.src = '../assets/aq_logo.png';
   const jobs = ['500', '700', '900'].map(w => document.fonts.load(w + ' 40px PoppinsX').catch(() => 0));
-  [LOGO, BRAND].forEach(im => { if (im) jobs.push(im.decode().catch(() => 0)); });
+  [LOGO, SHOT, BRAND].forEach(im => { if (im) jobs.push(im.decode().catch(() => 0)); });
   return Promise.all(jobs).then(() => { renderAt(0); return true; });
 }
 window.build = build; window.seek = renderAt; window.refit = () => renderAt(curT);
