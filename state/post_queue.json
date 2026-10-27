@@ -637,8 +637,18 @@
   "headline": "anatomy: An agent skill for creating detailed, interactive isometric illustrations of real-world machines and ",
   "thumb": "renders/output/2026-10-26-080939-2.jpg",
   "added": "2026-10-26 08:11",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2017238102520519",
+    "at": "2026-10-27 19:59"
+   }
+  },
+  "posted_at": "2026-10-27 19:59",
+  "fb_id": "2017238102520519"
  },
  {
   "video": "renders/output/2026-10-27-060911-0.mp4",
