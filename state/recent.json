@@ -1,22 +1,5 @@
 [
  {
-  "ts": "2026-10-14 12:38",
-  "theme": "mint",
-  "transition": "fade",
-  "angle": "what changes for you",
-  "scenes": [
-   "hook",
-   "reveal",
-   "screenshot",
-   "hubmap",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "scientific-agent-skills: Turn any AI agent into an AI Scientist. The #1 Agent Sk",
-  "link": "https://github.com/K-Dense-AI/scientific-agent-skills"
- },
- {
   "ts": "2026-10-15 07:43",
   "theme": "ember",
   "transition": "zoom",
@@ -741,5 +724,30 @@
   "kind": "tutorial",
   "headline": "anatomy: An agent skill for creating detailed, interactive isometric illustratio",
   "link": "https://github.com/wheresryan22/anatomy"
+ },
+ {
+  "ts": "2026-10-27 06:08",
+  "pack": "Systems Map",
+  "theme": "indigo",
+  "transition": "slide",
+  "angle": "by the numbers",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "morph",
+   "reveal",
+   "timeline",
+   "custom",
+   "orbit",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Anthropic Officially Files for IPO, Revealing Surge in Enterprise Adoption",
+  "link": "https://techcrunch.com/2026/10/26/anthropic-officially-files-for-its-public-debut/",
+  "motion_refs": [
+   "kamstudiolabs-100086",
+   "daniel-mac8-306214",
+   "abderrahmen-g-899031"
+  ]
  }
 ]
