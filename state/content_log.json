@@ -975,5 +975,28 @@
   "caption": "How to visualize complex systems with wheresryan22/anatomy\n\nLearn how to install Anatomy to turn technical concepts into interactive isometric diagrams. This free open-source tool works with Claude Code and other AI agents. Follow for more AI tutorials.\n\n#tutorial #opensource #howto #svg #visualization #webgl #claudecode #javascript #aiagents",
   "thumb": "renders/output/2026-10-26-080939-2.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-27-060911-0.mp4",
+  "ts": "2026-10-27 06:11",
+  "kind": "news",
+  "headline": "Anthropic Officially Files for IPO, Revealing Surge in Enterprise Adoption",
+  "title": "Anthropic Files for Landmark IPO with $16B Revenue",
+  "source_link": "https://techcrunch.com/2026/10/26/anthropic-officially-files-for-its-public-debut/",
+  "theme": "indigo",
+  "angle": "by the numbers",
+  "scenes": [
+   "slam",
+   "morph",
+   "reveal",
+   "timeline",
+   "custom",
+   "orbit",
+   "cta"
+  ],
+  "words": 92,
+  "caption": "Anthropic Files for Landmark IPO with $16B Revenue\n\nAI lab Anthropic has officially filed for its IPO, revealing a massive jump in enterprise revenue. The filing shows a unique governance structure designed to protect its AI safety mission. Follow for daily AI business updates.\n\n#ai #anthropic #claude #ipo #investing #tech #business #generativeai",
+  "thumb": "renders/output/2026-10-27-060911-0.jpg",
+  "status": "queued"
  }
 ]
