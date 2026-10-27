@@ -1358,6 +1358,11 @@ def process_story(i, story, recent_holder):
         manifest["repo_shot"] = capture_repo_screenshot(rp.get("full_name", ""))
         manifest["repo_info"] = {"full_name": rp.get("full_name", ""), "description": story.get("headline", "").split(": ", 1)[-1],
                                  "stars_text": f"{rp.get('stars', 0):,}", "language": rp.get("language", "")}
+        if manifest.get("engine") == "paper":
+            import explainer
+            explainer.add_shot(manifest, story)
+            voice_script = " ".join(x["narration"] for x in manifest["scenes"])
+            record["scenes"] = [x["type"] for x in manifest["scenes"]]
     else:
         manifest["product_logo"] = fetch_product_logo(manifest.get("product"))
     try:

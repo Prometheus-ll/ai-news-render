@@ -186,3 +186,15 @@ def to_manifest(script, story, theme, brand="AI Quantum"):
                  "sticker": _nofs(x.get("sticker"), 34) or f"github.com/{rp.get('full_name', '')}"}
         scenes.append({"type": t, "kicker": k, "mode": "dark" if i % 2 == 0 else "light", "narration": str(x["narration"]).strip(), "data": d})
     return {"engine": "paper", "brand": {"name": brand}, "footer": f"Source: github.com/{rp.get('full_name', '')}", "theme": theme, "product": {}, "scenes": scenes}
+
+
+def add_shot(manifest, story):
+    """Insert the real GitHub page glimpse (a scrolling screenshot) right after the 'meet' scene, like the repo videos."""
+    if not manifest.get("repo_shot") or any(x["type"] == "shot" for x in manifest["scenes"]):
+        return manifest
+    idx = next((i + 1 for i, x in enumerate(manifest["scenes"]) if x["type"] == "meet"), 1)
+    manifest["scenes"].insert(idx, {"type": "shot", "kicker": "THE REAL REPO", "mode": "dark", "data": {"stamp": ""},
+                                    "narration": "Here is the real GitHub page, open source and ready to use."})
+    for i, x in enumerate(manifest["scenes"]):
+        x["mode"] = "dark" if i % 2 == 0 else "light"
+    return manifest
