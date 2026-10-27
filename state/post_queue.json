@@ -617,8 +617,18 @@
   "headline": "claude-seo: Universal SEO skill for Claude Code. 26 sub-skills + 19 sub-agents covering technical SEO, E-E-A-T",
   "thumb": "renders/output/2026-10-26-080633-1.jpg",
   "added": "2026-10-26 08:09",
-  "status": "pending",
-  "attempts": 0
+  "status": "posted",
+  "attempts": 0,
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1408449401457340",
+    "at": "2026-10-27 13:51"
+   }
+  },
+  "posted_at": "2026-10-27 13:51",
+  "fb_id": "1408449401457340"
  },
  {
   "video": "renders/output/2026-10-26-080939-2.mp4",
