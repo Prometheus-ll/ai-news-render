@@ -1070,5 +1070,28 @@
   "caption": "How to install Huashu Design for pro AI design skills\n\nLearn how to turn simple prompts into professional App prototypes, websites, and PPTs using Huashu Design. This open-source tool works with Claude Code and Cursor. Follow for more AI tutorials!\n\n#tutorial #opensource #howto #aidesign #github #coding #webdesign #claude",
   "thumb": "renders/output/2026-10-27-061459-2.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-28-064832-0.mp4",
+  "ts": "2026-10-28 06:51",
+  "kind": "news",
+  "headline": "Google Unveils Genie 4: A Generative World Model with Real-Time Steering and Audio",
+  "title": "Google Genie 4: The First Fully Playable AI World Model?",
+  "source_link": "https://techcrunch.com/2026/10/27/googles-genie-4-world-model-adds-audio-more-realistic-worlds-and-real-time-steering/",
+  "theme": "neon",
+  "angle": "what changes for you",
+  "scenes": [
+   "slam",
+   "stack",
+   "reveal",
+   "bignumber",
+   "custom",
+   "command",
+   "cta"
+  ],
+  "words": 102,
+  "caption": "Google Genie 4: The First Fully Playable AI World Model?\n\nGoogle has announced Genie 4, a massive upgrade to its generative world model featuring real-time steering and integrated audio. The model doubles previous scene consistency and enables photorealistic simulations. Follow for daily AI updates.\n\n#ai #google #genie4 #worldmodel #machinelearning #robotics #gaming #googledeepmind",
+  "thumb": "renders/output/2026-10-28-064832-0.jpg",
+  "status": "queued"
  }
 ]
