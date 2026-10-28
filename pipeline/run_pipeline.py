@@ -278,7 +278,7 @@ HOOK_TYPES = ["hook", "slam", "appclutter"]
 REPO_HOOK = "repohook"
 MID_TYPES = ["terminal", "alert", "timeline", "monitor", "bignumber", "versus", "leaderboard", "chat", "quote", "checklist",
              "profile", "hubmap", "roundup", "reveal", "phases", "cycle", "stars",
-             "morph", "bars", "command", "tabs", "prompt", "stack", "orbit"]
+             "bars", "command", "tabs", "prompt", "stack", "orbit"]
 THEMES = ["indigo", "ember", "forest", "ocean", "neon", "signal", "mint", "paper"]
 TRANSITIONS = ["fade", "slide", "zoom", "wipe", "panel"]
 MODE_PATTERNS = ["alternate_light", "alternate_dark", "light_then_dark", "dark_then_light"]
@@ -290,13 +290,13 @@ STATE_PATH = os.path.join(REPO_ROOT, "state", "recent.json")
 # One "style pack" per video: the explanation scenes come mostly from the pack's set, with its own theme family, transition and
 # light/dark rhythm. The signature parts (opening, reveal with logo, cta, thumbnail) stay the same in every pack.
 STYLE_PACKS = {
-    "Terminal Ops":     {"mid": ["terminal", "command", "prompt", "checklist", "phases", "morph"], "themes": ["neon", "forest"], "transition": "wipe", "mode": "alternate_dark"},
+    "Terminal Ops":     {"mid": ["terminal", "command", "prompt", "checklist", "phases"], "themes": ["neon", "forest"], "transition": "wipe", "mode": "alternate_dark"},
     "Data Story":       {"mid": ["bignumber", "bars", "leaderboard", "versus", "monitor"], "themes": ["ocean", "signal"], "transition": "slide", "mode": "light_then_dark"},
     "Editorial": {"mid": ["quote", "stack", "tabs", "alert", "bars"], "themes": ["ember", "paper"], "transition": "panel", "mode": "alternate_light"},
-    "Product Keynote":  {"mid": ["profile", "stack", "orbit", "morph", "tabs"], "themes": ["indigo", "mint"], "transition": "zoom", "mode": "dark_then_light"},
-    "Conversation":     {"mid": ["chat", "prompt", "quote", "versus", "command", "morph"], "themes": ["mint", "ocean"], "transition": "fade", "mode": "alternate_light"},
+    "Product Keynote":  {"mid": ["profile", "stack", "orbit", "tabs"], "themes": ["indigo", "mint"], "transition": "zoom", "mode": "dark_then_light"},
+    "Conversation":     {"mid": ["chat", "prompt", "quote", "versus", "command"], "themes": ["mint", "ocean"], "transition": "fade", "mode": "alternate_light"},
     "Systems Map":      {"mid": ["hubmap", "orbit", "cycle", "timeline", "phases", "stack"], "themes": ["forest", "indigo"], "transition": "slide", "mode": "alternate_dark"},
-    "Playbook Steps":   {"mid": ["phases", "timeline", "checklist", "tabs", "roundup", "morph"], "themes": ["signal", "paper"], "transition": "wipe", "mode": "alternate_light"},
+    "Playbook Steps":   {"mid": ["phases", "timeline", "checklist", "tabs", "roundup"], "themes": ["signal", "paper"], "transition": "wipe", "mode": "alternate_light"},
     "Alert Room":       {"mid": ["alert", "monitor", "versus", "bignumber", "command"], "themes": ["ember", "neon"], "transition": "zoom", "mode": "dark_then_light"},
 }
 TUTORIAL_VIDEOS = int(os.environ.get("TUTORIAL_VIDEOS", "1"))   # how many "how to install and use it free" videos per run
@@ -348,7 +348,6 @@ roundup (3 items announced, 'three more X', numbered cards sliding in): {"type":
 phases (a process in 3-4 ordered steps, cards stacking top to bottom): {"type":"phases","kicker":"2-3 words CAPS","steps":[{"title":"max 20 chars","sub":"max 32 chars"}  (3-4)],"footnote":"optional max 44 chars","narration":"..."}
 cycle (a loop / feedback cycle of 3-4 stages, e.g. plan -> build -> test -> repeat): {"type":"cycle","kicker":"2-3 words CAPS","center":"max 16 chars","nodes":[{"icon":"<icon>","label":"max 12 chars"}  (3-4)],"footnote":"optional max 44 chars","narration":"..."}
 stars (ONLY for a GitHub repo: its star count counting up): {"type":"stars","kicker":"2-3 words CAPS","value":"the real star count, e.g. 12.3k or 12345","caption":"max 30 chars","narration":"..."}
-morph (a tool/AI does ONE thing: a single pill becomes button -> loader -> check -> result as a cursor clicks it): {"type":"morph","kicker":"2-3 words CAPS","label":"max 20 chars, the button text e.g. Generate video","result":"max 26 chars, the outcome e.g. Done in 12 seconds","narration":"..."}
 bars (a REAL growth/comparison figure with a chart that grows; ONLY with real numbers from the story): {"type":"bars","kicker":"2-3 words CAPS","value":"max 8 chars, the real figure e.g. 128%","label":"max 30 chars","series":[5-8 numbers showing the trend ending at the headline figure],"narration":"..."}
 command (an AI search/command tool: a command palette, type, the list filters, Enter, a toast confirms): {"type":"command","kicker":"2-3 words CAPS","query":"max 22 chars","results":["exactly 3, max 26 chars each"],"toast":"max 28 chars","narration":"..."}
 tabs (a choice between 3 modes/plans/models; a liquid indicator slides to the one that matters): {"type":"tabs","kicker":"2-3 words CAPS","items":["exactly 3, max 12 chars each"],"pick":<0-2 index of the highlighted one>,"detail":"max 34 chars about the picked one","narration":"..."}
@@ -377,17 +376,17 @@ def _san_stars(x):
 
 NEWS_STRUCTURE = """Build the video as 6 scenes in this order:
  1. exactly one OPENING scene: "hook", "slam" or "appclutter"
- 2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup, reveal, phases, cycle, morph, bars, command, tabs, prompt, stack, orbit - \
+ 2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup, reveal, phases, cycle, bars, command, tabs, prompt, stack, orbit - \
 the ones that tell THIS story best (a funding story wants bignumber/leaderboard, a product launch wants chat/checklist/timeline, \
-a controversy wants versus/monitor/alert, a security story wants alert/terminal, a story about several products or agents wants roundup then profile, a platform/ecosystem story wants hubmap, a tool that does one thing wants morph, an AI search tool wants command, a choice of modes/plans wants tabs, a real growth number wants bars, a chatbot/assistant story wants prompt, two or three named modes or models want stack, four related products wants orbit, etc.)
- ON-SCREEN TEXT of morph, bars, command, tabs, prompt, stack and orbit never ends with a full stop.
+a controversy wants versus/monitor/alert, a security story wants alert/terminal, a story about several products or agents wants roundup then profile, a platform/ecosystem story wants hubmap, an AI search tool wants command, a choice of modes/plans wants tabs, a real growth number wants bars, a chatbot/assistant story wants prompt, two or three named modes or models want stack, four related products wants orbit, etc.)
+ ON-SCREEN TEXT of bars, command, tabs, prompt, stack and orbit never ends with a full stop.
  NAME RULE: if the story is about ONE specific named tool, product, model or repo, scene 2 MUST be "reveal" - announce its real name right after the hook.
  6. "cta" (always last)"""
 
 REPO_STRUCTURE = """Build the video as 6 scenes in this order:
  1. "repohook" - the opening: a quick glimpse of the repo's real GitHub page. Its narration MUST start with "This GitHub repo".
  2. "reveal" - announces the repo's real name right after the opening.
- 3-5. THREE DIFFERENT scenes chosen from: terminal, timeline, hubmap, checklist, profile, phases, cycle, stars, morph, command, tabs, prompt, stack, orbit - the ones that best explain how it works and how to use it.
+ 3-5. THREE DIFFERENT scenes chosen from: terminal, timeline, hubmap, checklist, profile, phases, cycle, stars, command, tabs, prompt, stack, orbit - the ones that best explain how it works and how to use it.
  6. "cta" (always last)"""
 
 
@@ -435,7 +434,7 @@ Return ONE JSON object (no markdown, no commentary):
 
 # ---------------------------------------------------------------- FOCUS style (default): one visual per spoken idea
 VIDEO_STYLE = os.environ.get("VIDEO_STYLE", "rich")   # "rich" (default, the original multi-element scenes) or "focus" (new minimal style, still being tuned; opt in with VIDEO_STYLE=focus)
-FOCUS_EXTRA = ["morph", "bars", "command", "tabs", "prompt", "stack", "orbit"]   # motion-library scenes, max 3 per video
+FOCUS_EXTRA = ["bars", "command", "tabs", "prompt", "stack", "orbit"]   # motion-library scenes, max 3 per video
 FOCUS_TYPES = ["say", "stat", "icon", "name", "code", "end"] + FOCUS_EXTRA
 HOOK_FORMATS = ["bold claim", "counterintuitive statement", "direct question", "list promise", "story open"]
 
@@ -635,7 +634,7 @@ def build_script_prompt(story, recent, feedback=""):
 OUTLETS = ["techcrunch", "tech crunch", "the verge", "wired", "reuters", "bloomberg", "venturebeat", "the information", "cnbc", "ars technica", "engadget", "zdnet", "forbes"]
 
 
-MOTION_SET = ["morph", "command", "tabs", "prompt", "stack", "orbit", "bars"]
+MOTION_SET = ["command", "tabs", "prompt", "stack", "orbit", "bars"]
 
 
 def validate_script(script, story=None):
@@ -1108,11 +1107,15 @@ def _split_opening(raw, beat):
         if len(words) < 2:
             words.append("Next")
     first = dict(raw[0], narration=sents[0])
-    used = {x.get("type") for x in raw}
-    if "stack" in used and "morph" not in used:      # never two stack scenes in one video: the beat becomes a button that morphs
-        beat_scene = {"type": "morph", "label": words[0], "result": words[1], "narration": rest, "_beat": True}
-    else:
-        beat_scene = {"type": "stack", "items": [{"title": w, "tag": ""} for w in words[:3]], "narration": rest, "_beat": True}
+    used = [x.get("type") for x in raw]
+    if "stack" in used:      # never two stack scenes in one video: fold the later one's narration into the scene before it
+        i = used.index("stack")
+        if i < 2:
+            return raw       # a stack right after the opening already changes the picture: no split needed
+        raw = list(raw)
+        prev = dict(raw[i - 1], narration=(str(raw[i - 1].get("narration", "")).strip() + " " + str(raw[i].get("narration", "")).strip()).strip())
+        raw = raw[:i - 1] + [prev] + raw[i + 1:]
+    beat_scene = {"type": "stack", "items": [{"title": w, "tag": ""} for w in words[:3]], "narration": rest, "_beat": True}
     return [first, beat_scene] + list(raw[1:])
 
 
