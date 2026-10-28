@@ -1052,7 +1052,15 @@
   "words": 109,
   "caption": "Agent-Reach: Give Your AI Agent Internet Eyes\n\nGive your AI agent eyes to access platforms like Twitter, Reddit, and YouTube without expensive API fees. This MIT-licensed tool connects your AI to the real world through a simple CLI. Follow for daily AI news.\n\n#ai #opensource #github #automation #python #programming #agents #tech",
   "thumb": "renders/output/2026-10-27-061213-1.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-10-28 14:45",
+  "fb_id": "1866400458052584",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1866400458052584"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-27-061459-2.mp4",
