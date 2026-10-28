@@ -704,5 +704,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 684123624
+ },
+ {
+  "video": "renders/output/2026-10-28-065551-2.mp4",
+  "caption": "How to clean all ads from your Android phone for free with this AI tool\n\nStop annoying system ads and marketing pushes on your Android phone using this open-source tool. No root required and completely reversible. Follow AI Quantum for more!\n\n#tutorial #opensource #howto #android #hyperos #coloros #originos #ads",
+  "source_link": "https://github.com/rddmwmddr/android-ad-cleaner",
+  "headline": "android-ad-cleaner: \u5173\u6389\u56fd\u4ea7\u5b89\u5353\u624b\u673a\u7cfb\u7edf\u91cc\u7684\u5e7f\u544a\u3001\u70ed\u641c\u3001\u8d44\u8baf\u63a8\u8350\u548c\u8425\u9500\u63a8\u9001\u3002\u4e0d root\uff0c\u53ef\u8fd8\u539f\uff0c\u652f\u6301 AI \u667a\u80fd\u4f53\u4e00\u952e\u6267\u884c\u3002",
+  "thumb": "renders/output/2026-10-28-065551-2.jpg",
+  "added": "2026-10-28 06:57",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 684129313
  }
 ]
