@@ -1093,5 +1093,28 @@
   "caption": "Google Genie 4: The First Fully Playable AI World Model?\n\nGoogle has announced Genie 4, a massive upgrade to its generative world model featuring real-time steering and integrated audio. The model doubles previous scene consistency and enables photorealistic simulations. Follow for daily AI updates.\n\n#ai #google #genie4 #worldmodel #machinelearning #robotics #gaming #googledeepmind",
   "thumb": "renders/output/2026-10-28-064832-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-28-065218-1.mp4",
+  "ts": "2026-10-28 06:55",
+  "kind": "repo",
+  "headline": "free-my-tv: A fast, ad-free home screen for Google TV, LG webOS and Samsung Tizen. One button to undo.",
+  "title": "How to remove ads from Google TV, LG, and Samsung TVs",
+  "source_link": "https://github.com/simbasjungles/free-my-tv",
+  "theme": "forest",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "stack",
+   "reveal",
+   "checklist",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "words": 97,
+  "caption": "How to remove ads from Google TV, LG, and Samsung TVs\n\nThis open-source project replaces your cluttered smart TV home screen with a fast, ad-free launcher. It works on Google TV, LG, and Samsung systems and is completely free to customize. Follow for daily AI news.\n\n#ai #opensource #github #googletv #webos #tizen #techtips #smarttv",
+  "thumb": "renders/output/2026-10-28-065218-1.jpg",
+  "status": "queued"
  }
 ]

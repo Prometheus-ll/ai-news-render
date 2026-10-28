@@ -1,22 +1,5 @@
 [
  {
-  "ts": "2026-10-15 12:15",
-  "theme": "neon",
-  "transition": "zoom",
-  "angle": "what changes for you",
-  "scenes": [
-   "slam",
-   "reveal",
-   "hubmap",
-   "monitor",
-   "checklist",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Figma Launches Framework for AI Agents to Navigate Design and Code",
-  "link": "https://techcrunch.com/2026/10/14/figma-announces-new-features-to-define-how-agents-work-on-its-platform/"
- },
- {
   "ts": "2026-10-15 12:18",
   "theme": "mint",
   "transition": "wipe",
@@ -769,6 +752,31 @@
    "aichrislee-961335",
    "michaelraspuzzi-740595",
    "deeprajo1-623150"
+  ]
+ },
+ {
+  "ts": "2026-10-28 06:51",
+  "pack": "Terminal Ops",
+  "theme": "forest",
+  "transition": "wipe",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "stack",
+   "reveal",
+   "checklist",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "free-my-tv: A fast, ad-free home screen for Google TV, LG webOS and Samsung Tize",
+  "link": "https://github.com/simbasjungles/free-my-tv",
+  "motion_refs": [
+   "deedydas-407965",
+   "ai9app-989009",
+   "daniel-mac8-306214"
   ]
  }
 ]
