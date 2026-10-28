@@ -682,5 +682,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 680659334
+ },
+ {
+  "video": "renders/output/2026-10-28-064832-0.mp4",
+  "caption": "Google Genie 4: The First Fully Playable AI World Model?\n\nGoogle has announced Genie 4, a massive upgrade to its generative world model featuring real-time steering and integrated audio. The model doubles previous scene consistency and enables photorealistic simulations. Follow for daily AI updates.\n\n#ai #google #genie4 #worldmodel #machinelearning #robotics #gaming #googledeepmind",
+  "source_link": "https://techcrunch.com/2026/10/27/googles-genie-4-world-model-adds-audio-more-realistic-worlds-and-real-time-steering/",
+  "headline": "Google Unveils Genie 4: A Generative World Model with Real-Time Steering and Audio",
+  "thumb": "renders/output/2026-10-28-064832-0.jpg",
+  "added": "2026-10-28 06:51",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 684116304
  }
 ]

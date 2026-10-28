@@ -1,22 +1,5 @@
 [
  {
-  "ts": "2026-10-15 07:51",
-  "theme": "signal",
-  "transition": "fade",
-  "angle": "what changes for you",
-  "scenes": [
-   "hook",
-   "reveal",
-   "screenshot",
-   "hubmap",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "pentagi: Fully autonomous AI Agents system capable of performing complex penetra",
-  "link": "https://github.com/vxcontrol/pentagi"
- },
- {
   "ts": "2026-10-15 12:15",
   "theme": "neon",
   "transition": "zoom",
@@ -762,5 +745,30 @@
   "kind": "tutorial",
   "headline": "huashu-design: Huashu Design 3.0 \u00b7 \u5728 agent \u91cc\u6253\u4e00\u53e5\u8bdd\uff0c\u62ff\u56de\u80fd\u4ea4\u4ed8\u7684\u8bbe\u8ba1\uff1a\u7f51\u9875 / App \u539f\u578b / \u53ef\u7f16\u8f91 PPTX",
   "link": "https://github.com/alchaincyf/huashu-design"
+ },
+ {
+  "ts": "2026-10-28 06:48",
+  "pack": "Alert Room",
+  "theme": "neon",
+  "transition": "zoom",
+  "angle": "what changes for you",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "stack",
+   "reveal",
+   "bignumber",
+   "custom",
+   "command",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Google Unveils Genie 4: A Generative World Model with Real-Time Steering and Aud",
+  "link": "https://techcrunch.com/2026/10/27/googles-genie-4-world-model-adds-audio-more-realistic-worlds-and-real-time-steering/",
+  "motion_refs": [
+   "aichrislee-961335",
+   "michaelraspuzzi-740595",
+   "deeprajo1-623150"
+  ]
  }
 ]
