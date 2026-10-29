@@ -1,22 +1,5 @@
 [
  {
-  "ts": "2026-10-16 11:59",
-  "theme": "ocean",
-  "transition": "zoom",
-  "angle": "before vs after",
-  "scenes": [
-   "appclutter",
-   "reveal",
-   "hubmap",
-   "monitor",
-   "checklist",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Meta and Apple Partner to Launch 'Muse Spark Open' for Local Mac AI",
-  "link": "https://techcrunch.com/2026/10/15/meta-launches-an-open-weight-model-that-runs-on-macs/"
- },
- {
   "ts": "2026-10-16 12:03",
   "theme": "signal",
   "transition": "fade",
@@ -791,5 +774,25 @@
    "imryven-495965",
    "aichrislee-961335"
   ]
+ },
+ {
+  "ts": "2026-10-29 06:58",
+  "pack": "Product Keynote",
+  "theme": "mint",
+  "transition": "zoom",
+  "angle": "3 steps",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "stack",
+   "reveal",
+   "orbit",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "skills: A collection of AI agent skills for working with Expo projects and Expo ",
+  "link": "https://github.com/expo/skills",
+  "motion_refs": []
  }
 ]

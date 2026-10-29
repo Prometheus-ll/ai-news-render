@@ -1188,5 +1188,27 @@
   "caption": "Google's Agentic Web is Finally Here\n\nGoogle has launched the Connected Apps Platform, allowing developers to build AI agents that execute tasks across Search and Gemini. This shifts AI from a chatbot to a functional assistant that handles complex transactions. Follow for daily AI news.\n\n#ai #google #gemini #developers #technology #future #agents #automation",
   "thumb": "renders/output/2026-10-29-065419-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-29-065834-1.mp4",
+  "ts": "2026-10-29 07:02",
+  "kind": "repo",
+  "headline": "skills: A collection of AI agent skills for working with Expo projects and Expo Application Services",
+  "title": "Expo Skills: Turbocharge your AI coding agent for mobile dev",
+  "source_link": "https://github.com/expo/skills",
+  "theme": "mint",
+  "angle": "3 steps",
+  "scenes": [
+   "repohook",
+   "stack",
+   "reveal",
+   "orbit",
+   "terminal",
+   "cta"
+  ],
+  "words": 107,
+  "caption": "Expo Skills: Turbocharge your AI coding agent for mobile dev\n\nLearn how the new Expo Skills project gives AI agents expert-level knowledge for building and deploying mobile apps. This open-source toolkit is a game changer for React Native developers.\n\n#ai #opensource #github #expo #reactnative #coding #mobiledev #javascript #software",
+  "thumb": "renders/output/2026-10-29-065834-1.jpg",
+  "status": "queued"
  }
 ]
