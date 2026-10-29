@@ -50,7 +50,7 @@ body{font-family:'PoppinsX','Poppins','Noto Sans',sans-serif;-webkit-font-smooth
 #brand .tile{width:68px;height:68px;border-radius:50%;overflow:hidden;background:#000;box-shadow:0 6px 18px rgba(0,0,0,.35)}#brand .tile img{width:100%;height:100%;display:block}
 #plogo{position:absolute;right:54px;top:44px;z-index:30;width:84px;height:84px;border-radius:24px;background:#fff;padding:14px;box-shadow:0 8px 22px rgba(0,0,0,.28);display:none}#plogo img{width:100%;height:100%;object-fit:contain;display:block}
 .plg{width:150px;height:150px;border-radius:36px;background:#fff;padding:26px;box-shadow:0 14px 34px rgba(0,0,0,.28)}.plg img{width:100%;height:100%;object-fit:contain;display:block}
-.cmt{font-size:26px;font-weight:700;letter-spacing:.08em;padding:12px 26px;border-radius:99px;background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.55);color:#fff}
+.cmt{font-size:26px;font-weight:700;letter-spacing:.08em;padding:12px 26px;border-radius:99px;background:rgba(8,12,28,.5);border:1.5px solid rgba(255,255,255,.55);color:#fff}
 #src{position:absolute;right:54px;top:142px;z-index:30;font-size:20px;font-weight:500;letter-spacing:.08em;color:#64748b}
 .ondark #brand{color:#fff}.ondark #src{color:#8b9bc7}
 /* hook */
@@ -67,7 +67,7 @@ body{font-family:'PoppinsX','Poppins','Noto Sans',sans-serif;-webkit-font-smooth
 .pills{display:flex;gap:12px;margin-top:24px;justify-content:center;flex-wrap:wrap}
 .pill{font-size:27px;font-weight:700;padding:12px 24px;border-radius:99px;background:color-mix(in srgb,var(--acc) 11%,#fff);color:var(--acc)}
 .dark .pill{background:color-mix(in srgb,var(--k) 18%,transparent);color:var(--kl)}
-.badge{position:absolute;top:-26px;left:-24px;z-index:5;font-size:22px;font-weight:700;letter-spacing:.08em;padding:12px 22px;border-radius:99px;color:#fff;background:#10b981;box-shadow:0 10px 26px rgba(16,185,129,.45)}
+.badge{position:absolute;top:-26px;left:-24px;z-index:5;font-size:22px;font-weight:700;letter-spacing:.08em;padding:12px 22px;border-radius:99px;color:#fff;background:#047857;box-shadow:0 10px 26px rgba(4,120,87,.45)}
 /* slam hook */
 .slamw{display:inline-block;font-weight:900;line-height:.98;letter-spacing:-.03em;text-align:center;white-space:nowrap}
 .slamw.hi{color:var(--hi)}.dark .slamw.hi{color:var(--kl)}
@@ -347,12 +347,12 @@ body{font-family:'PoppinsX','Poppins','Noto Sans',sans-serif;-webkit-font-smooth
 .mo-gt .cur{display:inline-block;width:5px;height:1em;background:#fff;vertical-align:-.12em;margin-left:4px}
 .mo-send{position:absolute;right:38px;bottom:34px;width:78px;height:78px;border-radius:50%;background:var(--k);padding:19px}
 .mo-page{position:absolute;inset:0;z-index:4;background:#FDFDFB;display:none;overflow:hidden}
-.mo-body{position:absolute;left:104px;right:104px;top:560px;font-size:60px;line-height:1.28;font-weight:500;color:#BCBCBA;text-align:left;letter-spacing:-.015em}
+.mo-body{position:absolute;left:104px;right:104px;top:560px;font-size:60px;line-height:1.28;font-weight:500;color:#7d8392;text-align:left;letter-spacing:-.015em}
 .mo-body b{color:#0b1020;font-weight:700}
 .mo-flash{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:0;background:color-mix(in srgb,var(--acc2) 16%,#fff)}
 .mo-stk{position:relative;width:860px}
 .mo-card{position:absolute;left:0;width:860px;border-radius:57px;overflow:hidden;box-shadow:0 26px 60px rgba(15,23,42,.18)}
-.mo-card .pl{position:absolute;left:30px;top:30px;padding:11px 26px;border-radius:999px;background:rgba(255,255,255,.26);border:1.5px solid rgba(255,255,255,.55);color:#fff;font-weight:700;font-size:28px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.mo-card .pl{position:absolute;left:30px;top:30px;padding:11px 26px;border-radius:999px;background:rgba(8,12,28,.38);border:1.5px solid rgba(255,255,255,.55);color:#fff;font-weight:700;font-size:28px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .mo-card .dt{position:absolute;right:30px;top:30px;width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.26);border:1.5px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;gap:6px}
 .mo-card .dt i{width:8px;height:8px;border-radius:50%;background:#fff}
 .mo-card .tl{position:absolute;left:36px;bottom:.12em;padding-top:.18em;font-weight:900;letter-spacing:-.04em;line-height:1;white-space:nowrap;background:linear-gradient(180deg,rgba(255,255,255,.82),rgba(255,255,255,.34));-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -430,7 +430,12 @@ window.refit=function(){FITS.forEach(f=>{let fs=f.size;f.el.style.fontSize=fs+'p
 function fitSize(txt,sizes){for(const [n,px] of sizes)if(txt.length<=n)return px;return sizes[sizes.length-1][1];}
 function mkScene(m,defMode,kvar){
   const mode=m.mode||defMode;
-  const sc=H(`<section class="scene ${mode}" style="--k:var(${kvar||'--acc'})"></section>`);
+  let kv=kvar||'--acc';
+  if(mode==='dark'){ // an accent that is itself dark would make every key colour vanish on the dark background
+    const lumOf=v=>{const c=getComputedStyle(document.documentElement).getPropertyValue(v).trim();const x=document.createElement('canvas').getContext('2d');x.fillStyle='#000';x.fillStyle=c||'#000';x.fillRect(0,0,1,1);const d=x.getImageData(0,0,1,1).data;const f=q=>{q/=255;return q<=.03928?q/12.92:Math.pow((q+.055)/1.055,2.4)};return .2126*f(d[0])+.7152*f(d[1])+.0722*f(d[2]);};
+    if(lumOf(kv)<.18){kv=['--t1','--acc2','--vi'].map(v=>[v,lumOf(v)]).sort((p,q)=>q[1]-p[1])[0][0];}
+  }
+  const sc=H(`<section class="scene ${mode}" style="--k:var(${kv})"></section>`);
   if(mode==='dark')DARK.add(sc);return sc;
 }
 function kicker(sc,m,S){
