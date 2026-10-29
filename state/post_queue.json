@@ -753,5 +753,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 687661295
+ },
+ {
+  "video": "renders/output/2026-10-29-065834-1.mp4",
+  "caption": "Expo Skills: Turbocharge your AI coding agent for mobile dev\n\nLearn how the new Expo Skills project gives AI agents expert-level knowledge for building and deploying mobile apps. This open-source toolkit is a game changer for React Native developers.\n\n#ai #opensource #github #expo #reactnative #coding #mobiledev #javascript #software",
+  "source_link": "https://github.com/expo/skills",
+  "headline": "skills: A collection of AI agent skills for working with Expo projects and Expo Application Services",
+  "thumb": "renders/output/2026-10-29-065834-1.jpg",
+  "added": "2026-10-29 07:02",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 687670160
  }
 ]
