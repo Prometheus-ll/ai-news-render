@@ -1116,7 +1116,15 @@
   "words": 102,
   "caption": "Google Genie 4: The First Fully Playable AI World Model?\n\nGoogle has announced Genie 4, a massive upgrade to its generative world model featuring real-time steering and integrated audio. The model doubles previous scene consistency and enables photorealistic simulations. Follow for daily AI updates.\n\n#ai #google #genie4 #worldmodel #machinelearning #robotics #gaming #googledeepmind",
   "thumb": "renders/output/2026-10-28-064832-0.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-10-29 09:46",
+  "fb_id": "4572786339673595",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "4572786339673595"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-28-065218-1.mp4",

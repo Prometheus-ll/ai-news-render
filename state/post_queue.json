@@ -717,9 +717,18 @@
   "headline": "Google Unveils Genie 4: A Generative World Model with Real-Time Steering and Audio",
   "thumb": "renders/output/2026-10-28-064832-0.jpg",
   "added": "2026-10-28 06:51",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 684116304
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "4572786339673595",
+    "at": "2026-10-29 09:46"
+   }
+  },
+  "posted_at": "2026-10-29 09:46",
+  "fb_id": "4572786339673595"
  },
  {
   "video": "renders/output/2026-10-28-065218-1.mp4",
