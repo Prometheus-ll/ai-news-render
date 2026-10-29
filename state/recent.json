@@ -1,22 +1,5 @@
 [
  {
-  "ts": "2026-10-16 12:03",
-  "theme": "signal",
-  "transition": "fade",
-  "angle": "the big question",
-  "scenes": [
-   "hook",
-   "reveal",
-   "terminal",
-   "alert",
-   "quote",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Anthropic Grants External Researchers Unprecedented 'Employee-Level' Access",
-  "link": "https://techcrunch.com/2026/10/15/anthropic-is-letting-metr-researchers-look-under-the-hood-with-employee-level-access/"
- },
- {
   "ts": "2026-10-16 12:12",
   "theme": "neon",
   "transition": "slide",
@@ -794,5 +777,27 @@
   "headline": "skills: A collection of AI agent skills for working with Expo projects and Expo ",
   "link": "https://github.com/expo/skills",
   "motion_refs": []
+ },
+ {
+  "ts": "2026-10-29 07:02",
+  "pack": "Explainer",
+  "theme": "neon",
+  "transition": "sweep",
+  "angle": "tutorial",
+  "hook": "",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "kind": "tutorial",
+  "headline": "RuView: \u03c0 RuView turns commodity WiFi signals into real-time spatial intelligenc",
+  "link": "https://github.com/ruvnet/RuView"
  }
 ]

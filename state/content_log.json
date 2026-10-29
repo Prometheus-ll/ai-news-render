@@ -1210,5 +1210,30 @@
   "caption": "Expo Skills: Turbocharge your AI coding agent for mobile dev\n\nLearn how the new Expo Skills project gives AI agents expert-level knowledge for building and deploying mobile apps. This open-source toolkit is a game changer for React Native developers.\n\n#ai #opensource #github #expo #reactnative #coding #mobiledev #javascript #software",
   "thumb": "renders/output/2026-10-29-065834-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-29-070220-2.mp4",
+  "ts": "2026-10-29 07:04",
+  "kind": "tutorial",
+  "headline": "RuView: \u03c0 RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and ",
+  "title": "How to turn WiFi into spatial intelligence with RuView",
+  "source_link": "https://github.com/ruvnet/RuView",
+  "theme": "neon",
+  "angle": "tutorial",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "words": 138,
+  "caption": "How to turn WiFi into spatial intelligence with RuView\n\nLearn how to use RuView to monitor vitals and presence using only WiFi signals. This open source tool provides camera-free spatial AI for your home. Follow for more daily AI tutorials.\n\n#tutorial #opensource #howto #smarthome #ai #esp32 #privacy #rust #github",
+  "thumb": "renders/output/2026-10-29-070220-2.jpg",
+  "status": "queued"
  }
 ]
