@@ -1165,5 +1165,28 @@
   "caption": "How to clean all ads from your Android phone for free with this AI tool\n\nStop annoying system ads and marketing pushes on your Android phone using this open-source tool. No root required and completely reversible. Follow AI Quantum for more!\n\n#tutorial #opensource #howto #android #hyperos #coloros #originos #ads",
   "thumb": "renders/output/2026-10-28-065551-2.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-29-065419-0.mp4",
+  "ts": "2026-10-29 06:58",
+  "kind": "news",
+  "headline": "Google Opens Gemini and Search to Third-Party Developers to Power AI Agents",
+  "title": "Google's Agentic Web is Finally Here",
+  "source_link": "https://techcrunch.com/2026/10/28/as-ai-agents-reshape-the-web-google-opens-gemini-and-search-to-more-apps/",
+  "theme": "ocean",
+  "angle": "before vs after",
+  "scenes": [
+   "slam",
+   "stack",
+   "reveal",
+   "bignumber",
+   "custom",
+   "versus",
+   "cta"
+  ],
+  "words": 109,
+  "caption": "Google's Agentic Web is Finally Here\n\nGoogle has launched the Connected Apps Platform, allowing developers to build AI agents that execute tasks across Search and Gemini. This shifts AI from a chatbot to a functional assistant that handles complex transactions. Follow for daily AI news.\n\n#ai #google #gemini #developers #technology #future #agents #automation",
+  "thumb": "renders/output/2026-10-29-065419-0.jpg",
+  "status": "queued"
  }
 ]

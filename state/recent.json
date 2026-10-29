@@ -1,22 +1,5 @@
 [
  {
-  "ts": "2026-10-15 12:21",
-  "theme": "ember",
-  "transition": "slide",
-  "angle": "what changes for you",
-  "scenes": [
-   "repohook",
-   "reveal",
-   "hubmap",
-   "checklist",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "superpowers: An agentic skills framework & software development methodology that",
-  "link": "https://github.com/obra/superpowers"
- },
- {
   "ts": "2026-10-16 11:59",
   "theme": "ocean",
   "transition": "zoom",
@@ -783,5 +766,30 @@
   "kind": "tutorial",
   "headline": "android-ad-cleaner: \u5173\u6389\u56fd\u4ea7\u5b89\u5353\u624b\u673a\u7cfb\u7edf\u91cc\u7684\u5e7f\u544a\u3001\u70ed\u641c\u3001\u8d44\u8baf\u63a8\u8350\u548c\u8425\u9500\u63a8\u9001\u3002\u4e0d root\uff0c\u53ef\u8fd8\u539f\uff0c\u652f\u6301 AI \u667a\u80fd\u4f53\u4e00\u952e\u6267\u884c\u3002",
   "link": "https://github.com/rddmwmddr/android-ad-cleaner"
+ },
+ {
+  "ts": "2026-10-29 06:54",
+  "pack": "Data Story",
+  "theme": "ocean",
+  "transition": "slide",
+  "angle": "before vs after",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "stack",
+   "reveal",
+   "bignumber",
+   "custom",
+   "versus",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Google Opens Gemini and Search to Third-Party Developers to Power AI Agents",
+  "link": "https://techcrunch.com/2026/10/28/as-ai-agents-reshape-the-web-google-opens-gemini-and-search-to-more-apps/",
+  "motion_refs": [
+   "daniel-mac8-306214",
+   "imryven-495965",
+   "aichrislee-961335"
+  ]
  }
 ]

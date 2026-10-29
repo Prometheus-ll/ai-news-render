@@ -742,5 +742,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 684129313
+ },
+ {
+  "video": "renders/output/2026-10-29-065419-0.mp4",
+  "caption": "Google's Agentic Web is Finally Here\n\nGoogle has launched the Connected Apps Platform, allowing developers to build AI agents that execute tasks across Search and Gemini. This shifts AI from a chatbot to a functional assistant that handles complex transactions. Follow for daily AI news.\n\n#ai #google #gemini #developers #technology #future #agents #automation",
+  "source_link": "https://techcrunch.com/2026/10/28/as-ai-agents-reshape-the-web-google-opens-gemini-and-search-to-more-apps/",
+  "headline": "Google Opens Gemini and Search to Third-Party Developers to Power AI Agents",
+  "thumb": "renders/output/2026-10-29-065419-0.jpg",
+  "added": "2026-10-29 06:58",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 687661295
  }
 ]
