@@ -1098,24 +1098,15 @@ def _split_opening(raw, beat):
     if len(sents) < 2:
         return raw
     rest = " ".join(sents[1:])
-    words = [str(w).strip()[:10] for w in ((beat or {}).get("words") or []) if str(w).strip()][:3]
-    if len(words) < 2:
-        toks = [re.sub(r"[^A-Za-z0-9$%+\-]", "", w) for w in rest.split()]
-        toks = [t for t in toks if t and t.lower() not in _STOP]
-        top = sorted(range(len(toks)), key=lambda i: -len(toks[i]))[:3]
-        words = [toks[i] for i in sorted(top)] or ["Here is why"]
-        if len(words) < 2:
-            words.append("Next")
+    words = [str(w).strip()[:9] for w in ((beat or {}).get("words") or []) if str(w).strip()][:3]
+    low = rest.lower()
+    # Only split when the model gave real key words AND they actually appear in sentence 2 (so the big words
+    # on screen are what the voice says). No guessed words, no chopped-up phrases: otherwise leave the scene whole.
+    words = [w for w in words if w.lower() not in _STOP]
+    if len(words) < 2 or raw[0].get("type") == "slam" or any(re.sub(r"[^a-z0-9$%+]", "", w.lower()) not in re.sub(r"[^a-z0-9$%+ ]", "", low) for w in words):
+        return raw
     first = dict(raw[0], narration=sents[0])
-    used = [x.get("type") for x in raw]
-    if "stack" in used:      # never two stack scenes in one video: fold the later one's narration into the scene before it
-        i = used.index("stack")
-        if i < 2:
-            return raw       # a stack right after the opening already changes the picture: no split needed
-        raw = list(raw)
-        prev = dict(raw[i - 1], narration=(str(raw[i - 1].get("narration", "")).strip() + " " + str(raw[i].get("narration", "")).strip()).strip())
-        raw = raw[:i - 1] + [prev] + raw[i + 1:]
-    beat_scene = {"type": "stack", "items": [{"title": w, "tag": ""} for w in words[:3]], "narration": rest, "_beat": True}
+    beat_scene = {"type": "slam", "words": words, "accent": len(words) - 1, "narration": rest, "_beat": True}
     return [first, beat_scene] + list(raw[1:])
 
 
