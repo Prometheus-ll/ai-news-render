@@ -764,5 +764,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 687670160
+ },
+ {
+  "video": "renders/output/2026-10-29-070220-2.mp4",
+  "caption": "How to turn WiFi into spatial intelligence with RuView\n\nLearn how to use RuView to monitor vitals and presence using only WiFi signals. This open source tool provides camera-free spatial AI for your home. Follow for more daily AI tutorials.\n\n#tutorial #opensource #howto #smarthome #ai #esp32 #privacy #rust #github",
+  "source_link": "https://github.com/ruvnet/RuView",
+  "headline": "RuView: \u03c0 RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and ",
+  "thumb": "renders/output/2026-10-29-070220-2.jpg",
+  "added": "2026-10-29 07:04",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 687676114
  }
 ]
