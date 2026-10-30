@@ -777,9 +777,18 @@
   "headline": "Google Opens Gemini and Search to Third-Party Developers to Power AI Agents",
   "thumb": "renders/output/2026-10-29-065419-0.jpg",
   "added": "2026-10-29 06:58",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 687661295
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2223822191543383",
+    "at": "2026-10-30 09:52"
+   }
+  },
+  "posted_at": "2026-10-30 09:52",
+  "fb_id": "2223822191543383"
  },
  {
   "video": "renders/output/2026-10-29-065834-1.mp4",
