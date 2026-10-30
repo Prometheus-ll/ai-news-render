@@ -817,9 +817,18 @@
   "headline": "RuView: \u03c0 RuView turns commodity WiFi signals into real-time spatial intelligence, vital sign monitoring, and ",
   "thumb": "renders/output/2026-10-29-070220-2.jpg",
   "added": "2026-10-29 07:04",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 687676114
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1435559294863060",
+    "at": "2026-10-30 19:54"
+   }
+  },
+  "posted_at": "2026-10-30 19:54",
+  "fb_id": "1435559294863060"
  },
  {
   "video": "renders/output/2026-10-30-065753-0.mp4",

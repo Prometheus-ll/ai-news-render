@@ -1274,7 +1274,15 @@
   "words": 138,
   "caption": "How to turn WiFi into spatial intelligence with RuView\n\nLearn how to use RuView to monitor vitals and presence using only WiFi signals. This open source tool provides camera-free spatial AI for your home. Follow for more daily AI tutorials.\n\n#tutorial #opensource #howto #smarthome #ai #esp32 #privacy #rust #github",
   "thumb": "renders/output/2026-10-29-070220-2.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-10-30 19:54",
+  "fb_id": "1435559294863060",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1435559294863060"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-30-065753-0.mp4",
