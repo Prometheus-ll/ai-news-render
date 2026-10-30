@@ -1259,5 +1259,27 @@
   "caption": "How to turn WiFi into spatial intelligence with RuView\n\nLearn how to use RuView to monitor vitals and presence using only WiFi signals. This open source tool provides camera-free spatial AI for your home. Follow for more daily AI tutorials.\n\n#tutorial #opensource #howto #smarthome #ai #esp32 #privacy #rust #github",
   "thumb": "renders/output/2026-10-29-070220-2.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-30-065753-0.mp4",
+  "ts": "2026-10-30 07:00",
+  "kind": "news",
+  "headline": "Mistral Releases Trillion-Parameter AI Weights for Cybersecurity",
+  "title": "Mistral Releases Trillion-Parameter Cyber AI weights",
+  "source_link": "https://techcrunch.com/2026/10/29/mistral-releases-weights-for-its-trillion-parameter-ai-model-targeting-cybersecurity/",
+  "theme": "ember",
+  "angle": "solution",
+  "scenes": [
+   "slam",
+   "reveal",
+   "alert",
+   "custom",
+   "bars",
+   "cta"
+  ],
+  "words": 111,
+  "caption": "Mistral Releases Trillion-Parameter Cyber AI weights\n\nMistral has released the open weights for Mistral Large 4, a trillion-parameter model for cybersecurity. It offers sovereign defense capabilities for enterprises to run locally. Follow for more AI news.\n\n#ai #mistral #cybersecurity #opensource #ml4 #tech #infosec #coding",
+  "thumb": "renders/output/2026-10-30-065753-0.jpg",
+  "status": "queued"
  }
 ]

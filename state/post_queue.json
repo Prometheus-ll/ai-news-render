@@ -802,5 +802,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 687676114
+ },
+ {
+  "video": "renders/output/2026-10-30-065753-0.mp4",
+  "caption": "Mistral Releases Trillion-Parameter Cyber AI weights\n\nMistral has released the open weights for Mistral Large 4, a trillion-parameter model for cybersecurity. It offers sovereign defense capabilities for enterprises to run locally. Follow for more AI news.\n\n#ai #mistral #cybersecurity #opensource #ml4 #tech #infosec #coding",
+  "source_link": "https://techcrunch.com/2026/10/29/mistral-releases-weights-for-its-trillion-parameter-ai-model-targeting-cybersecurity/",
+  "headline": "Mistral Releases Trillion-Parameter AI Weights for Cybersecurity",
+  "thumb": "renders/output/2026-10-30-065753-0.jpg",
+  "added": "2026-10-30 07:00",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 691250923
  }
 ]
