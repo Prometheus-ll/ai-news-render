@@ -797,9 +797,18 @@
   "headline": "skills: A collection of AI agent skills for working with Expo projects and Expo Application Services",
   "thumb": "renders/output/2026-10-29-065834-1.jpg",
   "added": "2026-10-29 07:02",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 687670160
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1077963298620025",
+    "at": "2026-10-30 14:44"
+   }
+  },
+  "posted_at": "2026-10-30 14:44",
+  "fb_id": "1077963298620025"
  },
  {
   "video": "renders/output/2026-10-29-070220-2.mp4",
