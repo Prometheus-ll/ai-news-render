@@ -1241,7 +1241,15 @@
   "words": 107,
   "caption": "Expo Skills: Turbocharge your AI coding agent for mobile dev\n\nLearn how the new Expo Skills project gives AI agents expert-level knowledge for building and deploying mobile apps. This open-source toolkit is a game changer for React Native developers.\n\n#ai #opensource #github #expo #reactnative #coding #mobiledev #javascript #software",
   "thumb": "renders/output/2026-10-29-065834-1.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-10-30 14:44",
+  "fb_id": "1077963298620025",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1077963298620025"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-29-070220-2.mp4",
