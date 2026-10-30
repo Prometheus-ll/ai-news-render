@@ -1211,7 +1211,15 @@
   "words": 109,
   "caption": "Google's Agentic Web is Finally Here\n\nGoogle has launched the Connected Apps Platform, allowing developers to build AI agents that execute tasks across Search and Gemini. This shifts AI from a chatbot to a functional assistant that handles complex transactions. Follow for daily AI news.\n\n#ai #google #gemini #developers #technology #future #agents #automation",
   "thumb": "renders/output/2026-10-29-065419-0.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-10-30 09:52",
+  "fb_id": "2223822191543383",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "2223822191543383"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-29-065834-1.mp4",
