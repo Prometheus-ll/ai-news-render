@@ -1,22 +1,5 @@
 [
  {
-  "ts": "2026-10-16 12:12",
-  "theme": "neon",
-  "transition": "slide",
-  "angle": "behind the scenes",
-  "scenes": [
-   "repohook",
-   "reveal",
-   "bignumber",
-   "checklist",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "ECC: The agent harness performance optimization system. Skills, instincts, memor",
-  "link": "https://github.com/affaan-m/ECC"
- },
- {
   "ts": "2026-10-17 11:17",
   "theme": "mint",
   "transition": "wipe",
@@ -799,5 +782,29 @@
   "kind": "tutorial",
   "headline": "RuView: \u03c0 RuView turns commodity WiFi signals into real-time spatial intelligenc",
   "link": "https://github.com/ruvnet/RuView"
+ },
+ {
+  "ts": "2026-10-30 06:57",
+  "pack": "Editorial",
+  "theme": "ember",
+  "transition": "panel",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "reveal",
+   "alert",
+   "custom",
+   "bars",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Mistral Releases Trillion-Parameter AI Weights for Cybersecurity",
+  "link": "https://techcrunch.com/2026/10/29/mistral-releases-weights-for-its-trillion-parameter-ai-model-targeting-cybersecurity/",
+  "motion_refs": [
+   "imryven-495965",
+   "deedydas-407965",
+   "lepadev-475414"
+  ]
  }
 ]
