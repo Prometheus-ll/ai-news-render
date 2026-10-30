@@ -1304,5 +1304,31 @@
   "caption": "obra/superpowers: The Agentic Framework Changing Software Development\n\nDiscover Superpowers, a viral open-source framework that brings subagent-driven development to your coding workflow. It forces AI agents to plan, test, and work autonomously for hours. Follow for daily AI news.\n\n#ai #opensource #github #coding #softwareengineering #agentic #claude #developer #programming",
   "thumb": "renders/output/2026-10-30-070138-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-30-070433-2.mp4",
+  "ts": "2026-10-30 07:07",
+  "kind": "tutorial",
+  "headline": "OpenBot: Open-source AI coworkers that each get a computer of their own: a browser, files and tools, with ever",
+  "title": "How to install OpenBot: Your own fleet of AI coworkers",
+  "source_link": "https://github.com/CopilotKit/OpenBot",
+  "theme": "signal",
+  "angle": "tutorial",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "words": 145,
+  "caption": "How to install OpenBot: Your own fleet of AI coworkers\n\nLearn how to deploy OpenBot, the open-source tool that gives AI agents their own computer and browser. Follow this step-by-step guide to get started with autonomous agents today.\n\n#tutorial #opensource #howto #aiagents #copilotkit #automation #github #typescript",
+  "thumb": "renders/output/2026-10-30-070433-2.jpg",
+  "status": "queued"
  }
 ]
