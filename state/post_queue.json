@@ -813,5 +813,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 691250923
+ },
+ {
+  "video": "renders/output/2026-10-30-070138-1.mp4",
+  "caption": "obra/superpowers: The Agentic Framework Changing Software Development\n\nDiscover Superpowers, a viral open-source framework that brings subagent-driven development to your coding workflow. It forces AI agents to plan, test, and work autonomously for hours. Follow for daily AI news.\n\n#ai #opensource #github #coding #softwareengineering #agentic #claude #developer #programming",
+  "source_link": "https://github.com/obra/superpowers",
+  "headline": "superpowers: An agentic skills framework & software development methodology that works.",
+  "thumb": "renders/output/2026-10-30-070138-1.jpg",
+  "added": "2026-10-30 07:04",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 691259375
  }
 ]
