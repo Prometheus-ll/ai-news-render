@@ -1281,5 +1281,28 @@
   "caption": "Mistral Releases Trillion-Parameter Cyber AI weights\n\nMistral has released the open weights for Mistral Large 4, a trillion-parameter model for cybersecurity. It offers sovereign defense capabilities for enterprises to run locally. Follow for more AI news.\n\n#ai #mistral #cybersecurity #opensource #ml4 #tech #infosec #coding",
   "thumb": "renders/output/2026-10-30-065753-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-30-070138-1.mp4",
+  "ts": "2026-10-30 07:04",
+  "kind": "repo",
+  "headline": "superpowers: An agentic skills framework & software development methodology that works.",
+  "title": "obra/superpowers: The Agentic Framework Changing Software Development",
+  "source_link": "https://github.com/obra/superpowers",
+  "theme": "ocean",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "slam",
+   "reveal",
+   "prompt",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "words": 100,
+  "caption": "obra/superpowers: The Agentic Framework Changing Software Development\n\nDiscover Superpowers, a viral open-source framework that brings subagent-driven development to your coding workflow. It forces AI agents to plan, test, and work autonomously for hours. Follow for daily AI news.\n\n#ai #opensource #github #coding #softwareengineering #agentic #claude #developer #programming",
+  "thumb": "renders/output/2026-10-30-070138-1.jpg",
+  "status": "queued"
  }
 ]
