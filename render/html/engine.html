@@ -339,6 +339,20 @@ body{font-family:'PoppinsX','Poppins','Noto Sans',sans-serif;-webkit-font-smooth
 .mo-mk{position:relative;width:640px;height:640px;display:flex;align-items:center;justify-content:center}
 .mo-wm{font-weight:900;white-space:nowrap;text-transform:uppercase}
 #wipepanel{position:absolute;top:0;bottom:0;left:0;width:0;background:var(--acc2);z-index:15;pointer-events:none}
+/* ===== clay explaining graphics: soft rounded tiles in the channel colours (connect, tasks, network) ===== */
+.cyst{position:relative;width:940px;height:1060px}
+.cy{position:absolute;display:flex;align-items:center;justify-content:center;font-weight:900;border-radius:38px;background:linear-gradient(180deg,color-mix(in srgb,var(--c) 72%,#fff),var(--c) 55%,color-mix(in srgb,var(--c) 84%,#000));box-shadow:0 26px 40px -14px color-mix(in srgb,var(--c) 60%,#000),inset 0 4px 0 rgba(255,255,255,.5)}
+.cyl{position:absolute;font-weight:800;font-size:32px;line-height:1.1;text-align:center;white-space:nowrap;opacity:.85}
+.cyd{position:absolute;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;background:var(--acc2);box-shadow:0 0 18px var(--acc2)}
+.cyst svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.cyst path{fill:none;stroke:color-mix(in srgb,var(--acc2) 55%,transparent);stroke-width:8;stroke-linecap:round}
+.cyrow{position:absolute;left:20px;right:20px;height:150px;border-radius:46px;background:var(--mi);color:var(--mv);display:flex;align-items:center;gap:26px;padding:0 34px;box-shadow:0 22px 44px -14px rgba(0,0,0,.45),inset 0 3px 0 rgba(255,255,255,.35)}
+.cyrow .ck{width:76px;height:76px;border-radius:50%;background:color-mix(in srgb,var(--mv) 14%,transparent);flex:none;display:flex;align-items:center;justify-content:center}
+.cyrow .ck svg{position:static;width:46px;height:46px}
+.cyrow .tt{font-weight:800;font-size:44px;letter-spacing:-.01em;white-space:nowrap;flex:1;text-align:left}
+.cyrow .pb{width:190px;height:24px;border-radius:12px;background:color-mix(in srgb,var(--mv) 14%,transparent);overflow:hidden;flex:none}
+.cyrow .pb i{display:block;height:100%;width:0;border-radius:12px;background:var(--acc2)}
+.cybig{position:absolute;left:0;right:0;text-align:center;font-weight:900;letter-spacing:-.02em}
 /* ===== motion library 2: glass prompt + whip, stacked glass cards, orbit, wordmark ===== */
 .mo-sky{position:absolute;inset:0;z-index:1;background:linear-gradient(170deg,color-mix(in srgb,var(--acc) 82%,#0b1020) 0%,color-mix(in srgb,var(--acc2) 60%,#fff) 100%);overflow:hidden}
 .mo-sky svg{position:absolute;inset:0;width:100%;height:100%}
@@ -1166,6 +1180,87 @@ function sceneOrbit(m,S,D){
   return sc;
 }
 
+// ---- clay explaining graphics. Text-only (initial letters, no icon fetch), channel colours, same easing rules ----
+function lumVar(v){const c=getComputedStyle(document.documentElement).getPropertyValue(v).trim();const x=document.createElement('canvas').getContext('2d');x.fillStyle='#000';x.fillStyle=c||'#000';x.fillRect(0,0,1,1);const d=x.getImageData(0,0,1,1).data;const f=q=>{q/=255;return q<=.03928?q/12.92:Math.pow((q+.055)/1.055,2.4)};return .2126*f(d[0])+.7152*f(d[1])+.0722*f(d[2]);}
+const CYV=['--acc','--vi','--plate','--cta1','--al','--acc2'];
+function cyCol(i){let v=CYV[i%CYV.length];if(lumVar(v)<.1)v='--t1';   // a near-black accent would vanish on a dark scene
+  return {c:`var(${v})`,ink:lumVar(v)>.34?'#0b1020':'#fff'};}
+function cyTile(st,i,x,y,w,h,label,fs){const k=cyCol(i),e=H(`<div class="cy" style="--c:${k.c.slice(4,-1)};color:${k.ink};left:${x-w/2}px;top:${y-h/2}px;width:${w}px;height:${h}px;font-size:${fs||h*.46}px;opacity:0">${esc(String(label).trim().charAt(0).toUpperCase())}</div>`);
+  e.style.setProperty('--c',k.c);st.appendChild(e);return e;}
+function cyLabel(st,x,y,txt){const e=H(`<div class="cyl" style="left:${x}px;top:${y}px;transform:translateX(-50%);opacity:0">${esc(txt)}</div>`);st.appendChild(e);return e;}
+const bz=(x0,y0,x1,y1,u)=>{const cy0=y0+(y1-y0)*.6,cy1=y1-(y1-y0)*.6,m=1-u;return [m*m*m*x0+3*m*m*u*x0+3*m*u*u*x1+u*u*u*x1,m*m*m*y0+3*m*m*u*cy0+3*m*u*u*cy1+u*u*u*y1];};
+const cyIn=(e,t,t0,d)=>{const p=E_OUT(clamp((t-t0)/(d||.6)));e.style.opacity=clamp(p*1.8);e.style.transform=(e.dataset.tx||'')+` translateY(${(1-p)*40}px) scale(${.9+.1*p})`;e.style.filter=p<.98?`blur(${((1-p)*(1-p)*8).toFixed(1)}px)`:'none';return p;};
+
+// connect: several services flow into one hub, which feeds two destinations
+function sceneConnect(m,S,D){
+  const sc=moScene(m,S),c=mk(sc,`<div class="c" style="padding:0"><div class="fx mo"></div></div>`),fx=c.firstElementChild;
+  const src=(m.sources||[]).map(nofs).filter(Boolean).slice(0,3),dst=(m.targets||[]).map(nofs).filter(Boolean).slice(0,2),hubT=nofs(m.hub)||'Hub';
+  while(src.length<3)src.push('App');while(dst.length<2)dst.push('You');
+  const st=H(`<div class="cyst"><svg viewBox="0 0 940 1060"></svg></div>`);fx.appendChild(st);const svg=st.firstElementChild;
+  const sx=[145,470,795],sy=150,hx=470,hy=560,dy=930,dx=[250,690];
+  const tiles=src.map((s,i)=>cyTile(st,i,sx[i],sy,200,200,s,100)),sl=src.map((s,i)=>cyLabel(st,sx[i],sy+128,s));
+  const hub=cyTile(st,5,hx,hy,230,230,hubT,110);hub.style.borderRadius='50%';const hl=cyLabel(st,hx,hy+142,hubT);
+  const dest=dst.map((s,i)=>{const k=cyCol(i+3),e=H(`<div class="cy" style="left:${dx[i]-210}px;top:${dy-75}px;width:420px;height:150px;border-radius:75px;color:${k.ink};font-size:44px;opacity:0;white-space:nowrap;padding:0 24px">${esc(s.length>16?s.slice(0,16):s)}</div>`);e.style.setProperty('--c',k.c);st.appendChild(e);return e;});
+  const paths=[...src.map((s,i)=>[sx[i],sy+100,hx,hy-115]),...dx.map(x=>[hx,hy+115,x,dy-75])];
+  svg.innerHTML=paths.map(p=>{const a=bz(p[0],p[1],p[2],p[3],0);let d='M'+a[0]+' '+a[1];for(let u=.1;u<=1.001;u+=.1){const b=bz(p[0],p[1],p[2],p[3],u);d+=' L'+b[0].toFixed(1)+' '+b[1].toFixed(1);}return `<path d="${d}" style="opacity:0"/>`;}).join('');
+  const pe=[...svg.querySelectorAll('path')],dots=paths.map(()=>[0,1,2].map(()=>{const e=H('<div class="cyd" style="opacity:0"></div>');st.appendChild(e);return e;}));
+  const T=D/7;
+  updaters.push(t=>{
+    tiles.forEach((e,i)=>{cyIn(e,t,S+.2+i*.22);cyIn(sl[i],t,S+.35+i*.22);});
+    const hp=cyIn(hub,t,S+T*.42);cyIn(hl,t,S+T*.42+.1);hub.style.transform=`translateY(${(1-E_OUT(clamp((t-S-T*.42)/.6)))*40}px) scale(${(.9+.1*E_OUT(clamp((t-S-T*.42)/.6)))*(1+.025*Math.sin(t*5))})`;
+    dest.forEach((e,i)=>cyIn(e,t,S+T*.75+i*.3));
+    paths.forEach((p,i)=>{const t0=i<3?S+T*.42+.1:S+T*.75+(i-3)*.3,on=clamp((t-t0)/.5);pe[i].style.opacity=on;
+      dots[i].forEach((d,k)=>{const u=((t-t0)*.5+k/3)%1,q=bz(p[0],p[1],p[2],p[3],u);d.style.left=q[0]+'px';d.style.top=q[1]+'px';d.style.opacity=on>.9?Math.sin(u*Math.PI):0;});});
+  });
+  return sc;
+}
+
+// tasks: a chat answer turns into jobs that really get done, each with a progress bar and a tick
+function sceneTasks(m,S,D){
+  const sc=moScene(m,S),c=mk(sc,`<div class="c" style="padding:0"><div class="fx mo"></div></div>`),fx=c.firstElementChild;
+  const tasks=(m.tasks||[]).map(nofs).filter(Boolean).slice(0,4);while(tasks.length<3)tasks.push('Task '+(tasks.length+1));
+  const title=nofs(m.title)||'Done for you',n=tasks.length,rh=150,gp=40,y0=230;
+  const st=H(`<div class="cyst"><div class="cybig" style="top:20px;font-size:${Math.min(104,Math.floor(900/(.58*Math.max(6,title.length))))}px">${esc(title)}</div></div>`);fx.appendChild(st);
+  const big=st.firstElementChild;
+  const rows=tasks.map((s,i)=>{const e=H(`<div class="cyrow" style="top:${y0+i*(rh+gp)}px;opacity:0"><div class="ck"><svg viewBox="-30 -30 60 60"><polyline points="-18,2 -6,14 20,-14" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg></div><div class="tt" style="font-size:${Math.min(44,Math.floor(560/(.56*Math.max(10,s.length))))}px">${esc(s)}</div><div class="pb"><i></i></div></div>`);st.appendChild(e);return e;});
+  const T=D/(n+1.6);
+  updaters.push(t=>{
+    const bp=E_OUT(clamp((t-S-.1)/.6));big.style.opacity=clamp(bp*1.8);big.style.transform=`translateY(${(1-bp)*40}px)`;big.style.filter=bp<.98?`blur(${((1-bp)*(1-bp)*8).toFixed(1)}px)`:'none';
+    rows.forEach((e,i)=>{const t0=S+.4+i*T;cyIn(e,t,t0);
+      const pr=E_INOUT(clamp((t-t0-.3)/(T*.8))),done=clamp((t-t0-.3-T*.8)/.3);
+      e.querySelector('i').style.width=(pr*100)+'%';
+      const ck=e.querySelector('.ck');ck.style.background=done>0?`color-mix(in srgb,var(--acc2) ${Math.round(done*100)}%,transparent)`:'';
+      const pl=e.querySelector('polyline');pl.setAttribute('stroke',lumVar('--acc2')>.34?'#0b1020':'#fff');pl.setAttribute('stroke-dashoffset',(1-E_OUT(done)).toFixed(3));});
+  });
+  return sc;
+}
+
+// network: separate apps drift apart, then pull into a ring around one hub and link up
+function sceneNetwork(m,S,D){
+  const sc=moScene(m,S),c=mk(sc,`<div class="c" style="padding:0"><div class="fx mo"></div></div>`),fx=c.firstElementChild;
+  const items=(m.items||[]).map(nofs).filter(Boolean).slice(0,8);while(items.length<5)items.push('App');
+  const from=nofs(m.from)||'Isolated',to=nofs(m.to)||'Connected',hubT=nofs(m.hub)||'AI',n=items.length;
+  const st=H(`<div class="cyst"><svg viewBox="0 0 940 1060"></svg><div class="cybig" style="top:10px;font-size:104px"></div></div>`);fx.appendChild(st);
+  const svg=st.firstElementChild,big=st.lastElementChild;
+  const cx=470,cy=600,R=330,sz=150,tiles=items.map((s,i)=>cyTile(st,i,0,0,sz,sz,s,76));
+  const scat=items.map((s,i)=>{const a=i*2.4+.5;return [cx+Math.cos(a)*(250+(i%3)*60),cy+Math.sin(a)*(300+(i%2)*80)*.95];});
+  const ring=items.map((s,i)=>{const a=i/n*Math.PI*2-Math.PI/2;return [cx+Math.cos(a)*R,cy+Math.sin(a)*R*.95];});
+  const hub=cyTile(st,5,cx,cy,210,210,hubT,100);hub.style.borderRadius='50%';
+  svg.innerHTML=ring.map(()=>'<path d="" style="opacity:0"/>').join('');const pe=[...svg.querySelectorAll('path')];
+  const tU=S+D*.38;
+  updaters.push(t=>{
+    const u=E_INOUT(clamp((t-tU)/(D*.22))),sw=clamp((t-tU+.3)/.3);
+    big.textContent=t<tU+.15?from:to;const bp=E_OUT(clamp((t-(t<tU+.15?S:tU+.15)-.05)/.5));big.style.opacity=clamp(bp*1.8);big.style.transform=`translateY(${(1-bp)*36}px)`;big.style.filter=bp<.98?`blur(${((1-bp)*(1-bp)*8).toFixed(1)}px)`:'none';
+    tiles.forEach((e,i)=>{const a=scat[i],b=ring[i],p=E_OUT(clamp((t-S-.15-i*.1)/.55)),drift=(1-u)*Math.sin(t*1.3+i)*14;
+      const x=lerp(a[0]+drift,b[0],u),y=lerp(a[1]+drift*.7,b[1],u);
+      e.style.left=(x-sz/2)+'px';e.style.top=(y-sz/2)+'px';e.style.opacity=clamp(p*1.8);e.style.filter=p<.98?`blur(${((1-p)*(1-p)*8).toFixed(1)}px)`:'none';
+      e.style.outline=u<.5?`4px dashed color-mix(in srgb,currentColor 55%,transparent)`:'none';e.style.outlineOffset='10px';
+      const nx=ring[(i+1)%n];pe[i].setAttribute('d',`M${b[0]} ${b[1]} L${lerp(b[0],nx[0],clamp((u-.6)*2.5))} ${lerp(b[1],nx[1],clamp((u-.6)*2.5))} M${b[0]} ${b[1]} L${lerp(b[0],cx,clamp((u-.8)*5))} ${lerp(b[1],cy,clamp((u-.8)*5))}`);pe[i].style.opacity=clamp((u-.55)*3);});
+    const hp=E_OUT(clamp((t-tU-.5)/.5));hub.style.opacity=clamp(hp*1.8);hub.style.transform=`scale(${(.7+.3*hp)*(1+.025*Math.sin(t*5))})`;
+  });
+  return sc;
+}
+
 // ---- wordmark: end card, the word arrives zoom-smeared and settles (manual use; not offered to Gemini) ----
 function sceneWordmark(m,S,D){
   const sc=mkScene(m,'dark','--acc2'),name=nofs(m.name)||'AI Quantum',fs=Math.max(70,Math.min(220,Math.floor(760/(.56*Math.max(5,name.length)))));
@@ -1208,7 +1303,7 @@ function sceneThumb(m,S,D){
   return sc;
 }
 
-const BUILDERS={thumb:sceneThumb,custom:sceneCustom,prompt:scenePrompt,stack:sceneStack,orbit:sceneOrbit,wordmark:sceneWordmark,morph:sceneMorph,shapes:sceneShapes,bars:sceneBars,kinetic:sceneKinetic,command:sceneCommand,tabs:sceneTabs,mark:sceneMark,say:sceneSay,end:sceneSay,stat:sceneStat,icon:sceneIconFx,name:sceneName,code:sceneCode,phases:scenePhases,cycle:sceneCycle,stars:sceneStars,repohook:sceneRepoHook,reveal:sceneReveal,screenshot:sceneScreenshot,appclutter:sceneAppClutter,profile:sceneProfile,hubmap:sceneHubMap,roundup:sceneRoundup,hook:sceneHook,slam:sceneSlam,terminal:sceneTerminal,alert:sceneAlert,timeline:sceneTimeline,monitor:sceneMonitor,cta:sceneCTA,
+const BUILDERS={thumb:sceneThumb,custom:sceneCustom,prompt:scenePrompt,stack:sceneStack,orbit:sceneOrbit,connect:sceneConnect,tasks:sceneTasks,network:sceneNetwork,wordmark:sceneWordmark,morph:sceneMorph,shapes:sceneShapes,bars:sceneBars,kinetic:sceneKinetic,command:sceneCommand,tabs:sceneTabs,mark:sceneMark,say:sceneSay,end:sceneSay,stat:sceneStat,icon:sceneIconFx,name:sceneName,code:sceneCode,phases:scenePhases,cycle:sceneCycle,stars:sceneStars,repohook:sceneRepoHook,reveal:sceneReveal,screenshot:sceneScreenshot,appclutter:sceneAppClutter,profile:sceneProfile,hubmap:sceneHubMap,roundup:sceneRoundup,hook:sceneHook,slam:sceneSlam,terminal:sceneTerminal,alert:sceneAlert,timeline:sceneTimeline,monitor:sceneMonitor,cta:sceneCTA,
   bignumber:sceneBigNumber,versus:sceneVersus,leaderboard:sceneBoard,chat:sceneChat,quote:sceneQuote,checklist:sceneChecklist};
 
 /* ================= themes ================= */

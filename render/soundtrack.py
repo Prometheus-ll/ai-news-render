@@ -268,6 +268,11 @@ def scene_sfx(fx, sc, rng, first):
         n = len(sc.get('items', [])) or 2
         for i in range(n):
             fx.put(thump(), S + .04 + i * .13, .22); fx.put(whoosh(rng, .3), S + .04 + i * .13 - .12, .09)
+    elif ty in ('connect', 'tasks', 'network'):
+        fx.put(whoosh(rng, .5, .35), S - .05, .12)
+        for k in range(3):
+            fx.put(pop(620 + 120 * k), S + .4 + k * (D / 5), .11)
+        fx.put(chime(880, .6), S + D * .72, .12)
     elif ty == 'orbit':
         fx.put(whoosh(rng, .6, .4), S - .05, .14); fx.put(chime(880, .6), S + D * .0 + .5, .12)
         fx.put(whoosh(rng, .5), S + D * .5 - .05, .16); fx.put(pop(700), S + D * .5 + .45, .12)

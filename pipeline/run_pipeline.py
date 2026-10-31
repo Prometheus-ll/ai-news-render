@@ -278,7 +278,7 @@ HOOK_TYPES = ["hook", "slam", "appclutter"]
 REPO_HOOK = "repohook"
 MID_TYPES = ["terminal", "alert", "timeline", "monitor", "bignumber", "versus", "leaderboard", "chat", "quote", "checklist",
              "profile", "hubmap", "roundup", "reveal", "phases", "cycle", "stars",
-             "bars", "command", "tabs", "prompt", "stack", "orbit"]
+             "bars", "command", "tabs", "prompt", "stack", "orbit", "connect", "tasks", "network"]
 THEMES = ["indigo", "ember", "forest", "ocean", "neon", "signal", "mint", "paper"]
 TRANSITIONS = ["fade", "slide", "zoom", "wipe", "panel"]
 MODE_PATTERNS = ["alternate_light", "alternate_dark", "light_then_dark", "dark_then_light"]
@@ -354,6 +354,9 @@ tabs (a choice between 3 modes/plans/models; a liquid indicator slides to the on
 prompt (an AI tool you talk to: a glass prompt box types the request, then the screen whips up to the answer; use only a prompt/answer that matches the story): {"type":"prompt","kicker":"2-3 words CAPS","prompt":"max 46 chars, what the user types","reply":"max 72 chars, the answer text","hi":"1-3 words copied EXACTLY from reply, shown in bold","narration":"..."}
 stack (2-3 named modes/features/models/modules as stacked cards with giant glass titles): {"type":"stack","kicker":"2-3 words CAPS","items":[{"title":"max 10 chars","tag":"max 12 chars"}  (2-3)],"narration":"..."}
 orbit (four related things: squares spin in around the product, lock into a cross, then slide into a labelled row): {"type":"orbit","kicker":"2-3 words CAPS","icon":"<icon>","items":["exactly 4 labels, max 10 chars each"],"narration":"..."}
+connect (a platform/integration story: 3 services flow into one hub that feeds 2 destinations): {"type":"connect","kicker":"2-3 words CAPS","sources":["exactly 3 REAL service/app names, max 10 chars"],"hub":"the platform name, max 10 chars","targets":["exactly 2 REAL destinations, max 16 chars"],"narration":"..."}
+tasks (an AI that actually DOES things: 3-4 real jobs get ticked off one by one): {"type":"tasks","kicker":"2-3 words CAPS","title":"max 20 chars, e.g. From chat to action","tasks":["3-4 short jobs the story really mentions, max 24 chars each"],"narration":"..."}
+network (separate apps/tools become one connected system): {"type":"network","kicker":"2-3 words CAPS","items":["5-8 REAL names, max 10 chars"],"hub":"max 8 chars","from":"max 14 chars, e.g. Isolated","to":"max 14 chars, e.g. Connected","narration":"..."}
 cta (closing, always last): {"type":"cta","kicker":"2-3 words CAPS","label":"max 26 chars","plate":"a punchy verdict about THIS story in CAPS, max 20 chars (never the channel name or a follow request)","footnote":"max 70 chars","chips":[{"icon":"<icon>","text":"max 28 chars"}  (exactly 2)],"follow":"Follow for daily AI news","narration":"2 short sentences: first says the source link is in the comments, then asks people to follow for daily AI news"}
 """
 
@@ -376,17 +379,17 @@ def _san_stars(x):
 
 NEWS_STRUCTURE = """Build the video as 6 scenes in this order:
  1. exactly one OPENING scene: "hook", "slam" or "appclutter"
- 2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup, reveal, phases, cycle, bars, command, tabs, prompt, stack, orbit - \
+ 2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup, reveal, phases, cycle, bars, command, tabs, prompt, stack, orbit, connect, tasks, network - \
 the ones that tell THIS story best (a funding story wants bignumber/leaderboard, a product launch wants chat/checklist/timeline, \
 a controversy wants versus/monitor/alert, a security story wants alert/terminal, a story about several products or agents wants roundup then profile, a platform/ecosystem story wants hubmap, an AI search tool wants command, a choice of modes/plans wants tabs, a real growth number wants bars, a chatbot/assistant story wants prompt, two or three named modes or models want stack, four related products wants orbit, etc.)
- ON-SCREEN TEXT of bars, command, tabs, prompt, stack and orbit never ends with a full stop.
+ connect/tasks/network only when the story really names services, jobs or apps to show (never invent names). ON-SCREEN TEXT of bars, command, tabs, prompt, stack, orbit, connect, tasks and network never ends with a full stop.
  NAME RULE: if the story is about ONE specific named tool, product, model or repo, scene 2 MUST be "reveal" - announce its real name right after the hook.
  6. "cta" (always last)"""
 
 REPO_STRUCTURE = """Build the video as 6 scenes in this order:
  1. "repohook" - the opening: a quick glimpse of the repo's real GitHub page. Its narration MUST start with "This GitHub repo".
  2. "reveal" - announces the repo's real name right after the opening.
- 3-5. THREE DIFFERENT scenes chosen from: terminal, timeline, hubmap, checklist, profile, phases, cycle, stars, command, tabs, prompt, stack, orbit - the ones that best explain how it works and how to use it.
+ 3-5. THREE DIFFERENT scenes chosen from: terminal, timeline, hubmap, checklist, profile, phases, cycle, stars, command, tabs, prompt, stack, orbit, connect, tasks, network - the ones that best explain how it works and how to use it.
  6. "cta" (always last)"""
 
 
@@ -1004,6 +1007,20 @@ def _san_stack(x):
     return {"kicker": _clip(x.get("kicker"), 28), "items": its}
 
 
+def _san_connect(x):
+    return {"kicker": _clip(x.get("kicker"), 28), "sources": _list_fit(x.get("sources"), 3, 3, 10, "App"), "hub": _nofs(x.get("hub"), 10) or "Hub",
+            "targets": _list_fit(x.get("targets"), 2, 2, 16, "You")}
+
+
+def _san_tasks(x):
+    return {"kicker": _clip(x.get("kicker"), 28), "title": _nofs(x.get("title"), 20) or "Done for you", "tasks": _list_fit(x.get("tasks"), 3, 4, 24, "Task")}
+
+
+def _san_network(x):
+    return {"kicker": _clip(x.get("kicker"), 28), "items": _list_fit(x.get("items"), 5, 8, 10, "App"), "hub": _nofs(x.get("hub"), 8) or "AI",
+            "from": _nofs(x.get("from"), 14) or "Isolated", "to": _nofs(x.get("to"), 14) or "Connected"}
+
+
 def _san_orbit(x):
     return {"kicker": _clip(x.get("kicker"), 28), "icon": _icon(x.get("icon"), "sparkles"), "items": _list_fit(x.get("items"), 4, 4, 10, "Item")}
 
@@ -1012,7 +1029,7 @@ def _san_wordmark(x):
     return {"name": _nofs(x.get("name"), 20) or CHANNEL_NAME}
 
 
-SANITIZERS = {"prompt": _san_prompt, "stack": _san_stack, "orbit": _san_orbit, "wordmark": _san_wordmark, "morph": _san_morph, "shapes": _san_shapes, "bars": _san_bars, "command": _san_command,
+SANITIZERS = {"connect": _san_connect, "tasks": _san_tasks, "network": _san_network, "prompt": _san_prompt, "stack": _san_stack, "orbit": _san_orbit, "wordmark": _san_wordmark, "morph": _san_morph, "shapes": _san_shapes, "bars": _san_bars, "command": _san_command,
               "tabs": _san_tabs, "mark": _san_mark, "hook": _san_hook, "slam": _san_slam, "terminal": _san_terminal, "alert": _san_alert, "timeline": _san_timeline,
               "monitor": _san_monitor, "bignumber": _san_bignumber, "versus": _san_versus, "leaderboard": _san_leaderboard,
               "chat": _san_chat, "quote": _san_quote, "checklist": _san_checklist, "cta": _san_cta,

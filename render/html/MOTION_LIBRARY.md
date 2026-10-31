@@ -35,6 +35,9 @@ Scene types and primitives for the HTML engine (`engine.html`). Everything is a 
 | `tabs` | items (3), pick, detail | liquid indicator: the leading edge rides a faster spring than the trailing edge |
 | `prompt` | prompt, reply, hi | frosted-glass prompt box springs out and types, whip-tilt up with vertical smear, the answer page scrolls in from low and blurred with one bold key phrase |
 | `stack` | items [{title, tag}] (2-3) | stacked cards with giant frosted-glass titles cut off by the card edge, blur-in with stagger |
+| `connect` | sources (3), hub, targets (2) | clay tiles flow into one hub, which feeds two destinations |
+| `tasks` | title, tasks (3-4) | chat answer turns into jobs; each gets a progress bar and a tick |
+| `network` | items (5-8), hub, from, to | separate apps drift apart, then pull into a ring around one hub (Isolated -> Connected) |
 | `orbit` | icon, items (4) | four squares spin in around the product, lock into a cross, then slide into a labelled row |
 | `wordmark` | name | end card: the word arrives zoom-smeared (18 scaled copies) and settles on black (manual use; not offered to Gemini) |
 | `mark` | name | identity reveal: rings draw themselves, brand mark lands, wordmark tightens in (manual use; not offered to Gemini) |
