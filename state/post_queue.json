@@ -837,9 +837,18 @@
   "headline": "Mistral Releases Trillion-Parameter AI Weights for Cybersecurity",
   "thumb": "renders/output/2026-10-30-065753-0.jpg",
   "added": "2026-10-30 07:00",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 691250923
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1763848918025399",
+    "at": "2026-10-31 09:30"
+   }
+  },
+  "posted_at": "2026-10-31 09:30",
+  "fb_id": "1763848918025399"
  },
  {
   "video": "renders/output/2026-10-30-070138-1.mp4",
