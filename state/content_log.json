@@ -1335,7 +1335,15 @@
   "words": 100,
   "caption": "obra/superpowers: The Agentic Framework Changing Software Development\n\nDiscover Superpowers, a viral open-source framework that brings subagent-driven development to your coding workflow. It forces AI agents to plan, test, and work autonomously for hours. Follow for daily AI news.\n\n#ai #opensource #github #coding #softwareengineering #agentic #claude #developer #programming",
   "thumb": "renders/output/2026-10-30-070138-1.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-10-31 14:10",
+  "fb_id": "1114212134916544",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1114212134916544"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-30-070433-2.mp4",

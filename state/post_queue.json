@@ -857,9 +857,18 @@
   "headline": "superpowers: An agentic skills framework & software development methodology that works.",
   "thumb": "renders/output/2026-10-30-070138-1.jpg",
   "added": "2026-10-30 07:04",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 691259375
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1114212134916544",
+    "at": "2026-10-31 14:10"
+   }
+  },
+  "posted_at": "2026-10-31 14:10",
+  "fb_id": "1114212134916544"
  },
  {
   "video": "renders/output/2026-10-30-070433-2.mp4",
