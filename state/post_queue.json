@@ -877,9 +877,18 @@
   "headline": "OpenBot: Open-source AI coworkers that each get a computer of their own: a browser, files and tools, with ever",
   "thumb": "renders/output/2026-10-30-070433-2.jpg",
   "added": "2026-10-30 07:07",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 691267800
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1104582975756017",
+    "at": "2026-10-31 19:12"
+   }
+  },
+  "posted_at": "2026-10-31 19:12",
+  "fb_id": "1104582975756017"
  },
  {
   "video": "renders/output/2026-10-31-065107-0.mp4",
