@@ -1354,5 +1354,27 @@
   "caption": "How to install OpenBot: Your own fleet of AI coworkers\n\nLearn how to deploy OpenBot, the open-source tool that gives AI agents their own computer and browser. Follow this step-by-step guide to get started with autonomous agents today.\n\n#tutorial #opensource #howto #aiagents #copilotkit #automation #github #typescript",
   "thumb": "renders/output/2026-10-30-070433-2.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-31-065107-0.mp4",
+  "ts": "2026-10-31 06:53",
+  "kind": "news",
+  "headline": "OpenAI-Backed Thrive Holdings to Acquire ADT in $15.3 Billion AI Security Play",
+  "title": "OpenAI-Backed Thrive Holdings Acquires ADT in $15.3 Billion AI Security Move",
+  "source_link": "https://techcrunch.com/2026/10/29/openai-backed-thrive-holdings-acquires-adt/",
+  "theme": "forest",
+  "angle": "what changes for you",
+  "scenes": [
+   "slam",
+   "reveal",
+   "hubmap",
+   "custom",
+   "phases",
+   "cta"
+  ],
+  "words": 102,
+  "caption": "OpenAI-Backed Thrive Holdings Acquires ADT in $15.3 Billion AI Security Move\n\nThrive Holdings is acquiring home security giant ADT to integrate OpenAI models into physical infrastructure. This massive $15.3 billion deal signals a major shift toward AI-native home protection. Follow for daily AI news.\n\n#ai #openai #adt #smarthome #techdeal #automation #security #futuretech",
+  "thumb": "renders/output/2026-10-31-065107-0.jpg",
+  "status": "queued"
  }
 ]

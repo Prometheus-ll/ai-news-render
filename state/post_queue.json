@@ -862,5 +862,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 691267800
+ },
+ {
+  "video": "renders/output/2026-10-31-065107-0.mp4",
+  "caption": "OpenAI-Backed Thrive Holdings Acquires ADT in $15.3 Billion AI Security Move\n\nThrive Holdings is acquiring home security giant ADT to integrate OpenAI models into physical infrastructure. This massive $15.3 billion deal signals a major shift toward AI-native home protection. Follow for daily AI news.\n\n#ai #openai #adt #smarthome #techdeal #automation #security #futuretech",
+  "source_link": "https://techcrunch.com/2026/10/29/openai-backed-thrive-holdings-acquires-adt/",
+  "headline": "OpenAI-Backed Thrive Holdings to Acquire ADT in $15.3 Billion AI Security Play",
+  "thumb": "renders/output/2026-10-31-065107-0.jpg",
+  "added": "2026-10-31 06:53",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 694630183
  }
 ]

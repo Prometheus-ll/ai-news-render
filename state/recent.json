@@ -1,22 +1,5 @@
 [
  {
-  "ts": "2026-10-17 11:24",
-  "theme": "ocean",
-  "transition": "fade",
-  "angle": "By the numbers",
-  "scenes": [
-   "repohook",
-   "reveal",
-   "bignumber",
-   "hubmap",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "ai-job-search: The job search that runs on your machine. AI job application fram",
-  "link": "https://github.com/MadsLorentzen/ai-job-search"
- },
- {
   "ts": "2026-10-18 05:40",
   "theme": "signal",
   "transition": "slide",
@@ -820,5 +803,29 @@
   "kind": "tutorial",
   "headline": "OpenBot: Open-source AI coworkers that each get a computer of their own: a brows",
   "link": "https://github.com/CopilotKit/OpenBot"
+ },
+ {
+  "ts": "2026-10-31 06:50",
+  "pack": "Systems Map",
+  "theme": "forest",
+  "transition": "slide",
+  "angle": "what changes for you",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "reveal",
+   "hubmap",
+   "custom",
+   "phases",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "OpenAI-Backed Thrive Holdings to Acquire ADT in $15.3 Billion AI Security Play",
+  "link": "https://techcrunch.com/2026/10/29/openai-backed-thrive-holdings-acquires-adt/",
+  "motion_refs": [
+   "dale-vaz-879074",
+   "0xverdao-776363",
+   "koushikde-937635"
+  ]
  }
 ]
