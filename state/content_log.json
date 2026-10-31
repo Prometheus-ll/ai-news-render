@@ -1376,5 +1376,28 @@
   "caption": "OpenAI-Backed Thrive Holdings Acquires ADT in $15.3 Billion AI Security Move\n\nThrive Holdings is acquiring home security giant ADT to integrate OpenAI models into physical infrastructure. This massive $15.3 billion deal signals a major shift toward AI-native home protection. Follow for daily AI news.\n\n#ai #openai #adt #smarthome #techdeal #automation #security #futuretech",
   "thumb": "renders/output/2026-10-31-065107-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-31-065436-1.mp4",
+  "ts": "2026-10-31 06:55",
+  "kind": "repo",
+  "headline": "skills: Skills for Real Engineers. Straight from my .agents directory.",
+  "title": "This GitHub repo turns AI agents into real engineers",
+  "source_link": "https://github.com/mattpocock/skills",
+  "theme": "paper",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "slam",
+   "reveal",
+   "checklist",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "words": 100,
+  "caption": "This GitHub repo turns AI agents into real engineers\n\nStop relying on vibe coding and start building real applications. This MIT-licensed repo adds professional workflows like TDD and alignment grilling to agents like Claude and Copilot. Follow for daily AI news.\n\n#ai #opensource #github #coding #programming #softwareengineering #claude #copilot #developer",
+  "thumb": "renders/output/2026-10-31-065436-1.jpg",
+  "status": "queued"
  }
 ]
