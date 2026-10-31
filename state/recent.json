@@ -1,22 +1,5 @@
 [
  {
-  "ts": "2026-10-18 05:43",
-  "theme": "neon",
-  "transition": "zoom",
-  "angle": "what changes for you",
-  "scenes": [
-   "appclutter",
-   "reveal",
-   "versus",
-   "quote",
-   "hubmap",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Replit Swaps Anthropic for OpenAI as Default Model Provider",
-  "link": "https://techcrunch.com/2026/10/17/replit-is-no-longer-working-with-anthropic-ceo-says/"
- },
- {
   "ts": "2026-10-18 05:45",
   "theme": "forest",
   "transition": "wipe",
@@ -835,5 +818,27 @@
    "ivysparkleai-543294",
    "0xverdao-776363"
   ]
+ },
+ {
+  "ts": "2026-10-31 06:56",
+  "pack": "Explainer",
+  "theme": "indigo",
+  "transition": "sweep",
+  "angle": "tutorial",
+  "hook": "",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "kind": "tutorial",
+  "headline": "taste-skill: Agent skills that give coding agents taste: art direction, referenc",
+  "link": "https://github.com/Leonxlnx/taste-skill"
  }
 ]

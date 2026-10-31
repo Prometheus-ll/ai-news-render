@@ -1399,5 +1399,30 @@
   "caption": "This GitHub repo turns AI agents into real engineers\n\nStop relying on vibe coding and start building real applications. This MIT-licensed repo adds professional workflows like TDD and alignment grilling to agents like Claude and Copilot. Follow for daily AI news.\n\n#ai #opensource #github #coding #programming #softwareengineering #claude #copilot #developer",
   "thumb": "renders/output/2026-10-31-065436-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-10-31-065613-2.mp4",
+  "ts": "2026-10-31 06:58",
+  "kind": "tutorial",
+  "headline": "taste-skill: Agent skills that give coding agents taste: art direction, reference images and a browser check i",
+  "title": "How to give your AI coding agent design taste with Taste Skill",
+  "source_link": "https://github.com/Leonxlnx/taste-skill",
+  "theme": "indigo",
+  "angle": "tutorial",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "words": 153,
+  "caption": "How to give your AI coding agent design taste with Taste Skill\n\nStop your AI from building boring generic websites. This open source tool adds art direction and browser checks to your workflow. Follow for more AI tutorials!\n\n#tutorial #opensource #howto #webdesign #aicoding #claudecode #frontend #javascript #github",
+  "thumb": "renders/output/2026-10-31-065613-2.jpg",
+  "status": "queued"
  }
 ]
