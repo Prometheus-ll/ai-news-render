@@ -884,5 +884,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 694634602
+ },
+ {
+  "video": "renders/output/2026-10-31-065613-2.mp4",
+  "caption": "How to give your AI coding agent design taste with Taste Skill\n\nStop your AI from building boring generic websites. This open source tool adds art direction and browser checks to your workflow. Follow for more AI tutorials!\n\n#tutorial #opensource #howto #webdesign #aicoding #claudecode #frontend #javascript #github",
+  "source_link": "https://github.com/Leonxlnx/taste-skill",
+  "headline": "taste-skill: Agent skills that give coding agents taste: art direction, reference images and a browser check i",
+  "thumb": "renders/output/2026-10-31-065613-2.jpg",
+  "added": "2026-10-31 06:58",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 694638697
  }
 ]
