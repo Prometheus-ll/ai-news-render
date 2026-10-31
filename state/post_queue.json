@@ -873,5 +873,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 694630183
+ },
+ {
+  "video": "renders/output/2026-10-31-065436-1.mp4",
+  "caption": "This GitHub repo turns AI agents into real engineers\n\nStop relying on vibe coding and start building real applications. This MIT-licensed repo adds professional workflows like TDD and alignment grilling to agents like Claude and Copilot. Follow for daily AI news.\n\n#ai #opensource #github #coding #programming #softwareengineering #claude #copilot #developer",
+  "source_link": "https://github.com/mattpocock/skills",
+  "headline": "skills: Skills for Real Engineers. Straight from my .agents directory.",
+  "thumb": "renders/output/2026-10-31-065436-1.jpg",
+  "added": "2026-10-31 06:55",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 694634602
  }
 ]

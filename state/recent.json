@@ -1,22 +1,5 @@
 [
  {
-  "ts": "2026-10-18 05:40",
-  "theme": "signal",
-  "transition": "slide",
-  "angle": "red flags",
-  "scenes": [
-   "slam",
-   "alert",
-   "terminal",
-   "monitor",
-   "phases",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "India Reports Surge in Rogue AI Agent Attacks via Exposed Credentials",
-  "link": "https://techcrunch.com/2026/10/16/india-becomes-the-latest-country-to-report-rogue-ai-agent-activity/"
- },
- {
   "ts": "2026-10-18 05:43",
   "theme": "neon",
   "transition": "zoom",
@@ -826,6 +809,31 @@
    "dale-vaz-879074",
    "0xverdao-776363",
    "koushikde-937635"
+  ]
+ },
+ {
+  "ts": "2026-10-31 06:54",
+  "pack": "Playbook Steps",
+  "theme": "paper",
+  "transition": "wipe",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "slam",
+   "reveal",
+   "checklist",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "skills: Skills for Real Engineers. Straight from my .agents directory.",
+  "link": "https://github.com/mattpocock/skills",
+  "motion_refs": [
+   "koushikde-937635",
+   "ivysparkleai-543294",
+   "0xverdao-776363"
   ]
  }
 ]
