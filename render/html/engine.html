@@ -1040,7 +1040,7 @@ function sceneCustom(m,S,D){
     for(const q of [0,.2,.5,.8,1]){fr(q*D,q,D);}                       // dry run: must not throw
     fr(0,0,D);
   }catch(e){
-    console.log('[custom] fallback: '+e);fr=null;root.innerHTML='';
+    console.log('[custom] fallback: '+e);root.dataset.fb=String(e).slice(0,160);fr=null;root.innerHTML='';
     const w=nofs(m.title||'AI')||'AI',size=Math.max(110,Math.min(240,Math.floor(900/(.64*Math.max(4,w.length)))));
     root.style.cssText+=';display:flex;align-items:center;justify-content:center';const e1=H(`<div class="mo-kw" style="font-size:${size}px;color:#fff;opacity:0;position:static;text-align:center">${esc(w)}</div>`);root.appendChild(e1);
     updaters.push(t=>{const p=spr(t,S,.62,19);e1.style.opacity=clamp((t-S)/.2);e1.style.transform=`scale(${1.2-.2*p})`;});

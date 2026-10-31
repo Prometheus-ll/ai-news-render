@@ -74,3 +74,8 @@ Removed: screen shake, tilt on slam words, floating loops, creeping scale, drift
 ## HyperFrames scenes (render/hf_scenes.py)
 The hook (slam) and the key-fact scene (bignumber) are drawn by HyperFrames (HTML + GSAP, Apache 2.0) when Node 22 is available; the engine adds the brand bar and captions on top.
 Any failure falls back to the normal engine scene. Switch off with HYPERFRAMES=0. Test workflow: "HyperFrames scene test" (manual, output on branch lab-output).
+
+## Custom scene studio (`pipeline/custom_motion.py`)
+Per video, Gemini writes 2 (env `CUSTOM_SCENES`, max 3) brand-new scenes. Each one is rendered and checked like a person would: empty, nothing animates, still moving after p=.55,
+text cut off / under 30px / overlapping / low contrast, then a Gemini vision pass looks at the settled frame. Failures go back with the exact problems (3 tries);
+a scene that never passes is dropped and the library scene stays. Passing scenes are saved to `state/scene_library` (newest 40) and shown to Gemini as quality examples next time.
