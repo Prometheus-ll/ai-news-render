@@ -937,9 +937,18 @@
   "headline": "taste-skill: Agent skills that give coding agents taste: art direction, reference images and a browser check i",
   "thumb": "renders/output/2026-10-31-065613-2.jpg",
   "added": "2026-10-31 06:58",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 694638697
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2411114336383334",
+    "at": "2026-11-01 14:40"
+   }
+  },
+  "posted_at": "2026-11-01 14:40",
+  "fb_id": "2411114336383334"
  },
  {
   "video": "renders/output/2026-11-01-071911-0.mp4",
