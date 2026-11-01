@@ -1,22 +1,5 @@
 [
  {
-  "ts": "2026-10-18 05:45",
-  "theme": "forest",
-  "transition": "wipe",
-  "angle": "what changes for you",
-  "scenes": [
-   "repohook",
-   "reveal",
-   "hubmap",
-   "checklist",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "ai-memory: Solution for long term memory for agent coding CLIs and to facilitate",
-  "link": "https://github.com/akitaonrails/ai-memory"
- },
- {
   "ts": "2026-10-19 05:57",
   "theme": "ember",
   "transition": "fade",
@@ -840,5 +823,25 @@
   "kind": "tutorial",
   "headline": "taste-skill: Agent skills that give coding agents taste: art direction, referenc",
   "link": "https://github.com/Leonxlnx/taste-skill"
+ },
+ {
+  "ts": "2026-11-01 07:17",
+  "pack": "Alert Room",
+  "theme": "ember",
+  "transition": "zoom",
+  "angle": "proof",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "reveal",
+   "bignumber",
+   "monitor",
+   "command",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Google Successfully Deploys First AI Data Center Satellite",
+  "link": "https://techcrunch.com/2026/10/30/googles-first-data-center-satellite-is-online-and-writing-poetry/",
+  "motion_refs": []
  }
 ]
