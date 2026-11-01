@@ -1,23 +1,5 @@
 [
  {
-  "ts": "2026-10-19 05:59",
-  "theme": "ocean",
-  "transition": "zoom",
-  "angle": "the big question",
-  "hook": null,
-  "scenes": [
-   "hook",
-   "reveal",
-   "bignumber",
-   "hubmap",
-   "quote",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Anthropic Pledges 5% of Equity to New Public Benefit Fund",
-  "link": "https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund/"
- },
- {
   "ts": "2026-10-19 06:02",
   "theme": "signal",
   "transition": "slide",
@@ -849,5 +831,27 @@
    "ivysparkleai-543294",
    "imryven-495965"
   ]
+ },
+ {
+  "ts": "2026-11-01 07:33",
+  "pack": "Explainer",
+  "theme": "mint",
+  "transition": "sweep",
+  "angle": "tutorial",
+  "hook": "",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "kind": "tutorial",
+  "headline": "Orkas: Orkas is an open-source (MIT), local-first AI team for your desktop: a Co",
+  "link": "https://github.com/Orkas-AI/Orkas"
  }
 ]

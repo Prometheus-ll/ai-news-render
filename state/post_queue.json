@@ -944,5 +944,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 697643362
+ },
+ {
+  "video": "renders/output/2026-11-01-073334-2.mp4",
+  "caption": "How to install Orkas: The local-first open-source AI agent team\n\nLearn how to set up Orkas, an MIT-licensed tool that coordinates specialist agents like Claude Code and VideoStudio on your desktop. Run your own AI team locally with full privacy. Follow AI Quantum for more daily open source tools.\n\n#tutorial #opensource #howto #aiagents #localai #productivity #orkas #python",
+  "source_link": "https://github.com/Orkas-AI/Orkas",
+  "headline": "Orkas: Orkas is an open-source (MIT), local-first AI team for your desktop: a Commander turns your goal into t",
+  "thumb": "renders/output/2026-11-01-073334-2.jpg",
+  "added": "2026-11-01 07:35",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 697656901
  }
 ]
