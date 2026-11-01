@@ -933,5 +933,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 697634520
+ },
+ {
+  "video": "renders/output/2026-11-01-072501-1.mp4",
+  "caption": "Build Games with 49 AI Agents: Claude Code Game Studios\n\nTurn a single Claude Code session into a full professional game studio with 49 specialized AI agents. This open-source project features 74 workflow skills and a real studio hierarchy. Follow for more AI news.\n\n#ai #gamedev #claude #anthropic #github #opensource #coding #indiedev #softwareengineering",
+  "source_link": "https://github.com/Donchitos/Claude-Code-Game-Studios",
+  "headline": "Claude-Code-Game-Studios: Turn Claude Code into a full game dev studio \u2014 49 AI agents, 72 workflow skills, and",
+  "thumb": "renders/output/2026-11-01-072501-1.jpg",
+  "added": "2026-11-01 07:27",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 697643362
  }
 ]
