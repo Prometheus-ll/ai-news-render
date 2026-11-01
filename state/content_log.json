@@ -1448,5 +1448,27 @@
   "caption": "How to give your AI coding agent design taste with Taste Skill\n\nStop your AI from building boring generic websites. This open source tool adds art direction and browser checks to your workflow. Follow for more AI tutorials!\n\n#tutorial #opensource #howto #webdesign #aicoding #claudecode #frontend #javascript #github",
   "thumb": "renders/output/2026-10-31-065613-2.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-01-071911-0.mp4",
+  "ts": "2026-11-01 07:22",
+  "kind": "news",
+  "headline": "Google Successfully Deploys First AI Data Center Satellite",
+  "title": "Google Successfully Deploys First AI Data Center Satellite",
+  "source_link": "https://techcrunch.com/2026/10/30/googles-first-data-center-satellite-is-online-and-writing-poetry/",
+  "theme": "ember",
+  "angle": "proof",
+  "scenes": [
+   "slam",
+   "reveal",
+   "bignumber",
+   "monitor",
+   "command",
+   "cta"
+  ],
+  "words": 100,
+  "caption": "Google Successfully Deploys First AI Data Center Satellite\n\nGoogle has successfully deployed Project Suncatcher, a satellite data center equipped with Tensor Processing Units. This mission proves that high-performance AI can run in orbit, enabling real-time processing without ground latency. Follow for daily AI news.\n\n#ai #google #suncatcher #satellite #space #tpu #deepmind #engineering #tech #future",
+  "thumb": "renders/output/2026-11-01-071911-0.jpg",
+  "status": "queued"
  }
 ]
