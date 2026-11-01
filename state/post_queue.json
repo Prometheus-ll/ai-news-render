@@ -917,9 +917,18 @@
   "headline": "skills: Skills for Real Engineers. Straight from my .agents directory.",
   "thumb": "renders/output/2026-10-31-065436-1.jpg",
   "added": "2026-10-31 06:55",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 694634602
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1758148285268509",
+    "at": "2026-11-01 10:20"
+   }
+  },
+  "posted_at": "2026-11-01 10:20",
+  "fb_id": "1758148285268509"
  },
  {
   "video": "renders/output/2026-10-31-065613-2.mp4",

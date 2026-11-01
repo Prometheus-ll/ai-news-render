@@ -1430,7 +1430,15 @@
   "words": 100,
   "caption": "This GitHub repo turns AI agents into real engineers\n\nStop relying on vibe coding and start building real applications. This MIT-licensed repo adds professional workflows like TDD and alignment grilling to agents like Claude and Copilot. Follow for daily AI news.\n\n#ai #opensource #github #coding #programming #softwareengineering #claude #copilot #developer",
   "thumb": "renders/output/2026-10-31-065436-1.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-01 10:20",
+  "fb_id": "1758148285268509",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1758148285268509"
+   }
+  }
  },
  {
   "video": "renders/output/2026-10-31-065613-2.mp4",
