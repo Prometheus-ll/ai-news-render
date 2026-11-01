@@ -957,9 +957,18 @@
   "headline": "Google Successfully Deploys First AI Data Center Satellite",
   "thumb": "renders/output/2026-11-01-071911-0.jpg",
   "added": "2026-11-01 07:22",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 697634520
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "3098178897202011",
+    "at": "2026-11-01 19:29"
+   }
+  },
+  "posted_at": "2026-11-01 19:29",
+  "fb_id": "3098178897202011"
  },
  {
   "video": "renders/output/2026-11-01-072501-1.mp4",
