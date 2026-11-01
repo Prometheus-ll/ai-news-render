@@ -1,23 +1,5 @@
 [
  {
-  "ts": "2026-10-19 05:57",
-  "theme": "ember",
-  "transition": "fade",
-  "angle": "who wins",
-  "hook": null,
-  "scenes": [
-   "hook",
-   "reveal",
-   "timeline",
-   "profile",
-   "roundup",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Disney to Hire Majority of Character.AI Workforce in Major Talent Grab",
-  "link": "https://techcrunch.com/2026/10/18/disney-agrees-to-hire-the-majority-of-character-ais-workforce/"
- },
- {
   "ts": "2026-10-19 05:59",
   "theme": "ocean",
   "transition": "zoom",
@@ -843,5 +825,29 @@
   "headline": "Google Successfully Deploys First AI Data Center Satellite",
   "link": "https://techcrunch.com/2026/10/30/googles-first-data-center-satellite-is-online-and-writing-poetry/",
   "motion_refs": []
+ },
+ {
+  "ts": "2026-11-01 07:23",
+  "pack": "Terminal Ops",
+  "theme": "neon",
+  "transition": "wipe",
+  "angle": "what changes for you",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "reveal",
+   "phases",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "Claude-Code-Game-Studios: Turn Claude Code into a full game dev studio \u2014 49 AI a",
+  "link": "https://github.com/Donchitos/Claude-Code-Game-Studios",
+  "motion_refs": [
+   "ho-ba-761062",
+   "ivysparkleai-543294",
+   "imryven-495965"
+  ]
  }
 ]
