@@ -897,9 +897,18 @@
   "headline": "OpenAI-Backed Thrive Holdings to Acquire ADT in $15.3 Billion AI Security Play",
   "thumb": "renders/output/2026-10-31-065107-0.jpg",
   "added": "2026-10-31 06:53",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 694630183
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2315472699309273",
+    "at": "2026-11-01 10:14"
+   }
+  },
+  "posted_at": "2026-11-01 10:14",
+  "fb_id": "2315472699309273"
  },
  {
   "video": "renders/output/2026-10-31-065436-1.mp4",
