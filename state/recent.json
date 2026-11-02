@@ -1,23 +1,5 @@
 [
  {
-  "ts": "2026-10-19 06:02",
-  "theme": "signal",
-  "transition": "slide",
-  "angle": "what changes for you",
-  "hook": null,
-  "scenes": [
-   "repohook",
-   "reveal",
-   "hubmap",
-   "terminal",
-   "stars",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "opencode: The open source coding agent.",
-  "link": "https://github.com/anomalyco/opencode"
- },
- {
   "ts": "2026-10-20 05:50",
   "theme": "mint",
   "transition": "fade",
@@ -853,5 +835,25 @@
   "kind": "tutorial",
   "headline": "Orkas: Orkas is an open-source (MIT), local-first AI team for your desktop: a Co",
   "link": "https://github.com/Orkas-AI/Orkas"
+ },
+ {
+  "ts": "2026-11-02 07:32",
+  "pack": "Data Story",
+  "theme": "signal",
+  "transition": "slide",
+  "angle": "who wins",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "reveal",
+   "versus",
+   "monitor",
+   "bignumber",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Judge Allows NAACP Environmental Lawsuit Against xAI to Proceed",
+  "link": "https://techcrunch.com/2026/10/31/judge-allows-naacp-lawsuit-over-xai-data-center-pollution-to-move-forward/",
+  "motion_refs": []
  }
 ]
