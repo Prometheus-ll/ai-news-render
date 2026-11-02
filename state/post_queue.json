@@ -977,9 +977,18 @@
   "headline": "Claude-Code-Game-Studios: Turn Claude Code into a full game dev studio \u2014 49 AI agents, 72 workflow skills, and",
   "thumb": "renders/output/2026-11-01-072501-1.jpg",
   "added": "2026-11-01 07:27",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 697643362
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "3268288346707630",
+    "at": "2026-11-02 10:51"
+   }
+  },
+  "posted_at": "2026-11-02 10:51",
+  "fb_id": "3268288346707630"
  },
  {
   "video": "renders/output/2026-11-01-073334-2.mp4",
