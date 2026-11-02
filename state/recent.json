@@ -1,23 +1,5 @@
 [
  {
-  "ts": "2026-10-20 05:50",
-  "theme": "mint",
-  "transition": "fade",
-  "angle": "what changes for you",
-  "hook": null,
-  "scenes": [
-   "slam",
-   "reveal",
-   "checklist",
-   "terminal",
-   "hubmap",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Nvidia Releases Open Models for Local and Enterprise AI Agents",
-  "link": "https://techcrunch.com/2026/10/19/nvidia-launches-new-open-models-to-run-agents-in-the-enterprise-and-on-pcs/"
- },
- {
   "ts": "2026-10-20 05:54",
   "theme": "neon",
   "transition": "wipe",
@@ -855,5 +837,29 @@
   "headline": "Judge Allows NAACP Environmental Lawsuit Against xAI to Proceed",
   "link": "https://techcrunch.com/2026/10/31/judge-allows-naacp-lawsuit-over-xai-data-center-pollution-to-move-forward/",
   "motion_refs": []
+ },
+ {
+  "ts": "2026-11-02 07:38",
+  "pack": "Product Keynote",
+  "theme": "indigo",
+  "transition": "zoom",
+  "angle": "before vs after",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "reveal",
+   "stack",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "Kronos: Kronos: A Foundation Model for the Language of Financial Markets",
+  "link": "https://github.com/shiyu-coder/Kronos",
+  "motion_refs": [
+   "fanfulladev-063524",
+   "tak3sh8-441895",
+   "songkeys-384673"
+  ]
  }
 ]
