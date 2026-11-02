@@ -1013,5 +1013,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 700935273
+ },
+ {
+  "video": "renders/output/2026-11-02-074316-2.mp4",
+  "caption": "How to install AiSOC: The Free Open-Source AI Security Operations Center\n\nLearn how to deploy your own self-hosted AI SOC for automated threat triage and investigation. This open-source tool runs locally with no API keys required. Follow for more AI tutorials!\n\n#tutorial #opensource #cybersecurity #aisoc #blueteam #aiagents #selfhosted #python",
+  "source_link": "https://github.com/beenuar/AiSOC",
+  "headline": "AiSOC: Open-source AI Security Operations Center: alert fusion, LLM-agent triage, MITRE ATT&CK investigation, ",
+  "thumb": "renders/output/2026-11-02-074316-2.jpg",
+  "added": "2026-11-02 07:45",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 700940862
  }
 ]

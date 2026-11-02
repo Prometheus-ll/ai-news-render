@@ -1593,5 +1593,30 @@
   "caption": "Kronos: The Foundation Model for Global Financial Markets\n\nKronos is the first open-source foundation model designed specifically for financial market candlesticks. It is pre-trained on data from over 45 global exchanges to predict market movements. Follow for daily AI news.\n\n#ai #opensource #github #fintech #trading #python #machinelearning #quant",
   "thumb": "renders/output/2026-11-02-074056-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-02-074316-2.mp4",
+  "ts": "2026-11-02 07:45",
+  "kind": "tutorial",
+  "headline": "AiSOC: Open-source AI Security Operations Center: alert fusion, LLM-agent triage, MITRE ATT&CK investigation, ",
+  "title": "How to install AiSOC: The Free Open-Source AI Security Operations Center",
+  "source_link": "https://github.com/beenuar/AiSOC",
+  "theme": "neon",
+  "angle": "tutorial",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "words": 151,
+  "caption": "How to install AiSOC: The Free Open-Source AI Security Operations Center\n\nLearn how to deploy your own self-hosted AI SOC for automated threat triage and investigation. This open-source tool runs locally with no API keys required. Follow for more AI tutorials!\n\n#tutorial #opensource #cybersecurity #aisoc #blueteam #aiagents #selfhosted #python",
+  "thumb": "renders/output/2026-11-02-074316-2.jpg",
+  "status": "queued"
  }
 ]
