@@ -1017,9 +1017,18 @@
   "headline": "Judge Allows NAACP Environmental Lawsuit Against xAI to Proceed",
   "thumb": "renders/output/2026-11-02-073513-0.jpg",
   "added": "2026-11-02 07:38",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 700924735
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1637748841144148",
+    "at": "2026-11-02 23:04"
+   }
+  },
+  "posted_at": "2026-11-02 23:04",
+  "fb_id": "1637748841144148"
  },
  {
   "video": "renders/output/2026-11-02-074056-1.mp4",
