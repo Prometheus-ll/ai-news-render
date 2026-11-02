@@ -997,9 +997,18 @@
   "headline": "Orkas: Orkas is an open-source (MIT), local-first AI team for your desktop: a Commander turns your goal into t",
   "thumb": "renders/output/2026-11-01-073334-2.jpg",
   "added": "2026-11-01 07:35",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 697656901
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1468013298730001",
+    "at": "2026-11-02 17:39"
+   }
+  },
+  "posted_at": "2026-11-02 17:39",
+  "fb_id": "1468013298730001"
  },
  {
   "video": "renders/output/2026-11-02-073513-0.mp4",
