@@ -1002,5 +1002,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 700924735
+ },
+ {
+  "video": "renders/output/2026-11-02-074056-1.mp4",
+  "caption": "Kronos: The Foundation Model for Global Financial Markets\n\nKronos is the first open-source foundation model designed specifically for financial market candlesticks. It is pre-trained on data from over 45 global exchanges to predict market movements. Follow for daily AI news.\n\n#ai #opensource #github #fintech #trading #python #machinelearning #quant",
+  "source_link": "https://github.com/shiyu-coder/Kronos",
+  "headline": "Kronos: Kronos: A Foundation Model for the Language of Financial Markets",
+  "thumb": "renders/output/2026-11-02-074056-1.jpg",
+  "added": "2026-11-02 07:42",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 700935273
  }
 ]
