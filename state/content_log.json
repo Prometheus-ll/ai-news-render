@@ -1549,5 +1549,27 @@
   "caption": "How to install Orkas: The local-first open-source AI agent team\n\nLearn how to set up Orkas, an MIT-licensed tool that coordinates specialist agents like Claude Code and VideoStudio on your desktop. Run your own AI team locally with full privacy. Follow AI Quantum for more daily open source tools.\n\n#tutorial #opensource #howto #aiagents #localai #productivity #orkas #python",
   "thumb": "renders/output/2026-11-01-073334-2.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-02-073513-0.mp4",
+  "ts": "2026-11-02 07:38",
+  "kind": "news",
+  "headline": "Judge Allows NAACP Environmental Lawsuit Against xAI to Proceed",
+  "title": "Judge Rules xAI Lawsuit Can Proceed Over Memphis Data Center",
+  "source_link": "https://techcrunch.com/2026/10/31/judge-allows-naacp-lawsuit-over-xai-data-center-pollution-to-move-forward/",
+  "theme": "signal",
+  "angle": "who wins",
+  "scenes": [
+   "slam",
+   "reveal",
+   "versus",
+   "monitor",
+   "bignumber",
+   "cta"
+  ],
+  "words": 97,
+  "caption": "Judge Rules xAI Lawsuit Can Proceed Over Memphis Data Center\n\nA federal judge has cleared the way for a major environmental lawsuit against Elon Musk's xAI. The case involves unpermitted gas turbines at the Memphis Colossus facility. Follow for daily AI infrastructure news.\n\n#ai #xai #elonmusk #lawsuit #environment #memphis #techlaw #legal",
+  "thumb": "renders/output/2026-11-02-073513-0.jpg",
+  "status": "queued"
  }
 ]
