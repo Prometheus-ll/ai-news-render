@@ -1,23 +1,5 @@
 [
  {
-  "ts": "2026-10-20 05:54",
-  "theme": "neon",
-  "transition": "wipe",
-  "angle": "behind the scenes",
-  "hook": null,
-  "scenes": [
-   "appclutter",
-   "reveal",
-   "versus",
-   "monitor",
-   "phases",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Amazon Challenges Nvidia\u2019s Software Moat with New TorchNeuron Tool",
-  "link": "https://techcrunch.com/2026/10/19/amazon-is-taking-its-biggest-shot-at-nvidia-yet-with-new-torchneuron-dev-tool/"
- },
- {
   "ts": "2026-10-20 05:56",
   "theme": "indigo",
   "transition": "slide",
@@ -861,5 +843,27 @@
    "tak3sh8-441895",
    "songkeys-384673"
   ]
+ },
+ {
+  "ts": "2026-11-02 07:43",
+  "pack": "Explainer",
+  "theme": "neon",
+  "transition": "sweep",
+  "angle": "tutorial",
+  "hook": "",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "kind": "tutorial",
+  "headline": "AiSOC: Open-source AI Security Operations Center: alert fusion, LLM-agent triage",
+  "link": "https://github.com/beenuar/AiSOC"
  }
 ]
