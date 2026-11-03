@@ -1679,7 +1679,15 @@
   "words": 111,
   "caption": "This Open-Source App Manages Your AI Agent Team\n\nDiscover Paperclip, the viral open-source platform that lets you manage AI agents with an org chart, budgets, and governance. It is free, MIT-licensed, and works with any agent runtime. Follow for daily AI news.\n\n#ai #opensource #github #agenticai #aiengineering #typescript #coding #software",
   "thumb": "renders/output/2026-11-03-075613-0.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-03 20:52",
+  "fb_id": "1774714250246203",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1774714250246203"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-03-075838-1.mp4",
