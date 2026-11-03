@@ -1642,5 +1642,27 @@
   "caption": "How to install AiSOC: The Free Open-Source AI Security Operations Center\n\nLearn how to deploy your own self-hosted AI SOC for automated threat triage and investigation. This open-source tool runs locally with no API keys required. Follow for more AI tutorials!\n\n#tutorial #opensource #cybersecurity #aisoc #blueteam #aiagents #selfhosted #python",
   "thumb": "renders/output/2026-11-02-074316-2.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-03-075613-0.mp4",
+  "ts": "2026-11-03 07:58",
+  "kind": "repo",
+  "headline": "paperclip: The open-source app everyone uses to manage agents at work",
+  "title": "This Open-Source App Manages Your AI Agent Team",
+  "source_link": "https://github.com/paperclipai/paperclip",
+  "theme": "paper",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "stack",
+   "terminal",
+   "custom",
+   "cta"
+  ],
+  "words": 111,
+  "caption": "This Open-Source App Manages Your AI Agent Team\n\nDiscover Paperclip, the viral open-source platform that lets you manage AI agents with an org chart, budgets, and governance. It is free, MIT-licensed, and works with any agent runtime. Follow for daily AI news.\n\n#ai #opensource #github #agenticai #aiengineering #typescript #coding #software",
+  "thumb": "renders/output/2026-11-03-075613-0.jpg",
+  "status": "queued"
  }
 ]
