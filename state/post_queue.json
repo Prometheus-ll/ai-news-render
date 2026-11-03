@@ -1077,9 +1077,18 @@
   "headline": "paperclip: The open-source app everyone uses to manage agents at work",
   "thumb": "renders/output/2026-11-03-075613-0.jpg",
   "added": "2026-11-03 07:58",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 704798624
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1774714250246203",
+    "at": "2026-11-03 20:52"
+   }
+  },
+  "posted_at": "2026-11-03 20:52",
+  "fb_id": "1774714250246203"
  },
  {
   "video": "renders/output/2026-11-03-075838-1.mp4",
