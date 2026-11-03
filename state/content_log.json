@@ -1664,5 +1664,30 @@
   "caption": "This Open-Source App Manages Your AI Agent Team\n\nDiscover Paperclip, the viral open-source platform that lets you manage AI agents with an org chart, budgets, and governance. It is free, MIT-licensed, and works with any agent runtime. Follow for daily AI news.\n\n#ai #opensource #github #agenticai #aiengineering #typescript #coding #software",
   "thumb": "renders/output/2026-11-03-075613-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-03-075838-1.mp4",
+  "ts": "2026-11-03 08:00",
+  "kind": "tutorial",
+  "headline": "skills: A collection of agent skills that help you build great interfaces.",
+  "title": "How to give your AI agent professional design skills for free",
+  "source_link": "https://github.com/jakubkrehel/skills",
+  "theme": "forest",
+  "angle": "tutorial",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "words": 114,
+  "caption": "How to give your AI agent professional design skills for free\n\nLearn how to install and use jakubkrehel/skills to give your AI professional UI design capabilities. This open-source tool covers typography, colors, and accessibility. Follow for more AI tutorials!\n\n#tutorial #opensource #howto #uidesign #aiagents #github #webdev #coding",
+  "thumb": "renders/output/2026-11-03-075838-1.jpg",
+  "status": "queued"
  }
 ]
