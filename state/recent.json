@@ -1,23 +1,5 @@
 [
  {
-  "ts": "2026-10-20 05:56",
-  "theme": "indigo",
-  "transition": "slide",
-  "angle": "what changes for you",
-  "hook": null,
-  "scenes": [
-   "repohook",
-   "reveal",
-   "hubmap",
-   "checklist",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "ruflo: \ud83c\udf0a The original agent harness. Deploy intelligent multi-player swarms, coo",
-  "link": "https://github.com/ruvnet/ruflo"
- },
- {
   "ts": "2026-10-21 05:53",
   "theme": "ember",
   "transition": "panel",
@@ -865,5 +847,29 @@
   "kind": "tutorial",
   "headline": "AiSOC: Open-source AI Security Operations Center: alert fusion, LLM-agent triage",
   "link": "https://github.com/beenuar/AiSOC"
+ },
+ {
+  "ts": "2026-11-03 07:52",
+  "pack": "Editorial",
+  "theme": "paper",
+  "transition": "panel",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "reveal",
+   "stack",
+   "terminal",
+   "custom",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "paperclip: The open-source app everyone uses to manage agents at work",
+  "link": "https://github.com/paperclipai/paperclip",
+  "motion_refs": [
+   "ivysparkleai-543294",
+   "deedydas-407965",
+   "vignesh-rav-417649"
+  ]
  }
 ]
