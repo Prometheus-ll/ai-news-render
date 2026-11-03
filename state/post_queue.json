@@ -1062,5 +1062,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 704798624
+ },
+ {
+  "video": "renders/output/2026-11-03-075838-1.mp4",
+  "caption": "How to give your AI agent professional design skills for free\n\nLearn how to install and use jakubkrehel/skills to give your AI professional UI design capabilities. This open-source tool covers typography, colors, and accessibility. Follow for more AI tutorials!\n\n#tutorial #opensource #howto #uidesign #aiagents #github #webdev #coding",
+  "source_link": "https://github.com/jakubkrehel/skills",
+  "headline": "skills: A collection of agent skills that help you build great interfaces.",
+  "thumb": "renders/output/2026-11-03-075838-1.jpg",
+  "added": "2026-11-03 08:00",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 704805768
  }
 ]
