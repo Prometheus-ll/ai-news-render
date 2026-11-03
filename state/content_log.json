@@ -1616,7 +1616,15 @@
   "words": 102,
   "caption": "Kronos: The Foundation Model for Global Financial Markets\n\nKronos is the first open-source foundation model designed specifically for financial market candlesticks. It is pre-trained on data from over 45 global exchanges to predict market movements. Follow for daily AI news.\n\n#ai #opensource #github #fintech #trading #python #machinelearning #quant",
   "thumb": "renders/output/2026-11-02-074056-1.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-03 10:43",
+  "fb_id": "1786583252398327",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1786583252398327"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-02-074316-2.mp4",

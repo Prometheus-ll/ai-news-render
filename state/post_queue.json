@@ -1037,9 +1037,18 @@
   "headline": "Kronos: Kronos: A Foundation Model for the Language of Financial Markets",
   "thumb": "renders/output/2026-11-02-074056-1.jpg",
   "added": "2026-11-02 07:42",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 700935273
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1786583252398327",
+    "at": "2026-11-03 10:43"
+   }
+  },
+  "posted_at": "2026-11-03 10:43",
+  "fb_id": "1786583252398327"
  },
  {
   "video": "renders/output/2026-11-02-074316-2.mp4",
