@@ -1649,7 +1649,15 @@
   "words": 151,
   "caption": "How to install AiSOC: The Free Open-Source AI Security Operations Center\n\nLearn how to deploy your own self-hosted AI SOC for automated threat triage and investigation. This open-source tool runs locally with no API keys required. Follow for more AI tutorials!\n\n#tutorial #opensource #cybersecurity #aisoc #blueteam #aiagents #selfhosted #python",
   "thumb": "renders/output/2026-11-02-074316-2.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-03 15:42",
+  "fb_id": "2366022270892381",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "2366022270892381"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-03-075613-0.mp4",

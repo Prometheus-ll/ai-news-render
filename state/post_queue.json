@@ -1057,9 +1057,18 @@
   "headline": "AiSOC: Open-source AI Security Operations Center: alert fusion, LLM-agent triage, MITRE ATT&CK investigation, ",
   "thumb": "renders/output/2026-11-02-074316-2.jpg",
   "added": "2026-11-02 07:45",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 700940862
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2366022270892381",
+    "at": "2026-11-03 15:42"
+   }
+  },
+  "posted_at": "2026-11-03 15:42",
+  "fb_id": "2366022270892381"
  },
  {
   "video": "renders/output/2026-11-03-075613-0.mp4",
