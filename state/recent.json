@@ -1,23 +1,5 @@
 [
  {
-  "ts": "2026-10-22 05:57",
-  "theme": "neon",
-  "transition": "wipe",
-  "angle": "the big question",
-  "hook": null,
-  "scenes": [
-   "hook",
-   "reveal",
-   "bignumber",
-   "monitor",
-   "versus",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Anthropic Pitches Federal AI Safety Bill with High Threshold for Intervention",
-  "link": "https://techcrunch.com/2026/10/20/anthropic-pitches-ai-safety-bill-that-may-block-a-model-if-50-people-could-be-killed/"
- },
- {
   "ts": "2026-10-22 06:00",
   "theme": "forest",
   "transition": "slide",
@@ -886,5 +868,28 @@
    "deedydas-407965",
    "mablesjoseph-735781"
   ]
+ },
+ {
+  "ts": "2026-11-04 07:40",
+  "pack": "Explainer",
+  "theme": "mint",
+  "transition": "sweep",
+  "angle": "tutorial",
+  "hook": "",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "path",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "kind": "tutorial",
+  "headline": "ECC: The agent harness performance optimization system. Skills, instincts, memor",
+  "link": "https://github.com/affaan-m/ECC"
  }
 ]

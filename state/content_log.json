@@ -1757,5 +1757,31 @@
   "caption": "This AI Scraper Finds Hidden Gems on Goofish Automatically\n\nDiscover ai-goofish-monitor, an open-source system that uses Playwright and AI to track second-hand listings in real-time. It features a complete Web UI and multi-channel notifications for professional flipping. Follow for daily AI news.\n\n#ai #opensource #github #automation #goofish #python #playwright #sidehustle",
   "thumb": "renders/output/2026-11-04-073657-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-04-074019-2.mp4",
+  "ts": "2026-11-04 07:42",
+  "kind": "tutorial",
+  "headline": "ECC: The agent harness performance optimization system. Skills, instincts, memory, security, and research-firs",
+  "title": "How to install ECC: The agent harness performance optimization system",
+  "source_link": "https://github.com/affaan-m/ECC",
+  "theme": "mint",
+  "angle": "tutorial",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "path",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "words": 120,
+  "caption": "How to install ECC: The agent harness performance optimization system\n\nLearn how to give your AI agents a professional engineering toolbox with ECC. Follow this step-by-step guide to install the open-source system used by thousands.\n\n#tutorial #opensource #howto #claude #cursor #aiagents #developer #javascript #coding",
+  "thumb": "renders/output/2026-11-04-074019-2.jpg",
+  "status": "queued"
  }
 ]
