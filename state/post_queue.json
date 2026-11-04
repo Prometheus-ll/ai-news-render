@@ -1117,9 +1117,18 @@
   "headline": "Anthropic Warns of Imminent 'Recursive Self-Improvement' in AI",
   "thumb": "renders/output/2026-11-04-072908-0.jpg",
   "added": "2026-11-04 07:32",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 708657014
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1662643158851689",
+    "at": "2026-11-04 15:54"
+   }
+  },
+  "posted_at": "2026-11-04 15:54",
+  "fb_id": "1662643158851689"
  },
  {
   "video": "renders/output/2026-11-04-073657-1.mp4",
