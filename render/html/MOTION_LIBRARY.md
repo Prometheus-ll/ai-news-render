@@ -38,6 +38,14 @@ Scene types and primitives for the HTML engine (`engine.html`). Everything is a 
 | `connect` | sources (3), hub, targets (2) | clay tiles flow into one hub, which feeds two destinations |
 | `tasks` | title, tasks (3-4) | chat answer turns into jobs; each gets a progress bar and a tick |
 | `network` | items (5-8), hub, from, to | separate apps drift apart, then pull into a ring around one hub (Isolated -> Connected) |
+| `strikehook` | lines (2-3), then (2), pill, tiles | OPENING: apps field, last old word struck out, new words replace it |
+| `funnel` | title, sub, bar, names (4-5) | app tiles rise, fly into an ask bar that glows |
+| `chatdemo` | app, prompt, results (1-2) | prompt types, dots, result cards arrive with a tick |
+| `countchips` | number, suffix, label, chips (2-4), foot | number counts up, partner chips pop in |
+| `plug` | title, left, right, badge, definition, steps | two boxes joined by a standard, packets cross, three steps |
+| `dashboard` | name, sub, meters (2-3), tabs, on | account card with filling meters and a switch |
+| `shift` | title, before (3-4), ask, done | old steps struck out one by one, one-step way lights up |
+| `poll` | question, yes, no, prompt, pill | closing yes/no question with breathing buttons |
 | `orbit` | icon, items (4) | four squares spin in around the product, lock into a cross, then slide into a labelled row |
 | `wordmark` | name | end card: the word arrives zoom-smeared (18 scaled copies) and settles on black (manual use; not offered to Gemini) |
 | `mark` | name | identity reveal: rings draw themselves, brand mark lands, wordmark tightens in (manual use; not offered to Gemini) |

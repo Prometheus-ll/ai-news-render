@@ -353,6 +353,26 @@ body{font-family:'PoppinsX','Poppins','Noto Sans',sans-serif;-webkit-font-smooth
 .cyrow .pb{width:190px;height:24px;border-radius:12px;background:color-mix(in srgb,var(--mv) 14%,transparent);overflow:hidden;flex:none}
 .cyrow .pb i{display:block;height:100%;width:0;border-radius:12px;background:var(--acc2)}
 .cybig{position:absolute;left:0;right:0;text-align:center;font-weight:900;letter-spacing:-.02em}
+.dark{--ca:var(--acc2);--cr:var(--al)}.light{--ca:var(--acc);--cr:color-mix(in srgb,var(--al) 72%,#000)}
+/* ===== library from the "Connected Apps" explainer: strike hook, funnel, chat demo, count+chips, plug, dashboard, shift, poll ===== */
+.cgl{background:color-mix(in srgb,currentColor 7%,transparent);border:2px solid color-mix(in srgb,currentColor 18%,transparent);border-radius:40px;box-shadow:0 26px 60px -20px rgba(0,0,0,.45)}
+.cygr{background:linear-gradient(90deg,var(--acc2),var(--vi));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+.light .cygr{background:linear-gradient(90deg,var(--acc),var(--vi));-webkit-background-clip:text;background-clip:text}
+.cyab{position:absolute;opacity:0}
+.cytx{position:absolute;left:0;right:0;text-align:center;font-weight:900;line-height:1.02;letter-spacing:-.02em;text-transform:uppercase}
+.cysub{position:absolute;left:0;right:0;text-align:center;font-weight:600;font-size:42px;line-height:1.3;opacity:.7}
+.cypill{display:inline-block;font-weight:700;font-size:30px;letter-spacing:.12em;padding:14px 32px;border-radius:999px;border:2px solid color-mix(in srgb,var(--acc2) 70%,transparent);color:var(--ca);background:color-mix(in srgb,var(--acc2) 10%,transparent)}
+.cystrike{position:absolute;left:-3%;top:52%;width:106%;height:18px;border-radius:9px;background:var(--al);transform-origin:left;transform:scaleX(0) rotate(-5deg)}
+.cybub{position:absolute;right:30px;top:110px;max-width:720px;padding:26px 34px;border-radius:38px 38px 8px 38px;background:linear-gradient(135deg,color-mix(in srgb,var(--acc) 78%,#000),color-mix(in srgb,var(--vi) 78%,#000));color:#fff;font-size:40px;font-weight:600;line-height:1.3;text-align:left}
+.cyrc{position:absolute;left:30px;right:30px;height:270px;border-radius:34px;display:flex;gap:28px;padding:24px;align-items:center;text-align:left}
+.cyrc .art{width:190px;height:222px;border-radius:24px;flex:none;display:flex;align-items:center;justify-content:center;font-size:96px;font-weight:900;color:#fff}
+.cyrc h4{font-size:42px;font-weight:800;line-height:1.1}.cyrc p{font-size:30px;opacity:.65;margin-top:6px}.cyrc .ok{margin-top:12px;font-size:30px;font-weight:800;color:var(--ca)}
+.cychip{position:absolute;height:92px;border-radius:28px;display:flex;align-items:center;gap:18px;padding:0 26px;font-size:40px;font-weight:800;white-space:nowrap}
+.cychip i{width:22px;height:22px;border-radius:7px;flex:none;display:block}
+.cybox{position:absolute;border-radius:36px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-weight:800;text-align:center}
+.cymeter{position:absolute;left:40px;right:40px}.cymeter span{font-size:30px;font-weight:700;opacity:.7}.cymeter .tr{height:26px;border-radius:13px;margin-top:10px;overflow:hidden;background:color-mix(in srgb,currentColor 12%,transparent)}.cymeter .tr i{display:block;height:100%;width:0;border-radius:13px}
+.cyseg{position:absolute;left:40px;right:40px;display:flex;gap:10px}.cyseg div{flex:1;text-align:center;padding:18px 0;border-radius:22px;font-size:30px;font-weight:700;border:2px solid color-mix(in srgb,currentColor 20%,transparent);opacity:.8}.cyseg .on{background:linear-gradient(135deg,var(--acc2),var(--vi));color:#0b1020;border-color:transparent;opacity:1}
+.cybtn{position:absolute;width:400px;height:130px;border-radius:70px;display:flex;align-items:center;justify-content:center;font-size:60px;font-weight:900;opacity:0}
 /* ===== motion library 2: glass prompt + whip, stacked glass cards, orbit, wordmark ===== */
 .mo-sky{position:absolute;inset:0;z-index:1;background:linear-gradient(170deg,color-mix(in srgb,var(--acc) 82%,#0b1020) 0%,color-mix(in srgb,var(--acc2) 60%,#fff) 100%);overflow:hidden}
 .mo-sky svg{position:absolute;inset:0;width:100%;height:100%}
@@ -1261,6 +1281,160 @@ function sceneNetwork(m,S,D){
   return sc;
 }
 
+// ---- scenes borrowed from the "Connected Apps" explainer, rebuilt in the channel's colours (text-only, no icon fetch) ----
+const cyGrad=(i)=>cyCol(i);
+function cyFit(txt,max,fs){return Math.min(fs,Math.floor(max/(.62*Math.max(5,txt.length))));}
+function cyText(st,top,txt,fs,cls){const e=H(`<div class="cytx ${cls||''}" style="top:${top}px;font-size:${fs}px;opacity:0">${txt}</div>`);st.appendChild(e);return e;}
+function cyStage(sc){const c=mk(sc,`<div class="c" style="padding:0"><div class="fx mo"></div></div>`),fx=c.firstElementChild,st=H('<div class="cyst"></div>');fx.appendChild(st);return st;}
+
+// strikehook (opening): a field of apps, the old habit gets struck out, the new one replaces it
+function sceneStrikeHook(m,S,D){
+  const sc=mkScene(m,'dark','--acc2');
+  const L=(m.lines||[]).map(nofs).filter(Boolean).slice(0,3),N=(m.then||[]).map(nofs).filter(Boolean).slice(0,2);while(L.length<2)L.push('Old way');while(N.length<2)N.push('New way');
+  const c=mk(sc,`<div class="c" style="padding:0"><div class="fx mo"></div></div>`),fx=c.firstElementChild;fx.style.top='260px';fx.style.bottom='460px';
+  const st=H('<div class="cyst" style="height:1160px"></div>');fx.appendChild(st);
+  const fs=Math.min(176,...L.concat(N).map(x=>cyFit(x,900,176)));
+  const a=H(`<div class="cytx" style="top:210px;font-size:${fs}px;opacity:0">${L.map((x,i)=>`<span style="display:block;position:relative">${esc(x)}${i===L.length-1?'<i class="cystrike"></i>':''}</span>`).join('')}</div>`);st.appendChild(a);
+  const b=H(`<div class="cytx cygr" style="top:210px;font-size:${fs}px;opacity:0">${N.map(x=>`<span style="display:block">${esc(x)}</span>`).join('')}</div>`);st.appendChild(b);
+  const pill=nofs(m.pill);const pe=pill?H(`<div class="cytx" style="top:${210+Math.max(L.length,N.length)*fs*1.02+90}px;opacity:0;font-size:30px"><span class="cypill">${esc(pill)}</span></div>`):null;if(pe)st.appendChild(pe);
+  const pos=[[40,40],[390,10],[800,70],[120,470],[620,540],[820,740],[30,820],[400,960],[760,1000],[160,1100],[560,1090],[860,1080]];
+  const tiles=pos.map((p,i)=>cyTile(st,i,p[0]+75,p[1]+75,150,150,(m.tiles||[])[i]||'',72));
+  const T=D;
+  updaters.push(t=>{
+    const x=t-S,sk=E_OUT(clamp((x-T*.25)/.12)),ex=E_IN(clamp((x-T*.4)/.1)),nb=E_OUT(clamp((x-T*.46)/.3));
+    const ai=E_OUT(clamp((x-.05)/.5));a.style.opacity=clamp(ai*1.8)*(1-ex);a.style.transform=`translateY(${(1-ai)*40}px) scale(${1+.25*ex})`;a.style.filter=ai<.98?`blur(${((1-ai)*(1-ai)*8).toFixed(1)}px)`:'none';
+    a.querySelector('.cystrike').style.transform=`scaleX(${sk}) rotate(-5deg)`;
+    b.style.opacity=clamp(nb*1.8);b.style.transform=`translateY(${(1-nb)*50}px)`;b.style.filter=nb<.98?`blur(${((1-nb)*(1-nb)*10).toFixed(1)}px)`:'none';
+    if(pe)cyIn(pe,x+S,S+T*.58);
+    tiles.forEach((e,i)=>{const u=E_IN(clamp((x-T*.28-i*.02)/.55)),p0=E_OUT(clamp((x-i*.02)/.4));const tx=(540-70)-pos[i][0]-75+75,ty=300-pos[i][1];
+      e.style.opacity=(.42*clamp(p0*1.8)*(1-u)).toFixed(3);e.style.transform=`translate(${tx*u*.6}px,${ty*u*.6}px) scale(${1-.85*u}) rotate(${180*u}deg)`;});
+  });
+  return sc;
+}
+
+// funnel: apps rise as a row, then fly into one ask bar that glows
+function sceneFunnel(m,S,D){
+  const sc=moScene(m,S),st=cyStage(sc);
+  const title=nofs(m.title)||'New platform',sub=nofs(m.sub),bar=nofs(m.bar)||'Ask anything',names=(m.names||[]).map(nofs).filter(Boolean).slice(0,5);while(names.length<4)names.push('App');
+  const tt=cyText(st,60,esc(title),cyFit(title,900,132),'cygr');
+  const sb=sub?H(`<div class="cysub" style="top:${60+cyFit(title,900,132)*1.1+40}px;opacity:0">${esc(sub)}</div>`):null;if(sb)st.appendChild(sb);
+  const barE=H(`<div class="cgl" style="position:absolute;left:50px;width:840px;height:124px;top:500px;border-radius:62px;display:flex;align-items:center;gap:22px;padding:0 40px;font-size:40px;font-weight:600;opacity:0"><span style="color:var(--ca);font-size:54px">✦</span><span style="opacity:.6">${esc(bar)}</span></div>`);st.appendChild(barE);
+  const n=names.length,w=128,gap=(940-n*w)/(n+1),tiles=names.map((s,i)=>cyTile(st,i,gap*(i+1)+w*(i+.5),800,w,w,s,64)),labs=names.map((s,i)=>cyLabel(st,gap*(i+1)+w*(i+.5),880,s));
+  updaters.push(t=>{
+    const x=t-S;cyIn(tt,t,S+.05);if(sb)cyIn(sb,t,S+.5);cyIn(barE,t,S+D*.1);
+    const glow=E_INOUT(clamp((x-D*.62)/.3))*(1-E_INOUT(clamp((x-D*.62-.5)/.6)));barE.style.boxShadow=`0 0 ${20+90*glow}px color-mix(in srgb,var(--acc2) ${Math.round(20+60*glow)}%,transparent)`;
+    tiles.forEach((e,i)=>{const t0=D*.22+i*.16,p=E_OUT(clamp((x-t0)/.5)),f=E_IN(clamp((x-D*.45-i*.12)/.5)),cx=gap*(i+1)+w*(i+.5),dx=470-cx,dy=-250;
+      e.style.opacity=clamp(p*1.8)*(1-f);e.style.transform=`translate(${dx*f}px,${dy*f+(1-p)*80}px) scale(${(.7+.3*p)*(1-.65*f)})`;
+      labs[i].style.opacity=.85*clamp(p*1.8)*(1-f);labs[i].style.transform=`translateX(-50%) translateY(${(1-p)*40}px)`;});
+  });
+  return sc;
+}
+
+// chatdemo: a prompt types, the assistant thinks, real-looking result cards arrive and tick
+function sceneChatDemo(m,S,D){
+  const sc=moScene(m,S),st=cyStage(sc);
+  const app=nofs(m.app)||'Assistant',prompt=nofs(m.prompt)||'Make me a plan',res=(m.results||[]).slice(0,2);while(res.length<1)res.push({app:'App',title:'Done',sub:''});
+  const win=H(`<div class="cgl" style="position:absolute;left:0;right:0;top:20px;height:1000px;opacity:0"><div style="position:absolute;left:36px;top:30px;font-size:36px;font-weight:800;display:flex;gap:12px;align-items:center"><span style="color:var(--ca)">✦</span>${esc(app)}</div><div class="cybub" style="opacity:0"><span class="ty"></span><span class="cur" style="height:.9em;width:4px;background:#fff;margin-left:3px"></span></div><div class="dots" style="position:absolute;left:36px;top:300px;display:flex;gap:12px;opacity:0"><i style="width:18px;height:18px;border-radius:50%;background:var(--acc2)"></i><i style="width:18px;height:18px;border-radius:50%;background:var(--acc2)"></i><i style="width:18px;height:18px;border-radius:50%;background:var(--acc2)"></i></div></div>`);st.appendChild(win);
+  const bub=win.querySelector('.cybub'),ty=win.querySelector('.ty'),dots=win.querySelector('.dots'),di=[...dots.children];
+  const cards=res.map((r,i)=>{const k=cyCol(i*2+1),e=H(`<div class="cyrc cgl" style="top:${300+i*300}px;opacity:0;background:color-mix(in srgb,currentColor 9%,transparent)"><div class="art" style="background:linear-gradient(160deg,${k.c},color-mix(in srgb,${k.c} 60%,#000));color:${k.ink}">${esc(String(nofs(r.app)||'A').charAt(0).toUpperCase())}</div><div><div class="cypill" style="font-size:24px;padding:6px 18px;letter-spacing:.04em">${esc(nofs(r.app)||'App')}</div><h4 style="margin-top:10px">${esc(nofs(r.title)||'Done')}</h4><p>${esc(nofs(r.sub)||'')}</p><div class="ok" style="opacity:0">✓ Ready</div></div></div>`);win.appendChild(e);return e;});
+  updaters.push(t=>{
+    const x=t-S;cyIn(win,t,S+.1);
+    const bp=E_OUT(clamp((x-.5)/.5));bub.style.opacity=clamp(bp*1.8);bub.style.transform=`translateX(${(1-bp)*70}px)`;
+    const tp=clamp((x-.8)/(D*.28));ty.textContent=prompt.slice(0,Math.floor(tp*prompt.length));
+    const dd=clamp((x-D*.38)/.2)*(1-clamp((x-D*.46)/.1));dots.style.opacity=dd;di.forEach((e,i)=>e.style.transform=`translateY(${-12*Math.abs(Math.sin((x*4)+i*.7))}px)`);
+    cards.forEach((e,i)=>{const t0=D*.46+i*.28;cyIn(e,t,S+t0);const ok=E_OUT(clamp((x-t0-.7)/.35));const o=e.querySelector('.ok');o.style.opacity=ok;o.style.transform=`scale(${.8+.2*ok})`;});
+  });
+  return sc;
+}
+
+// countchips: a number counts up, partner names pop in below
+function sceneCountChips(m,S,D){
+  const sc=moScene(m,S),st=cyStage(sc);
+  const num=Math.max(0,Math.min(99999,parseInt(m.number)||50)),suf=nofs(m.suffix)||'+',label=nofs(m.label)||'launched',chips=(m.chips||[]).map(nofs).filter(Boolean).slice(0,4);while(chips.length<2)chips.push('Partner');
+  const fs=Math.min(330,Math.floor(900/(.62*(String(num).length+suf.length))));
+  const big=cyText(st,40,'0',fs,'cygr');big.style.lineHeight='1';
+  const lab=H(`<div class="cysub" style="top:${40+fs+10}px;font-size:52px;opacity:0;font-weight:700">${esc(label)}</div>`);st.appendChild(lab);
+  const foot=nofs(m.foot),fe=foot?H(`<div class="cysub" style="top:900px;font-size:32px;opacity:0">${esc(foot)}</div>`):null;if(fe)st.appendChild(fe);
+  const ch=chips.map((s,i)=>{const k=cyCol(i),e=H(`<div class="cychip cgl" style="left:${i%2?490:0}px;top:${420+fs*.05+Math.floor(i/2)*120+60}px;width:450px;opacity:0"><i style="background:${k.c}"></i>${esc(s)}</div>`);st.appendChild(e);return e;});
+  updaters.push(t=>{
+    const x=t-S,p=E_OUT(clamp((x-.2)/(D*.3)));big.textContent=Math.round(num*p)+suf;cyIn(big,t,S+.05,.5);big.style.transform=`scale(${.92+.08*E_OUT(clamp((x-.05)/.6))})`;
+    cyIn(lab,t,S+D*.28);ch.forEach((e,i)=>cyIn(e,t,S+D*.42+i*.22,.5));if(fe)cyIn(fe,t,S+D*.78);
+  });
+  return sc;
+}
+
+// plug: two things joined by one standard; data packets cross, three steps below
+function scenePlug(m,S,D){
+  const sc=moScene(m,S),st=cyStage(sc);
+  const title=(m.title||[]).map(nofs).filter(Boolean).slice(0,2),L=nofs(m.left)||'Your app',R=nofs(m.right)||'AI',badge=nofs(m.badge)||'API',def=nofs(m.definition),steps=(m.steps||[]).map(nofs).filter(Boolean).slice(0,3);while(title.length<1)title.push('One plug');
+  const fs=Math.min(104,...title.map(x=>cyFit(x,900,104)));
+  const tt=H(`<div class="cytx" style="top:10px;font-size:${fs}px;opacity:0">${title.map((x,i)=>`<span style="display:block" class="${i?'cygr':''}">${esc(x)}</span>`).join('')}</div>`);st.appendChild(tt);
+  const y0=60+title.length*fs*1.05+60,mk2=(x,lbl,i)=>{const k=cyCol(i),e=H(`<div class="cybox cgl" style="left:${x}px;top:${y0}px;width:290px;height:250px;font-size:${cyFit(lbl,250,40)}px;opacity:0"><div style="width:90px;height:90px;border-radius:28px;background:linear-gradient(145deg,${k.c},color-mix(in srgb,${k.c} 60%,#000));color:${k.ink};font-size:52px;display:flex;align-items:center;justify-content:center">${esc(lbl.charAt(0).toUpperCase())}</div>${esc(lbl)}</div>`);st.appendChild(e);return e;};
+  const l=mk2(0,L,0),r=mk2(650,R,5);
+  const cy=y0+125,line=H(`<div style="position:absolute;left:300px;top:${cy-2}px;width:340px;height:4px;opacity:0;background:repeating-linear-gradient(90deg,var(--acc2) 0 16px,transparent 16px 30px)"></div>`);st.appendChild(line);
+  const bd=H(`<div style="position:absolute;left:360px;top:${cy-43}px;width:220px;height:86px;border-radius:43px;background:linear-gradient(135deg,var(--acc2),var(--vi));color:#0b1020;font-size:${cyFit(badge,180,46)}px;font-weight:900;display:flex;align-items:center;justify-content:center;opacity:0">${esc(badge)}</div>`);st.appendChild(bd);
+  const pk=[0,1,2,3,4,5].map(()=>{const e=H(`<div class="cyd" style="opacity:0;top:${cy}px"></div>`);st.appendChild(e);return e;});
+  const df=def?H(`<div class="cysub" style="top:${y0+300}px;font-size:36px;opacity:0">${esc(def)}</div>`):null;if(df)st.appendChild(df);
+  const sy=y0+(def?470:330),stp=steps.map((s,i)=>{const e=H(`<div class="cybox cgl" style="left:${i*320}px;top:${sy}px;width:300px;height:150px;font-size:${cyFit(s,260,44)}px;opacity:0;border-radius:30px">${esc(s)}</div>`);st.appendChild(e);return e;});
+  updaters.push(t=>{
+    const x=t-S;cyIn(tt,t,S+.05);cyIn(l,t,S+D*.1);cyIn(r,t,S+D*.16);cyIn(bd,t,S+D*.26);line.style.opacity=E_OUT(clamp((x-D*.24)/.4));
+    pk.forEach((e,i)=>{const t0=D*.3,u=((x-t0)*.55+i/6)%1,on=x>t0?1:0;e.style.left=(300+u*340)+'px';e.style.opacity=on*Math.sin(u*Math.PI);});
+    if(df)cyIn(df,t,S+D*.4);stp.forEach((e,i)=>cyIn(e,t,S+D*.55+i*.25));
+  });
+  return sc;
+}
+
+// dashboard: one account card with verified mark, three live meters and a segmented switch
+function sceneDashboard(m,S,D){
+  const sc=moScene(m,S),st=cyStage(sc);
+  const name=nofs(m.name)||'Your brand',sub=nofs(m.sub)||'Verified account',mt=(m.meters||[]).slice(0,3),tabs=(m.tabs||[]).map(nofs).filter(Boolean).slice(0,3),on=Math.max(0,Math.min(tabs.length-1,parseInt(m.on)||tabs.length-1));
+  while(mt.length<2)mt.push({label:'Metric',value:60});while(tabs.length<2)tabs.push('Option');
+  const cols=['var(--acc2)','var(--cta1)','var(--plate)'];
+  const card=H(`<div class="cgl" style="position:absolute;left:0;right:0;top:30px;height:900px;opacity:0"><div style="position:absolute;left:40px;top:40px;display:flex;gap:24px;align-items:center"><div style="width:96px;height:96px;border-radius:28px;background:linear-gradient(135deg,var(--plate),var(--al));color:#0b1020;font-size:52px;font-weight:900;display:flex;align-items:center;justify-content:center">${esc(name.charAt(0).toUpperCase())}</div><div style="text-align:left"><div style="font-size:44px;font-weight:800">${esc(name)} <span style="color:var(--ca)">✔</span></div><div style="font-size:28px;opacity:.65;margin-top:4px">${esc(sub)}</div></div></div></div>`);st.appendChild(card);
+  const bars=mt.map((q,i)=>{const e=H(`<div class="cymeter" style="top:${210+i*130}px"><span>${esc(nofs(q.label)||'Metric')}</span><div class="tr"><i style="background:${cols[i]}"></i></div></div>`);card.appendChild(e);return [e,Math.max(4,Math.min(100,parseInt(q.value)||50))];});
+  const seg=H(`<div class="cyseg" style="top:${210+mt.length*130+30}px">${tabs.map((s,i)=>`<div class="${i===on?'on':''}" style="${i===on?'':''}">${esc(s)}</div>`).join('')}</div>`);card.appendChild(seg);
+  const ill=H(`<div style="position:absolute;left:0;right:0;bottom:26px;text-align:center;font-size:22px;letter-spacing:.1em;opacity:.45">ILLUSTRATIVE</div>`);card.appendChild(ill);
+  const onE=seg.children[on];
+  updaters.push(t=>{
+    const x=t-S;cyIn(card,t,S+.1);
+    bars.forEach(([e,v],i)=>{const p=E_OUT(clamp((x-D*.3-i*.2)/.9));e.querySelector('i').style.width=(v*p)+'%';});
+    const sp=E_OUT(clamp((x-D*.6)/.4));[...seg.children].forEach((e,i)=>{if(i===on){e.style.opacity=.55+.45*sp;e.style.transform=`scale(${.97+.03*sp})`;}});
+  });
+  return sc;
+}
+
+// shift: the old steps get struck out one by one, then the one-step way lights up
+function sceneShift(m,S,D){
+  const sc=moScene(m,S),st=cyStage(sc);
+  const title=nofs(m.title)||'From taps to tasks',before=(m.before||[]).map(nofs).filter(Boolean).slice(0,4),ask=nofs(m.ask)||'Ask',done=nofs(m.done)||'Done';while(before.length<3)before.push('Step');
+  const tt=cyText(st,10,esc(title),Math.min(104,cyFit(title,900,104)*1.3),'cygr');
+  const b1=H(`<div class="cgl" style="position:absolute;left:0;right:0;top:260px;padding:34px 40px;border-color:color-mix(in srgb,var(--al) 55%,transparent);background:color-mix(in srgb,var(--al) 10%,transparent);opacity:0;text-align:left"><div style="font-size:28px;font-weight:800;letter-spacing:.2em;color:var(--cr);margin-bottom:22px">BEFORE</div><div class="bf"></div></div>`);st.appendChild(b1);
+  const bf=b1.querySelector('.bf'),sp=before.map(s=>{const e=H(`<span style="display:inline-block;position:relative;font-size:38px;font-weight:700;padding:14px 26px;border-radius:22px;margin:0 8px 12px 0;background:color-mix(in srgb,currentColor 10%,transparent)">${esc(s)}<i style="position:absolute;left:8px;right:8px;top:50%;height:5px;border-radius:3px;background:var(--al);transform-origin:left;transform:scaleX(0)"></i></span>`);bf.appendChild(e);return e;});
+  const n1=H(`<div class="cgl" style="position:absolute;left:0;right:0;top:640px;padding:34px 40px;border-color:color-mix(in srgb,var(--acc2) 75%,transparent);background:color-mix(in srgb,var(--acc2) 10%,transparent);opacity:0;text-align:left;box-shadow:0 0 60px color-mix(in srgb,var(--acc2) 30%,transparent)"><div style="font-size:28px;font-weight:800;letter-spacing:.2em;color:var(--ca);margin-bottom:22px">NOW</div><span style="font-size:46px;font-weight:700;padding:14px 26px;border-radius:22px;background:color-mix(in srgb,var(--acc2) 20%,transparent)">${esc(ask)}</span><span style="font-size:46px;color:var(--ca);margin:0 18px">→</span><span style="font-size:46px;font-weight:800;padding:14px 26px;border-radius:22px;background:linear-gradient(135deg,var(--acc2),var(--vi));color:#0b1020">${esc(done)} ✓</span></div>`);st.appendChild(n1);
+  updaters.push(t=>{
+    const x=t-S;cyIn(tt,t,S+.05);cyIn(b1,t,S+D*.1);
+    sp.forEach((e,i)=>{const k=E_OUT(clamp((x-D*.3-i*.28)/.3));e.lastElementChild.style.transform=`scaleX(${k})`;e.style.opacity=1-.62*k;});
+    cyIn(n1,t,S+D*.3+before.length*.28+.2);
+  });
+  return sc;
+}
+
+// poll: a yes/no question with two big buttons that breathe, plus the comment prompt
+function scenePoll(m,S,D){
+  const sc=moScene(m,S),st=cyStage(sc);
+  const q=(m.question||[]).map(nofs).filter(Boolean).slice(0,3),yes=nofs(m.yes)||'YES',no=nofs(m.no)||'NO',prompt=nofs(m.prompt)||'Comment yes or no',pill=nofs(m.pill);while(q.length<1)q.push('What do you think');
+  const fs=Math.min(112,...q.map(x=>cyFit(x,900,112)));
+  const qe=H(`<div class="cytx" style="top:10px;font-size:${fs}px;opacity:0">${q.map((x,i)=>`<span style="display:block" class="${i===q.length-1?'cygr':''}">${esc(x)}</span>`).join('')}</div>`);st.appendChild(qe);
+  const by=20+q.length*fs*1.04+80,b1=H(`<div class="cybtn" style="left:20px;top:${by}px;background:linear-gradient(135deg,var(--acc2),var(--vi));color:#0b1020">${esc(yes)}</div>`),b2=H(`<div class="cybtn" style="right:20px;top:${by}px;border:4px solid var(--vi);background:color-mix(in srgb,var(--vi) 15%,transparent)">${esc(no)}</div>`);st.appendChild(b1);st.appendChild(b2);
+  const pr=H(`<div class="cysub" style="top:${by+180}px;font-size:34px;letter-spacing:.16em;opacity:0;font-weight:700">${esc(prompt.toUpperCase())}</div>`);st.appendChild(pr);
+  const pe=pill?H(`<div class="cytx" style="top:${by+280}px;font-size:36px;opacity:0"><span class="cypill" style="background:var(--plate);border-color:transparent;color:#1b1203;box-shadow:0 0 50px color-mix(in srgb,var(--plate) 45%,transparent)">${esc(pill)}</span></div>`):null;if(pe)st.appendChild(pe);
+  updaters.push(t=>{
+    const x=t-S;cyIn(qe,t,S+.05);cyIn(b1,t,S+D*.3);cyIn(b2,t,S+D*.36);cyIn(pr,t,S+D*.5);if(pe)cyIn(pe,t,S+D*.62);
+    const br=x>D*.5?1+.035*Math.sin((x-D*.5)*3.2):1;[b1,b2].forEach(e=>{if(E_OUT(clamp((x-D*.36)/.6))>.95)e.style.transform=`scale(${br})`;});
+  });
+  return sc;
+}
+
 // ---- wordmark: end card, the word arrives zoom-smeared and settles (manual use; not offered to Gemini) ----
 function sceneWordmark(m,S,D){
   const sc=mkScene(m,'dark','--acc2'),name=nofs(m.name)||'AI Quantum',fs=Math.max(70,Math.min(220,Math.floor(760/(.56*Math.max(5,name.length)))));
@@ -1303,7 +1477,7 @@ function sceneThumb(m,S,D){
   return sc;
 }
 
-const BUILDERS={thumb:sceneThumb,custom:sceneCustom,prompt:scenePrompt,stack:sceneStack,orbit:sceneOrbit,connect:sceneConnect,tasks:sceneTasks,network:sceneNetwork,wordmark:sceneWordmark,morph:sceneMorph,shapes:sceneShapes,bars:sceneBars,kinetic:sceneKinetic,command:sceneCommand,tabs:sceneTabs,mark:sceneMark,say:sceneSay,end:sceneSay,stat:sceneStat,icon:sceneIconFx,name:sceneName,code:sceneCode,phases:scenePhases,cycle:sceneCycle,stars:sceneStars,repohook:sceneRepoHook,reveal:sceneReveal,screenshot:sceneScreenshot,appclutter:sceneAppClutter,profile:sceneProfile,hubmap:sceneHubMap,roundup:sceneRoundup,hook:sceneHook,slam:sceneSlam,terminal:sceneTerminal,alert:sceneAlert,timeline:sceneTimeline,monitor:sceneMonitor,cta:sceneCTA,
+const BUILDERS={thumb:sceneThumb,custom:sceneCustom,prompt:scenePrompt,stack:sceneStack,orbit:sceneOrbit,connect:sceneConnect,strikehook:sceneStrikeHook,funnel:sceneFunnel,chatdemo:sceneChatDemo,countchips:sceneCountChips,plug:scenePlug,dashboard:sceneDashboard,shift:sceneShift,poll:scenePoll,tasks:sceneTasks,network:sceneNetwork,wordmark:sceneWordmark,morph:sceneMorph,shapes:sceneShapes,bars:sceneBars,kinetic:sceneKinetic,command:sceneCommand,tabs:sceneTabs,mark:sceneMark,say:sceneSay,end:sceneSay,stat:sceneStat,icon:sceneIconFx,name:sceneName,code:sceneCode,phases:scenePhases,cycle:sceneCycle,stars:sceneStars,repohook:sceneRepoHook,reveal:sceneReveal,screenshot:sceneScreenshot,appclutter:sceneAppClutter,profile:sceneProfile,hubmap:sceneHubMap,roundup:sceneRoundup,hook:sceneHook,slam:sceneSlam,terminal:sceneTerminal,alert:sceneAlert,timeline:sceneTimeline,monitor:sceneMonitor,cta:sceneCTA,
   bignumber:sceneBigNumber,versus:sceneVersus,leaderboard:sceneBoard,chat:sceneChat,quote:sceneQuote,checklist:sceneChecklist};
 
 /* ================= themes ================= */

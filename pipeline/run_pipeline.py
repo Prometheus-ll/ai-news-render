@@ -274,11 +274,11 @@ ICON_LIST = ("zap, cpu, shield-check, lock, globe, trending-up, clock, code, ter
              "shield-alert, target, timer, gauge, activity, message-circle, shopping-cart, house, list-checks, moon, sun, "
              "book-open, calendar-check, mail, send, app-window")
 
-HOOK_TYPES = ["hook", "slam", "appclutter"]
+HOOK_TYPES = ["hook", "slam", "appclutter", "strikehook"]
 REPO_HOOK = "repohook"
 MID_TYPES = ["terminal", "alert", "timeline", "monitor", "bignumber", "versus", "leaderboard", "chat", "quote", "checklist",
              "profile", "hubmap", "roundup", "reveal", "phases", "cycle", "stars",
-             "bars", "command", "tabs", "prompt", "stack", "orbit", "connect", "tasks", "network"]
+             "bars", "command", "tabs", "prompt", "stack", "orbit", "connect", "tasks", "network", "funnel", "chatdemo", "countchips", "plug", "dashboard", "shift", "poll"]
 THEMES = ["indigo", "ember", "forest", "ocean", "neon", "signal", "mint", "paper"]
 TRANSITIONS = ["fade", "slide", "zoom", "wipe", "panel"]
 MODE_PATTERNS = ["alternate_light", "alternate_dark", "light_then_dark", "dark_then_light"]
@@ -357,6 +357,14 @@ orbit (four related things: squares spin in around the product, lock into a cros
 connect (a platform/integration story: 3 services flow into one hub that feeds 2 destinations): {"type":"connect","kicker":"2-3 words CAPS","sources":["exactly 3 REAL service/app names, max 10 chars"],"hub":"the platform name, max 10 chars","targets":["exactly 2 REAL destinations, max 16 chars"],"narration":"..."}
 tasks (an AI that actually DOES things: 3-4 real jobs get ticked off one by one): {"type":"tasks","kicker":"2-3 words CAPS","title":"max 20 chars, e.g. From chat to action","tasks":["3-4 short jobs the story really mentions, max 24 chars each"],"narration":"..."}
 network (separate apps/tools become one connected system): {"type":"network","kicker":"2-3 words CAPS","items":["5-8 REAL names, max 10 chars"],"hub":"max 8 chars","from":"max 14 chars, e.g. Isolated","to":"max 14 chars, e.g. Connected","narration":"..."}
+strikehook (OPENING alternative for a "stop doing X, start doing Y" story: the old habit is struck out, the new one replaces it): {"type":"strikehook","lines":["2-3 short words, the LAST one is struck out, max 12 chars each"],"then":["exactly 2 words for the new way, max 12 chars each"],"pill":"max 30 chars e.g. GOOGLE · OCT 28","tiles":["up to 8 real app names, max 8 chars"],"narration":"..."}
+funnel (several named apps fly into one ask bar): {"type":"funnel","kicker":"2-3 words CAPS","title":"max 16 chars","sub":"max 44 chars","bar":"max 22 chars","names":["4-5 REAL app names, max 10 chars"],"narration":"..."}
+chatdemo (a prompt is typed, the assistant answers with 1-2 result cards): {"type":"chatdemo","kicker":"2-3 words CAPS","app":"assistant name","prompt":"max 64 chars, the real example request","results":[{"app":"max 12 chars","title":"max 22 chars","sub":"max 26 chars"}  (1-2)],"narration":"..."}
+countchips (a REAL number counts up, partner names pop in): {"type":"countchips","kicker":"2-3 words CAPS","number":"digits only, a figure from the story","suffix":"+ or % or x","label":"max 30 chars","chips":["2-4 REAL names, max 12 chars"],"foot":"max 56 chars","narration":"..."}
+plug (two things joined by one standard, three steps): {"type":"plug","kicker":"2-3 words CAPS","title":["1-2 lines, max 14 chars"],"left":"max 14 chars","right":"max 16 chars","badge":"max 8 chars, the standard's name","definition":"max 80 chars","steps":["up to 3 words, max 10 chars"],"narration":"..."}
+dashboard (an account card with 2-3 meters and a switch): {"type":"dashboard","kicker":"2-3 words CAPS","name":"max 20 chars","sub":"max 40 chars","meters":[{"label":"max 14 chars","value":0-100}  (2-3)],"tabs":["2-3 labels, max 10 chars"],"on":0-2,"narration":"..."}
+shift (old multi-step way struck out, new one-step way): {"type":"shift","kicker":"2-3 words CAPS","title":"max 24 chars","before":["3-4 old steps, max 14 chars"],"ask":"max 10 chars","done":"max 10 chars","narration":"..."}
+poll (closing question with two buttons): {"type":"poll","kicker":"2-3 words CAPS","question":["1-3 lines, max 14 chars each"],"yes":"YES","no":"NO","prompt":"max 30 chars","pill":"max 28 chars","narration":"..."}
 cta (closing, always last): {"type":"cta","kicker":"2-3 words CAPS","label":"max 26 chars","plate":"a punchy verdict about THIS story in CAPS, max 20 chars (never the channel name or a follow request)","footnote":"max 70 chars","chips":[{"icon":"<icon>","text":"max 28 chars"}  (exactly 2)],"follow":"Follow for daily AI news","narration":"2 short sentences: first says the source link is in the comments, then asks people to follow for daily AI news"}
 """
 
@@ -379,10 +387,10 @@ def _san_stars(x):
 
 NEWS_STRUCTURE = """Build the video as 6 scenes in this order:
  1. exactly one OPENING scene: "hook", "slam" or "appclutter"
- 2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup, reveal, phases, cycle, bars, command, tabs, prompt, stack, orbit, connect, tasks, network - \
+ 2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup, reveal, phases, cycle, bars, command, tabs, prompt, stack, orbit, connect, tasks, network, funnel, chatdemo, countchips, plug, dashboard, shift - \
 the ones that tell THIS story best (a funding story wants bignumber/leaderboard, a product launch wants chat/checklist/timeline, \
 a controversy wants versus/monitor/alert, a security story wants alert/terminal, a story about several products or agents wants roundup then profile, a platform/ecosystem story wants hubmap, an AI search tool wants command, a choice of modes/plans wants tabs, a real growth number wants bars, a chatbot/assistant story wants prompt, two or three named modes or models want stack, four related products wants orbit, etc.)
- connect/tasks/network only when the story really names services, jobs or apps to show (never invent names). ON-SCREEN TEXT of bars, command, tabs, prompt, stack, orbit, connect, tasks and network never ends with a full stop.
+ connect, tasks, network, funnel, chatdemo, countchips, plug, dashboard, shift and poll only when the story really names services, jobs or apps to show (never invent names). ON-SCREEN TEXT of bars, command, tabs, prompt, stack, orbit, connect, tasks and network never ends with a full stop.
  NAME RULE: if the story is about ONE specific named tool, product, model or repo, scene 2 MUST be "reveal" - announce its real name right after the hook.
  6. "cta" (always last)"""
 
@@ -1007,6 +1015,70 @@ def _san_stack(x):
     return {"kicker": _clip(x.get("kicker"), 28), "items": its}
 
 
+def _san_strikehook(x):
+    return {"lines": _list_fit(x.get("lines"), 2, 3, 12, "OLD WAY"), "then": _list_fit(x.get("then"), 2, 2, 12, "NEW WAY"),
+            "pill": _clip(x.get("pill"), 30), "tiles": [_nofs(i, 8) for i in (x.get("tiles") or [])[:12] if str(i).strip()]}
+
+
+def _san_funnel(x):
+    return {"kicker": _clip(x.get("kicker"), 28), "title": _nofs(x.get("title"), 16) or "New platform", "sub": _clip(x.get("sub"), 44),
+            "bar": _nofs(x.get("bar"), 22) or "Ask anything", "names": _list_fit(x.get("names"), 4, 5, 10, "App")}
+
+
+def _san_chatdemo(x):
+    res = []
+    for r in (x.get("results") or [])[:2]:
+        r = r if isinstance(r, dict) else {"title": r}
+        res.append({"app": _nofs(r.get("app"), 12) or "App", "title": _nofs(r.get("title"), 22) or "Done", "sub": _nofs(r.get("sub"), 26)})
+    return {"kicker": _clip(x.get("kicker"), 28), "app": _nofs(x.get("app"), 14) or "Assistant", "prompt": _nofs(x.get("prompt"), 64) or "Make me a plan",
+            "results": res or [{"app": "App", "title": "Done", "sub": ""}]}
+
+
+def _san_countchips(x):
+    try:
+        n = int(re.sub(r"[^0-9]", "", str(x.get("number")))[:5] or 50)
+    except Exception:  # noqa
+        n = 50
+    return {"kicker": _clip(x.get("kicker"), 28), "number": n, "suffix": _nofs(x.get("suffix"), 3) or "+", "label": _nofs(x.get("label"), 30) or "launched",
+            "chips": _list_fit(x.get("chips"), 2, 4, 12, "Partner"), "foot": _clip(x.get("foot"), 56)}
+
+
+def _san_plug(x):
+    return {"kicker": _clip(x.get("kicker"), 28), "title": _list_fit(x.get("title"), 1, 2, 14, "ONE PLUG"), "left": _nofs(x.get("left"), 14) or "Your app",
+            "right": _nofs(x.get("right"), 16) or "AI", "badge": _nofs(x.get("badge"), 8) or "API", "definition": _clip(x.get("definition"), 80),
+            "steps": _list_fit(x.get("steps"), 0, 3, 10, "Step")}
+
+
+def _san_dashboard(x):
+    ms = []
+    for q in (x.get("meters") or [])[:3]:
+        q = q if isinstance(q, dict) else {"label": q}
+        try:
+            v = max(4, min(100, int(float(q.get("value", 50)))))
+        except Exception:  # noqa
+            v = 50
+        ms.append({"label": _nofs(q.get("label"), 14) or "Metric", "value": v})
+    while len(ms) < 2:
+        ms.append({"label": "Metric", "value": 60})
+    tabs = _list_fit(x.get("tabs"), 2, 3, 10, "Option")
+    try:
+        on = max(0, min(len(tabs) - 1, int(x.get("on", len(tabs) - 1))))
+    except Exception:  # noqa
+        on = len(tabs) - 1
+    return {"kicker": _clip(x.get("kicker"), 28), "name": _nofs(x.get("name"), 20) or "Your brand", "sub": _clip(x.get("sub"), 40) or "Verified account",
+            "meters": ms, "tabs": tabs, "on": on}
+
+
+def _san_shift(x):
+    return {"kicker": _clip(x.get("kicker"), 28), "title": _nofs(x.get("title"), 24) or "From taps to tasks", "before": _list_fit(x.get("before"), 3, 4, 14, "Step"),
+            "ask": _nofs(x.get("ask"), 10) or "Ask", "done": _nofs(x.get("done"), 10) or "Done"}
+
+
+def _san_poll(x):
+    return {"kicker": _clip(x.get("kicker"), 28), "question": _list_fit(x.get("question"), 1, 3, 14, "WHAT DO YOU THINK"), "yes": _nofs(x.get("yes"), 8) or "YES",
+            "no": _nofs(x.get("no"), 8) or "NO", "prompt": _nofs(x.get("prompt"), 30) or "Comment yes or no", "pill": _clip(x.get("pill"), 28)}
+
+
 def _san_connect(x):
     return {"kicker": _clip(x.get("kicker"), 28), "sources": _list_fit(x.get("sources"), 3, 3, 10, "App"), "hub": _nofs(x.get("hub"), 10) or "Hub",
             "targets": _list_fit(x.get("targets"), 2, 2, 16, "You")}
@@ -1029,7 +1101,7 @@ def _san_wordmark(x):
     return {"name": _nofs(x.get("name"), 20) or CHANNEL_NAME}
 
 
-SANITIZERS = {"connect": _san_connect, "tasks": _san_tasks, "network": _san_network, "prompt": _san_prompt, "stack": _san_stack, "orbit": _san_orbit, "wordmark": _san_wordmark, "morph": _san_morph, "shapes": _san_shapes, "bars": _san_bars, "command": _san_command,
+SANITIZERS = {"strikehook": _san_strikehook, "funnel": _san_funnel, "chatdemo": _san_chatdemo, "countchips": _san_countchips, "plug": _san_plug, "dashboard": _san_dashboard, "shift": _san_shift, "poll": _san_poll, "connect": _san_connect, "tasks": _san_tasks, "network": _san_network, "prompt": _san_prompt, "stack": _san_stack, "orbit": _san_orbit, "wordmark": _san_wordmark, "morph": _san_morph, "shapes": _san_shapes, "bars": _san_bars, "command": _san_command,
               "tabs": _san_tabs, "mark": _san_mark, "hook": _san_hook, "slam": _san_slam, "terminal": _san_terminal, "alert": _san_alert, "timeline": _san_timeline,
               "monitor": _san_monitor, "bignumber": _san_bignumber, "versus": _san_versus, "leaderboard": _san_leaderboard,
               "chat": _san_chat, "quote": _san_quote, "checklist": _san_checklist, "cta": _san_cta,
