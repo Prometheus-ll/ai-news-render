@@ -1713,5 +1713,27 @@
   "caption": "How to give your AI agent professional design skills for free\n\nLearn how to install and use jakubkrehel/skills to give your AI professional UI design capabilities. This open-source tool covers typography, colors, and accessibility. Follow for more AI tutorials!\n\n#tutorial #opensource #howto #uidesign #aiagents #github #webdev #coding",
   "thumb": "renders/output/2026-11-03-075838-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-04-072908-0.mp4",
+  "ts": "2026-11-04 07:32",
+  "kind": "news",
+  "headline": "Anthropic Warns of Imminent 'Recursive Self-Improvement' in AI",
+  "title": "Anthropic Warns: The Era of Self-Improving AI is Here",
+  "source_link": "https://techcrunch.com/2026/11/02/anthropic-warns-that-its-very-close-to-rsi-capability-aka-self-building-ai/",
+  "theme": "ocean",
+  "angle": "red flags",
+  "scenes": [
+   "slam",
+   "reveal",
+   "quote",
+   "versus",
+   "prompt",
+   "cta"
+  ],
+  "words": 102,
+  "caption": "Anthropic Warns: The Era of Self-Improving AI is Here\n\nAnthropic's latest SEC filing reveals the company is approaching Recursive Self-Improvement. This critical threshold could lead to an exponential acceleration of AI capabilities. Follow for daily AI news.\n\n#ai #anthropic #rsi #machinelearning #aisafety #futureoftech #technology #singularities",
+  "thumb": "renders/output/2026-11-04-072908-0.jpg",
+  "status": "queued"
  }
 ]
