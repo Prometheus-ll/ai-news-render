@@ -1,23 +1,5 @@
 [
  {
-  "ts": "2026-10-21 05:56",
-  "theme": "ocean",
-  "transition": "zoom",
-  "angle": "the big question",
-  "hook": null,
-  "scenes": [
-   "slam",
-   "reveal",
-   "phases",
-   "profile",
-   "shapes",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "OpenAI Expands into Life Sciences with 'Rosalind' Biotech Model",
-  "link": "https://techcrunch.com/2026/10/20/openai-acquires-startup-orchestra-bio%e2%81%a0-to-beef-up-its-biotech-business/"
- },
- {
   "ts": "2026-10-21 06:00",
   "theme": "signal",
   "transition": "fade",
@@ -875,5 +857,25 @@
   "kind": "tutorial",
   "headline": "skills: A collection of agent skills that help you build great interfaces.",
   "link": "https://github.com/jakubkrehel/skills"
+ },
+ {
+  "ts": "2026-11-04 07:25",
+  "pack": "Conversation",
+  "theme": "ocean",
+  "transition": "fade",
+  "angle": "red flags",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "reveal",
+   "quote",
+   "versus",
+   "prompt",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Anthropic Warns of Imminent 'Recursive Self-Improvement' in AI",
+  "link": "https://techcrunch.com/2026/11/02/anthropic-warns-that-its-very-close-to-rsi-capability-aka-self-building-ai/",
+  "motion_refs": []
  }
 ]
