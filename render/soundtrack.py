@@ -268,7 +268,7 @@ def scene_sfx(fx, sc, rng, first):
         n = len(sc.get('items', [])) or 2
         for i in range(n):
             fx.put(thump(), S + .04 + i * .13, .22); fx.put(whoosh(rng, .3), S + .04 + i * .13 - .12, .09)
-    elif ty in ('connect', 'tasks', 'network'):
+    elif ty in ('connect', 'tasks', 'network', 'funnel', 'chatdemo', 'countchips', 'plug', 'dashboard', 'shift', 'poll', 'strikehook'):
         fx.put(whoosh(rng, .5, .35), S - .05, .12)
         for k in range(3):
             fx.put(pop(620 + 120 * k), S + .4 + k * (D / 5), .11)
