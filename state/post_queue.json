@@ -1097,9 +1097,18 @@
   "headline": "skills: A collection of agent skills that help you build great interfaces.",
   "thumb": "renders/output/2026-11-03-075838-1.jpg",
   "added": "2026-11-03 08:00",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 704805768
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2211315543102678",
+    "at": "2026-11-04 10:45"
+   }
+  },
+  "posted_at": "2026-11-04 10:45",
+  "fb_id": "2211315543102678"
  },
  {
   "video": "renders/output/2026-11-04-072908-0.mp4",
