@@ -1772,7 +1772,15 @@
   "words": 103,
   "caption": "This AI Scraper Finds Hidden Gems on Goofish Automatically\n\nDiscover ai-goofish-monitor, an open-source system that uses Playwright and AI to track second-hand listings in real-time. It features a complete Web UI and multi-channel notifications for professional flipping. Follow for daily AI news.\n\n#ai #opensource #github #automation #goofish #python #playwright #sidehustle",
   "thumb": "renders/output/2026-11-04-073657-1.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-04 21:13",
+  "fb_id": "28854609807529486",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "28854609807529486"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-04-074019-2.mp4",
