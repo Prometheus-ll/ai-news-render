@@ -1160,5 +1160,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 712555959
+ },
+ {
+  "video": "renders/output/2026-11-05-075604-1.mp4",
+  "caption": "Spec Kit: The 147K Star Toolkit for AI Coding Agents\n\nLearn how Spec Kit is standardizing AI-driven development with over 147,000 stars on GitHub. This MIT-licensed toolkit helps coding agents follow structured processes for bug fixes and features. Follow for daily AI news.\n\n#ai #opensource #github #programming #coding #python #softwareengineering #speckit",
+  "source_link": "https://github.com/github/spec-kit",
+  "headline": "spec-kit: \ud83d\udcab Toolkit to help you get started with SDD or any other process!",
+  "thumb": "renders/output/2026-11-05-075604-1.jpg",
+  "added": "2026-11-05 07:58",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 712568039
  }
 ]

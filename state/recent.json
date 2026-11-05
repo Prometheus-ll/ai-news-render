@@ -1,23 +1,5 @@
 [
  {
-  "ts": "2026-10-22 06:03",
-  "theme": "indigo",
-  "transition": "panel",
-  "angle": "solution",
-  "hook": null,
-  "scenes": [
-   "repohook",
-   "reveal",
-   "hubmap",
-   "checklist",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "orca: Orca is the place for working with a fleet of agents (e.g. Grok Bot, Claud",
-  "link": "https://github.com/stablyai/orca"
- },
- {
   "ts": "2026-10-23 05:54",
   "theme": "ember",
   "transition": "zoom",
@@ -899,6 +881,33 @@
    "sdinesh91-159008",
    "nummanali-340931",
    "daniel-mac8-306214"
+  ]
+ },
+ {
+  "ts": "2026-11-05 07:54",
+  "pack": "Alert Room",
+  "theme": "neon",
+  "transition": "zoom",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "reveal",
+   "custom",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "spec-kit: \ud83d\udcab Toolkit to help you get started with SDD or any other process!",
+  "link": "https://github.com/github/spec-kit",
+  "motion_refs": [
+   "superalesha-970412",
+   "songkeys-384673",
+   "egawa-ai-design-092323",
+   "egawa-ai-design-092323",
+   "songkeys-384673",
+   "superalesha-970412"
   ]
  }
 ]
