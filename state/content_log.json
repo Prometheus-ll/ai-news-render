@@ -1829,5 +1829,27 @@
   "caption": "Anthropic FlashProve: Cryptographic Verification for AI Models\n\nAnthropic has unveiled FlashProve, an open-source system that uses cryptography to verify the identity of AI models. It prevents model swapping and ensures trust through mathematical guarantees. Follow for more AI news.\n\n#ai #anthropic #flashprove #cryptography #infosec #tech #cybersecurity #llm",
   "thumb": "renders/output/2026-11-05-075203-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-05-075604-1.mp4",
+  "ts": "2026-11-05 07:58",
+  "kind": "repo",
+  "headline": "spec-kit: \ud83d\udcab Toolkit to help you get started with SDD or any other process!",
+  "title": "Spec Kit: The 147K Star Toolkit for AI Coding Agents",
+  "source_link": "https://github.com/github/spec-kit",
+  "theme": "neon",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "custom",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "words": 98,
+  "caption": "Spec Kit: The 147K Star Toolkit for AI Coding Agents\n\nLearn how Spec Kit is standardizing AI-driven development with over 147,000 stars on GitHub. This MIT-licensed toolkit helps coding agents follow structured processes for bug fixes and features. Follow for daily AI news.\n\n#ai #opensource #github #programming #coding #python #softwareengineering #speckit",
+  "thumb": "renders/output/2026-11-05-075604-1.jpg",
+  "status": "queued"
  }
 ]
