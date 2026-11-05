@@ -1,23 +1,5 @@
 [
  {
-  "ts": "2026-10-23 05:54",
-  "theme": "ember",
-  "transition": "zoom",
-  "angle": "by the numbers",
-  "hook": null,
-  "scenes": [
-   "slam",
-   "reveal",
-   "bignumber",
-   "leaderboard",
-   "timeline",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "OpenAI Eyes Record-Breaking $1.25 Trillion Valuation in New $30B Funding Round",
-  "link": "https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1-25t-valuation-ahead-of-ipo/"
- },
- {
   "ts": "2026-10-23 05:57",
   "theme": "signal",
   "transition": "fade",
@@ -909,5 +891,27 @@
    "songkeys-384673",
    "superalesha-970412"
   ]
+ },
+ {
+  "ts": "2026-11-05 07:58",
+  "pack": "Explainer",
+  "theme": "forest",
+  "transition": "sweep",
+  "angle": "tutorial",
+  "hook": "",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "kind": "tutorial",
+  "headline": "pr-agent: \ud83d\ude80 PR Agent: The Original Open-Source PR Reviewer. This project is not ",
+  "link": "https://github.com/The-PR-Agent/pr-agent"
  }
 ]

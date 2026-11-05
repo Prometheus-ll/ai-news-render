@@ -1851,5 +1851,30 @@
   "caption": "Spec Kit: The 147K Star Toolkit for AI Coding Agents\n\nLearn how Spec Kit is standardizing AI-driven development with over 147,000 stars on GitHub. This MIT-licensed toolkit helps coding agents follow structured processes for bug fixes and features. Follow for daily AI news.\n\n#ai #opensource #github #programming #coding #python #softwareengineering #speckit",
   "thumb": "renders/output/2026-11-05-075604-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-05-075837-2.mp4",
+  "ts": "2026-11-05 08:00",
+  "kind": "tutorial",
+  "headline": "pr-agent: \ud83d\ude80 PR Agent: The Original Open-Source PR Reviewer. This project is not the Qodo free tier.",
+  "title": "How to install PR Agent: The Open-Source AI Code Reviewer",
+  "source_link": "https://github.com/The-PR-Agent/pr-agent",
+  "theme": "forest",
+  "angle": "tutorial",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "words": 128,
+  "caption": "How to install PR Agent: The Open-Source AI Code Reviewer\n\nLearn how to set up PR-Agent to automate your code reviews on GitHub and GitLab. This open-source tool uses AI to describe and improve your pull requests. Follow for more AI tutorials!\n\n#tutorial #opensource #howto #python #ai #github #programming #coding",
+  "thumb": "renders/output/2026-11-05-075837-2.jpg",
+  "status": "queued"
  }
 ]
