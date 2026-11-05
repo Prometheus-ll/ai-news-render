@@ -1807,5 +1807,27 @@
   "caption": "How to install ECC: The agent harness performance optimization system\n\nLearn how to give your AI agents a professional engineering toolbox with ECC. Follow this step-by-step guide to install the open-source system used by thousands.\n\n#tutorial #opensource #howto #claude #cursor #aiagents #developer #javascript #coding",
   "thumb": "renders/output/2026-11-04-074019-2.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-05-075203-0.mp4",
+  "ts": "2026-11-05 07:53",
+  "kind": "news",
+  "headline": "Anthropic Unveils FlashProve to Verify AI Model Identities",
+  "title": "Anthropic FlashProve: Cryptographic Verification for AI Models",
+  "source_link": "https://techcrunch.com/2026/11/03/anthropic-is-working-on-a-system-to-prove-ai-models-identity/",
+  "theme": "paper",
+  "angle": "proof",
+  "scenes": [
+   "slam",
+   "reveal",
+   "phases",
+   "custom",
+   "custom",
+   "cta"
+  ],
+  "words": 109,
+  "caption": "Anthropic FlashProve: Cryptographic Verification for AI Models\n\nAnthropic has unveiled FlashProve, an open-source system that uses cryptography to verify the identity of AI models. It prevents model swapping and ensures trust through mathematical guarantees. Follow for more AI news.\n\n#ai #anthropic #flashprove #cryptography #infosec #tech #cybersecurity #llm",
+  "thumb": "renders/output/2026-11-05-075203-0.jpg",
+  "status": "queued"
  }
 ]

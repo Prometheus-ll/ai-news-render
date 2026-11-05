@@ -1149,5 +1149,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 708683320
+ },
+ {
+  "video": "renders/output/2026-11-05-075203-0.mp4",
+  "caption": "Anthropic FlashProve: Cryptographic Verification for AI Models\n\nAnthropic has unveiled FlashProve, an open-source system that uses cryptography to verify the identity of AI models. It prevents model swapping and ensures trust through mathematical guarantees. Follow for more AI news.\n\n#ai #anthropic #flashprove #cryptography #infosec #tech #cybersecurity #llm",
+  "source_link": "https://techcrunch.com/2026/11/03/anthropic-is-working-on-a-system-to-prove-ai-models-identity/",
+  "headline": "Anthropic Unveils FlashProve to Verify AI Model Identities",
+  "thumb": "renders/output/2026-11-05-075203-0.jpg",
+  "added": "2026-11-05 07:53",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 712555959
  }
 ]
