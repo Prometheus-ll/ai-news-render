@@ -1,16 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-15-121811-1.mp4",
-  "caption": "AI is Now Designing Its Own Chips: The End of the Compute Shortage?\n\nRicursive Intelligence is using AI to automate the complex design of semiconductor chips. This self-improving loop could finally solve the global compute shortage. Follow for daily AI news.\n\n#ai #semiconductors #chips #hardware #tech #innovation #automation #futuretech",
-  "source_link": "https://techcrunch.com/2026/10/14/ricursive-intelligence-is-betting-on-ai-designed-chips-to-help-solve-the-compute-crisis/",
-  "headline": "Ricursive Intelligence Leverages AI to Automate the Design of Next-Gen Chips",
-  "added": "2026-10-15 12:21",
-  "status": "posted",
-  "attempts": 0,
-  "fb_id": "1108306088789409",
-  "posted_at": "2026-10-15 20:11"
- },
- {
   "video": "renders/output/2026-10-15-122204-2.mp4",
   "caption": "Superpowers: The Professional Methodology for AI Coding Agents\n\nDiscover a viral open-source framework that brings professional software engineering standards to AI coding agents. Learn how to transform your workflow with subagent-driven development and TDD. Follow for daily AI news.\n\n#ai #coding #opensource #github #softwareengineering #productivity #developer #claude #python",
   "source_link": "https://github.com/obra/superpowers",
@@ -1146,9 +1135,18 @@
   "headline": "ECC: The agent harness performance optimization system. Skills, instincts, memory, security, and research-firs",
   "thumb": "renders/output/2026-11-04-074019-2.jpg",
   "added": "2026-11-04 07:42",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 708683320
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2445638372840840",
+    "at": "2026-11-05 10:41"
+   }
+  },
+  "posted_at": "2026-11-05 10:41",
+  "fb_id": "2445638372840840"
  },
  {
   "video": "renders/output/2026-11-05-075203-0.mp4",
