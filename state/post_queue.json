@@ -1,16 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-16-115944-0.mp4",
-  "caption": "Meta and Apple Partner to Launch 'Muse Spark Open' for Local Mac AI\n\nMeta and Apple have joined forces to launch Muse Spark Open, a model optimized specifically for Apple Silicon. Experience high-performance AI locally on your Mac with total privacy. Follow for daily AI news!\n\n#ai #meta #apple #macbook #musespark #localai #tech #privacy #innovation #machinelearning",
-  "source_link": "https://techcrunch.com/2026/10/15/meta-launches-an-open-weight-model-that-runs-on-macs/",
-  "headline": "Meta and Apple Partner to Launch 'Muse Spark Open' for Local Mac AI",
-  "added": "2026-10-16 12:03",
-  "status": "posted",
-  "attempts": 0,
-  "fb_id": "1113590607716863",
-  "posted_at": "2026-10-16 17:06"
- },
- {
   "video": "renders/output/2026-10-16-120333-1.mp4",
   "caption": "Anthropic Grants Researchers 'Employee-Level' Access for Safety Audits\n\nAnthropic is breaking the industry mold by giving external researchers full access to its internal systems. This independent oversight could change the future of AI safety reporting forever. Follow for daily AI news.\n\n#ai #aisafety #anthropic #metr #transparency #teching #techbreakthrough #futureofai #security #innovation",
   "source_link": "https://techcrunch.com/2026/10/15/anthropic-is-letting-metr-researchers-look-under-the-hood-with-employee-level-access/",
@@ -1164,9 +1153,18 @@
   "headline": "spec-kit: \ud83d\udcab Toolkit to help you get started with SDD or any other process!",
   "thumb": "renders/output/2026-11-05-075604-1.jpg",
   "added": "2026-11-05 07:58",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 712568039
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2144604002856004",
+    "at": "2026-11-05 21:26"
+   }
+  },
+  "posted_at": "2026-11-05 21:26",
+  "fb_id": "2144604002856004"
  },
  {
   "video": "renders/output/2026-11-05-075837-2.mp4",
