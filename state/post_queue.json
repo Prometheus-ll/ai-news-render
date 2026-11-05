@@ -1,16 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-15-122204-2.mp4",
-  "caption": "Superpowers: The Professional Methodology for AI Coding Agents\n\nDiscover a viral open-source framework that brings professional software engineering standards to AI coding agents. Learn how to transform your workflow with subagent-driven development and TDD. Follow for daily AI news.\n\n#ai #coding #opensource #github #softwareengineering #productivity #developer #claude #python",
-  "source_link": "https://github.com/obra/superpowers",
-  "headline": "superpowers: An agentic skills framework & software development methodology that works.",
-  "added": "2026-10-15 12:25",
-  "status": "posted",
-  "attempts": 0,
-  "fb_id": "1360718262613335",
-  "posted_at": "2026-10-15 23:59"
- },
- {
   "video": "renders/output/2026-10-16-115944-0.mp4",
   "caption": "Meta and Apple Partner to Launch 'Muse Spark Open' for Local Mac AI\n\nMeta and Apple have joined forces to launch Muse Spark Open, a model optimized specifically for Apple Silicon. Experience high-performance AI locally on your Mac with total privacy. Follow for daily AI news!\n\n#ai #meta #apple #macbook #musespark #localai #tech #privacy #innovation #machinelearning",
   "source_link": "https://techcrunch.com/2026/10/15/meta-launches-an-open-weight-model-that-runs-on-macs/",
@@ -1155,9 +1144,18 @@
   "headline": "Anthropic Unveils FlashProve to Verify AI Model Identities",
   "thumb": "renders/output/2026-11-05-075203-0.jpg",
   "added": "2026-11-05 07:53",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 712555959
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1095717703235473",
+    "at": "2026-11-05 15:59"
+   }
+  },
+  "posted_at": "2026-11-05 15:59",
+  "fb_id": "1095717703235473"
  },
  {
   "video": "renders/output/2026-11-05-075604-1.mp4",

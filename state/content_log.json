@@ -1836,7 +1836,15 @@
   "words": 109,
   "caption": "Anthropic FlashProve: Cryptographic Verification for AI Models\n\nAnthropic has unveiled FlashProve, an open-source system that uses cryptography to verify the identity of AI models. It prevents model swapping and ensures trust through mathematical guarantees. Follow for more AI news.\n\n#ai #anthropic #flashprove #cryptography #infosec #tech #cybersecurity #llm",
   "thumb": "renders/output/2026-11-05-075203-0.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-05 15:59",
+  "fb_id": "1095717703235473",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1095717703235473"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-05-075604-1.mp4",
