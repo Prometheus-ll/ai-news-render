@@ -1187,5 +1187,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 716371196
+ },
+ {
+  "video": "renders/output/2026-11-06-080044-1.mp4",
+  "caption": "Garry Tan's gstack: The 140k Star AI Software Factory\n\nDiscover gstack, the open-source engineering setup used by Garry Tan. It turns Claude Code into a full virtual team with 23 automated tools for building and shipping. Follow for daily AI news.\n\n#ai #opensource #github #coding #claude #programming #software #gstack",
+  "source_link": "https://github.com/garrytan/gstack",
+  "headline": "gstack: Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager",
+  "thumb": "renders/output/2026-11-06-080044-1.jpg",
+  "added": "2026-11-06 08:04",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 716389586
  }
 ]

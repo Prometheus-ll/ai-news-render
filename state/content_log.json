@@ -1922,5 +1922,27 @@
   "caption": "Agility Robotics: The First Public Humanoid Company\n\nAgility Robotics is officially listing on the Nasdaq via a SPAC merger, raising $465 million. The company aims to scale its Digit robots for industrial use. Follow for daily AI news.\n\n#ai #robotics #agilityrobotics #humanoid #nasdaq #spac #tech #automation",
   "thumb": "renders/output/2026-11-06-075321-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-06-080044-1.mp4",
+  "ts": "2026-11-06 08:04",
+  "kind": "repo",
+  "headline": "gstack: Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager",
+  "title": "Garry Tan's gstack: The 140k Star AI Software Factory",
+  "source_link": "https://github.com/garrytan/gstack",
+  "theme": "ocean",
+  "angle": "by the numbers",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "bignumber",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "words": 106,
+  "caption": "Garry Tan's gstack: The 140k Star AI Software Factory\n\nDiscover gstack, the open-source engineering setup used by Garry Tan. It turns Claude Code into a full virtual team with 23 automated tools for building and shipping. Follow for daily AI news.\n\n#ai #opensource #github #coding #claude #programming #software #gstack",
+  "thumb": "renders/output/2026-11-06-080044-1.jpg",
+  "status": "queued"
  }
 ]
