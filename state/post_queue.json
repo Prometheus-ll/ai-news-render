@@ -1176,5 +1176,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 712574804
+ },
+ {
+  "video": "renders/output/2026-11-06-075321-0.mp4",
+  "caption": "Agility Robotics: The First Public Humanoid Company\n\nAgility Robotics is officially listing on the Nasdaq via a SPAC merger, raising $465 million. The company aims to scale its Digit robots for industrial use. Follow for daily AI news.\n\n#ai #robotics #agilityrobotics #humanoid #nasdaq #spac #tech #automation",
+  "source_link": "https://techcrunch.com/2026/11/05/agility-is-the-first-pure-humanoid-robot-company-on-the-stock-market-are-you-buying/",
+  "headline": "Agility Robotics Becomes First Pure Humanoid Robot Company to Go Public",
+  "thumb": "renders/output/2026-11-06-075321-0.jpg",
+  "added": "2026-11-06 07:56",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 716371196
  }
 ]
