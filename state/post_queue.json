@@ -1,24 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-17-111708-0.mp4",
-  "caption": "Glimpse: The New AI Model Challenging GPT-6 Astra in Visual Reasoning\n\nElorian has launched Glimpse, a model claiming to beat GPT-6 Astra in specialized visual reasoning. It excels at scientific charts and video analysis. Follow for more AI breakthroughs.\n\n#ai #elorian #glimpse #gpt6 #visualai #multimodal #tech #innovation #futuretech",
-  "source_link": "https://techcrunch.com/2026/10/16/elorians-first-ai-model-wants-to-reason-with-images-not-just-about-them/",
-  "headline": "Elorian's Glimpse Model Claims Superior Visual Reasoning Over GPT-6 Astra",
-  "added": "2026-10-17 11:20",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "1612369630169453",
-    "at": "2026-10-18 07:57"
-   }
-  },
-  "posted_at": "2026-10-18 07:57",
-  "fb_id": "1612369630169453"
- },
- {
   "video": "renders/output/2026-10-17-112055-1.mp4",
   "caption": "Amazon\u2019s Bee Launches $75 Screen-Free AI Wearable\n\nAmazon-owned Bee has released a new line of low-cost AI hardware starting at $75, designed to bring ambient intelligence into your everyday life. Follow for more AI hardware updates.\n\n#ai #amazon #beeai #wearable #gadget #alexa #tech #productivity #futuretech",
   "source_link": "https://techcrunch.com/2026/10/15/amazons-bee-launches-two-new-personal-ai-devices-starting-at-75/",
@@ -1191,9 +1172,18 @@
   "headline": "gstack: Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager",
   "thumb": "renders/output/2026-11-06-080044-1.jpg",
   "added": "2026-11-06 08:04",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 716389586
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1038067835988581",
+    "at": "2026-11-06 20:48"
+   }
+  },
+  "posted_at": "2026-11-06 20:48",
+  "fb_id": "1038067835988581"
  },
  {
   "video": "renders/output/2026-11-06-080525-2.mp4",
