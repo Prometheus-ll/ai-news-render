@@ -1,16 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-16-121250-2.mp4",
-  "caption": "ECC: The 280k Star Agent Optimization System\n\nDiscover ECC, the professional engineering harness that gives AI agents like Claude Code skills, memory, and security. Follow for daily AI open-source updates.\n\n#ai #opensource #github #claudecode #coding #developer #productivity #softwareengineering",
-  "source_link": "https://github.com/affaan-m/ECC",
-  "headline": "ECC: The agent harness performance optimization system. Skills, instincts, memory, security, and research-firs",
-  "added": "2026-10-16 12:15",
-  "status": "posted",
-  "attempts": 0,
-  "fb_id": "1776887336762559",
-  "posted_at": "2026-10-17 00:04"
- },
- {
   "video": "renders/output/2026-10-17-111708-0.mp4",
   "caption": "Glimpse: The New AI Model Challenging GPT-6 Astra in Visual Reasoning\n\nElorian has launched Glimpse, a model claiming to beat GPT-6 Astra in specialized visual reasoning. It excels at scientific charts and video analysis. Follow for more AI breakthroughs.\n\n#ai #elorian #glimpse #gpt6 #visualai #multimodal #tech #innovation #futuretech",
   "source_link": "https://techcrunch.com/2026/10/16/elorians-first-ai-model-wants-to-reason-with-images-not-just-about-them/",
@@ -1182,9 +1171,18 @@
   "headline": "Agility Robotics Becomes First Pure Humanoid Robot Company to Go Public",
   "thumb": "renders/output/2026-11-06-075321-0.jpg",
   "added": "2026-11-06 07:56",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 716371196
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2148850692661522",
+    "at": "2026-11-06 15:32"
+   }
+  },
+  "posted_at": "2026-11-06 15:32",
+  "fb_id": "2148850692661522"
  },
  {
   "video": "renders/output/2026-11-06-080044-1.mp4",
