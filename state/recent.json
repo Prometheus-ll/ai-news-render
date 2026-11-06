@@ -1,23 +1,5 @@
 [
  {
-  "ts": "2026-10-23 06:00",
-  "theme": "ocean",
-  "transition": "wipe",
-  "angle": "before vs after",
-  "hook": null,
-  "scenes": [
-   "repohook",
-   "reveal",
-   "stars",
-   "hubmap",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "ponytail: Makes your AI agent think like the laziest senior dev in the room. The",
-  "link": "https://github.com/DietrichGebert/ponytail"
- },
- {
   "ts": "2026-10-24 05:38",
   "theme": "mint",
   "transition": "zoom",
@@ -918,6 +900,30 @@
    "adrianduta96-992248",
    "imryven-495965",
    "flxrnc-619627"
+  ]
+ },
+ {
+  "ts": "2026-11-06 07:56",
+  "pack": "Data Story",
+  "theme": "ocean",
+  "transition": "slide",
+  "angle": "by the numbers",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "reveal",
+   "bignumber",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "gstack: Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve",
+  "link": "https://github.com/garrytan/gstack",
+  "motion_refs": [
+   "bradmillscan-839974",
+   "ai9app-989009",
+   "imryven-495965"
   ]
  }
 ]
