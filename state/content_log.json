@@ -1944,5 +1944,30 @@
   "caption": "Garry Tan's gstack: The 140k Star AI Software Factory\n\nDiscover gstack, the open-source engineering setup used by Garry Tan. It turns Claude Code into a full virtual team with 23 automated tools for building and shipping. Follow for daily AI news.\n\n#ai #opensource #github #coding #claude #programming #software #gstack",
   "thumb": "renders/output/2026-11-06-080044-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-06-080525-2.mp4",
+  "ts": "2026-11-06 08:07",
+  "kind": "tutorial",
+  "headline": "skills: Get production-ready images, video, audio, and 3D from any AI agent: skills that pick the right model,",
+  "title": "How to give AI agents professional skills for 3D and video",
+  "source_link": "https://github.com/scenario-labs/skills",
+  "theme": "ember",
+  "angle": "tutorial",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "words": 132,
+  "caption": "How to give AI agents professional skills for 3D and video\n\nLearn how to use Scenario Agent Skills to connect your AI agents to professional creative workflows. This open source tool enables production-ready image, video, and 3D generation. Follow AI Quantum for more daily open source tutorials.\n\n#tutorial #opensource #howto #aiagents #3dmodeling #gamedev #scenario #python",
+  "thumb": "renders/output/2026-11-06-080525-2.jpg",
+  "status": "queued"
  }
 ]

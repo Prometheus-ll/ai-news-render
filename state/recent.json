@@ -1,23 +1,5 @@
 [
  {
-  "ts": "2026-10-24 05:38",
-  "theme": "mint",
-  "transition": "zoom",
-  "angle": "the big question",
-  "hook": null,
-  "scenes": [
-   "hook",
-   "stack",
-   "alert",
-   "kinetic",
-   "monitor",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "OpenAI Halts Live Internet Training Over Safety and Contamination Risks",
-  "link": "https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/"
- },
- {
   "ts": "2026-10-24 05:42",
   "theme": "neon",
   "transition": "slide",
@@ -925,5 +907,27 @@
    "ai9app-989009",
    "imryven-495965"
   ]
+ },
+ {
+  "ts": "2026-11-06 08:05",
+  "pack": "Explainer",
+  "theme": "ember",
+  "transition": "sweep",
+  "angle": "tutorial",
+  "hook": "",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "kind": "tutorial",
+  "headline": "skills: Get production-ready images, video, audio, and 3D from any AI agent: ski",
+  "link": "https://github.com/scenario-labs/skills"
  }
 ]
