@@ -1959,7 +1959,15 @@
   "words": 106,
   "caption": "Garry Tan's gstack: The 140k Star AI Software Factory\n\nDiscover gstack, the open-source engineering setup used by Garry Tan. It turns Claude Code into a full virtual team with 23 automated tools for building and shipping. Follow for daily AI news.\n\n#ai #opensource #github #coding #claude #programming #software #gstack",
   "thumb": "renders/output/2026-11-06-080044-1.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-06 20:48",
+  "fb_id": "1038067835988581",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1038067835988581"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-06-080525-2.mp4",
