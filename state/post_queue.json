@@ -1198,5 +1198,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 716389586
+ },
+ {
+  "video": "renders/output/2026-11-06-080525-2.mp4",
+  "caption": "How to give AI agents professional skills for 3D and video\n\nLearn how to use Scenario Agent Skills to connect your AI agents to professional creative workflows. This open source tool enables production-ready image, video, and 3D generation. Follow AI Quantum for more daily open source tutorials.\n\n#tutorial #opensource #howto #aiagents #3dmodeling #gamedev #scenario #python",
+  "source_link": "https://github.com/scenario-labs/skills",
+  "headline": "skills: Get production-ready images, video, audio, and 3D from any AI agent: skills that pick the right model,",
+  "thumb": "renders/output/2026-11-06-080525-2.jpg",
+  "added": "2026-11-06 08:07",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 716396910
  }
 ]
