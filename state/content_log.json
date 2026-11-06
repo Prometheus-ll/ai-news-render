@@ -1899,7 +1899,15 @@
   "words": 128,
   "caption": "How to install PR Agent: The Open-Source AI Code Reviewer\n\nLearn how to set up PR-Agent to automate your code reviews on GitHub and GitLab. This open-source tool uses AI to describe and improve your pull requests. Follow for more AI tutorials!\n\n#tutorial #opensource #howto #python #ai #github #programming #coding",
   "thumb": "renders/output/2026-11-05-075837-2.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-06 10:41",
+  "fb_id": "2075002136553803",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "2075002136553803"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-06-075321-0.mp4",

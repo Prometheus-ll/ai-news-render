@@ -1,16 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-16-120333-1.mp4",
-  "caption": "Anthropic Grants Researchers 'Employee-Level' Access for Safety Audits\n\nAnthropic is breaking the industry mold by giving external researchers full access to its internal systems. This independent oversight could change the future of AI safety reporting forever. Follow for daily AI news.\n\n#ai #aisafety #anthropic #metr #transparency #teching #techbreakthrough #futureofai #security #innovation",
-  "source_link": "https://techcrunch.com/2026/10/15/anthropic-is-letting-metr-researchers-look-under-the-hood-with-employee-level-access/",
-  "headline": "Anthropic Grants External Researchers Unprecedented 'Employee-Level' Access",
-  "added": "2026-10-16 12:06",
-  "status": "posted",
-  "attempts": 0,
-  "fb_id": "1638570914594975",
-  "posted_at": "2026-10-16 19:49"
- },
- {
   "video": "renders/output/2026-10-16-121250-2.mp4",
   "caption": "ECC: The 280k Star Agent Optimization System\n\nDiscover ECC, the professional engineering harness that gives AI agents like Claude Code skills, memory, and security. Follow for daily AI open-source updates.\n\n#ai #opensource #github #claudecode #coding #developer #productivity #softwareengineering",
   "source_link": "https://github.com/affaan-m/ECC",
@@ -1173,9 +1162,18 @@
   "headline": "pr-agent: \ud83d\ude80 PR Agent: The Original Open-Source PR Reviewer. This project is not the Qodo free tier.",
   "thumb": "renders/output/2026-11-05-075837-2.jpg",
   "added": "2026-11-05 08:00",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 712574804
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2075002136553803",
+    "at": "2026-11-06 10:41"
+   }
+  },
+  "posted_at": "2026-11-06 10:41",
+  "fb_id": "2075002136553803"
  },
  {
   "video": "renders/output/2026-11-06-075321-0.mp4",
