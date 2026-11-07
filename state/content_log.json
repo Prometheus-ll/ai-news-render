@@ -2052,7 +2052,15 @@
   "words": 101,
   "caption": "Cloudflare's AI Security Auditor: security-audit-skill\n\nCloudflare has open-sourced their internal AI vulnerability discovery harness. This professional tool turns coding agents into multi-phase security auditors with independent verification. Follow for daily open-source AI news.\n\n#ai #opensource #github #security #coding #cloudflare #cybersecurity #webdev",
   "thumb": "renders/output/2026-11-07-070754-1.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-07 19:20",
+  "fb_id": "1653837292861608",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1653837292861608"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-07-071039-2.mp4",
