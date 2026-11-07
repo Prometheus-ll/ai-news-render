@@ -1992,7 +1992,15 @@
   "words": 132,
   "caption": "How to give AI agents professional skills for 3D and video\n\nLearn how to use Scenario Agent Skills to connect your AI agents to professional creative workflows. This open source tool enables production-ready image, video, and 3D generation. Follow AI Quantum for more daily open source tutorials.\n\n#tutorial #opensource #howto #aiagents #3dmodeling #gamedev #scenario #python",
   "thumb": "renders/output/2026-11-06-080525-2.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-07 09:53",
+  "fb_id": "2195653144692149",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "2195653144692149"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-07-070119-0.mp4",
