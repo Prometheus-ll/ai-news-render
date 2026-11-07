@@ -2022,7 +2022,15 @@
   "words": 110,
   "caption": "US Voters Impose Strict Limits on AI Data Centers\n\nIn a historic midterm shift, voters approved nearly all ballot measures to restrict data center growth. This policy hurdle could slow the physical scaling of next-gen AI models. Follow for daily AI news.\n\n#ai #techpolitics #datacenters #bigtech #midterms #infrastructure #aiscaling #regulation",
   "thumb": "renders/output/2026-11-07-070119-0.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-07 14:34",
+  "fb_id": "2223830341505367",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "2223830341505367"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-07-070754-1.mp4",
