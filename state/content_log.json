@@ -2037,5 +2037,31 @@
   "caption": "Cloudflare's AI Security Auditor: security-audit-skill\n\nCloudflare has open-sourced their internal AI vulnerability discovery harness. This professional tool turns coding agents into multi-phase security auditors with independent verification. Follow for daily open-source AI news.\n\n#ai #opensource #github #security #coding #cloudflare #cybersecurity #webdev",
   "thumb": "renders/output/2026-11-07-070754-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-07-071039-2.mp4",
+  "ts": "2026-11-07 07:12",
+  "kind": "tutorial",
+  "headline": "day-trader-skill: 11 Claude skills for day trading: scan thousands of charts, track breaking news, time every ",
+  "title": "How to install the free Day Trader skill for Claude",
+  "source_link": "https://github.com/Jakeschincariol/day-trader-skill",
+  "theme": "neon",
+  "angle": "tutorial",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "words": 129,
+  "caption": "How to install the free Day Trader skill for Claude\n\nLearn how to install this open-source Python toolkit to scan thousands of charts and track news with Claude. Step-by-step setup for algorithmic day trading. Follow AI Quantum for more AI tools.\n\n#tutorial #opensource #howto #daytrading #claudeai #python #algorithmictrading #stockmarket",
+  "thumb": "renders/output/2026-11-07-071039-2.jpg",
+  "status": "queued"
  }
 ]
