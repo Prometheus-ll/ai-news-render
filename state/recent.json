@@ -1,23 +1,5 @@
 [
  {
-  "ts": "2026-10-24 05:45",
-  "theme": "ember",
-  "transition": "panel",
-  "angle": "solution",
-  "hook": null,
-  "scenes": [
-   "repohook",
-   "reveal",
-   "stars",
-   "stack",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "Claude-Red: claude-red is a curated library of offensive security skills designe",
-  "link": "https://github.com/SnailSploit/Claude-Red"
- },
- {
   "ts": "2026-10-25 05:54",
   "pack": "Terminal Ops",
   "theme": "forest",
@@ -937,6 +919,30 @@
    "daniel-mac8-306214",
    "groundcontrol-230877",
    "bradmillscan-839974"
+  ]
+ },
+ {
+  "ts": "2026-11-07 07:04",
+  "pack": "Editorial",
+  "theme": "paper",
+  "transition": "panel",
+  "angle": "proof",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "reveal",
+   "stack",
+   "terminal",
+   "custom",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "security-audit-skill: A coding-agent skill for multi-phase security audits with ",
+  "link": "https://github.com/cloudflare/security-audit-skill",
+  "motion_refs": [
+   "koushikde-937635",
+   "woojinrad-455731",
+   "dale-vaz-879074"
   ]
  }
 ]
