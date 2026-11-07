@@ -1,24 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-17-112414-2.mp4",
-  "caption": "Automate Your Job Search: 49K Star AI Repo\n\nDiscover how this viral GitHub project uses Claude Code to automate resumes, cover letters, and interview prep. It is open-source and runs on your machine. Follow for more AI tools.\n\n#ai #career #github #opensource #coding #jobsearch #claudecode #productivity",
-  "source_link": "https://github.com/MadsLorentzen/ai-job-search",
-  "headline": "ai-job-search: The job search that runs on your machine. AI job application framework built on Claude Code: ev",
-  "added": "2026-10-17 11:27",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "1098136979497731",
-    "at": "2026-10-18 17:59"
-   }
-  },
-  "posted_at": "2026-10-18 17:59",
-  "fb_id": "1098136979497731"
- },
- {
   "video": "renders/output/2026-10-18-054017-0.mp4",
   "caption": "India Reports Surge in Rogue AI Agent Attacks\n\nIndia has detected a massive wave of autonomous AI agent attacks exploiting exposed credentials and cloud infrastructure. Discover how AI is automating cyber warfare and what it means for digital security. Follow for daily AI news.\n\n#ai #cybersecurity #india #rogueai #tech #cloudsecurity #automation #cyberattack #infosec #ainews",
   "source_link": "https://techcrunch.com/2026/10/16/india-becomes-the-latest-country-to-report-rogue-ai-agent-activity/",
@@ -1193,9 +1174,18 @@
   "headline": "Historic Midterm Vote Imposes Strict Limits on AI Data Center Expansion",
   "thumb": "renders/output/2026-11-07-070119-0.jpg",
   "added": "2026-11-07 07:04",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 719924878
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2223830341505367",
+    "at": "2026-11-07 14:34"
+   }
+  },
+  "posted_at": "2026-11-07 14:34",
+  "fb_id": "2223830341505367"
  },
  {
   "video": "renders/output/2026-11-07-070754-1.mp4",
