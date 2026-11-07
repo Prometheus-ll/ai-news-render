@@ -1993,5 +1993,27 @@
   "caption": "How to give AI agents professional skills for 3D and video\n\nLearn how to use Scenario Agent Skills to connect your AI agents to professional creative workflows. This open source tool enables production-ready image, video, and 3D generation. Follow AI Quantum for more daily open source tutorials.\n\n#tutorial #opensource #howto #aiagents #3dmodeling #gamedev #scenario #python",
   "thumb": "renders/output/2026-11-06-080525-2.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-07-070119-0.mp4",
+  "ts": "2026-11-07 07:04",
+  "kind": "news",
+  "headline": "Historic Midterm Vote Imposes Strict Limits on AI Data Center Expansion",
+  "title": "US Voters Impose Strict Limits on AI Data Centers",
+  "source_link": "https://techcrunch.com/podcast/how-a-blue-wave-midterm-might-reshape-the-ai-industry/",
+  "theme": "mint",
+  "angle": "what changes for you",
+  "scenes": [
+   "slam",
+   "bignumber",
+   "stack",
+   "custom",
+   "custom",
+   "cta"
+  ],
+  "words": 110,
+  "caption": "US Voters Impose Strict Limits on AI Data Centers\n\nIn a historic midterm shift, voters approved nearly all ballot measures to restrict data center growth. This policy hurdle could slow the physical scaling of next-gen AI models. Follow for daily AI news.\n\n#ai #techpolitics #datacenters #bigtech #midterms #infrastructure #aiscaling #regulation",
+  "thumb": "renders/output/2026-11-07-070119-0.jpg",
+  "status": "queued"
  }
 ]

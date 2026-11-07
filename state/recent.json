@@ -1,23 +1,5 @@
 [
  {
-  "ts": "2026-10-24 05:42",
-  "theme": "neon",
-  "transition": "slide",
-  "angle": "proof",
-  "hook": null,
-  "scenes": [
-   "appclutter",
-   "reveal",
-   "versus",
-   "kinetic",
-   "stack",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Microsoft's 'Medical Superintelligence' Beats Doctors in Science Study",
-  "link": "https://techcrunch.com/2026/10/22/microsofts-mustafa-suleyman-says-its-ai-outperforms-doctors-on-hard-cases-as-he-chases-medical-superintelligence/"
- },
- {
   "ts": "2026-10-24 05:45",
   "theme": "ember",
   "transition": "panel",
@@ -929,5 +911,32 @@
   "kind": "tutorial",
   "headline": "skills: Get production-ready images, video, audio, and 3D from any AI agent: ski",
   "link": "https://github.com/scenario-labs/skills"
+ },
+ {
+  "ts": "2026-11-07 06:59",
+  "pack": "Product Keynote",
+  "theme": "mint",
+  "transition": "zoom",
+  "angle": "what changes for you",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "bignumber",
+   "stack",
+   "custom",
+   "custom",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Historic Midterm Vote Imposes Strict Limits on AI Data Center Expansion",
+  "link": "https://techcrunch.com/podcast/how-a-blue-wave-midterm-might-reshape-the-ai-industry/",
+  "motion_refs": [
+   "groundcontrol-230877",
+   "xanderwow-a-597063",
+   "techyoutbe-588678",
+   "daniel-mac8-306214",
+   "groundcontrol-230877",
+   "bradmillscan-839974"
+  ]
  }
 ]
