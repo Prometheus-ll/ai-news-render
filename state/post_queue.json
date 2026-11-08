@@ -1198,5 +1198,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 719941879
+ },
+ {
+  "video": "renders/output/2026-11-08-070821-0.mp4",
+  "caption": "OpenAI Hits $1.25 Trillion Valuation in Record Funding Round\n\nOpenAI has reportedly secured $11 billion in new capital, pushing its valuation to a record-breaking $1.25 trillion. Follow for daily updates on the AI race.\n\n#ai #openai #venturecapital #techfinance #generativeai #samaltman #anthropic #ipo",
+  "source_link": "https://techcrunch.com/2026/11/06/openai-reportedly-raises-an-additional-11-billion-at-a-1-25-trillion-valuation/",
+  "headline": "OpenAI Valuation Surges to $1.25 Trillion with New $11B Capital Injection",
+  "thumb": "renders/output/2026-11-08-070821-0.jpg",
+  "added": "2026-11-08 07:12",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 723205829
  }
 ]

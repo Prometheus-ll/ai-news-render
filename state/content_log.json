@@ -2087,5 +2087,27 @@
   "caption": "How to install the free Day Trader skill for Claude\n\nLearn how to install this open-source Python toolkit to scan thousands of charts and track news with Claude. Step-by-step setup for algorithmic day trading. Follow AI Quantum for more AI tools.\n\n#tutorial #opensource #howto #daytrading #claudeai #python #algorithmictrading #stockmarket",
   "thumb": "renders/output/2026-11-07-071039-2.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-08-070821-0.mp4",
+  "ts": "2026-11-08 07:12",
+  "kind": "news",
+  "headline": "OpenAI Valuation Surges to $1.25 Trillion with New $11B Capital Injection",
+  "title": "OpenAI Hits $1.25 Trillion Valuation in Record Funding Round",
+  "source_link": "https://techcrunch.com/2026/11/06/openai-reportedly-raises-an-additional-11-billion-at-a-1-25-trillion-valuation/",
+  "theme": "ocean",
+  "angle": "by the numbers",
+  "scenes": [
+   "slam",
+   "bignumber",
+   "quote",
+   "versus",
+   "prompt",
+   "cta"
+  ],
+  "words": 102,
+  "caption": "OpenAI Hits $1.25 Trillion Valuation in Record Funding Round\n\nOpenAI has reportedly secured $11 billion in new capital, pushing its valuation to a record-breaking $1.25 trillion. Follow for daily updates on the AI race.\n\n#ai #openai #venturecapital #techfinance #generativeai #samaltman #anthropic #ipo",
+  "thumb": "renders/output/2026-11-08-070821-0.jpg",
+  "status": "queued"
  }
 ]
