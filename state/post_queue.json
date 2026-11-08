@@ -1,24 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-19-055728-0.mp4",
-  "caption": "Disney Hires Character.AI Core Team in Massive Talent Grab\n\nDisney is aggressively absorbing the specialized AI talent behind Character.AI to build interactive entertainment. This mirrors recent talent grabs by Google and Microsoft. Follow for daily AI news.\n\n#ai #disney #characterai #tech #business #innovation #future #entertainment #genai",
-  "source_link": "https://techcrunch.com/2026/10/18/disney-agrees-to-hire-the-majority-of-character-ais-workforce/",
-  "headline": "Disney to Hire Majority of Character.AI Workforce in Major Talent Grab",
-  "added": "2026-10-19 05:59",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "1117962887484355",
-    "at": "2026-10-20 08:25"
-   }
-  },
-  "posted_at": "2026-10-20 08:25",
-  "fb_id": "1117962887484355"
- },
- {
   "video": "renders/output/2026-10-19-055931-1.mp4",
   "caption": "Anthropic Pledges 5% Equity to Public Benefit Fund\n\nAnthropic is setting a new precedent for corporate governance by committing 5% of its shares to a public benefit fund. This move aims to align financial success with long-term safety. Follow for daily AI news.\n\n#ai #anthropic #aisafety #technews #governance #futureofai #startups #equity",
   "source_link": "https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund/",
@@ -1197,8 +1178,17 @@
   "headline": "astryx: An open source design system that's fully customizable and agent ready",
   "thumb": "renders/output/2026-11-08-071633-1.jpg",
   "added": "2026-11-08 07:20",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 723224026
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2243009706650808",
+    "at": "2026-11-08 19:28"
+   }
+  },
+  "posted_at": "2026-11-08 19:28",
+  "fb_id": "2243009706650808"
  }
 ]
