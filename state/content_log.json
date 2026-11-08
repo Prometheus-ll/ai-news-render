@@ -2116,7 +2116,15 @@
   "words": 102,
   "caption": "OpenAI Hits $1.25 Trillion Valuation in Record Funding Round\n\nOpenAI has reportedly secured $11 billion in new capital, pushing its valuation to a record-breaking $1.25 trillion. Follow for daily updates on the AI race.\n\n#ai #openai #venturecapital #techfinance #generativeai #samaltman #anthropic #ipo",
   "thumb": "renders/output/2026-11-08-070821-0.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-08 14:41",
+  "fb_id": "1393800422563879",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1393800422563879"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-08-071633-1.mp4",

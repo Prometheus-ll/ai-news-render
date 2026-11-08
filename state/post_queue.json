@@ -1,24 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-18-054601-2.mp4",
-  "caption": "Stop Re-Explaining Your Code to AI Agents\n\nDiscover ai-memory, the open-source solution that gives AI coding agents long-term context across different tools and platforms. Follow for more daily AI breakthroughs.\n\n#ai #coding #opensource #github #rustlang #programming #productivity #developer",
-  "source_link": "https://github.com/akitaonrails/ai-memory",
-  "headline": "ai-memory: Solution for long term memory for agent coding CLIs and to facilitate handoff between different age",
-  "added": "2026-10-18 05:48",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "2276275519587368",
-    "at": "2026-10-19 20:31"
-   }
-  },
-  "posted_at": "2026-10-19 20:31",
-  "fb_id": "2276275519587368"
- },
- {
   "video": "renders/output/2026-10-19-055728-0.mp4",
   "caption": "Disney Hires Character.AI Core Team in Massive Talent Grab\n\nDisney is aggressively absorbing the specialized AI talent behind Character.AI to build interactive entertainment. This mirrors recent talent grabs by Google and Microsoft. Follow for daily AI news.\n\n#ai #disney #characterai #tech #business #innovation #future #entertainment #genai",
   "source_link": "https://techcrunch.com/2026/10/18/disney-agrees-to-hire-the-majority-of-character-ais-workforce/",
@@ -1196,9 +1177,18 @@
   "headline": "OpenAI Valuation Surges to $1.25 Trillion with New $11B Capital Injection",
   "thumb": "renders/output/2026-11-08-070821-0.jpg",
   "added": "2026-11-08 07:12",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 723205829
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1393800422563879",
+    "at": "2026-11-08 14:41"
+   }
+  },
+  "posted_at": "2026-11-08 14:41",
+  "fb_id": "1393800422563879"
  },
  {
   "video": "renders/output/2026-11-08-071633-1.mp4",
