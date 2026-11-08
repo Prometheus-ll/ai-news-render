@@ -1,31 +1,5 @@
 [
  {
-  "ts": "2026-10-25 06:03",
-  "pack": "Product Keynote",
-  "theme": "indigo",
-  "transition": "zoom",
-  "angle": "solution",
-  "hook": null,
-  "scenes": [
-   "hook",
-   "kinetic",
-   "reveal",
-   "profile",
-   "terminal",
-   "custom",
-   "orbit",
-   "cta"
-  ],
-  "kind": "tutorial",
-  "headline": "claude-howto: A visual, example-driven guide to Claude Code \u2014 from basic concept",
-  "link": "https://github.com/luongnv89/claude-howto",
-  "motion_refs": [
-   "daniel-mac8-306214",
-   "abderrahmen-g-899031",
-   "imryven-495965"
-  ]
- },
- {
   "ts": "2026-10-26 08:04",
   "pack": "Editorial",
   "theme": "paper",
@@ -937,5 +911,30 @@
   "headline": "OpenAI Valuation Surges to $1.25 Trillion with New $11B Capital Injection",
   "link": "https://techcrunch.com/2026/11/06/openai-reportedly-raises-an-additional-11-billion-at-a-1-25-trillion-valuation/",
   "motion_refs": []
+ },
+ {
+  "ts": "2026-11-08 07:12",
+  "pack": "Systems Map",
+  "theme": "forest",
+  "transition": "slide",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "slam",
+   "reveal",
+   "custom",
+   "hubmap",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "astryx: An open source design system that's fully customizable and agent ready",
+  "link": "https://github.com/meta/astryx",
+  "motion_refs": [
+   "diamai-157697",
+   "mablesjoseph-735781",
+   "groundcontrol-230877"
+  ]
  }
 ]

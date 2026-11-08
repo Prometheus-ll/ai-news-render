@@ -1209,5 +1209,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 723205829
+ },
+ {
+  "video": "renders/output/2026-11-08-071633-1.mp4",
+  "caption": "Astryx: Meta\u2019s Open Source Design System for Humans and AI\n\nMeta just open-sourced Astryx, the design system powering 13,000 internal apps. It is built for React 19 and designed to work seamlessly with AI coding agents. Follow for more AI news.\n\n#ai #opensource #github #meta #react #webdev #coding #designsystem",
+  "source_link": "https://github.com/meta/astryx",
+  "headline": "astryx: An open source design system that's fully customizable and agent ready",
+  "thumb": "renders/output/2026-11-08-071633-1.jpg",
+  "added": "2026-11-08 07:20",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 723224026
  }
 ]

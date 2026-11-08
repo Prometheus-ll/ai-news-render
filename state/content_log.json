@@ -2109,5 +2109,28 @@
   "caption": "OpenAI Hits $1.25 Trillion Valuation in Record Funding Round\n\nOpenAI has reportedly secured $11 billion in new capital, pushing its valuation to a record-breaking $1.25 trillion. Follow for daily updates on the AI race.\n\n#ai #openai #venturecapital #techfinance #generativeai #samaltman #anthropic #ipo",
   "thumb": "renders/output/2026-11-08-070821-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-08-071633-1.mp4",
+  "ts": "2026-11-08 07:20",
+  "kind": "repo",
+  "headline": "astryx: An open source design system that's fully customizable and agent ready",
+  "title": "Astryx: Meta\u2019s Open Source Design System for Humans and AI",
+  "source_link": "https://github.com/meta/astryx",
+  "theme": "forest",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "slam",
+   "reveal",
+   "custom",
+   "hubmap",
+   "terminal",
+   "cta"
+  ],
+  "words": 128,
+  "caption": "Astryx: Meta\u2019s Open Source Design System for Humans and AI\n\nMeta just open-sourced Astryx, the design system powering 13,000 internal apps. It is built for React 19 and designed to work seamlessly with AI coding agents. Follow for more AI news.\n\n#ai #opensource #github #meta #react #webdev #coding #designsystem",
+  "thumb": "renders/output/2026-11-08-071633-1.jpg",
+  "status": "queued"
  }
 ]
