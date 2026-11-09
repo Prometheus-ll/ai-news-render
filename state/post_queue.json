@@ -1,24 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-19-060208-2.mp4",
-  "caption": "opencode: The 200K Star Open Source AI Coding Agent\n\nDiscover opencode, the massive MIT-licensed coding agent taking GitHub by storm. Learn how its dual-agent system handles building and planning for free. Follow for more AI tools.\n\n#ai #opensource #github #coding #typescript #developer #software #opencode",
-  "source_link": "https://github.com/anomalyco/opencode",
-  "headline": "opencode: The open source coding agent.",
-  "added": "2026-10-19 06:04",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "1670198918012638",
-    "at": "2026-10-20 19:08"
-   }
-  },
-  "posted_at": "2026-10-20 19:08",
-  "fb_id": "1670198918012638"
- },
- {
   "video": "renders/output/2026-10-20-055030-0.mp4",
   "caption": "Nvidia Kills Cloud Dependency with New Open Agent Models\n\nNvidia has launched a suite of open-source models for local and enterprise AI agents. This move allows businesses to deploy autonomous AI without sending sensitive data to the cloud. Follow for daily AI news.\n\n#ai #nvidia #opensource #privacy #tech #enterprise #localai #machinelearning #artificialintelligence",
   "source_link": "https://techcrunch.com/2026/10/19/nvidia-launches-new-open-models-to-run-agents-in-the-enterprise-and-on-pcs/",
@@ -1199,9 +1180,18 @@
   "headline": "hallmark: Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
   "thumb": "renders/output/2026-11-09-075606-1.jpg",
   "added": "2026-11-09 07:58",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 726676437
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1926354612136753",
+    "at": "2026-11-09 18:06"
+   }
+  },
+  "posted_at": "2026-11-09 18:06",
+  "fb_id": "1926354612136753"
  },
  {
   "video": "renders/output/2026-11-09-075842-2.mp4",
