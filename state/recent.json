@@ -1,30 +1,5 @@
 [
  {
-  "ts": "2026-10-26 08:04",
-  "pack": "Editorial",
-  "theme": "paper",
-  "transition": "panel",
-  "angle": "solution",
-  "hook": null,
-  "scenes": [
-   "appclutter",
-   "morph",
-   "reveal",
-   "stack",
-   "custom",
-   "tabs",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Block Releases Human-Like Voice Model for Local Execution",
-  "link": "https://techcrunch.com/2026/10/24/blocks-new-voice-model-sounds-eerily-human/",
-  "motion_refs": [
-   "deedydas-407965",
-   "imryven-495965",
-   "aichrislee-961335"
-  ]
- },
- {
   "ts": "2026-10-26 08:06",
   "pack": "Conversation",
   "theme": "ocean",
@@ -936,5 +911,26 @@
    "mablesjoseph-735781",
    "groundcontrol-230877"
   ]
+ },
+ {
+  "ts": "2026-11-09 07:49",
+  "pack": "Playbook Steps",
+  "theme": "paper",
+  "transition": "wipe",
+  "angle": "red flags",
+  "hook": null,
+  "scenes": [
+   "hook",
+   "slam",
+   "alert",
+   "timeline",
+   "checklist",
+   "phases",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Nvidia CEO Jensen Huang Under Investigation Over Alleged Espionage Link",
+  "link": "https://techcrunch.com/2026/11/08/is-jensen-huangs-job-on-the-line-yales-jeffrey-sonnenfeld-estimates-its-about-a-50-50/",
+  "motion_refs": []
  }
 ]
