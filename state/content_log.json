@@ -2179,5 +2179,27 @@
   "caption": "Nvidia CEO Jensen Huang Investigated Over Alleged Chinese Spy Link\n\nNvidia's board is investigating CEO Jensen Huang after reports of a relationship with a suspected Chinese spy. Experts estimate a 50% chance the AI chip leader may be forced to step down. Follow for daily AI news.\n\n#ai #nvidia #jensenhuang #techscandal #chips #investigation #businessnews #futureofai",
   "thumb": "renders/output/2026-11-09-075219-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-09-075606-1.mp4",
+  "ts": "2026-11-09 07:58",
+  "kind": "repo",
+  "headline": "hallmark: Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
+  "title": "Hallmark: The Anti-AI Slop Design Skill for Coding Agents",
+  "source_link": "https://github.com/Nutlope/hallmark",
+  "theme": "neon",
+  "angle": "problem",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "custom",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "words": 96,
+  "caption": "Hallmark: The Anti-AI Slop Design Skill for Coding Agents\n\nHallmark is a viral open-source project that prevents AI agents like Claude Code and Cursor from generating generic 'slop' designs. It enforces professional standards and real design logic across fifty unique themes.\n\n#ai #opensource #github #webdesign #programming #claudecode #cursor #javascript",
+  "thumb": "renders/output/2026-11-09-075606-1.jpg",
+  "status": "queued"
  }
 ]

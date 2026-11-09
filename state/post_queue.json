@@ -1201,5 +1201,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 726666657
+ },
+ {
+  "video": "renders/output/2026-11-09-075606-1.mp4",
+  "caption": "Hallmark: The Anti-AI Slop Design Skill for Coding Agents\n\nHallmark is a viral open-source project that prevents AI agents like Claude Code and Cursor from generating generic 'slop' designs. It enforces professional standards and real design logic across fifty unique themes.\n\n#ai #opensource #github #webdesign #programming #claudecode #cursor #javascript",
+  "source_link": "https://github.com/Nutlope/hallmark",
+  "headline": "hallmark: Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
+  "thumb": "renders/output/2026-11-09-075606-1.jpg",
+  "added": "2026-11-09 07:58",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 726676437
  }
 ]
