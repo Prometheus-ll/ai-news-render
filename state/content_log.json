@@ -2201,5 +2201,31 @@
   "caption": "Hallmark: The Anti-AI Slop Design Skill for Coding Agents\n\nHallmark is a viral open-source project that prevents AI agents like Claude Code and Cursor from generating generic 'slop' designs. It enforces professional standards and real design logic across fifty unique themes.\n\n#ai #opensource #github #webdesign #programming #claudecode #cursor #javascript",
   "thumb": "renders/output/2026-11-09-075606-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-09-075842-2.mp4",
+  "ts": "2026-11-09 08:00",
+  "kind": "tutorial",
+  "headline": "humanizer: Agent skill that removes signs of AI-generated writing from text",
+  "title": "How to remove AI patterns from your writing with blader/humanizer",
+  "source_link": "https://github.com/blader/humanizer",
+  "theme": "indigo",
+  "angle": "tutorial",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "example",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "words": 146,
+  "caption": "How to remove AI patterns from your writing with blader/humanizer\n\nLearn how to use this open-source tool to strip robotic signatures from your text. Install it as an agent skill to get human-sounding results every time. Follow for more daily AI tools.\n\n#tutorial #opensource #howto #aiwriting #claude #chatgpt #coding #github",
+  "thumb": "renders/output/2026-11-09-075842-2.jpg",
+  "status": "queued"
  }
 ]

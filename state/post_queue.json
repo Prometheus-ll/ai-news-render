@@ -1212,5 +1212,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 726676437
+ },
+ {
+  "video": "renders/output/2026-11-09-075842-2.mp4",
+  "caption": "How to remove AI patterns from your writing with blader/humanizer\n\nLearn how to use this open-source tool to strip robotic signatures from your text. Install it as an agent skill to get human-sounding results every time. Follow for more daily AI tools.\n\n#tutorial #opensource #howto #aiwriting #claude #chatgpt #coding #github",
+  "source_link": "https://github.com/blader/humanizer",
+  "headline": "humanizer: Agent skill that removes signs of AI-generated writing from text",
+  "thumb": "renders/output/2026-11-09-075842-2.jpg",
+  "added": "2026-11-09 08:00",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 726682800
  }
 ]

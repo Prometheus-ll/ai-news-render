@@ -1,26 +1,5 @@
 [
  {
-  "ts": "2026-10-26 08:09",
-  "pack": "Explainer",
-  "theme": "neon",
-  "transition": "sweep",
-  "angle": "tutorial",
-  "hook": "",
-  "scenes": [
-   "hook",
-   "meet",
-   "grid",
-   "step",
-   "step",
-   "step",
-   "stats",
-   "cta"
-  ],
-  "kind": "tutorial",
-  "headline": "anatomy: An agent skill for creating detailed, interactive isometric illustratio",
-  "link": "https://github.com/wheresryan22/anatomy"
- },
- {
   "ts": "2026-10-27 06:08",
   "pack": "Systems Map",
   "theme": "indigo",
@@ -934,5 +913,28 @@
    "koushikde-937635",
    "yanliudesign-839698"
   ]
+ },
+ {
+  "ts": "2026-11-09 07:58",
+  "pack": "Explainer",
+  "theme": "indigo",
+  "transition": "sweep",
+  "angle": "tutorial",
+  "hook": "",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "example",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "kind": "tutorial",
+  "headline": "humanizer: Agent skill that removes signs of AI-generated writing from text",
+  "link": "https://github.com/blader/humanizer"
  }
 ]
