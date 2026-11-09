@@ -1,24 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-19-055931-1.mp4",
-  "caption": "Anthropic Pledges 5% Equity to Public Benefit Fund\n\nAnthropic is setting a new precedent for corporate governance by committing 5% of its shares to a public benefit fund. This move aims to align financial success with long-term safety. Follow for daily AI news.\n\n#ai #anthropic #aisafety #technews #governance #futureofai #startups #equity",
-  "source_link": "https://techcrunch.com/2026/10/18/anthropic-says-its-committing-5-of-its-shares-to-a-public-benefit-fund/",
-  "headline": "Anthropic Pledges 5% of Equity to New Public Benefit Fund",
-  "added": "2026-10-19 06:01",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "1714079377385238",
-    "at": "2026-10-20 13:12"
-   }
-  },
-  "posted_at": "2026-10-20 13:12",
-  "fb_id": "1714079377385238"
- },
- {
   "video": "renders/output/2026-10-19-060208-2.mp4",
   "caption": "opencode: The 200K Star Open Source AI Coding Agent\n\nDiscover opencode, the massive MIT-licensed coding agent taking GitHub by storm. Learn how its dual-agent system handles building and planning for free. Follow for more AI tools.\n\n#ai #opensource #github #coding #typescript #developer #software #opencode",
   "source_link": "https://github.com/anomalyco/opencode",
@@ -1198,9 +1179,18 @@
   "headline": "Nvidia CEO Jensen Huang Under Investigation Over Alleged Espionage Link",
   "thumb": "renders/output/2026-11-09-075219-0.jpg",
   "added": "2026-11-09 07:54",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 726666657
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1120257770977760",
+    "at": "2026-11-09 11:16"
+   }
+  },
+  "posted_at": "2026-11-09 11:16",
+  "fb_id": "1120257770977760"
  },
  {
   "video": "renders/output/2026-11-09-075606-1.mp4",
