@@ -1,24 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-20-055030-0.mp4",
-  "caption": "Nvidia Kills Cloud Dependency with New Open Agent Models\n\nNvidia has launched a suite of open-source models for local and enterprise AI agents. This move allows businesses to deploy autonomous AI without sending sensitive data to the cloud. Follow for daily AI news.\n\n#ai #nvidia #opensource #privacy #tech #enterprise #localai #machinelearning #artificialintelligence",
-  "source_link": "https://techcrunch.com/2026/10/19/nvidia-launches-new-open-models-to-run-agents-in-the-enterprise-and-on-pcs/",
-  "headline": "Nvidia Releases Open Models for Local and Enterprise AI Agents",
-  "added": "2026-10-20 05:53",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "1457579703139319",
-    "at": "2026-10-21 08:28"
-   }
-  },
-  "posted_at": "2026-10-21 08:28",
-  "fb_id": "1457579703139319"
- },
- {
   "video": "renders/output/2026-10-20-055401-1.mp4",
   "caption": "Amazon's TorchNeuron: Breaking Nvidia's AI Software Monopoly\n\nAmazon has launched TorchNeuron to help developers port AI models away from Nvidia hardware. This tool could significantly lower costs and break the CUDA software lock-in. Follow for daily AI news.\n\n#amazon #aws #nvidia #torchneuron #pytorch #aihardware #cloudcomputing #technews #machinelearning",
   "source_link": "https://techcrunch.com/2026/10/19/amazon-is-taking-its-biggest-shot-at-nvidia-yet-with-new-torchneuron-dev-tool/",
@@ -1200,8 +1181,17 @@
   "headline": "humanizer: Agent skill that removes signs of AI-generated writing from text",
   "thumb": "renders/output/2026-11-09-075842-2.jpg",
   "added": "2026-11-09 08:00",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 726682800
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1988047345225398",
+    "at": "2026-11-09 23:45"
+   }
+  },
+  "posted_at": "2026-11-09 23:45",
+  "fb_id": "1988047345225398"
  }
 ]
