@@ -181,7 +181,7 @@ def slots_due_and_posted(q):
 
 
 def prune_files(q):
-    """Delete the mp4/wav of videos posted more than KEEP_DAYS ago (thumbnails stay) so the repo stops growing."""
+    """Delete the mp4/jpg/wav of videos posted more than KEEP_DAYS ago so the repo stops growing."""
     n = 0
     for x in q:
         at = x.get("posted_at")
@@ -194,7 +194,7 @@ def prune_files(q):
         if age < KEEP_DAYS * 86400:
             continue
         base = os.path.splitext(x["video"])[0]
-        for path in (x["video"], os.path.join("audio", os.path.basename(base) + ".wav")):
+        for path in (x["video"], base + ".jpg", os.path.join("audio", os.path.basename(base) + ".wav")):
             full = os.path.join(ROOT, path)
             if os.path.exists(full):
                 os.remove(full)

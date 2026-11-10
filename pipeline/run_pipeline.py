@@ -1,4 +1,4 @@
-import os, re, sys, json, time, base64, subprocess, struct
+import os, re, sys, json, time, base64, io, subprocess, struct
 import requests
 import feedparser
 
@@ -1273,27 +1273,65 @@ def fetch_product_logo(product):
 
 # ---------------------------------------------------------------- repo screenshot
 
+def _shot_is_blank(jpg):
+    """True when the picture is (nearly) one flat colour: GitHub sent a white page, a challenge page or nothing yet."""
+    try:
+        from PIL import Image, ImageStat
+        im = Image.open(io.BytesIO(jpg)).convert("L")
+        top = im.crop((0, 0, im.width, min(im.height, int(im.width * 1.4))))
+        return ImageStat.Stat(top).stddev[0] < 14
+    except Exception:  # noqa
+        return False
+
+
 def capture_repo_screenshot(full_name):
-    """Screenshot of the repo's real GitHub page (top of the README) as a JPEG data URI ('' on failure)."""
+    """Screenshot of the repo's real GitHub page (top of the README) as a JPEG data URI ('' on failure).
+    Waits for the README text and its images, retries up to 3 times, and refuses blank/white/error pages (a blank picture is worse than none)."""
+    if not full_name:
+        return ""
     try:
         sys.path.insert(0, os.path.join(REPO_ROOT, "render"))
         import html_render as hr
         from playwright.sync_api import sync_playwright
         with sync_playwright() as p:
             b = hr.launch(p)
-            ctx = b.new_context(viewport={"width": 800, "height": 1500}, color_scheme="dark", device_scale_factor=1.5)
-            page = ctx.new_page()
-            page.goto(f"https://github.com/{full_name}", wait_until="domcontentloaded", timeout=45000)
-            page.wait_for_timeout(3500)
-            for sel in ("button:has-text('Accept')", "button:has-text('Reject')"):  # cookie banners, if any
-                try:
-                    page.click(sel, timeout=800)
-                except Exception:  # noqa
-                    pass
-            jpg = page.screenshot(type="jpeg", quality=76, full_page=True,
-                                  clip={"x": 0, "y": 0, "width": 800, "height": 2400})
-            b.close()
-        return "data:image/jpeg;base64," + base64.b64encode(jpg).decode()
+            try:
+                for attempt in range(3):
+                    ctx = b.new_context(viewport={"width": 800, "height": 1500}, color_scheme="dark", device_scale_factor=1.5)
+                    page = ctx.new_page()
+                    try:
+                        page.goto(f"https://github.com/{full_name}", wait_until="load", timeout=60000)
+                        title = (page.title() or "").lower()
+                        if any(w in title for w in ("rate limit", "too many", "access denied", "just a moment", "page not found", "404", "unicorn")):
+                            raise RuntimeError(f"GitHub sent an error page ({title[:40]})")
+                        for sel in ("button:has-text('Accept')", "button:has-text('Reject')"):  # cookie banners, if any
+                            try:
+                                page.click(sel, timeout=800)
+                            except Exception:  # noqa
+                                pass
+                        page.wait_for_selector("article.markdown-body, #readme, [data-testid='repo-title-component']", timeout=25000)
+                        try:
+                            page.wait_for_load_state("networkidle", timeout=10000)
+                        except Exception:  # noqa
+                            pass
+                        page.evaluate("window.scrollTo(0,0)")
+                        try:  # wait until the README's images (badges, logos) are really loaded
+                            page.wait_for_function("[...document.images].filter(i=>i.getBoundingClientRect().top<2400).every(i=>i.complete)", timeout=8000)
+                        except Exception:  # noqa
+                            pass
+                        page.wait_for_timeout(1500)
+                        jpg = page.screenshot(type="jpeg", quality=76, full_page=True, clip={"x": 0, "y": 0, "width": 800, "height": 2400})
+                        if _shot_is_blank(jpg):
+                            raise RuntimeError("the screenshot came out blank")
+                        return "data:image/jpeg;base64," + base64.b64encode(jpg).decode()
+                    except Exception as e:  # noqa
+                        print(f"[screenshot] try {attempt + 1} for {full_name}: {str(e)[:140]}")
+                        time.sleep(4 + 4 * attempt)
+                    finally:
+                        ctx.close()
+            finally:
+                b.close()
+        return ""
     except Exception as e:  # noqa
         print(f"[screenshot] failed for {full_name}: {e}")
         return ""
