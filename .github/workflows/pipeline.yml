@@ -2,7 +2,7 @@ name: Daily Pipeline
 
 on:
   schedule:
-    - cron: '0 1 * * *'
+    - cron: '17 20 * * *'   # 02:17 Dhaka. GitHub starts scheduled runs ~6h late at midnight-UTC rush; starting earlier (and off the :00 minute) gets the videos ready BEFORE the 9 AM slot
   workflow_dispatch:
 
 permissions:

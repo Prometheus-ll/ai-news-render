@@ -1,6 +1,6 @@
 name: Post next video
 
-# The daily pipeline (01:00 UTC = 7 AM Bangladesh) renders all videos and queues them (state/post_queue.json).
+# The daily pipeline (20:17 UTC = 02:17 Bangladesh, so all videos are ready before the first slot) renders all videos and queues them (state/post_queue.json).
 # This workflow publishes ONE queued video per run, to every connected platform (Facebook, Instagram, YouTube), timed for a Bangladesh audience (UTC+6):
 #   03:00 UTC =  9 AM Dhaka  (morning scroll)
 #   08:00 UTC =  2 PM Dhaka  (after lunch)
@@ -8,9 +8,9 @@ name: Post next video
 # Change the cron lines below to move the slots. GitHub can start scheduled runs a few minutes late.
 on:
   schedule:
-    - cron: '0 3 * * *'
-    - cron: '0 8 * * *'
-    - cron: '0 15 * * *'
+    - cron: '3 3 * * *'
+    - cron: '3 8 * * *'
+    - cron: '3 15 * * *'
     # backup runs: GitHub often starts scheduled runs hours late or skips them. These only post when a slot is due and unused.
     - cron: '10,40 3-21 * * *'      # twice an hour: GitHub drops many scheduled runs, so more tries = a slot is never missed
   workflow_dispatch:
