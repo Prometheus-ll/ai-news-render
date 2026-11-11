@@ -2295,5 +2295,30 @@
   "caption": "Turn AI into a Pro Engineer with agent-skills\n\nUpgrade your AI agents with production-grade engineering skills using this viral MIT-licensed project. It adds discipline, testing, and architecture to AI coding. Follow for daily AI news.\n\n#ai #opensource #github #coding #softwareengineering #claude #cursor #javascript",
   "thumb": "renders/output/2026-11-11-005130-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-11-005520-2.mp4",
+  "ts": "2026-11-11 00:57",
+  "kind": "tutorial",
+  "headline": "ha-mcp: Configure and automate Home Assistant with Claude, ChatGPT, and other AI assistants.",
+  "title": "How to automate Home Assistant with Claude and ChatGPT using HA-MCP",
+  "source_link": "https://github.com/homeassistant-ai/ha-mcp",
+  "theme": "ember",
+  "angle": "tutorial",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "words": 150,
+  "caption": "How to automate Home Assistant with Claude and ChatGPT using HA-MCP\n\nLearn how to connect your smart home to powerful AI models using the open-source HA-MCP tool. Control devices and manage automations with simple conversation. Follow for daily AI tools!\n\n#tutorial #opensource #homeassistant #smarthome #claudeai #mcp #automation #python",
+  "thumb": "renders/output/2026-11-11-005520-2.jpg",
+  "status": "queued"
  }
 ]

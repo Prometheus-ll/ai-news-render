@@ -1215,5 +1215,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 733574444
+ },
+ {
+  "video": "renders/output/2026-11-11-005520-2.mp4",
+  "caption": "How to automate Home Assistant with Claude and ChatGPT using HA-MCP\n\nLearn how to connect your smart home to powerful AI models using the open-source HA-MCP tool. Control devices and manage automations with simple conversation. Follow for daily AI tools!\n\n#tutorial #opensource #homeassistant #smarthome #claudeai #mcp #automation #python",
+  "source_link": "https://github.com/homeassistant-ai/ha-mcp",
+  "headline": "ha-mcp: Configure and automate Home Assistant with Claude, ChatGPT, and other AI assistants.",
+  "thumb": "renders/output/2026-11-11-005520-2.jpg",
+  "added": "2026-11-11 00:57",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 733580571
  }
 ]

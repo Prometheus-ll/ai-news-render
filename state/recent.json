@@ -1,27 +1,5 @@
 [
  {
-  "ts": "2026-10-27 06:14",
-  "pack": "Explainer",
-  "theme": "paper",
-  "transition": "sweep",
-  "angle": "tutorial",
-  "hook": "",
-  "scenes": [
-   "hook",
-   "meet",
-   "grid",
-   "step",
-   "step",
-   "step",
-   "example",
-   "stats",
-   "cta"
-  ],
-  "kind": "tutorial",
-  "headline": "huashu-design: Huashu Design 3.0 \u00b7 \u5728 agent \u91cc\u6253\u4e00\u53e5\u8bdd\uff0c\u62ff\u56de\u80fd\u4ea4\u4ed8\u7684\u8bbe\u8ba1\uff1a\u7f51\u9875 / App \u539f\u578b / \u53ef\u7f16\u8f91 PPTX",
-  "link": "https://github.com/alchaincyf/huashu-design"
- },
- {
   "ts": "2026-10-28 06:48",
   "pack": "Alert Room",
   "theme": "neon",
@@ -930,5 +908,27 @@
   "headline": "agent-skills: Production-grade engineering skills for AI coding agents.",
   "link": "https://github.com/addyosmani/agent-skills",
   "motion_refs": []
+ },
+ {
+  "ts": "2026-11-11 00:55",
+  "pack": "Explainer",
+  "theme": "ember",
+  "transition": "sweep",
+  "angle": "tutorial",
+  "hook": "",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "kind": "tutorial",
+  "headline": "ha-mcp: Configure and automate Home Assistant with Claude, ChatGPT, and other AI",
+  "link": "https://github.com/homeassistant-ai/ha-mcp"
  }
 ]
