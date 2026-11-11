@@ -1,24 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-20-055713-2.mp4",
-  "caption": "Ruflo: The Viral 77k Star Agent Swarm Harness \ud83c\udf0a\n\nDeploy intelligent multi-player agent swarms with Ruflo, the open-source harness for Claude and Codex. Build self-learning AI systems and coordinate autonomous workflows today. Follow for more AI news!\n\n#ai #opensource #github #ruflo #agenticai #claudecode #typescript #coding",
-  "source_link": "https://github.com/ruvnet/ruflo",
-  "headline": "ruflo: \ud83c\udf0a The original agent harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, ",
-  "added": "2026-10-20 06:00",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "2107361539883040",
-    "at": "2026-10-21 19:13"
-   }
-  },
-  "posted_at": "2026-10-21 19:13",
-  "fb_id": "2107361539883040"
- },
- {
   "video": "renders/output/2026-10-21-055330-0.mp4",
   "caption": "U.S. Orders Federal Ban on DeepSeek AI\n\nThe U.S. government has ordered a mandatory removal of DeepSeek AI products from all federal civilian agencies. This escalation highlights growing concerns over national security and data integrity in the global AI race. Follow for more AI updates.\n\n#ai #deepseek #usgovernment #cybersecurity #ainews #nationalsecurity #techpolitics #chinaai",
   "source_link": "https://techcrunch.com/2026/10/20/us-orders-federal-agencies-to-remove-chinas-deepseek-ai-from-their-systems/",
@@ -1202,9 +1183,18 @@
   "headline": "agent-skills: Production-grade engineering skills for AI coding agents.",
   "thumb": "renders/output/2026-11-11-005130-1.jpg",
   "added": "2026-11-11 00:55",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 733574444
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "29326724110256950",
+    "at": "2026-11-11 10:49"
+   }
+  },
+  "posted_at": "2026-11-11 10:49",
+  "fb_id": "29326724110256950"
  },
  {
   "video": "renders/output/2026-11-11-005520-2.mp4",

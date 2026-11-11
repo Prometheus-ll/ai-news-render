@@ -2302,7 +2302,15 @@
   "words": 118,
   "caption": "Turn AI into a Pro Engineer with agent-skills\n\nUpgrade your AI agents with production-grade engineering skills using this viral MIT-licensed project. It adds discipline, testing, and architecture to AI coding. Follow for daily AI news.\n\n#ai #opensource #github #coding #softwareengineering #claude #cursor #javascript",
   "thumb": "renders/output/2026-11-11-005130-1.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-11 10:49",
+  "fb_id": "29326724110256950",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "29326724110256950"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-11-005520-2.mp4",
