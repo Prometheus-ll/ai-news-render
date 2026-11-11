@@ -1,30 +1,5 @@
 [
  {
-  "ts": "2026-10-27 06:08",
-  "pack": "Systems Map",
-  "theme": "indigo",
-  "transition": "slide",
-  "angle": "by the numbers",
-  "hook": null,
-  "scenes": [
-   "slam",
-   "morph",
-   "reveal",
-   "timeline",
-   "custom",
-   "orbit",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Anthropic Officially Files for IPO, Revealing Surge in Enterprise Adoption",
-  "link": "https://techcrunch.com/2026/10/26/anthropic-officially-files-for-its-public-debut/",
-  "motion_refs": [
-   "kamstudiolabs-100086",
-   "daniel-mac8-306214",
-   "abderrahmen-g-899031"
-  ]
- },
- {
   "ts": "2026-10-27 06:11",
   "pack": "Playbook Steps",
   "theme": "signal",
@@ -936,5 +911,29 @@
   "kind": "tutorial",
   "headline": "humanizer: Agent skill that removes signs of AI-generated writing from text",
   "link": "https://github.com/blader/humanizer"
+ },
+ {
+  "ts": "2026-11-11 00:42",
+  "pack": "Terminal Ops",
+  "theme": "forest",
+  "transition": "wipe",
+  "angle": "by the numbers",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "reveal",
+   "terminal",
+   "custom",
+   "phases",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Anthropic Targets $1.4 Trillion Valuation in Historic IPO Filing",
+  "link": "https://techcrunch.com/2026/11/10/anthropic-sets-ipo-price-range-of-70-to-78-per-share-to-reach-an-implied-valuation-of-1-404-trillion/",
+  "motion_refs": [
+   "imryven-495965",
+   "iammxfschr-955831",
+   "archiveexplorer-560622"
+  ]
  }
 ]
