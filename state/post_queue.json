@@ -1,24 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-20-055401-1.mp4",
-  "caption": "Amazon's TorchNeuron: Breaking Nvidia's AI Software Monopoly\n\nAmazon has launched TorchNeuron to help developers port AI models away from Nvidia hardware. This tool could significantly lower costs and break the CUDA software lock-in. Follow for daily AI news.\n\n#amazon #aws #nvidia #torchneuron #pytorch #aihardware #cloudcomputing #technews #machinelearning",
-  "source_link": "https://techcrunch.com/2026/10/19/amazon-is-taking-its-biggest-shot-at-nvidia-yet-with-new-torchneuron-dev-tool/",
-  "headline": "Amazon Challenges Nvidia\u2019s Software Moat with New TorchNeuron Tool",
-  "added": "2026-10-20 05:56",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "2218620252032563",
-    "at": "2026-10-21 13:22"
-   }
-  },
-  "posted_at": "2026-10-21 13:22",
-  "fb_id": "2218620252032563"
- },
- {
   "video": "renders/output/2026-10-20-055713-2.mp4",
   "caption": "Ruflo: The Viral 77k Star Agent Swarm Harness \ud83c\udf0a\n\nDeploy intelligent multi-player agent swarms with Ruflo, the open-source harness for Claude and Codex. Build self-learning AI systems and coordinate autonomous workflows today. Follow for more AI news!\n\n#ai #opensource #github #ruflo #agenticai #claudecode #typescript #coding",
   "source_link": "https://github.com/ruvnet/ruflo",
@@ -1201,9 +1182,18 @@
   "headline": "Anthropic Targets $1.4 Trillion Valuation in Historic IPO Filing",
   "thumb": "renders/output/2026-11-11-004520-0.jpg",
   "added": "2026-11-11 00:48",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 733559452
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2060084031350414",
+    "at": "2026-11-11 10:40"
+   }
+  },
+  "posted_at": "2026-11-11 10:40",
+  "fb_id": "2060084031350414"
  },
  {
   "video": "renders/output/2026-11-11-005130-1.mp4",
