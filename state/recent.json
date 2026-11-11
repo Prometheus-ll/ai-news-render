@@ -1,30 +1,5 @@
 [
  {
-  "ts": "2026-10-27 06:11",
-  "pack": "Playbook Steps",
-  "theme": "signal",
-  "transition": "wipe",
-  "angle": "solution",
-  "hook": null,
-  "scenes": [
-   "repohook",
-   "stack",
-   "reveal",
-   "morph",
-   "custom",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "Agent-Reach: Give your AI agent eyes to see the entire internet. Read & search T",
-  "link": "https://github.com/Panniantong/Agent-Reach",
-  "motion_refs": [
-   "kloss-xyz-941143",
-   "n01ennn-597182",
-   "daniel-mac8-306214"
-  ]
- },
- {
   "ts": "2026-10-27 06:14",
   "pack": "Explainer",
   "theme": "paper",
@@ -935,5 +910,25 @@
    "iammxfschr-955831",
    "archiveexplorer-560622"
   ]
+ },
+ {
+  "ts": "2026-11-11 00:48",
+  "pack": "Data Story",
+  "theme": "signal",
+  "transition": "slide",
+  "angle": "proof",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "reveal",
+   "bignumber",
+   "monitor",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "agent-skills: Production-grade engineering skills for AI coding agents.",
+  "link": "https://github.com/addyosmani/agent-skills",
+  "motion_refs": []
  }
 ]

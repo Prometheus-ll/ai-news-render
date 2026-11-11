@@ -1204,5 +1204,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 733559452
+ },
+ {
+  "video": "renders/output/2026-11-11-005130-1.mp4",
+  "caption": "Turn AI into a Pro Engineer with agent-skills\n\nUpgrade your AI agents with production-grade engineering skills using this viral MIT-licensed project. It adds discipline, testing, and architecture to AI coding. Follow for daily AI news.\n\n#ai #opensource #github #coding #softwareengineering #claude #cursor #javascript",
+  "source_link": "https://github.com/addyosmani/agent-skills",
+  "headline": "agent-skills: Production-grade engineering skills for AI coding agents.",
+  "thumb": "renders/output/2026-11-11-005130-1.jpg",
+  "added": "2026-11-11 00:55",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 733574444
  }
 ]
