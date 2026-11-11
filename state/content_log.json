@@ -2335,6 +2335,14 @@
   "words": 150,
   "caption": "How to automate Home Assistant with Claude and ChatGPT using HA-MCP\n\nLearn how to connect your smart home to powerful AI models using the open-source HA-MCP tool. Control devices and manage automations with simple conversation. Follow for daily AI tools!\n\n#tutorial #opensource #homeassistant #smarthome #claudeai #mcp #automation #python",
   "thumb": "renders/output/2026-11-11-005520-2.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-11 15:52",
+  "fb_id": "1767278144350678",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1767278144350678"
+   }
+  }
  }
 ]

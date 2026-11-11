@@ -1,24 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-21-055330-0.mp4",
-  "caption": "U.S. Orders Federal Ban on DeepSeek AI\n\nThe U.S. government has ordered a mandatory removal of DeepSeek AI products from all federal civilian agencies. This escalation highlights growing concerns over national security and data integrity in the global AI race. Follow for more AI updates.\n\n#ai #deepseek #usgovernment #cybersecurity #ainews #nationalsecurity #techpolitics #chinaai",
-  "source_link": "https://techcrunch.com/2026/10/20/us-orders-federal-agencies-to-remove-chinas-deepseek-ai-from-their-systems/",
-  "headline": "U.S. Government Orders Federal Ban on China\u2019s DeepSeek AI",
-  "added": "2026-10-21 05:56",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "1411243577829286",
-    "at": "2026-10-22 08:31"
-   }
-  },
-  "posted_at": "2026-10-22 08:31",
-  "fb_id": "1411243577829286"
- },
- {
   "video": "renders/output/2026-10-21-055650-1.mp4",
   "caption": "OpenAI\u2019s Biotech Pivot: Meet the 'Rosalind' Life Sciences Model\n\nOpenAI is moving into drug discovery with the acquisition of Orchestra Bio and the launch of the Rosalind model. They are building a new ecosystem for lab scientists to accelerate medical research. Follow for daily AI news.\n\n#ai #openai #biotech #lifesciences #rosalind #drugdiscovery #healthtech #futureofmedicine",
   "source_link": "https://techcrunch.com/2026/10/20/openai-acquires-startup-orchestra-bio%e2%81%a0-to-beef-up-its-biotech-business/",
@@ -1203,8 +1184,17 @@
   "headline": "ha-mcp: Configure and automate Home Assistant with Claude, ChatGPT, and other AI assistants.",
   "thumb": "renders/output/2026-11-11-005520-2.jpg",
   "added": "2026-11-11 00:57",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 733580571
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1767278144350678",
+    "at": "2026-11-11 15:52"
+   }
+  },
+  "posted_at": "2026-11-11 15:52",
+  "fb_id": "1767278144350678"
  }
 ]
