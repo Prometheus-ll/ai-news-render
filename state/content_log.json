@@ -2366,5 +2366,27 @@
   "caption": "New York Enforces Massive AI Safety Law for OpenAI and Anthropic\n\nNew York is now enforcing the RAISE Act, requiring frontier AI developers to disclose safety frameworks and report critical incidents. Failure to comply can result in fines up to 3 million dollars. Follow for daily AI news.\n\n#ai #aisafety #newyork #openai #anthropic #techregulation #techlaw #governance",
   "thumb": "renders/output/2026-11-12-015712-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-12-020352-1.mp4",
+  "ts": "2026-11-12 02:05",
+  "kind": "repo",
+  "headline": "daily_stock_analysis: LLM \u9a71\u52a8\u7684\u591a\u5e02\u573a\u80a1\u7968\u667a\u80fd\u5206\u6790\u7cfb\u7edf\uff1a\u591a\u6e90\u884c\u60c5\u3001\u5b9e\u65f6\u65b0\u95fb\u3001\u51b3\u7b56\u770b\u677f\u4e0e\u81ea\u52a8\u63a8\u9001\uff0c\u652f\u6301\u96f6\u6210\u672c\u5b9a\u65f6\u8fd0\u884c\u3002  LLM-powered multi-market stock analys",
+  "title": "Automate Global Stock Analysis for Free with This AI Tool",
+  "source_link": "https://github.com/ZhuLinsen/daily_stock_analysis",
+  "theme": "paper",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "stack",
+   "tabs",
+   "terminal",
+   "cta"
+  ],
+  "words": 108,
+  "caption": "Automate Global Stock Analysis for Free with This AI Tool\n\nThis LLM-powered system automates stock analysis across A-shares, US, and HK markets for free. Learn how to deploy your own AI-driven decision dashboard using GitHub Actions. Follow for daily AI news.\n\n#ai #stockmarket #opensource #github #python #trading #llm #quant #investment",
+  "thumb": "renders/output/2026-11-12-020352-1.jpg",
+  "status": "queued"
  }
 ]
