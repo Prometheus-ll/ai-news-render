@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-22-055705-0.mp4",
-  "caption": "Anthropic Proposes \"50 Death\" Rule for AI Regulation\n\nAnthropic has proposed a new federal safety bill that would only allow the government to block AI models if they pose a risk to at least 50 lives. The plan also requires judicial approval for any such intervention.\n\n#ai #anthropic #aisafety #techlaw #regulation #claude #artificialintelligence #futuretech",
-  "source_link": "https://techcrunch.com/2026/10/20/anthropic-pitches-ai-safety-bill-that-may-block-a-model-if-50-people-could-be-killed/",
-  "headline": "Anthropic Pitches Federal AI Safety Bill with High Threshold for Intervention",
-  "thumb": "renders/output/2026-10-22-055705-0.jpg",
-  "added": "2026-10-22 05:59",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "1431039955122568",
-    "at": "2026-10-23 08:27"
-   }
-  },
-  "posted_at": "2026-10-23 08:27",
-  "fb_id": "1431039955122568"
- },
- {
   "video": "renders/output/2026-10-22-060007-1.mp4",
   "caption": "Recursive Flint: The AI Model That Built Itself\n\nStartup Recursive has launched Flint, a free coding model developed by its own AI research system. This self-improving architecture could signal the end of human bottlenecks in machine learning. Follow for daily AI news.\n\n#ai #coding #recursive #flint #machinelearning #software #tech #futuretech #productivity",
   "source_link": "https://techcrunch.com/2026/10/21/recursive-launches-flint-a-laptop-coding-model-it-says-was-largely-built-by-ai/",
@@ -1206,8 +1186,17 @@
   "headline": "improve: Use your most capable model to audit your codebase and write plans for cheaper models to execute.",
   "thumb": "renders/output/2026-11-12-020548-2.jpg",
   "added": "2026-11-12 02:07",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 737696871
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2914093715656278",
+    "at": "2026-11-12 16:36"
+   }
+  },
+  "posted_at": "2026-11-12 16:36",
+  "fb_id": "2914093715656278"
  }
 ]
