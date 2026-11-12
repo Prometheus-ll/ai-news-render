@@ -2365,7 +2365,15 @@
   "words": 113,
   "caption": "New York Enforces Massive AI Safety Law for OpenAI and Anthropic\n\nNew York is now enforcing the RAISE Act, requiring frontier AI developers to disclose safety frameworks and report critical incidents. Failure to comply can result in fines up to 3 million dollars. Follow for daily AI news.\n\n#ai #aisafety #newyork #openai #anthropic #techregulation #techlaw #governance",
   "thumb": "renders/output/2026-11-12-015712-0.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-12 10:52",
+  "fb_id": "1611594890141372",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1611594890141372"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-12-020352-1.mp4",

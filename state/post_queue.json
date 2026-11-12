@@ -1,24 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-21-055650-1.mp4",
-  "caption": "OpenAI\u2019s Biotech Pivot: Meet the 'Rosalind' Life Sciences Model\n\nOpenAI is moving into drug discovery with the acquisition of Orchestra Bio and the launch of the Rosalind model. They are building a new ecosystem for lab scientists to accelerate medical research. Follow for daily AI news.\n\n#ai #openai #biotech #lifesciences #rosalind #drugdiscovery #healthtech #futureofmedicine",
-  "source_link": "https://techcrunch.com/2026/10/20/openai-acquires-startup-orchestra-bio%e2%81%a0-to-beef-up-its-biotech-business/",
-  "headline": "OpenAI Expands into Life Sciences with 'Rosalind' Biotech Model",
-  "added": "2026-10-21 05:59",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "1843914800129185",
-    "at": "2026-10-22 13:23"
-   }
-  },
-  "posted_at": "2026-10-22 13:23",
-  "fb_id": "1843914800129185"
- },
- {
   "video": "renders/output/2026-10-21-060040-2.mp4",
   "caption": "Cloudflare's New AI Security Auditor\n\nCloudflare has released an open-source tool that turns coding agents into autonomous security auditors. Learn how to automate codebase vulnerability scans with this MIT-licensed project. Follow for daily AI news.\n\n#ai #security #cybersecurity #coding #programming #opensource #github #cloudflare #devsecops",
   "source_link": "https://github.com/cloudflare/security-audit-skill",
@@ -1204,9 +1185,18 @@
   "headline": "New York Enforces Sweeping AI Safety Law for Major Developers",
   "thumb": "renders/output/2026-11-12-015712-0.jpg",
   "added": "2026-11-12 02:00",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 737677464
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1611594890141372",
+    "at": "2026-11-12 10:52"
+   }
+  },
+  "posted_at": "2026-11-12 10:52",
+  "fb_id": "1611594890141372"
  },
  {
   "video": "renders/output/2026-11-12-020352-1.mp4",
