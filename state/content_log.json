@@ -2388,5 +2388,31 @@
   "caption": "Automate Global Stock Analysis for Free with This AI Tool\n\nThis LLM-powered system automates stock analysis across A-shares, US, and HK markets for free. Learn how to deploy your own AI-driven decision dashboard using GitHub Actions. Follow for daily AI news.\n\n#ai #stockmarket #opensource #github #python #trading #llm #quant #investment",
   "thumb": "renders/output/2026-11-12-020352-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-12-020548-2.mp4",
+  "ts": "2026-11-12 02:07",
+  "kind": "tutorial",
+  "headline": "improve: Use your most capable model to audit your codebase and write plans for cheaper models to execute.",
+  "title": "How to audit your code for free with shadcn/improve",
+  "source_link": "https://github.com/shadcn/improve",
+  "theme": "forest",
+  "angle": "tutorial",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "words": 155,
+  "caption": "How to audit your code for free with shadcn/improve\n\nLearn how to use shadcn/improve to audit your codebase and generate execution plans for AI agents. This open-source tool helps you save money by using smaller models for implementation. Follow for more daily AI tools!\n\n#tutorial #opensource #howto #shadcn #coding #aiagents #developer #webdev #softwareengineering",
+  "thumb": "renders/output/2026-11-12-020548-2.jpg",
+  "status": "queued"
  }
 ]

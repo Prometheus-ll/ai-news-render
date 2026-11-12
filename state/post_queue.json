@@ -1218,5 +1218,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 737691239
+ },
+ {
+  "video": "renders/output/2026-11-12-020548-2.mp4",
+  "caption": "How to audit your code for free with shadcn/improve\n\nLearn how to use shadcn/improve to audit your codebase and generate execution plans for AI agents. This open-source tool helps you save money by using smaller models for implementation. Follow for more daily AI tools!\n\n#tutorial #opensource #howto #shadcn #coding #aiagents #developer #webdev #softwareengineering",
+  "source_link": "https://github.com/shadcn/improve",
+  "headline": "improve: Use your most capable model to audit your codebase and write plans for cheaper models to execute.",
+  "thumb": "renders/output/2026-11-12-020548-2.jpg",
+  "added": "2026-11-12 02:07",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 737696871
  }
 ]
