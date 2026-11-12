@@ -1,30 +1,5 @@
 [
  {
-  "ts": "2026-10-28 06:48",
-  "pack": "Alert Room",
-  "theme": "neon",
-  "transition": "zoom",
-  "angle": "what changes for you",
-  "hook": null,
-  "scenes": [
-   "slam",
-   "stack",
-   "reveal",
-   "bignumber",
-   "custom",
-   "command",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Google Unveils Genie 4: A Generative World Model with Real-Time Steering and Aud",
-  "link": "https://techcrunch.com/2026/10/27/googles-genie-4-world-model-adds-audio-more-realistic-worlds-and-real-time-steering/",
-  "motion_refs": [
-   "aichrislee-961335",
-   "michaelraspuzzi-740595",
-   "deeprajo1-623150"
-  ]
- },
- {
   "ts": "2026-10-28 06:51",
   "pack": "Terminal Ops",
   "theme": "forest",
@@ -930,5 +905,32 @@
   "kind": "tutorial",
   "headline": "ha-mcp: Configure and automate Home Assistant with Claude, ChatGPT, and other AI",
   "link": "https://github.com/homeassistant-ai/ha-mcp"
+ },
+ {
+  "ts": "2026-11-12 01:55",
+  "pack": "Product Keynote",
+  "theme": "mint",
+  "transition": "zoom",
+  "angle": "what changes for you",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "reveal",
+   "stack",
+   "custom",
+   "custom",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "New York Enforces Sweeping AI Safety Law for Major Developers",
+  "link": "https://techcrunch.com/2026/11/10/openai-anthropic-face-new-oversight-as-new-yorks-ai-safety-law-takes-effect/",
+  "motion_refs": [
+   "nummanali-340931",
+   "chrisjdimarco-808196",
+   "fanfulladev-063524",
+   "fanfulladev-063524",
+   "chrisjdimarco-808196",
+   "nummanali-340931"
+  ]
  }
 ]
