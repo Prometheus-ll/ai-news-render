@@ -2395,7 +2395,15 @@
   "words": 108,
   "caption": "Automate Global Stock Analysis for Free with This AI Tool\n\nThis LLM-powered system automates stock analysis across A-shares, US, and HK markets for free. Learn how to deploy your own AI-driven decision dashboard using GitHub Actions. Follow for daily AI news.\n\n#ai #stockmarket #opensource #github #python #trading #llm #quant #investment",
   "thumb": "renders/output/2026-11-12-020352-1.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-12 10:58",
+  "fb_id": "1547824410702331",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1547824410702331"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-12-020548-2.mp4",
