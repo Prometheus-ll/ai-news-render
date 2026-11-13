@@ -1,30 +1,5 @@
 [
  {
-  "ts": "2026-10-29 06:54",
-  "pack": "Data Story",
-  "theme": "ocean",
-  "transition": "slide",
-  "angle": "before vs after",
-  "hook": null,
-  "scenes": [
-   "slam",
-   "stack",
-   "reveal",
-   "bignumber",
-   "custom",
-   "versus",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Google Opens Gemini and Search to Third-Party Developers to Power AI Agents",
-  "link": "https://techcrunch.com/2026/10/28/as-ai-agents-reshape-the-web-google-opens-gemini-and-search-to-more-apps/",
-  "motion_refs": [
-   "daniel-mac8-306214",
-   "imryven-495965",
-   "aichrislee-961335"
-  ]
- },
- {
   "ts": "2026-10-29 06:58",
   "pack": "Product Keynote",
   "theme": "mint",
@@ -928,5 +903,29 @@
   "kind": "tutorial",
   "headline": "improve: Use your most capable model to audit your codebase and write plans for ",
   "link": "https://github.com/shadcn/improve"
+ },
+ {
+  "ts": "2026-11-13 01:06",
+  "pack": "Conversation",
+  "theme": "ocean",
+  "transition": "fade",
+  "angle": "the big question",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "reveal",
+   "quote",
+   "versus",
+   "custom",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Jensen Huang Resigns as Nvidia CEO Amidst Espionage Investigation and Leadership",
+  "link": "https://techcrunch.com/2026/11/12/jensen-huang-is-out-at-nvidia-who-is-colette-kress-his-interim-replacement/",
+  "motion_refs": [
+   "techyoutbe-588678",
+   "woojinrad-455731",
+   "egawa-ai-design-092323"
+  ]
  }
 ]

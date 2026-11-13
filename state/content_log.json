@@ -2438,5 +2438,27 @@
     "id": "2914093715656278"
    }
   }
+ },
+ {
+  "video": "renders/output/2026-11-13-011000-0.mp4",
+  "ts": "2026-11-13 01:13",
+  "kind": "news",
+  "headline": "Jensen Huang Resigns as Nvidia CEO Amidst Espionage Investigation and Leadership Crisis",
+  "title": "Jensen Huang Resigns from Nvidia Amidst Espionage and Leadership Crisis",
+  "source_link": "https://techcrunch.com/2026/11/12/jensen-huang-is-out-at-nvidia-who-is-colette-kress-his-interim-replacement/",
+  "theme": "ocean",
+  "angle": "the big question",
+  "scenes": [
+   "slam",
+   "reveal",
+   "quote",
+   "versus",
+   "custom",
+   "cta"
+  ],
+  "words": 94,
+  "caption": "Jensen Huang Resigns from Nvidia Amidst Espionage and Leadership Crisis\n\nNvidia founder Jensen Huang has resigned following dual investigations into personal misconduct and espionage. CFO Colette Kress steps in as interim CEO of the AI chip giant.\n\n#ai #nvidia #jensenhuang #breakingnews #tech #chips #finance #business",
+  "thumb": "renders/output/2026-11-13-011000-0.jpg",
+  "status": "queued"
  }
 ]
