@@ -2459,7 +2459,15 @@
   "words": 94,
   "caption": "Jensen Huang Resigns from Nvidia Amidst Espionage and Leadership Crisis\n\nNvidia founder Jensen Huang has resigned following dual investigations into personal misconduct and espionage. CFO Colette Kress steps in as interim CEO of the AI chip giant.\n\n#ai #nvidia #jensenhuang #breakingnews #tech #chips #finance #business",
   "thumb": "renders/output/2026-11-13-011000-0.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-13 10:49",
+  "fb_id": "1809741400278260",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1809741400278260"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-13-011621-1.mp4",
