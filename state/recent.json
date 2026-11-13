@@ -1,25 +1,5 @@
 [
  {
-  "ts": "2026-10-29 06:58",
-  "pack": "Product Keynote",
-  "theme": "mint",
-  "transition": "zoom",
-  "angle": "3 steps",
-  "hook": null,
-  "scenes": [
-   "repohook",
-   "stack",
-   "reveal",
-   "orbit",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "skills: A collection of AI agent skills for working with Expo projects and Expo ",
-  "link": "https://github.com/expo/skills",
-  "motion_refs": []
- },
- {
   "ts": "2026-10-29 07:02",
   "pack": "Explainer",
   "theme": "neon",
@@ -927,5 +907,25 @@
    "woojinrad-455731",
    "egawa-ai-design-092323"
   ]
+ },
+ {
+  "ts": "2026-11-13 01:13",
+  "pack": "Systems Map",
+  "theme": "indigo",
+  "transition": "slide",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "reveal",
+   "stack",
+   "hubmap",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "llama.cpp: LLM inference in C/C++",
+  "link": "https://github.com/ggml-org/llama.cpp",
+  "motion_refs": []
  }
 ]

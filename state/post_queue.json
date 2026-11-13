@@ -1209,5 +1209,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 741762355
+ },
+ {
+  "video": "renders/output/2026-11-13-011621-1.mp4",
+  "caption": "llama.cpp: Run LLMs on your laptop for free\n\nDiscover how llama.cpp allows you to run powerful AI models locally without expensive cloud costs. This MIT-licensed project enables high-performance inference on almost any hardware. Follow for daily AI news.\n\n#ai #opensource #github #llm #coding #developer #machinelearning #tech",
+  "source_link": "https://github.com/ggml-org/llama.cpp",
+  "headline": "llama.cpp: LLM inference in C/C++",
+  "thumb": "renders/output/2026-11-13-011621-1.jpg",
+  "added": "2026-11-13 01:19",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 741779628
  }
 ]

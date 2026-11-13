@@ -2460,5 +2460,27 @@
   "caption": "Jensen Huang Resigns from Nvidia Amidst Espionage and Leadership Crisis\n\nNvidia founder Jensen Huang has resigned following dual investigations into personal misconduct and espionage. CFO Colette Kress steps in as interim CEO of the AI chip giant.\n\n#ai #nvidia #jensenhuang #breakingnews #tech #chips #finance #business",
   "thumb": "renders/output/2026-11-13-011000-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-13-011621-1.mp4",
+  "ts": "2026-11-13 01:19",
+  "kind": "repo",
+  "headline": "llama.cpp: LLM inference in C/C++",
+  "title": "llama.cpp: Run LLMs on your laptop for free",
+  "source_link": "https://github.com/ggml-org/llama.cpp",
+  "theme": "indigo",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "stack",
+   "hubmap",
+   "terminal",
+   "cta"
+  ],
+  "words": 107,
+  "caption": "llama.cpp: Run LLMs on your laptop for free\n\nDiscover how llama.cpp allows you to run powerful AI models locally without expensive cloud costs. This MIT-licensed project enables high-performance inference on almost any hardware. Follow for daily AI news.\n\n#ai #opensource #github #llm #coding #developer #machinelearning #tech",
+  "thumb": "renders/output/2026-11-13-011621-1.jpg",
+  "status": "queued"
  }
 ]
