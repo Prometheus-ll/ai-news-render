@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-22-060356-2.mp4",
-  "caption": "Orca: The Open Source Fleet of AI Coding Agents\n\nManage Claude, Grok, and Codex in a single IDE with Orca. This MIT-licensed tool supports parallel worktrees and mobile monitoring.\n\n#ai #opensource #github #coding #developer #productivity #claudecode #automation",
-  "source_link": "https://github.com/stablyai/orca",
-  "headline": "orca: Orca is the place for working with a fleet of agents (e.g. Grok Bot, Claude Code). Run any coding agent ",
-  "thumb": "renders/output/2026-10-22-060356-2.jpg",
-  "added": "2026-10-22 06:06",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "4692789667658684",
-    "at": "2026-10-23 19:04"
-   }
-  },
-  "posted_at": "2026-10-23 19:04",
-  "fb_id": "4692789667658684"
- },
- {
   "video": "renders/output/2026-10-23-055429-0.mp4",
   "caption": "OpenAI Eyes Record $1.25 Trillion Valuation in Massive Funding Move\n\nOpenAI is reportedly seeking a $30 billion funding round that would make it the most valuable private company ever. This capital injection is aimed at securing their lead in the race to AGI. Follow for more AI news.\n\n#ai #openai #agi #tech #finance #valuation #startup #artificialintelligence #future #technology",
   "source_link": "https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1-25t-valuation-ahead-of-ipo/",
@@ -1206,8 +1186,17 @@
   "headline": "llama.cpp: LLM inference in C/C++",
   "thumb": "renders/output/2026-11-13-011621-1.jpg",
   "added": "2026-11-13 01:19",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 741779628
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1485968906827888",
+    "at": "2026-11-13 10:53"
+   }
+  },
+  "posted_at": "2026-11-13 10:53",
+  "fb_id": "1485968906827888"
  }
 ]
