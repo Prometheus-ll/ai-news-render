@@ -1209,5 +1209,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 745798435
+ },
+ {
+  "video": "renders/output/2026-11-14-005942-1.mp4",
+  "caption": "Claude Trading Skills: The Viral MIT Toolkit for Investors\n\nDiscover Claude Trading Skills, an open-source toolkit that automates market analysis and risk management using AI. Learn how to optimize your trading workflows without expensive data APIs.\n\n#ai #opensource #github #trading #investing #python #claude #fintech",
+  "source_link": "https://github.com/tradermonty/claude-trading-skills",
+  "headline": "claude-trading-skills: Claude Code skills for equity investors and traders \u2014 market analysis, technical charti",
+  "thumb": "renders/output/2026-11-14-005942-1.jpg",
+  "added": "2026-11-14 01:02",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 745808875
  }
 ]

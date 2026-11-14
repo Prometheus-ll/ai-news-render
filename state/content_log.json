@@ -2520,5 +2520,27 @@
   "caption": "OpenAI Launches ChatGPT Wallet: AI Agents Can Now Shop for You\n\nChatGPT can now complete purchases on your behalf with the new ChatGPT Wallet. This limited U.S. rollout allows AI agents to handle checkouts while you maintain biometric control. Follow for daily AI news.\n\n#ai #openai #chatgpt #fintech #ecommerce #aiagent #technews #automation",
   "thumb": "renders/output/2026-11-14-005649-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-14-005942-1.mp4",
+  "ts": "2026-11-14 01:02",
+  "kind": "repo",
+  "headline": "claude-trading-skills: Claude Code skills for equity investors and traders \u2014 market analysis, technical charti",
+  "title": "Claude Trading Skills: The Viral MIT Toolkit for Investors",
+  "source_link": "https://github.com/tradermonty/claude-trading-skills",
+  "theme": "neon",
+  "angle": "what changes for you",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "monitor",
+   "custom",
+   "custom",
+   "cta"
+  ],
+  "words": 123,
+  "caption": "Claude Trading Skills: The Viral MIT Toolkit for Investors\n\nDiscover Claude Trading Skills, an open-source toolkit that automates market analysis and risk management using AI. Learn how to optimize your trading workflows without expensive data APIs.\n\n#ai #opensource #github #trading #investing #python #claude #fintech",
+  "thumb": "renders/output/2026-11-14-005942-1.jpg",
+  "status": "queued"
  }
 ]

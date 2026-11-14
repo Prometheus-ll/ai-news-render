@@ -1,29 +1,5 @@
 [
  {
-  "ts": "2026-10-30 06:57",
-  "pack": "Editorial",
-  "theme": "ember",
-  "transition": "panel",
-  "angle": "solution",
-  "hook": null,
-  "scenes": [
-   "slam",
-   "reveal",
-   "alert",
-   "custom",
-   "bars",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Mistral Releases Trillion-Parameter AI Weights for Cybersecurity",
-  "link": "https://techcrunch.com/2026/10/29/mistral-releases-weights-for-its-trillion-parameter-ai-model-targeting-cybersecurity/",
-  "motion_refs": [
-   "imryven-495965",
-   "deedydas-407965",
-   "lepadev-475414"
-  ]
- },
- {
   "ts": "2026-10-30 07:00",
   "pack": "Conversation",
   "theme": "ocean",
@@ -928,6 +904,33 @@
    "kmasiff-549880",
    "utsavchopra30-560359",
    "1littlecoder-914649"
+  ]
+ },
+ {
+  "ts": "2026-11-14 00:58",
+  "pack": "Alert Room",
+  "theme": "neon",
+  "transition": "zoom",
+  "angle": "what changes for you",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "reveal",
+   "monitor",
+   "custom",
+   "custom",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "claude-trading-skills: Claude Code skills for equity investors and traders \u2014 mar",
+  "link": "https://github.com/tradermonty/claude-trading-skills",
+  "motion_refs": [
+   "koushikde-937635",
+   "daniel-mac8-306214",
+   "wangyinrec-532344",
+   "koushikde-937635",
+   "wangyinrec-532344",
+   "daniel-mac8-306214"
   ]
  }
 ]
