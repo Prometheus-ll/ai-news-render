@@ -1198,5 +1198,16 @@
   },
   "posted_at": "2026-11-13 10:53",
   "fb_id": "1485968906827888"
+ },
+ {
+  "video": "renders/output/2026-11-14-005649-0.mp4",
+  "caption": "OpenAI Launches ChatGPT Wallet: AI Agents Can Now Shop for You\n\nChatGPT can now complete purchases on your behalf with the new ChatGPT Wallet. This limited U.S. rollout allows AI agents to handle checkouts while you maintain biometric control. Follow for daily AI news.\n\n#ai #openai #chatgpt #fintech #ecommerce #aiagent #technews #automation",
+  "source_link": "https://techcrunch.com/2026/11/13/chatgpts-new-wallet-lets-ai-agents-shop-and-check-out-for-you/",
+  "headline": "OpenAI Launches ChatGPT Wallet for Autonomous Agent Shopping",
+  "thumb": "renders/output/2026-11-14-005649-0.jpg",
+  "added": "2026-11-14 00:58",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 745798435
  }
 ]

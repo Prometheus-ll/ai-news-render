@@ -1,27 +1,5 @@
 [
  {
-  "ts": "2026-10-29 07:02",
-  "pack": "Explainer",
-  "theme": "neon",
-  "transition": "sweep",
-  "angle": "tutorial",
-  "hook": "",
-  "scenes": [
-   "hook",
-   "meet",
-   "shot",
-   "grid",
-   "step",
-   "step",
-   "step",
-   "stats",
-   "cta"
-  ],
-  "kind": "tutorial",
-  "headline": "RuView: \u03c0 RuView turns commodity WiFi signals into real-time spatial intelligenc",
-  "link": "https://github.com/ruvnet/RuView"
- },
- {
   "ts": "2026-10-30 06:57",
   "pack": "Editorial",
   "theme": "ember",
@@ -927,5 +905,29 @@
   "headline": "llama.cpp: LLM inference in C/C++",
   "link": "https://github.com/ggml-org/llama.cpp",
   "motion_refs": []
+ },
+ {
+  "ts": "2026-11-14 00:55",
+  "pack": "Playbook Steps",
+  "theme": "paper",
+  "transition": "wipe",
+  "angle": "what changes for you",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "reveal",
+   "phases",
+   "custom",
+   "tabs",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "OpenAI Launches ChatGPT Wallet for Autonomous Agent Shopping",
+  "link": "https://techcrunch.com/2026/11/13/chatgpts-new-wallet-lets-ai-agents-shop-and-check-out-for-you/",
+  "motion_refs": [
+   "kmasiff-549880",
+   "utsavchopra30-560359",
+   "1littlecoder-914649"
+  ]
  }
 ]
