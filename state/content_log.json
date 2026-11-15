@@ -2580,5 +2580,27 @@
   "caption": "Google Search Upgraded with Gemini 4 Hydrogen for Multi-Step Reasoning\n\nGoogle has integrated Gemini 4 Hydrogen into Search to handle complex, multi-part queries with agentic reasoning. Follow for more AI news.\n\n#ai #google #gemini #search #tech #productivity #machinelearning #futuretech",
   "thumb": "renders/output/2026-11-14-235758-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-15-000416-1.mp4",
+  "ts": "2026-11-15 00:08",
+  "kind": "repo",
+  "headline": "ag-ui: AG-UI: the Agent-User Interaction Protocol. Bring Agents into Frontend Applications.",
+  "title": "AG-UI: The Missing Protocol for AI Agents",
+  "source_link": "https://github.com/ag-ui-protocol/ag-ui",
+  "theme": "signal",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "bignumber",
+   "monitor",
+   "terminal",
+   "cta"
+  ],
+  "words": 99,
+  "caption": "AG-UI: The Missing Protocol for AI Agents\n\nAG-UI is an open-source protocol that connects AI agents directly to user-facing applications. Build generative UI and real-time agentic chat with this MIT-licensed toolkit.\n\n#ai #opensource #github #typescript #aiagents #webdev #agentic #coding",
+  "thumb": "renders/output/2026-11-15-000416-1.jpg",
+  "status": "queued"
  }
 ]

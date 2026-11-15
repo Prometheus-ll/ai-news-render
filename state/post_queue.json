@@ -1209,5 +1209,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 749201893
+ },
+ {
+  "video": "renders/output/2026-11-15-000416-1.mp4",
+  "caption": "AG-UI: The Missing Protocol for AI Agents\n\nAG-UI is an open-source protocol that connects AI agents directly to user-facing applications. Build generative UI and real-time agentic chat with this MIT-licensed toolkit.\n\n#ai #opensource #github #typescript #aiagents #webdev #agentic #coding",
+  "source_link": "https://github.com/ag-ui-protocol/ag-ui",
+  "headline": "ag-ui: AG-UI: the Agent-User Interaction Protocol. Bring Agents into Frontend Applications.",
+  "thumb": "renders/output/2026-11-15-000416-1.jpg",
+  "added": "2026-11-15 00:08",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 749217342
  }
 ]

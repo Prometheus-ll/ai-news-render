@@ -1,28 +1,5 @@
 [
  {
-  "ts": "2026-10-30 07:04",
-  "pack": "Explainer",
-  "theme": "signal",
-  "transition": "sweep",
-  "angle": "tutorial",
-  "hook": "",
-  "scenes": [
-   "hook",
-   "meet",
-   "shot",
-   "grid",
-   "step",
-   "step",
-   "step",
-   "step",
-   "stats",
-   "cta"
-  ],
-  "kind": "tutorial",
-  "headline": "OpenBot: Open-source AI coworkers that each get a computer of their own: a brows",
-  "link": "https://github.com/CopilotKit/OpenBot"
- },
- {
   "ts": "2026-10-31 06:50",
   "pack": "Systems Map",
   "theme": "forest",
@@ -934,5 +911,25 @@
    "deeprajo1-623150",
    "wani-shola-459278"
   ]
+ },
+ {
+  "ts": "2026-11-15 00:01",
+  "pack": "Data Story",
+  "theme": "signal",
+  "transition": "slide",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "reveal",
+   "bignumber",
+   "monitor",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "ag-ui: AG-UI: the Agent-User Interaction Protocol. Bring Agents into Frontend Ap",
+  "link": "https://github.com/ag-ui-protocol/ag-ui",
+  "motion_refs": []
  }
 ]
