@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-23-060021-2.mp4",
-  "caption": "Ponytail: The AI agent skill that writes 50% less code\n\nDiscover Ponytail, the viral open-source project that makes AI agents think like senior developers. It slashes token costs and code bloat by forcing logic reuse over new builds. Follow for daily AI news.\n\n#ai #opensource #github #programming #coding #claude #developer #ponytail",
-  "source_link": "https://github.com/DietrichGebert/ponytail",
-  "headline": "ponytail: Makes your AI agent think like the laziest senior dev in the room. The best code is the code you nev",
-  "thumb": "renders/output/2026-10-23-060021-2.jpg",
-  "added": "2026-10-23 06:03",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "1788828398819936",
-    "at": "2026-10-24 18:03"
-   }
-  },
-  "posted_at": "2026-10-24 18:03",
-  "fb_id": "1788828398819936"
- },
- {
   "video": "renders/output/2026-10-24-053814-0.mp4",
   "caption": "OpenAI Halts Live Internet Training: Why the Move to Controlled Data?\n\nOpenAI is stopping its models from training on the live internet to prevent model collapse and contamination. This massive strategy shift prioritizes safety over real-time knowledge. Follow for more AI news.\n\n#ai #openai #machinelearning #safety #technews #llm #data #artificialintelligence",
   "source_link": "https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/",
@@ -1206,9 +1186,18 @@
   "headline": "Google Search Upgraded with Gemini 4 Hydrogen for Complex Queries",
   "thumb": "renders/output/2026-11-14-235758-0.jpg",
   "added": "2026-11-15 00:01",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 749201893
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "4509382709332498",
+    "at": "2026-11-15 10:39"
+   }
+  },
+  "posted_at": "2026-11-15 10:39",
+  "fb_id": "4509382709332498"
  },
  {
   "video": "renders/output/2026-11-15-000416-1.mp4",
