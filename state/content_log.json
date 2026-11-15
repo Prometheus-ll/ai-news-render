@@ -2558,5 +2558,27 @@
     "id": "3755120554637153"
    }
   }
+ },
+ {
+  "video": "renders/output/2026-11-14-235758-0.mp4",
+  "ts": "2026-11-15 00:01",
+  "kind": "news",
+  "headline": "Google Search Upgraded with Gemini 4 Hydrogen for Complex Queries",
+  "title": "Google Search Upgraded with Gemini 4 Hydrogen for Multi-Step Reasoning",
+  "source_link": "https://techcrunch.com/2026/11/12/googles-latest-search-upgrade-promises-better-answers-to-your-most-complicated-questions/",
+  "theme": "forest",
+  "angle": "solution",
+  "scenes": [
+   "hook",
+   "reveal",
+   "terminal",
+   "custom",
+   "custom",
+   "cta"
+  ],
+  "words": 101,
+  "caption": "Google Search Upgraded with Gemini 4 Hydrogen for Multi-Step Reasoning\n\nGoogle has integrated Gemini 4 Hydrogen into Search to handle complex, multi-part queries with agentic reasoning. Follow for more AI news.\n\n#ai #google #gemini #search #tech #productivity #machinelearning #futuretech",
+  "thumb": "renders/output/2026-11-14-235758-0.jpg",
+  "status": "queued"
  }
 ]

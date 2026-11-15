@@ -1,30 +1,5 @@
 [
  {
-  "ts": "2026-10-30 07:00",
-  "pack": "Conversation",
-  "theme": "ocean",
-  "transition": "fade",
-  "angle": "solution",
-  "hook": null,
-  "scenes": [
-   "repohook",
-   "slam",
-   "reveal",
-   "prompt",
-   "custom",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "superpowers: An agentic skills framework & software development methodology that",
-  "link": "https://github.com/obra/superpowers",
-  "motion_refs": [
-   "superalesha-970412",
-   "deedydas-252537",
-   "nolkeeg-635633"
-  ]
- },
- {
   "ts": "2026-10-30 07:04",
   "pack": "Explainer",
   "theme": "signal",
@@ -931,6 +906,33 @@
    "koushikde-937635",
    "wangyinrec-532344",
    "daniel-mac8-306214"
+  ]
+ },
+ {
+  "ts": "2026-11-14 23:56",
+  "pack": "Terminal Ops",
+  "theme": "forest",
+  "transition": "wipe",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "hook",
+   "reveal",
+   "terminal",
+   "custom",
+   "custom",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Google Search Upgraded with Gemini 4 Hydrogen for Complex Queries",
+  "link": "https://techcrunch.com/2026/11/12/googles-latest-search-upgrade-promises-better-answers-to-your-most-complicated-questions/",
+  "motion_refs": [
+   "deeprajo1-623150",
+   "daniel-mac8-306214",
+   "wani-shola-459278",
+   "daniel-mac8-306214",
+   "deeprajo1-623150",
+   "wani-shola-459278"
   ]
  }
 ]
