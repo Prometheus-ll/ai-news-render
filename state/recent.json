@@ -1,27 +1,5 @@
 [
  {
-  "ts": "2026-10-31 06:56",
-  "pack": "Explainer",
-  "theme": "indigo",
-  "transition": "sweep",
-  "angle": "tutorial",
-  "hook": "",
-  "scenes": [
-   "hook",
-   "meet",
-   "shot",
-   "grid",
-   "step",
-   "step",
-   "step",
-   "stats",
-   "cta"
-  ],
-  "kind": "tutorial",
-  "headline": "taste-skill: Agent skills that give coding agents taste: art direction, referenc",
-  "link": "https://github.com/Leonxlnx/taste-skill"
- },
- {
   "ts": "2026-11-01 07:17",
   "pack": "Alert Room",
   "theme": "ember",
@@ -933,5 +911,28 @@
    "songkeys-384673",
    "adrianduta96-992248"
   ]
+ },
+ {
+  "ts": "2026-11-16 00:08",
+  "pack": "Explainer",
+  "theme": "ocean",
+  "transition": "sweep",
+  "angle": "tutorial",
+  "hook": "",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "path",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "kind": "tutorial",
+  "headline": "Claude-BugHunter: A Claude Code skill bundle for bug hunting and external red-te",
+  "link": "https://github.com/elementalsouls/Claude-BugHunter"
  }
 ]
