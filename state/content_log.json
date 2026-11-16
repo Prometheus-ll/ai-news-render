@@ -2669,7 +2669,15 @@
   "words": 96,
   "caption": "ggml: The Library Making Local AI Possible on Any Device\n\nDiscover ggml, the MIT-licensed tensor library that enables efficient machine learning with zero dependencies. This portable C++ engine is the secret behind the local AI revolution. Follow for daily AI news.\n\n#ai #opensource #github #ggml #machinelearning #coding #cpp #developer #technology #tech",
   "thumb": "renders/output/2026-11-16-000613-1.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-16 11:05",
+  "fb_id": "1114326411362557",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1114326411362557"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-16-000818-2.mp4",
