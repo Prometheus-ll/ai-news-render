@@ -1,29 +1,5 @@
 [
  {
-  "ts": "2026-10-31 06:50",
-  "pack": "Systems Map",
-  "theme": "forest",
-  "transition": "slide",
-  "angle": "what changes for you",
-  "hook": null,
-  "scenes": [
-   "slam",
-   "reveal",
-   "hubmap",
-   "custom",
-   "phases",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "OpenAI-Backed Thrive Holdings to Acquire ADT in $15.3 Billion AI Security Play",
-  "link": "https://techcrunch.com/2026/10/29/openai-backed-thrive-holdings-acquires-adt/",
-  "motion_refs": [
-   "dale-vaz-879074",
-   "0xverdao-776363",
-   "koushikde-937635"
-  ]
- },
- {
   "ts": "2026-10-31 06:54",
   "pack": "Playbook Steps",
   "theme": "paper",
@@ -931,5 +907,32 @@
   "headline": "ag-ui: AG-UI: the Agent-User Interaction Protocol. Bring Agents into Frontend Ap",
   "link": "https://github.com/ag-ui-protocol/ag-ui",
   "motion_refs": []
+ },
+ {
+  "ts": "2026-11-15 23:59",
+  "pack": "Product Keynote",
+  "theme": "mint",
+  "transition": "zoom",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "appclutter",
+   "reveal",
+   "orbit",
+   "custom",
+   "custom",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "ElevenLabs Launches ElevenAI for Team Meeting Management",
+  "link": "https://techcrunch.com/2026/11/13/elevenlabs-new-app-combines-meeting-note-taking-and-dictation-for-teams/",
+  "motion_refs": [
+   "michaelraspuzzi-740595",
+   "henkpoley-761980",
+   "jasondainter-028222",
+   "jasondainter-028222",
+   "michaelraspuzzi-740595",
+   "henkpoley-761980"
+  ]
  }
 ]
