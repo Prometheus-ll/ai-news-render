@@ -2640,5 +2640,27 @@
   "caption": "ElevenLabs Launches ElevenAI: The Ultimate Meeting Note-Taker\n\nElevenLabs has unveiled ElevenAI, an experimental tool for enterprise team meeting management. It combines transcription, dictation, and agents to automate your workflow. Follow for daily AI news.\n\n#ai #elevenlabs #elevenai #productivity #meeting #transcription #automation #tech",
   "thumb": "renders/output/2026-11-16-000133-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-16-000613-1.mp4",
+  "ts": "2026-11-16 00:07",
+  "kind": "repo",
+  "headline": "ggml: Tensor library for machine learning",
+  "title": "ggml: The Library Making Local AI Possible on Any Device",
+  "source_link": "https://github.com/ggml-org/ggml",
+  "theme": "paper",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "terminal",
+   "custom",
+   "bars",
+   "cta"
+  ],
+  "words": 96,
+  "caption": "ggml: The Library Making Local AI Possible on Any Device\n\nDiscover ggml, the MIT-licensed tensor library that enables efficient machine learning with zero dependencies. This portable C++ engine is the secret behind the local AI revolution. Follow for daily AI news.\n\n#ai #opensource #github #ggml #machinelearning #coding #cpp #developer #technology #tech",
+  "thumb": "renders/output/2026-11-16-000613-1.jpg",
+  "status": "queued"
  }
 ]

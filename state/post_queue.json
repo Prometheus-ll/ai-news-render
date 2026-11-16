@@ -1209,5 +1209,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 752793695
+ },
+ {
+  "video": "renders/output/2026-11-16-000613-1.mp4",
+  "caption": "ggml: The Library Making Local AI Possible on Any Device\n\nDiscover ggml, the MIT-licensed tensor library that enables efficient machine learning with zero dependencies. This portable C++ engine is the secret behind the local AI revolution. Follow for daily AI news.\n\n#ai #opensource #github #ggml #machinelearning #coding #cpp #developer #technology #tech",
+  "source_link": "https://github.com/ggml-org/ggml",
+  "headline": "ggml: Tensor library for machine learning",
+  "thumb": "renders/output/2026-11-16-000613-1.jpg",
+  "added": "2026-11-16 00:07",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 752803932
  }
 ]
