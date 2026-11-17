@@ -1220,5 +1220,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 757417164
+ },
+ {
+  "video": "renders/output/2026-11-17-031113-2.mp4",
+  "caption": "How to give your AI agent local video editing skills\n\nLearn how to install and use ffmpeg-skill to let Claude Code or Cursor edit video files locally. No cloud or API keys required for this powerful open-source tool. Follow for daily AI tutorials!\n\n#tutorial #opensource #howto #ffmpeg #aiagents #python #claudecode #coding",
+  "source_link": "https://github.com/kajisho5/ffmpeg-skill",
+  "headline": "ffmpeg-skill: Local video editor for coding agents: 42 FFmpeg tools with a machine-readable contract and an MC",
+  "thumb": "renders/output/2026-11-17-031113-2.jpg",
+  "added": "2026-11-17 03:13",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 757425196
  }
 ]

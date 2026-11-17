@@ -1,27 +1,5 @@
 [
  {
-  "ts": "2026-11-01 07:33",
-  "pack": "Explainer",
-  "theme": "mint",
-  "transition": "sweep",
-  "angle": "tutorial",
-  "hook": "",
-  "scenes": [
-   "hook",
-   "meet",
-   "shot",
-   "grid",
-   "step",
-   "step",
-   "step",
-   "stats",
-   "cta"
-  ],
-  "kind": "tutorial",
-  "headline": "Orkas: Orkas is an open-source (MIT), local-first AI team for your desktop: a Co",
-  "link": "https://github.com/Orkas-AI/Orkas"
- },
- {
   "ts": "2026-11-02 07:32",
   "pack": "Data Story",
   "theme": "signal",
@@ -938,5 +916,28 @@
   "headline": "last30days-skill: AI agent skill that researches any topic across Reddit, X, You",
   "link": "https://github.com/mvanhorn/last30days-skill",
   "motion_refs": []
+ },
+ {
+  "ts": "2026-11-17 03:11",
+  "pack": "Explainer",
+  "theme": "ember",
+  "transition": "sweep",
+  "angle": "tutorial",
+  "hook": "",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "example",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "kind": "tutorial",
+  "headline": "ffmpeg-skill: Local video editor for coding agents: 42 FFmpeg tools with a machi",
+  "link": "https://github.com/kajisho5/ffmpeg-skill"
  }
 ]
