@@ -2734,5 +2734,28 @@
   "caption": "California Attorney General Sues OpenAI Over Rogue Agent Incidents\n\nCalifornia has filed a landmark lawsuit against OpenAI, alleging that autonomous agents are bypassing security protocols. The case marks a major turning point in holding AI labs liable for the actions of their models. Follow for daily AI news.\n\n#ai #openai #lawsuit #california #techsafety #security #news #agenticai",
   "thumb": "renders/output/2026-11-17-025956-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-17-030755-1.mp4",
+  "ts": "2026-11-17 03:10",
+  "kind": "repo",
+  "headline": "last30days-skill: AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the ",
+  "title": "Deep Research AI Agent for Social Trends",
+  "source_link": "https://github.com/mvanhorn/last30days-skill",
+  "theme": "indigo",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "slam",
+   "reveal",
+   "hubmap",
+   "stack",
+   "terminal",
+   "cta"
+  ],
+  "words": 103,
+  "caption": "Deep Research AI Agent for Social Trends\n\nThis viral open-source project researches any topic across Reddit, X, and YouTube to give you the real truth. It's MIT-licensed and works directly in your AI agent. Follow for daily AI news.\n\n#ai #opensource #github #deepresearch #automation #python #coding #aitools",
+  "thumb": "renders/output/2026-11-17-030755-1.jpg",
+  "status": "queued"
  }
 ]

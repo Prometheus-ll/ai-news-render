@@ -1209,5 +1209,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 757394584
+ },
+ {
+  "video": "renders/output/2026-11-17-030755-1.mp4",
+  "caption": "Deep Research AI Agent for Social Trends\n\nThis viral open-source project researches any topic across Reddit, X, and YouTube to give you the real truth. It's MIT-licensed and works directly in your AI agent. Follow for daily AI news.\n\n#ai #opensource #github #deepresearch #automation #python #coding #aitools",
+  "source_link": "https://github.com/mvanhorn/last30days-skill",
+  "headline": "last30days-skill: AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the ",
+  "thumb": "renders/output/2026-11-17-030755-1.jpg",
+  "added": "2026-11-17 03:10",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 757417164
  }
 ]

@@ -1,29 +1,5 @@
 [
  {
-  "ts": "2026-11-01 07:23",
-  "pack": "Terminal Ops",
-  "theme": "neon",
-  "transition": "wipe",
-  "angle": "what changes for you",
-  "hook": null,
-  "scenes": [
-   "repohook",
-   "reveal",
-   "phases",
-   "custom",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "Claude-Code-Game-Studios: Turn Claude Code into a full game dev studio \u2014 49 AI a",
-  "link": "https://github.com/Donchitos/Claude-Code-Game-Studios",
-  "motion_refs": [
-   "ho-ba-761062",
-   "ivysparkleai-543294",
-   "imryven-495965"
-  ]
- },
- {
   "ts": "2026-11-01 07:33",
   "pack": "Explainer",
   "theme": "mint",
@@ -941,5 +917,26 @@
    "n01ennn-597182",
    "imryven-495965"
   ]
+ },
+ {
+  "ts": "2026-11-17 03:03",
+  "pack": "Systems Map",
+  "theme": "indigo",
+  "transition": "slide",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "slam",
+   "reveal",
+   "hubmap",
+   "stack",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "last30days-skill: AI agent skill that researches any topic across Reddit, X, You",
+  "link": "https://github.com/mvanhorn/last30days-skill",
+  "motion_refs": []
  }
 ]
