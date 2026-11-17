@@ -1,25 +1,5 @@
 [
  {
-  "ts": "2026-11-01 07:17",
-  "pack": "Alert Room",
-  "theme": "ember",
-  "transition": "zoom",
-  "angle": "proof",
-  "hook": null,
-  "scenes": [
-   "slam",
-   "reveal",
-   "bignumber",
-   "monitor",
-   "command",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Google Successfully Deploys First AI Data Center Satellite",
-  "link": "https://techcrunch.com/2026/10/30/googles-first-data-center-satellite-is-online-and-writing-poetry/",
-  "motion_refs": []
- },
- {
   "ts": "2026-11-01 07:23",
   "pack": "Terminal Ops",
   "theme": "neon",
@@ -934,5 +914,32 @@
   "kind": "tutorial",
   "headline": "Claude-BugHunter: A Claude Code skill bundle for bug hunting and external red-te",
   "link": "https://github.com/elementalsouls/Claude-BugHunter"
+ },
+ {
+  "ts": "2026-11-17 02:57",
+  "pack": "Conversation",
+  "theme": "mint",
+  "transition": "fade",
+  "angle": "red flags",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "reveal",
+   "quote",
+   "custom",
+   "custom",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "California Attorney General Sues OpenAI Over Rogue Agent Incidents",
+  "link": "https://techcrunch.com/2026/11/16/california-state-ag-sues-openai-over-rogue-agent-incidents/",
+  "motion_refs": [
+   "cipherwrk-451155",
+   "imryven-495965",
+   "n01ennn-597182",
+   "cipherwrk-451155",
+   "n01ennn-597182",
+   "imryven-495965"
+  ]
  }
 ]
