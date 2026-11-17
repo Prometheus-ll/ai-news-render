@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-26-080428-0.mp4",
-  "caption": "Block Releases Human-Like Voice AI for Local Execution\n\nBlock has unveiled a new voice AI model that runs locally on MacBook M4 hardware. It delivers high-fidelity speech with zero cloud latency. Follow for more AI news.\n\n#ai #block #voicemodel #macbookm4 #edgecomputing #privacy #tech #artificialintelligence",
-  "source_link": "https://techcrunch.com/2026/10/24/blocks-new-voice-model-sounds-eerily-human/",
-  "headline": "Block Releases Human-Like Voice Model for Local Execution",
-  "thumb": "renders/output/2026-10-26-080428-0.jpg",
-  "added": "2026-10-26 08:05",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "2798574713869912",
-    "at": "2026-10-27 08:51"
-   }
-  },
-  "posted_at": "2026-10-27 08:51",
-  "fb_id": "2798574713869912"
- },
- {
   "video": "renders/output/2026-10-26-080633-1.mp4",
   "caption": "Claude SEO: The Universal AI Search Plugin for Claude Code\n\nTransform Claude Code into a professional SEO consultant with this open-source tool. It automates technical audits and AI search optimization using nineteen specialized agents. Follow for daily AI news.\n\n#ai #opensource #github #seo #claudecode #marketing #automation #coding",
   "source_link": "https://github.com/AgriciDaniel/claude-seo",
@@ -1206,8 +1186,17 @@
   "headline": "ffmpeg-skill: Local video editor for coding agents: 42 FFmpeg tools with a machine-readable contract and an MC",
   "thumb": "renders/output/2026-11-17-031113-2.jpg",
   "added": "2026-11-17 03:13",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 757425196
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1040393129080306",
+    "at": "2026-11-17 17:24"
+   }
+  },
+  "posted_at": "2026-11-17 17:24",
+  "fb_id": "1040393129080306"
  }
 ]

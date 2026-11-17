@@ -2798,6 +2798,14 @@
   "words": 165,
   "caption": "How to give your AI agent local video editing skills\n\nLearn how to install and use ffmpeg-skill to let Claude Code or Cursor edit video files locally. No cloud or API keys required for this powerful open-source tool. Follow for daily AI tutorials!\n\n#tutorial #opensource #howto #ffmpeg #aiagents #python #claudecode #coding",
   "thumb": "renders/output/2026-11-17-031113-2.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-17 17:24",
+  "fb_id": "1040393129080306",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1040393129080306"
+   }
+  }
  }
 ]
