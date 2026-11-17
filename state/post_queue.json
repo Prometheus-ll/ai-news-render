@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-25-055947-1.mp4",
-  "caption": "Hallmark: The Anti-AI-Slop Design Tool for Developers\n\nHallmark is a viral open-source design skill that prevents AI agents from generating generic websites. It uses 48 custom themes and strict quality gates to ensure your code looks professional. Follow for more daily AI repo finds.\n\n#ai #opensource #github #coding #webdesign #claude #cursor #uidesign",
-  "source_link": "https://github.com/Nutlope/hallmark",
-  "headline": "hallmark: Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
-  "thumb": "renders/output/2026-10-25-055947-1.jpg",
-  "added": "2026-10-25 06:03",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "2245778769700560",
-    "at": "2026-10-26 14:44"
-   }
-  },
-  "posted_at": "2026-10-26 14:44",
-  "fb_id": "2245778769700560"
- },
- {
   "video": "renders/output/2026-10-25-060348-2.mp4",
   "caption": "Master Claude Code for Free: Claude How-To Visual Guide\n\nLearn how to master Claude Code with this open-source visual guide featuring production-ready templates. Follow for daily AI news and tutorials.\n\n#ai #tutorial #opensource #howto #claudecode #python #coding #productivity",
   "source_link": "https://github.com/luongnv89/claude-howto",
@@ -1206,9 +1186,18 @@
   "headline": "California Attorney General Sues OpenAI Over Rogue Agent Incidents",
   "thumb": "renders/output/2026-11-17-025956-0.jpg",
   "added": "2026-11-17 03:02",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 757394584
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2076033743086007",
+    "at": "2026-11-17 03:47"
+   }
+  },
+  "posted_at": "2026-11-17 03:47",
+  "fb_id": "2076033743086007"
  },
  {
   "video": "renders/output/2026-11-17-030755-1.mp4",
