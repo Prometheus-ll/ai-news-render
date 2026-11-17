@@ -353,7 +353,7 @@ body{font-family:'PoppinsX','Poppins','Noto Sans',sans-serif;-webkit-font-smooth
 .cyrow .pb{width:190px;height:24px;border-radius:12px;background:color-mix(in srgb,var(--mv) 14%,transparent);overflow:hidden;flex:none}
 .cyrow .pb i{display:block;height:100%;width:0;border-radius:12px;background:var(--acc2)}
 .cybig{position:absolute;left:0;right:0;text-align:center;font-weight:900;letter-spacing:-.02em}
-.dark{--ca:var(--acc2);--cr:var(--al)}.light{--ca:var(--acc);--cr:color-mix(in srgb,var(--al) 72%,#000)}
+.dark{--ca:var(--acc2);--cr:var(--al);--cc:var(--acc2);--cp:color-mix(in srgb,var(--plate) 72%,#fff)}.light{--ca:var(--acc);--cr:color-mix(in srgb,var(--al) 72%,#000);--cc:color-mix(in srgb,var(--acc) 60%,#000);--cp:color-mix(in srgb,var(--plate) 42%,#000)}
 /* ===== library from the "Connected Apps" explainer: strike hook, funnel, chat demo, count+chips, plug, dashboard, shift, poll ===== */
 .cgl{background:color-mix(in srgb,currentColor 7%,transparent);border:2px solid color-mix(in srgb,currentColor 18%,transparent);border-radius:40px;box-shadow:0 26px 60px -20px rgba(0,0,0,.45)}
 .cygr{background:linear-gradient(90deg,var(--acc2),var(--vi));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
@@ -373,6 +373,23 @@ body{font-family:'PoppinsX','Poppins','Noto Sans',sans-serif;-webkit-font-smooth
 .cymeter{position:absolute;left:40px;right:40px}.cymeter span{font-size:30px;font-weight:700;opacity:.7}.cymeter .tr{height:26px;border-radius:13px;margin-top:10px;overflow:hidden;background:color-mix(in srgb,currentColor 12%,transparent)}.cymeter .tr i{display:block;height:100%;width:0;border-radius:13px}
 .cyseg{position:absolute;left:40px;right:40px;display:flex;gap:10px}.cyseg div{flex:1;text-align:center;padding:18px 0;border-radius:22px;font-size:30px;font-weight:700;border:2px solid color-mix(in srgb,currentColor 20%,transparent);opacity:.8}.cyseg .on{background:linear-gradient(135deg,var(--acc2),var(--vi));color:#0b1020;border-color:transparent;opacity:1}
 .cybtn{position:absolute;width:400px;height:130px;border-radius:70px;display:flex;align-items:center;justify-content:center;font-size:60px;font-weight:900;opacity:0}
+/* ===== news-explainer scenes (real photos): breaking, person, profile, claims, watch ===== */
+.cyph{position:absolute;object-fit:cover;border-radius:44px;border:4px solid var(--ca);box-shadow:0 0 40px color-mix(in srgb,var(--ca) 35%,transparent);opacity:0}
+.cyav{position:absolute;border-radius:44px;background:linear-gradient(135deg,var(--acc2),var(--vi));display:flex;align-items:center;justify-content:center;font-weight:900;color:#0b1020;opacity:0}
+.cycr{position:absolute;font-size:20px;opacity:0;letter-spacing:.02em;text-align:left}
+.cyred{display:inline-block;width:16px;height:16px;border-radius:50%;background:var(--al);margin-right:14px;vertical-align:-1px;box-shadow:0 0 18px var(--al)}
+.cypill.red{border-color:color-mix(in srgb,var(--al) 70%,transparent);color:var(--cr);background:color-mix(in srgb,var(--al) 12%,transparent)}
+.cystamp{display:inline-block;border:5px solid var(--plate);color:var(--cp);padding:14px 34px;border-radius:18px;font-size:50px;font-weight:800;letter-spacing:.08em;transform:rotate(-4deg);background:color-mix(in srgb,var(--plate) 14%,transparent)}
+.cyrole{position:absolute;left:0;right:0;height:112px;border-radius:30px;display:flex;align-items:center;justify-content:space-between;padding:0 36px;font-size:46px;font-weight:700;opacity:0}
+.cyrole b{font-size:24px;letter-spacing:.12em;padding:8px 20px;border-radius:999px;background:color-mix(in srgb,var(--al) 20%,transparent);color:var(--cr);opacity:0}
+.cyrole i{position:absolute;left:30px;top:50%;height:8px;border-radius:4px;background:var(--al);transform-origin:left;transform:scaleX(0)}
+.cyfact{position:absolute;left:0;right:0;height:104px;border-radius:28px;display:flex;align-items:center;gap:22px;padding:0 32px;font-size:38px;font-weight:600;opacity:0;white-space:nowrap}
+.cyfact small{font-size:24px;font-weight:700;letter-spacing:.1em;color:var(--ca);width:190px;flex:none;text-align:left}
+.cycard{position:absolute;left:0;right:0;border-radius:36px;padding:30px 38px;text-align:left;opacity:0}
+.cycard .chip2{display:inline-block;font-size:24px;font-weight:800;letter-spacing:.12em;padding:8px 20px;border-radius:999px}
+.cycard p{margin-top:14px;font-size:36px;font-weight:600;line-height:1.3}
+.cytl{position:absolute;left:30px;width:6px;border-radius:3px;background:linear-gradient(var(--acc2),var(--vi));transform-origin:top;transform:scaleY(0)}
+.cynd{position:absolute;left:16px;width:34px;height:34px;border-radius:50%;opacity:0}
 /* ===== motion library 2: glass prompt + whip, stacked glass cards, orbit, wordmark ===== */
 .mo-sky{position:absolute;inset:0;z-index:1;background:linear-gradient(170deg,color-mix(in srgb,var(--acc) 82%,#0b1020) 0%,color-mix(in srgb,var(--acc2) 60%,#fff) 100%);overflow:hidden}
 .mo-sky svg{position:absolute;inset:0;width:100%;height:100%}
@@ -1435,6 +1452,87 @@ function scenePoll(m,S,D){
   return sc;
 }
 
+// ---- news-explainer scenes (from the "CEO explainer" style). Real photos are optional: no photo -> initial-letter avatar ----
+function cyPhoto(st,m,x,y,size,name){
+  if(m.photo){const e=H(`<img class="cyph" src="${m.photo}" style="left:${x}px;top:${y}px;width:${size}px;height:${size}px">`);st.appendChild(e);
+    const cr=m.credit?H(`<div class="cycr" style="left:${x}px;top:${y+size+10}px;width:${Math.max(size,420)}px">${esc(m.credit)}</div>`):null;if(cr)st.appendChild(cr);return [e,cr];}
+  const e=H(`<div class="cyav" style="left:${x}px;top:${y}px;width:${size}px;height:${size}px;font-size:${size*.48}px">${esc(String(name||'?').trim().charAt(0).toUpperCase())}</div>`);st.appendChild(e);return [e,null];
+}
+const cyTone=(t)=>t==='unconfirmed'?['var(--plate)','var(--cp)']:['var(--ca)','var(--cc)'];
+
+// breaking: red pill, huge headline, one big counter, small line
+function sceneBreaking(m,S,D){
+  const sc=moScene(m,S),st=cyStage(sc);
+  const L=(m.lines||[]).map(nofs).filter(Boolean).slice(0,3);while(L.length<2)L.push('Big news');const fs=Math.min(150,...L.map(x=>cyFit(x,940,150)));
+  const pill=H(`<div class="cytx" style="top:0;font-size:28px;opacity:0"><span class="cypill red"><i class="cyred"></i>${esc(nofs(m.pill)||'BREAKING NEWS')}</span></div>`);st.appendChild(pill);
+  const h=H(`<div class="cytx" style="top:110px;font-size:${fs}px;opacity:0">${L.map((x,i)=>`<span style="display:block" class="${i===L.length-1?'cygr':''}">${esc(x)}</span>`).join('')}</div>`);st.appendChild(h);
+  const hasN=m.number!==''&&m.number!=null&&!isNaN(parseInt(m.number)),num=hasN?parseInt(m.number):0,suf=nofs(m.suffix)||'';
+  const ny=110+L.length*fs*1.0+40,nfs=Math.min(230,Math.floor(900/(.62*(String(num).length+suf.length))));
+  const ne=hasN?H(`<div class="cytx" style="top:${ny}px;font-size:${nfs}px;letter-spacing:-.04em;opacity:0">0</div>`):null;if(ne)st.appendChild(ne);
+  const sb=nofs(m.sub),se=sb?H(`<div class="cysub" style="top:${ny+(hasN?nfs+20:0)}px;font-size:32px;letter-spacing:.16em;font-weight:600;opacity:0">${esc(sb.toUpperCase())}</div>`):null;if(se)st.appendChild(se);
+  updaters.push(t=>{const x=t-S;cyIn(pill,t,S+.1);cyIn(h,t,S+.25,.7);if(ne){const p=E_OUT(clamp((x-D*.28)/(D*.3)));ne.textContent=Math.round(num*p)+suf;cyIn(ne,t,S+D*.28,.6);}if(se)cyIn(se,t,S+D*.55);});
+  return sc;
+}
+
+// person: photo + name, the roles they held struck out one by one, a stamp
+function scenePerson(m,S,D){
+  const sc=moScene(m,S),st=cyStage(sc);
+  const N=(m.name||[]).map(nofs).filter(Boolean).slice(0,2);while(N.length<1)N.push('Name');const date=nofs(m.date),rows=(m.rows||[]).slice(0,3),stamp=nofs(m.stamp),sub=nofs(m.sub);
+  if(date){const d=H(`<div class="cytx" style="top:0;font-size:28px;opacity:0"><span class="cypill">${esc(date)}</span></div>`);st.appendChild(d);st._d=d;}
+  const [ph,cr]=cyPhoto(st,m,0,110,210,N[0]);
+  const nf=Math.min(84,...N.map(x=>cyFit(x,640,84)));
+  const nm=H(`<div class="cytx" style="left:250px;top:${110+(210-N.length*nf*1.04)/2}px;text-align:left;font-size:${nf}px;opacity:0">${N.map((x,i)=>`<span style="display:block" class="${i===N.length-1?'cygr':''}">${esc(x)}</span>`).join('')}</div>`);st.appendChild(nm);
+  const ry=400,rw=rows.map((r,i)=>{r=r&&typeof r==='object'?r:{label:r};const e=H(`<div class="cyrole cgl" style="top:${ry+i*128}px"><span class="lb">${esc(nofs(r.label)||'Role')}</span><b>${esc(nofs(r.status)||'LEFT')}</b><i></i></div>`);st.appendChild(e);return e;});
+  const sp=stamp?H(`<div class="cytx" style="top:${ry+rw.length*128+40}px;font-size:50px;opacity:0"><span class="cystamp">${esc(stamp)}</span></div>`):null;if(sp)st.appendChild(sp);
+  const sbE=sub?H(`<div class="cysub" style="top:${ry+rw.length*128+(sp?190:30)}px;font-size:30px;opacity:0">${esc(sub)}</div>`):null;if(sbE)st.appendChild(sbE);
+  updaters.push(t=>{const x=t-S;if(st._d)cyIn(st._d,t,S+.05);cyIn(ph,t,S+.15);if(cr){cyIn(cr,t,S+.3);cr.style.opacity=Math.min(.6,cr.style.opacity);}
+    nm.style.opacity=clamp(E_OUT(clamp((x-.3)/.5))*1.8);nm.style.transform=`translateY(${(1-E_OUT(clamp((x-.3)/.5)))*40}px)`;
+    rw.forEach((e,i)=>{const t0=D*.22+i*.5;cyIn(e,t,S+t0);const k=E_OUT(clamp((x-t0-D*.2)/.35)),lb=e.querySelector('.lb'),w=lb.getBoundingClientRect().width||200;e.querySelector('i').style.width=(w+10)+'px';e.querySelector('i').style.transform=`scaleX(${k})`;e.querySelector('b').style.opacity=k;});
+    if(sp)cyIn(sp,t,S+D*.22+rw.length*.5+D*.3);if(sbE)cyIn(sbE,t,S+D*.22+rw.length*.5+D*.4);});
+  return sc;
+}
+
+// profile: photo card with name and title, then fact rows
+function sceneProfile(m,S,D){
+  const sc=moScene(m,S),st=cyStage(sc);
+  const name=nofs(m.name)||'Name',title=nofs(m.title)||'',facts=(m.facts||[]).slice(0,4),pill=nofs(m.pill);
+  if(pill){const p=H(`<div class="cytx" style="top:0;font-size:28px;opacity:0"><span class="cypill">${esc(pill)}</span></div>`);st.appendChild(p);st._p=p;}
+  const card=H(`<div class="cgl" style="position:absolute;left:0;right:0;top:100px;height:240px;border-radius:36px;opacity:0"></div>`);st.appendChild(card);
+  const [ph,cr]=cyPhoto(st,m,34,120,200,name);ph.style.width=ph.style.height='200px';
+  const tx=H(`<div style="position:absolute;left:270px;top:130px;right:30px;text-align:left;opacity:0"><div style="font-size:${Math.min(60,cyFit(name,600,60))}px;font-weight:800;line-height:1.05">${esc(name)}</div><div style="font-size:30px;opacity:.65;margin-top:10px;line-height:1.25">${esc(title)}</div></div>`);st.appendChild(tx);
+  const fy=400,fe=facts.map((f,i)=>{f=f&&typeof f==='object'?f:{v:f};const e=H(`<div class="cyfact cgl" style="top:${fy+i*122}px"><small>${esc(nofs(f.k)||'')}</small><span>${esc(nofs(f.v)||'')}</span></div>`);st.appendChild(e);return e;});
+  updaters.push(t=>{if(st._p)cyIn(st._p,t,S+.05);cyIn(card,t,S+.15);cyIn(ph,t,S+.25);if(cr){cyIn(cr,t,S+.4);cr.style.opacity=Math.min(.6,cr.style.opacity);}cyIn(tx,t,S+.35);fe.forEach((e,i)=>cyIn(e,t,S+D*.28+i*D*.15));});
+  return sc;
+}
+
+// claims: a big word, then what is CONFIRMED vs only REPORTED (honest sourcing)
+function sceneClaims(m,S,D){
+  const sc=moScene(m,S),st=cyStage(sc);
+  const big=nofs(m.big)||'WHY?',cards=(m.cards||[]).slice(0,2);
+  const bf=Math.min(300,Math.floor(900/(.64*Math.max(3,big.length))));
+  const b=H(`<div class="cytx cygr" style="top:0;font-size:${bf}px;opacity:0">${esc(big)}</div>`);st.appendChild(b);
+  let y=bf*1.05+40;
+  const ce=cards.map(c=>{c=c&&typeof c==='object'?c:{text:c};const tone=c.kind==='unconfirmed'?'unconfirmed':'confirmed',k=cyTone(tone),h=tone==='unconfirmed'?330:250;
+    const e=H(`<div class="cycard cgl" style="top:${y}px;border-color:color-mix(in srgb,${k[0]} 60%,transparent)"><span class="chip2" style="background:color-mix(in srgb,${k[0]} 20%,transparent);color:${k[1]}">${esc((nofs(c.tag)||(tone==='unconfirmed'?'REPORTED · UNCONFIRMED':'CONFIRMED')).toUpperCase())}</span><p>${esc(String(c.text||'').slice(0,130))}</p></div>`);st.appendChild(e);y+=h+20;return e;});
+  updaters.push(t=>{cyIn(b,t,S+.1,.7);ce.forEach((e,i)=>cyIn(e,t,S+D*.25+i*D*.22));});
+  return sc;
+}
+
+// watch: a short vertical timeline of what happens next
+function sceneWatch(m,S,D){
+  const sc=moScene(m,S),st=cyStage(sc);
+  const T=(m.title||[]).map(nofs).filter(Boolean).slice(0,2);while(T.length<1)T.push('WHAT TO WATCH');const tf=Math.min(104,...T.map(x=>cyFit(x,900,104)));
+  const th=H(`<div class="cytx" style="top:0;font-size:${tf}px;opacity:0">${T.map((x,i)=>`<span style="display:block" class="${i===T.length-1?'cygr':''}">${esc(x)}</span>`).join('')}</div>`);st.appendChild(th);
+  const it=(m.items||[]).slice(0,3),y0=T.length*tf*1.04+70,gap=290;
+  const line=H(`<div class="cytl" style="top:${y0+18}px;height:${(it.length-1)*gap+10}px"></div>`);st.appendChild(line);
+  const rows=it.map((x,i)=>{x=x&&typeof x==='object'?x:{title:x};const tone=x.tone==='tbd'?'unconfirmed':'confirmed',k=cyTone(tone);
+    const nd=H(`<div class="cynd" style="top:${y0+i*gap}px;background:${k[0]};box-shadow:0 0 30px color-mix(in srgb,${k[0]} 70%,transparent)"></div>`),
+    tx=H(`<div style="position:absolute;left:90px;right:0;top:${y0+i*gap-30}px;text-align:left;opacity:0"><span class="chip2" style="display:inline-block;font-size:24px;font-weight:800;letter-spacing:.12em;padding:8px 20px;border-radius:999px;background:color-mix(in srgb,${k[0]} 20%,transparent);color:${k[1]}">${esc((nofs(x.chip)||'NEXT').toUpperCase())}</span><div style="font-size:48px;font-weight:800;margin-top:12px;line-height:1.1">${esc(nofs(x.title)||'')}</div><div style="font-size:30px;opacity:.65;margin-top:8px">${esc(nofs(x.sub)||'')}</div></div>`);
+    st.appendChild(nd);st.appendChild(tx);return [nd,tx];});
+  updaters.push(t=>{const x=t-S;cyIn(th,t,S+.1,.7);line.style.transform=`scaleY(${E_INOUT(clamp((x-D*.2)/(D*.6)))})`;rows.forEach((r,i)=>{const t0=D*.22+i*D*.25;cyIn(r[0],t,S+t0);cyIn(r[1],t,S+t0+.05);});});
+  return sc;
+}
+
 // ---- wordmark: end card, the word arrives zoom-smeared and settles (manual use; not offered to Gemini) ----
 function sceneWordmark(m,S,D){
   const sc=mkScene(m,'dark','--acc2'),name=nofs(m.name)||'AI Quantum',fs=Math.max(70,Math.min(220,Math.floor(760/(.56*Math.max(5,name.length)))));
@@ -1477,7 +1575,7 @@ function sceneThumb(m,S,D){
   return sc;
 }
 
-const BUILDERS={thumb:sceneThumb,custom:sceneCustom,prompt:scenePrompt,stack:sceneStack,orbit:sceneOrbit,connect:sceneConnect,strikehook:sceneStrikeHook,funnel:sceneFunnel,chatdemo:sceneChatDemo,countchips:sceneCountChips,plug:scenePlug,dashboard:sceneDashboard,shift:sceneShift,poll:scenePoll,tasks:sceneTasks,network:sceneNetwork,wordmark:sceneWordmark,morph:sceneMorph,shapes:sceneShapes,bars:sceneBars,kinetic:sceneKinetic,command:sceneCommand,tabs:sceneTabs,mark:sceneMark,say:sceneSay,end:sceneSay,stat:sceneStat,icon:sceneIconFx,name:sceneName,code:sceneCode,phases:scenePhases,cycle:sceneCycle,stars:sceneStars,repohook:sceneRepoHook,reveal:sceneReveal,screenshot:sceneScreenshot,appclutter:sceneAppClutter,profile:sceneProfile,hubmap:sceneHubMap,roundup:sceneRoundup,hook:sceneHook,slam:sceneSlam,terminal:sceneTerminal,alert:sceneAlert,timeline:sceneTimeline,monitor:sceneMonitor,cta:sceneCTA,
+const BUILDERS={thumb:sceneThumb,custom:sceneCustom,prompt:scenePrompt,stack:sceneStack,orbit:sceneOrbit,connect:sceneConnect,strikehook:sceneStrikeHook,breaking:sceneBreaking,person:scenePerson,profile:sceneProfile,claims:sceneClaims,watch:sceneWatch,funnel:sceneFunnel,chatdemo:sceneChatDemo,countchips:sceneCountChips,plug:scenePlug,dashboard:sceneDashboard,shift:sceneShift,poll:scenePoll,tasks:sceneTasks,network:sceneNetwork,wordmark:sceneWordmark,morph:sceneMorph,shapes:sceneShapes,bars:sceneBars,kinetic:sceneKinetic,command:sceneCommand,tabs:sceneTabs,mark:sceneMark,say:sceneSay,end:sceneSay,stat:sceneStat,icon:sceneIconFx,name:sceneName,code:sceneCode,phases:scenePhases,cycle:sceneCycle,stars:sceneStars,repohook:sceneRepoHook,reveal:sceneReveal,screenshot:sceneScreenshot,appclutter:sceneAppClutter,profile:sceneProfile,hubmap:sceneHubMap,roundup:sceneRoundup,hook:sceneHook,slam:sceneSlam,terminal:sceneTerminal,alert:sceneAlert,timeline:sceneTimeline,monitor:sceneMonitor,cta:sceneCTA,
   bignumber:sceneBigNumber,versus:sceneVersus,leaderboard:sceneBoard,chat:sceneChat,quote:sceneQuote,checklist:sceneChecklist};
 
 /* ================= themes ================= */

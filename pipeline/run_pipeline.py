@@ -278,7 +278,7 @@ HOOK_TYPES = ["hook", "slam", "appclutter", "strikehook"]
 REPO_HOOK = "repohook"
 MID_TYPES = ["terminal", "alert", "timeline", "monitor", "bignumber", "versus", "leaderboard", "chat", "quote", "checklist",
              "profile", "hubmap", "roundup", "reveal", "phases", "cycle", "stars",
-             "bars", "command", "tabs", "prompt", "stack", "orbit", "connect", "tasks", "network", "funnel", "chatdemo", "countchips", "plug", "dashboard", "shift", "poll"]
+             "bars", "command", "tabs", "prompt", "stack", "orbit", "connect", "tasks", "network", "funnel", "chatdemo", "countchips", "plug", "dashboard", "shift", "poll", "breaking", "person", "profile", "claims", "watch"]
 THEMES = ["indigo", "ember", "forest", "ocean", "neon", "signal", "mint", "paper"]
 TRANSITIONS = ["fade", "slide", "zoom", "wipe", "panel"]
 MODE_PATTERNS = ["alternate_light", "alternate_dark", "light_then_dark", "dark_then_light"]
@@ -365,6 +365,11 @@ plug (two things joined by one standard, three steps): {"type":"plug","kicker":"
 dashboard (an account card with 2-3 meters and a switch): {"type":"dashboard","kicker":"2-3 words CAPS","name":"max 20 chars","sub":"max 40 chars","meters":[{"label":"max 14 chars","value":0-100}  (2-3)],"tabs":["2-3 labels, max 10 chars"],"on":0-2,"narration":"..."}
 shift (old multi-step way struck out, new one-step way): {"type":"shift","kicker":"2-3 words CAPS","title":"max 24 chars","before":["3-4 old steps, max 14 chars"],"ask":"max 10 chars","done":"max 10 chars","narration":"..."}
 poll (closing question with two buttons): {"type":"poll","kicker":"2-3 words CAPS","question":["1-3 lines, max 14 chars each"],"yes":"YES","no":"NO","prompt":"max 30 chars","pill":"max 28 chars","narration":"..."}
+breaking (NEWS ONLY, an early scene for a breaking event: red pill, giant headline, one big number): {"type":"breaking","pill":"BREAKING NEWS (max 20)","lines":["2-3 short lines, max 12 chars each, the last is highlighted"],"number":"digits only, a real figure from the story, or empty","suffix":"max 3 chars","sub":"max 44 chars","narration":"..."}
+person (NEWS ONLY: a real named person, their roles struck out one by one, a stamp): {"type":"person","date":"max 22 chars e.g. THU · NOV 12, 2026","name":["1-2 lines, max 14 chars"],"photo_name":"the EXACT English Wikipedia article title of that real person, e.g. Jensen Huang, or empty if unsure","rows":[{"label":"role, max 18","status":"RESIGNED"} (up to 3, only roles the story states)],"stamp":"max 22 chars e.g. NO REASON GIVEN","sub":"max 44 chars","narration":"..."}
+profile (NEWS ONLY: who is the person/company, with fact rows): {"type":"profile","pill":"max 22 chars e.g. INTERIM CEO","name":"max 22","title":"max 36","photo_name":"exact Wikipedia article title or empty","facts":[{"k":"max 9 CAPS","v":"max 24"} (2-4 facts the story states)],"narration":"..."}
+claims (NEWS ONLY: what is CONFIRMED vs only REPORTED, for stories with unclear or disputed facts): {"type":"claims","big":"max 7 chars e.g. WHY?","cards":[{"kind":"confirmed|unconfirmed","tag":"max 24","text":"max 130 chars, only what the story says"} (1-2)],"narration":"..."}
+watch (NEWS ONLY: what happens next, 2-3 dated or open steps): {"type":"watch","title":["1-2 lines, max 14 chars"],"items":[{"chip":"max 14 e.g. TUE · NOV 17","title":"max 26","sub":"max 44","tone":"set|tbd"} (2-3)],"narration":"..."}
 cta (closing, always last): {"type":"cta","kicker":"2-3 words CAPS","label":"max 26 chars","plate":"a punchy verdict about THIS story in CAPS, max 20 chars (never the channel name or a follow request)","footnote":"max 70 chars","chips":[{"icon":"<icon>","text":"max 28 chars"}  (exactly 2)],"follow":"Follow for daily AI news","narration":"2 short sentences: first says the source link is in the comments, then asks people to follow for daily AI news"}
 """
 
@@ -390,7 +395,7 @@ NEWS_STRUCTURE = """Build the video as 6 scenes in this order:
  2-5. FOUR DIFFERENT scenes chosen from: terminal, alert, timeline, monitor, bignumber, versus, leaderboard, chat, quote, checklist, profile, hubmap, roundup, reveal, phases, cycle, bars, command, tabs, prompt, stack, orbit, connect, tasks, network, funnel, chatdemo, countchips, plug, dashboard, shift - \
 the ones that tell THIS story best (a funding story wants bignumber/leaderboard, a product launch wants chat/checklist/timeline, \
 a controversy wants versus/monitor/alert, a security story wants alert/terminal, a story about several products or agents wants roundup then profile, a platform/ecosystem story wants hubmap, an AI search tool wants command, a choice of modes/plans wants tabs, a real growth number wants bars, a chatbot/assistant story wants prompt, two or three named modes or models want stack, four related products wants orbit, etc.)
- connect, tasks, network, funnel, chatdemo, countchips, plug, dashboard, shift and poll only when the story really names services, jobs or apps to show (never invent names). ON-SCREEN TEXT of bars, command, tabs, prompt, stack, orbit, connect, tasks and network never ends with a full stop.
+ connect, tasks, network, funnel, chatdemo, countchips, plug, dashboard, shift, poll, breaking, person, profile, claims and watch only when the story really names services, jobs or apps to show (never invent names). ON-SCREEN TEXT of bars, command, tabs, prompt, stack, orbit, connect, tasks and network never ends with a full stop.
  NAME RULE: if the story is about ONE specific named tool, product, model or repo, scene 2 MUST be "reveal" - announce its real name right after the hook.
  6. "cta" (always last)"""
 
@@ -1079,6 +1084,51 @@ def _san_poll(x):
             "no": _nofs(x.get("no"), 8) or "NO", "prompt": _nofs(x.get("prompt"), 30) or "Comment yes or no", "pill": _clip(x.get("pill"), 28)}
 
 
+def _san_breaking(x):
+    try:
+        n = int(re.sub(r"[^0-9]", "", str(x.get("number")))[:5]) if str(x.get("number") or "").strip() else ""
+    except Exception:  # noqa
+        n = ""
+    return {"pill": _nofs(x.get("pill"), 20) or "BREAKING NEWS", "lines": _list_fit(x.get("lines"), 2, 3, 12, "BIG NEWS"), "number": n,
+            "suffix": _nofs(x.get("suffix"), 3), "sub": _nofs(x.get("sub"), 44)}
+
+
+def _san_person(x):
+    rows = []
+    for r in (x.get("rows") or [])[:3]:
+        r = r if isinstance(r, dict) else {"label": r}
+        rows.append({"label": _nofs(r.get("label"), 18) or "Role", "status": _nofs(r.get("status"), 10) or "LEFT"})
+    return {"date": _nofs(x.get("date"), 22), "name": _list_fit(x.get("name"), 1, 2, 14, "NAME"), "photo_name": _nofs(x.get("photo_name"), 40),
+            "rows": rows or [{"label": "Role", "status": "LEFT"}], "stamp": _nofs(x.get("stamp"), 22), "sub": _nofs(x.get("sub"), 44)}
+
+
+def _san_profile(x):
+    facts = []
+    for f in (x.get("facts") or [])[:4]:
+        f = f if isinstance(f, dict) else {"v": f}
+        facts.append({"k": _nofs(f.get("k"), 9), "v": _nofs(f.get("v"), 24)})
+    return {"pill": _nofs(x.get("pill"), 22), "name": _nofs(x.get("name"), 22) or "Name", "title": _clip(x.get("title"), 36), "photo_name": _nofs(x.get("photo_name"), 40),
+            "facts": [f for f in facts if f["v"]] or [{"k": "", "v": "More soon"}]}
+
+
+def _san_claims(x):
+    cards = []
+    for c in (x.get("cards") or [])[:2]:
+        c = c if isinstance(c, dict) else {"text": c}
+        cards.append({"kind": "unconfirmed" if str(c.get("kind", "")).lower().startswith("unconf") else "confirmed", "tag": _nofs(c.get("tag"), 24),
+                      "text": _clip(c.get("text"), 130)})
+    return {"big": _nofs(x.get("big"), 7) or "WHY?", "cards": [c for c in cards if c["text"]] or [{"kind": "confirmed", "tag": "", "text": "Details are still coming in"}]}
+
+
+def _san_watch(x):
+    items = []
+    for i in (x.get("items") or [])[:3]:
+        i = i if isinstance(i, dict) else {"title": i}
+        items.append({"chip": _nofs(i.get("chip"), 14), "title": _nofs(i.get("title"), 26) or "Next step", "sub": _clip(i.get("sub"), 44),
+                      "tone": "tbd" if str(i.get("tone", "")).lower() == "tbd" else "set"})
+    return {"title": _list_fit(x.get("title"), 1, 2, 14, "WHAT TO WATCH"), "items": items or [{"chip": "NEXT", "title": "Updates to follow", "sub": "", "tone": "tbd"}]}
+
+
 def _san_connect(x):
     return {"kicker": _clip(x.get("kicker"), 28), "sources": _list_fit(x.get("sources"), 3, 3, 10, "App"), "hub": _nofs(x.get("hub"), 10) or "Hub",
             "targets": _list_fit(x.get("targets"), 2, 2, 16, "You")}
@@ -1101,7 +1151,7 @@ def _san_wordmark(x):
     return {"name": _nofs(x.get("name"), 20) or CHANNEL_NAME}
 
 
-SANITIZERS = {"strikehook": _san_strikehook, "funnel": _san_funnel, "chatdemo": _san_chatdemo, "countchips": _san_countchips, "plug": _san_plug, "dashboard": _san_dashboard, "shift": _san_shift, "poll": _san_poll, "connect": _san_connect, "tasks": _san_tasks, "network": _san_network, "prompt": _san_prompt, "stack": _san_stack, "orbit": _san_orbit, "wordmark": _san_wordmark, "morph": _san_morph, "shapes": _san_shapes, "bars": _san_bars, "command": _san_command,
+SANITIZERS = {"breaking": _san_breaking, "person": _san_person, "profile": _san_profile, "claims": _san_claims, "watch": _san_watch, "strikehook": _san_strikehook, "funnel": _san_funnel, "chatdemo": _san_chatdemo, "countchips": _san_countchips, "plug": _san_plug, "dashboard": _san_dashboard, "shift": _san_shift, "poll": _san_poll, "connect": _san_connect, "tasks": _san_tasks, "network": _san_network, "prompt": _san_prompt, "stack": _san_stack, "orbit": _san_orbit, "wordmark": _san_wordmark, "morph": _san_morph, "shapes": _san_shapes, "bars": _san_bars, "command": _san_command,
               "tabs": _san_tabs, "mark": _san_mark, "hook": _san_hook, "slam": _san_slam, "terminal": _san_terminal, "alert": _san_alert, "timeline": _san_timeline,
               "monitor": _san_monitor, "bignumber": _san_bignumber, "versus": _san_versus, "leaderboard": _san_leaderboard,
               "chat": _san_chat, "quote": _san_quote, "checklist": _san_checklist, "cta": _san_cta,
@@ -1473,6 +1523,15 @@ def process_story(i, story, recent_holder):
         print(f"[research] skipped: {e}")
     script = write_script(story, recent)
     manifest, voice_script, record = script_to_manifest(script, story, recent)
+    try:  # real photos (open-licence Wikimedia Commons only) for person/profile scenes; no match = initial-letter avatar
+        import webimages
+        for sc_ in manifest["scenes"]:
+            if sc_.get("type") in ("person", "profile"):
+                nm = sc_.pop("photo_name", "")
+                if nm:
+                    sc_["photo"], sc_["credit"] = webimages.find_photo(nm)
+    except Exception as e:  # noqa
+        print(f"[photo] skipped: {e}")
     if story.get("kind") in KINDS_WITH_REPO:
         rp = story.get("repo") or {}
         manifest["product_logo"] = fetch_repo_logo(story)
