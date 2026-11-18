@@ -2807,5 +2807,27 @@
     "id": "1040393129080306"
    }
   }
+ },
+ {
+  "video": "renders/output/2026-11-18-023014-0.mp4",
+  "ts": "2026-11-18 02:33",
+  "kind": "news",
+  "headline": "Isomorphic Labs Secures $5 Billion to Move AI-Discovered Drugs to Clinical Trials",
+  "title": "Isomorphic Labs: $5 Billion to Move AI Drugs to Clinical Trials",
+  "source_link": "https://techcrunch.com/2026/11/17/isomorphic-labs-raises-5b-as-it-looks-to-take-drug-candidates-to-clinical-trials/",
+  "theme": "signal",
+  "angle": "proof",
+  "scenes": [
+   "slam",
+   "reveal",
+   "timeline",
+   "roundup",
+   "phases",
+   "cta"
+  ],
+  "words": 98,
+  "caption": "Isomorphic Labs: $5 Billion to Move AI Drugs to Clinical Trials\n\nDeepMind spin-off Isomorphic Labs has raised a massive $5 billion to bring AI-designed drugs to human trials. Using Nobel-winning technology, the company is targeting breakthroughs in oncology and immunology. Follow for more AI news.\n\n#ai #biotech #isomorphiclabs #deepmind #healthtech #drugdiscovery #science #future",
+  "thumb": "renders/output/2026-11-18-023014-0.jpg",
+  "status": "queued"
  }
 ]

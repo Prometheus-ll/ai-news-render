@@ -1,25 +1,5 @@
 [
  {
-  "ts": "2026-11-02 07:32",
-  "pack": "Data Story",
-  "theme": "signal",
-  "transition": "slide",
-  "angle": "who wins",
-  "hook": null,
-  "scenes": [
-   "slam",
-   "reveal",
-   "versus",
-   "monitor",
-   "bignumber",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Judge Allows NAACP Environmental Lawsuit Against xAI to Proceed",
-  "link": "https://techcrunch.com/2026/10/31/judge-allows-naacp-lawsuit-over-xai-data-center-pollution-to-move-forward/",
-  "motion_refs": []
- },
- {
   "ts": "2026-11-02 07:38",
   "pack": "Product Keynote",
   "theme": "indigo",
@@ -939,5 +919,25 @@
   "kind": "tutorial",
   "headline": "ffmpeg-skill: Local video editor for coding agents: 42 FFmpeg tools with a machi",
   "link": "https://github.com/kajisho5/ffmpeg-skill"
+ },
+ {
+  "ts": "2026-11-18 02:27",
+  "pack": "Playbook Steps",
+  "theme": "signal",
+  "transition": "wipe",
+  "angle": "proof",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "reveal",
+   "timeline",
+   "roundup",
+   "phases",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Isomorphic Labs Secures $5 Billion to Move AI-Discovered Drugs to Clinical Trial",
+  "link": "https://techcrunch.com/2026/11/17/isomorphic-labs-raises-5b-as-it-looks-to-take-drug-candidates-to-clinical-trials/",
+  "motion_refs": []
  }
 ]
