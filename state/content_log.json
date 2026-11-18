@@ -2892,6 +2892,14 @@
   "words": 161,
   "caption": "How to use Claude-Cage for secure isolated AI browsing\n\nLearn how to set up Claude-Cage to prevent network leaks and account bans. This guide shows you how to install the open-source VM tool for a private Claude experience.\n\n#tutorial #opensource #howto #claudeai #privacy #virtualmachine #anthropic #aimodels",
   "thumb": "renders/output/2026-11-18-024015-2.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-18 16:58",
+  "fb_id": "2593608174417253",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "2593608174417253"
+   }
+  }
  }
 ]

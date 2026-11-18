@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-27-060911-0.mp4",
-  "caption": "Anthropic Files for Landmark IPO with $16B Revenue\n\nAI lab Anthropic has officially filed for its IPO, revealing a massive jump in enterprise revenue. The filing shows a unique governance structure designed to protect its AI safety mission. Follow for daily AI business updates.\n\n#ai #anthropic #claude #ipo #investing #tech #business #generativeai",
-  "source_link": "https://techcrunch.com/2026/10/26/anthropic-officially-files-for-its-public-debut/",
-  "headline": "Anthropic Officially Files for IPO, Revealing Surge in Enterprise Adoption",
-  "thumb": "renders/output/2026-10-27-060911-0.jpg",
-  "added": "2026-10-27 06:11",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "4337694133040826",
-    "at": "2026-10-28 09:32"
-   }
-  },
-  "posted_at": "2026-10-28 09:32",
-  "fb_id": "4337694133040826"
- },
- {
   "video": "renders/output/2026-10-27-061213-1.mp4",
   "caption": "Agent-Reach: Give Your AI Agent Internet Eyes\n\nGive your AI agent eyes to access platforms like Twitter, Reddit, and YouTube without expensive API fees. This MIT-licensed tool connects your AI to the real world through a simple CLI. Follow for daily AI news.\n\n#ai #opensource #github #automation #python #programming #agents #tech",
   "source_link": "https://github.com/Panniantong/Agent-Reach",
@@ -1206,8 +1186,17 @@
   "headline": "Claude-Cage: Cage\uff1a\u4e3a Claude \u7279\u5316\u7684\u8f7b\u91cf\u5316\u865a\u62df\u673a\uff0c\u5f7b\u5e95\u675c\u7edd\u7f51\u7edc\u6cc4\u9732\u3002\u591a\u5e73\u53f0\u9002\u914d\uff0c\u652f\u6301\u591a\u8d26\u53f7\u7ba1\u7406\u3001\u8fdc\u7a0b\u90e8\u7f72\u3001\u79fb\u52a8\u7aef\u64cd\u63a7\u3002",
   "thumb": "renders/output/2026-11-18-024015-2.jpg",
   "added": "2026-11-18 02:42",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 761588351
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2593608174417253",
+    "at": "2026-11-18 16:58"
+   }
+  },
+  "posted_at": "2026-11-18 16:58",
+  "fb_id": "2593608174417253"
  }
 ]
