@@ -2829,5 +2829,27 @@
   "caption": "Isomorphic Labs: $5 Billion to Move AI Drugs to Clinical Trials\n\nDeepMind spin-off Isomorphic Labs has raised a massive $5 billion to bring AI-designed drugs to human trials. Using Nobel-winning technology, the company is targeting breakthroughs in oncology and immunology. Follow for more AI news.\n\n#ai #biotech #isomorphiclabs #deepmind #healthtech #drugdiscovery #science #future",
   "thumb": "renders/output/2026-11-18-023014-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-18-023721-1.mp4",
+  "ts": "2026-11-18 02:39",
+  "kind": "repo",
+  "headline": "superpowers: An agentic skills framework & software development methodology that works.",
+  "title": "obra/superpowers: The Agentic Skills Framework for Coding",
+  "source_link": "https://github.com/obra/superpowers",
+  "theme": "neon",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "custom",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "words": 93,
+  "caption": "obra/superpowers: The Agentic Skills Framework for Coding\n\nSuperpowers is an agentic skills framework that revolutionizes how coding agents build software. It implements a subagent-driven development methodology that ensures high-quality code. Follow for daily AI news and open source tools.\n\n#ai #coding #opensource #github #softwareengineering #agents #claude #developer",
+  "thumb": "renders/output/2026-11-18-023721-1.jpg",
+  "status": "queued"
  }
 ]
