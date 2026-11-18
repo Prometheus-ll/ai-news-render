@@ -1,27 +1,5 @@
 [
  {
-  "ts": "2026-11-02 07:43",
-  "pack": "Explainer",
-  "theme": "neon",
-  "transition": "sweep",
-  "angle": "tutorial",
-  "hook": "",
-  "scenes": [
-   "hook",
-   "meet",
-   "shot",
-   "grid",
-   "step",
-   "step",
-   "step",
-   "stats",
-   "cta"
-  ],
-  "kind": "tutorial",
-  "headline": "AiSOC: Open-source AI Security Operations Center: alert fusion, LLM-agent triage",
-  "link": "https://github.com/beenuar/AiSOC"
- },
- {
   "ts": "2026-11-03 07:52",
   "pack": "Editorial",
   "theme": "paper",
@@ -942,5 +920,28 @@
    "nolkeeg-635633",
    "zigapoto-942208"
   ]
+ },
+ {
+  "ts": "2026-11-18 02:40",
+  "pack": "Explainer",
+  "theme": "indigo",
+  "transition": "sweep",
+  "angle": "tutorial",
+  "hook": "",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "path",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "kind": "tutorial",
+  "headline": "Claude-Cage: Cage\uff1a\u4e3a Claude \u7279\u5316\u7684\u8f7b\u91cf\u5316\u865a\u62df\u673a\uff0c\u5f7b\u5e95\u675c\u7edd\u7f51\u7edc\u6cc4\u9732\u3002\u591a\u5e73\u53f0\u9002\u914d\uff0c\u652f\u6301\u591a\u8d26\u53f7\u7ba1\u7406\u3001\u8fdc\u7a0b\u90e8\u7f72\u3001\u79fb\u52a8\u7aef\u64cd\u63a7\u3002",
+  "link": "https://github.com/Lee-xeo/Claude-Cage"
  }
 ]
