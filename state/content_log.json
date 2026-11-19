@@ -2901,5 +2901,27 @@
     "id": "2593608174417253"
    }
   }
+ },
+ {
+  "video": "renders/output/2026-11-19-015822-0.mp4",
+  "ts": "2026-11-19 02:00",
+  "kind": "news",
+  "headline": "Anthropic Targets $1.5 Trillion Valuation in Landmark IPO",
+  "title": "Anthropic Hits $1.5 Trillion Valuation in Historic IPO",
+  "source_link": "https://techcrunch.com/2026/11/18/anthropic-reportedly-prices-ipo-at-83-a-share-above-projected-range/",
+  "theme": "forest",
+  "angle": "by the numbers",
+  "scenes": [
+   "slam",
+   "reveal",
+   "terminal",
+   "checklist",
+   "phases",
+   "cta"
+  ],
+  "words": 100,
+  "caption": "Anthropic Hits $1.5 Trillion Valuation in Historic IPO\n\nAnthropic officially moves to go public with a record-shattering $1.5 trillion valuation. This landmark IPO for the Claude creator signals massive market confidence in foundational AI models. Follow AI Quantum for more.\n\n#ai #anthropic #claude #ipo #nasdaq #finance #tech #investing",
+  "thumb": "renders/output/2026-11-19-015822-0.jpg",
+  "status": "queued"
  }
 ]
