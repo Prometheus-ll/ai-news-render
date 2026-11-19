@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-27-061213-1.mp4",
-  "caption": "Agent-Reach: Give Your AI Agent Internet Eyes\n\nGive your AI agent eyes to access platforms like Twitter, Reddit, and YouTube without expensive API fees. This MIT-licensed tool connects your AI to the real world through a simple CLI. Follow for daily AI news.\n\n#ai #opensource #github #automation #python #programming #agents #tech",
-  "source_link": "https://github.com/Panniantong/Agent-Reach",
-  "headline": "Agent-Reach: Give your AI agent eyes to see the entire internet. Read & search Twitter, Reddit, YouTube, GitHu",
-  "thumb": "renders/output/2026-10-27-061213-1.jpg",
-  "added": "2026-10-27 06:14",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "1866400458052584",
-    "at": "2026-10-28 14:45"
-   }
-  },
-  "posted_at": "2026-10-28 14:45",
-  "fb_id": "1866400458052584"
- },
- {
   "video": "renders/output/2026-10-27-061459-2.mp4",
   "caption": "How to install Huashu Design for pro AI design skills\n\nLearn how to turn simple prompts into professional App prototypes, websites, and PPTs using Huashu Design. This open-source tool works with Claude Code and Cursor. Follow for more AI tutorials!\n\n#tutorial #opensource #howto #aidesign #github #coding #webdesign #claude",
   "source_link": "https://github.com/alchaincyf/huashu-design",
@@ -1206,9 +1186,18 @@
   "headline": "Anthropic Targets $1.5 Trillion Valuation in Landmark IPO",
   "thumb": "renders/output/2026-11-19-015822-0.jpg",
   "added": "2026-11-19 02:00",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 765823897
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2750066022088787",
+    "at": "2026-11-19 11:25"
+   }
+  },
+  "posted_at": "2026-11-19 11:25",
+  "fb_id": "2750066022088787"
  },
  {
   "video": "renders/output/2026-11-19-020351-1.mp4",

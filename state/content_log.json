@@ -2922,7 +2922,15 @@
   "words": 100,
   "caption": "Anthropic Hits $1.5 Trillion Valuation in Historic IPO\n\nAnthropic officially moves to go public with a record-shattering $1.5 trillion valuation. This landmark IPO for the Claude creator signals massive market confidence in foundational AI models. Follow AI Quantum for more.\n\n#ai #anthropic #claude #ipo #nasdaq #finance #tech #investing",
   "thumb": "renders/output/2026-11-19-015822-0.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-19 11:25",
+  "fb_id": "2750066022088787",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "2750066022088787"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-19-020351-1.mp4",
