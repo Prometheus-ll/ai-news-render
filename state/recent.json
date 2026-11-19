@@ -1,27 +1,5 @@
 [
  {
-  "ts": "2026-11-03 07:58",
-  "pack": "Explainer",
-  "theme": "forest",
-  "transition": "sweep",
-  "angle": "tutorial",
-  "hook": "",
-  "scenes": [
-   "hook",
-   "meet",
-   "shot",
-   "grid",
-   "step",
-   "step",
-   "step",
-   "stats",
-   "cta"
-  ],
-  "kind": "tutorial",
-  "headline": "skills: A collection of agent skills that help you build great interfaces.",
-  "link": "https://github.com/jakubkrehel/skills"
- },
- {
   "ts": "2026-11-04 07:25",
   "pack": "Conversation",
   "theme": "ocean",
@@ -938,6 +916,26 @@
   "kind": "news",
   "headline": "Anthropic Targets $1.5 Trillion Valuation in Landmark IPO",
   "link": "https://techcrunch.com/2026/11/18/anthropic-reportedly-prices-ipo-at-83-a-share-above-projected-range/",
+  "motion_refs": []
+ },
+ {
+  "ts": "2026-11-19 02:01",
+  "pack": "Data Story",
+  "theme": "signal",
+  "transition": "slide",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "reveal",
+   "monitor",
+   "bignumber",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "awesome-mcp-servers: A collection of MCP servers.",
+  "link": "https://github.com/punkpeye/awesome-mcp-servers",
   "motion_refs": []
  }
 ]

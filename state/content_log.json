@@ -2923,5 +2923,27 @@
   "caption": "Anthropic Hits $1.5 Trillion Valuation in Historic IPO\n\nAnthropic officially moves to go public with a record-shattering $1.5 trillion valuation. This landmark IPO for the Claude creator signals massive market confidence in foundational AI models. Follow AI Quantum for more.\n\n#ai #anthropic #claude #ipo #nasdaq #finance #tech #investing",
   "thumb": "renders/output/2026-11-19-015822-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-19-020351-1.mp4",
+  "ts": "2026-11-19 02:06",
+  "kind": "repo",
+  "headline": "awesome-mcp-servers: A collection of MCP servers.",
+  "title": "Unlocking AI Agents with awesome-mcp-servers",
+  "source_link": "https://github.com/punkpeye/awesome-mcp-servers",
+  "theme": "signal",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "monitor",
+   "bignumber",
+   "terminal",
+   "cta"
+  ],
+  "words": 120,
+  "caption": "Unlocking AI Agents with awesome-mcp-servers\n\nDiscover the massive collection of MCP servers that give your AI models real-world powers like designing in Figma or auditing Kubernetes. This MIT-licensed repository has nearly 100k stars. Follow for daily AI news.\n\n#ai #opensource #github #mcp #programming #agents #llm #developer",
+  "thumb": "renders/output/2026-11-19-020351-1.jpg",
+  "status": "queued"
  }
 ]
