@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-27-061459-2.mp4",
-  "caption": "How to install Huashu Design for pro AI design skills\n\nLearn how to turn simple prompts into professional App prototypes, websites, and PPTs using Huashu Design. This open-source tool works with Claude Code and Cursor. Follow for more AI tutorials!\n\n#tutorial #opensource #howto #aidesign #github #coding #webdesign #claude",
-  "source_link": "https://github.com/alchaincyf/huashu-design",
-  "headline": "huashu-design: Huashu Design 3.0 \u00b7 \u5728 agent \u91cc\u6253\u4e00\u53e5\u8bdd\uff0c\u62ff\u56de\u80fd\u4ea4\u4ed8\u7684\u8bbe\u8ba1\uff1a\u7f51\u9875 / App \u539f\u578b / \u53ef\u7f16\u8f91 PPTX / \u52a8\u753b / \u4fe1\u606f\u56fe \u00b7 \u516d\u4e2a\u5019\u9009\u6311\u4e09\u4e2a\u65b9\u5411 \u00b7 84 \u79cd",
-  "thumb": "renders/output/2026-10-27-061459-2.jpg",
-  "added": "2026-10-27 06:16",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "1088240790723171",
-    "at": "2026-10-28 20:12"
-   }
-  },
-  "posted_at": "2026-10-28 20:12",
-  "fb_id": "1088240790723171"
- },
- {
   "video": "renders/output/2026-10-28-064832-0.mp4",
   "caption": "Google Genie 4: The First Fully Playable AI World Model?\n\nGoogle has announced Genie 4, a massive upgrade to its generative world model featuring real-time steering and integrated audio. The model doubles previous scene consistency and enables photorealistic simulations. Follow for daily AI updates.\n\n#ai #google #genie4 #worldmodel #machinelearning #robotics #gaming #googledeepmind",
   "source_link": "https://techcrunch.com/2026/10/27/googles-genie-4-world-model-adds-audio-more-realistic-worlds-and-real-time-steering/",
@@ -1206,9 +1186,18 @@
   "headline": "awesome-mcp-servers: A collection of MCP servers.",
   "thumb": "renders/output/2026-11-19-020351-1.jpg",
   "added": "2026-11-19 02:06",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 765837138
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2530642310756835",
+    "at": "2026-11-19 11:32"
+   }
+  },
+  "posted_at": "2026-11-19 11:32",
+  "fb_id": "2530642310756835"
  },
  {
   "video": "renders/output/2026-11-19-021202-2.mp4",
