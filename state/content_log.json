@@ -2995,5 +2995,27 @@
     "id": "3264030547129231"
    }
   }
+ },
+ {
+  "video": "renders/output/2026-11-20-015135-0.mp4",
+  "ts": "2026-11-20 01:55",
+  "kind": "news",
+  "headline": "Nvidia CEO Jensen Huang Resigns Amid National Security Scandal",
+  "title": "Nvidia CEO Jensen Huang Resigns Amid National Security Scandal",
+  "source_link": "https://techcrunch.com/2026/11/19/nvidia-ceo-jensen-huangs-affair-with-alleged-chinese-spy-a-timeline/",
+  "theme": "indigo",
+  "angle": "red flags",
+  "scenes": [
+   "slam",
+   "person",
+   "orbit",
+   "tabs",
+   "profile",
+   "cta"
+  ],
+  "words": 102,
+  "caption": "Nvidia CEO Jensen Huang Resigns Amid National Security Scandal\n\nNvidia CEO Jensen Huang has resigned following a massive scandal involving national security and multiple extramarital affairs. Federal investigators are now focused on a multibillion-dollar link to an alleged Chinese spy. Follow for daily AI industry updates.\n\n#ai #nvidia #jensenhuang #tech #chips #security #business #breaking",
+  "thumb": "renders/output/2026-11-20-015135-0.jpg",
+  "status": "queued"
  }
 ]
