@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-28-065218-1.mp4",
-  "caption": "How to remove ads from Google TV, LG, and Samsung TVs\n\nThis open-source project replaces your cluttered smart TV home screen with a fast, ad-free launcher. It works on Google TV, LG, and Samsung systems and is completely free to customize. Follow for daily AI news.\n\n#ai #opensource #github #googletv #webos #tizen #techtips #smarttv",
-  "source_link": "https://github.com/simbasjungles/free-my-tv",
-  "headline": "free-my-tv: A fast, ad-free home screen for Google TV, LG webOS and Samsung Tizen. One button to undo.",
-  "thumb": "renders/output/2026-10-28-065218-1.jpg",
-  "added": "2026-10-28 06:55",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "2099206547467451",
-    "at": "2026-10-29 14:52"
-   }
-  },
-  "posted_at": "2026-10-29 14:52",
-  "fb_id": "2099206547467451"
- },
- {
   "video": "renders/output/2026-10-28-065551-2.mp4",
   "caption": "How to clean all ads from your Android phone for free with this AI tool\n\nStop annoying system ads and marketing pushes on your Android phone using this open-source tool. No root required and completely reversible. Follow AI Quantum for more!\n\n#tutorial #opensource #howto #android #hyperos #coloros #originos #ads",
   "source_link": "https://github.com/rddmwmddr/android-ad-cleaner",
@@ -1206,9 +1186,18 @@
   "headline": "Nvidia CEO Jensen Huang Resigns Amid National Security Scandal",
   "thumb": "renders/output/2026-11-20-015135-0.jpg",
   "added": "2026-11-20 01:55",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 770046221
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1736320424510843",
+    "at": "2026-11-20 11:16"
+   }
+  },
+  "posted_at": "2026-11-20 11:16",
+  "fb_id": "1736320424510843"
  },
  {
   "video": "renders/output/2026-11-20-015734-1.mp4",
