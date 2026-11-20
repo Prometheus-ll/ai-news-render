@@ -3046,7 +3046,15 @@
   "words": 112,
   "caption": "This GitHub repo lets AI agents draw perfect diagrams\n\nStop using messy charts for your AI projects. This MIT-licensed repo adds professional editorial diagramming skills to Claude, Copilot, and Cursor. Follow for daily AI news.\n\n#ai #opensource #github #developer #coding #claude #diagrams #programming",
   "thumb": "renders/output/2026-11-20-015734-1.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-20 11:28",
+  "fb_id": "2529576950884284",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "2529576950884284"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-20-020000-2.mp4",
