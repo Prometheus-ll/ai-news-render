@@ -1209,5 +1209,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 770046221
+ },
+ {
+  "video": "renders/output/2026-11-20-015734-1.mp4",
+  "caption": "This GitHub repo lets AI agents draw perfect diagrams\n\nStop using messy charts for your AI projects. This MIT-licensed repo adds professional editorial diagramming skills to Claude, Copilot, and Cursor. Follow for daily AI news.\n\n#ai #opensource #github #developer #coding #claude #diagrams #programming",
+  "source_link": "https://github.com/cathrynlavery/diagram-design",
+  "headline": "diagram-design: Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder,",
+  "thumb": "renders/output/2026-11-20-015734-1.jpg",
+  "added": "2026-11-20 01:59",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 770057110
  }
 ]

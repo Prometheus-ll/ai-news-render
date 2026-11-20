@@ -1,28 +1,5 @@
 [
  {
-  "ts": "2026-11-04 07:40",
-  "pack": "Explainer",
-  "theme": "mint",
-  "transition": "sweep",
-  "angle": "tutorial",
-  "hook": "",
-  "scenes": [
-   "hook",
-   "meet",
-   "shot",
-   "grid",
-   "path",
-   "step",
-   "step",
-   "step",
-   "stats",
-   "cta"
-  ],
-  "kind": "tutorial",
-  "headline": "ECC: The agent harness performance optimization system. Skills, instincts, memor",
-  "link": "https://github.com/affaan-m/ECC"
- },
- {
   "ts": "2026-11-05 07:51",
   "pack": "Playbook Steps",
   "theme": "paper",
@@ -933,5 +910,29 @@
   "headline": "Nvidia CEO Jensen Huang Resigns Amid National Security Scandal",
   "link": "https://techcrunch.com/2026/11/19/nvidia-ceo-jensen-huangs-affair-with-alleged-chinese-spy-a-timeline/",
   "motion_refs": []
+ },
+ {
+  "ts": "2026-11-20 01:55",
+  "pack": "Editorial",
+  "theme": "paper",
+  "transition": "panel",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "reveal",
+   "custom",
+   "tabs",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "diagram-design: Editorial diagram design for Claude Code, Codex, GitHub Copilot,",
+  "link": "https://github.com/cathrynlavery/diagram-design",
+  "motion_refs": [
+   "diamai-157697",
+   "rashadmirza404-020971",
+   "ai9app-989009"
+  ]
  }
 ]

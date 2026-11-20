@@ -3017,5 +3017,27 @@
   "caption": "Nvidia CEO Jensen Huang Resigns Amid National Security Scandal\n\nNvidia CEO Jensen Huang has resigned following a massive scandal involving national security and multiple extramarital affairs. Federal investigators are now focused on a multibillion-dollar link to an alleged Chinese spy. Follow for daily AI industry updates.\n\n#ai #nvidia #jensenhuang #tech #chips #security #business #breaking",
   "thumb": "renders/output/2026-11-20-015135-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-20-015734-1.mp4",
+  "ts": "2026-11-20 01:59",
+  "kind": "repo",
+  "headline": "diagram-design: Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder,",
+  "title": "This GitHub repo lets AI agents draw perfect diagrams",
+  "source_link": "https://github.com/cathrynlavery/diagram-design",
+  "theme": "paper",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "custom",
+   "tabs",
+   "terminal",
+   "cta"
+  ],
+  "words": 112,
+  "caption": "This GitHub repo lets AI agents draw perfect diagrams\n\nStop using messy charts for your AI projects. This MIT-licensed repo adds professional editorial diagramming skills to Claude, Copilot, and Cursor. Follow for daily AI news.\n\n#ai #opensource #github #developer #coding #claude #diagrams #programming",
+  "thumb": "renders/output/2026-11-20-015734-1.jpg",
+  "status": "queued"
  }
 ]
