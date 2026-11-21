@@ -1220,5 +1220,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 774045117
+ },
+ {
+  "video": "renders/output/2026-11-21-014330-2.mp4",
+  "caption": "How to migrate any app to Rust safely with rust-anything\n\nLearn how to rewrite your applications in Rust piece by piece while ensuring zero behavior changes. This open-source tool records your original code to verify every step. Follow for more AI tutorials!\n\n#tutorial #opensource #rustlang #coding #softwareengineering #aiagents #claude #programming",
+  "source_link": "https://github.com/erkamyaman/rust-anything",
+  "headline": "rust-anything: Rewrite your whole app in Rust, one piece at a time, checked against the original's recorded be",
+  "thumb": "renders/output/2026-11-21-014330-2.jpg",
+  "added": "2026-11-21 01:45",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 774049719
  }
 ]

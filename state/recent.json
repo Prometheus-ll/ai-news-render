@@ -1,29 +1,5 @@
 [
  {
-  "ts": "2026-11-06 07:51",
-  "pack": "Terminal Ops",
-  "theme": "neon",
-  "transition": "wipe",
-  "angle": "by the numbers",
-  "hook": null,
-  "scenes": [
-   "slam",
-   "reveal",
-   "custom",
-   "terminal",
-   "checklist",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Agility Robotics Becomes First Pure Humanoid Robot Company to Go Public",
-  "link": "https://techcrunch.com/2026/11/05/agility-is-the-first-pure-humanoid-robot-company-on-the-stock-market-are-you-buying/",
-  "motion_refs": [
-   "adrianduta96-992248",
-   "imryven-495965",
-   "flxrnc-619627"
-  ]
- },
- {
   "ts": "2026-11-06 07:56",
   "pack": "Data Story",
   "theme": "ocean",
@@ -931,5 +907,28 @@
    "n01ennn-597182",
    "koushikde-937635"
   ]
+ },
+ {
+  "ts": "2026-11-21 01:43",
+  "pack": "Explainer",
+  "theme": "ember",
+  "transition": "sweep",
+  "angle": "tutorial",
+  "hook": "",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "kind": "tutorial",
+  "headline": "rust-anything: Rewrite your whole app in Rust, one piece at a time, checked agai",
+  "link": "https://github.com/erkamyaman/rust-anything"
  }
 ]
