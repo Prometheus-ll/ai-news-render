@@ -3088,5 +3088,27 @@
     "id": "1613318900036265"
    }
   }
+ },
+ {
+  "video": "renders/output/2026-11-21-013306-0.mp4",
+  "ts": "2026-11-21 01:36",
+  "kind": "news",
+  "headline": "AI and Human Mathematicians Claim Breakthrough Solutions to the 167-Year-Old Riemann Hypothesis",
+  "title": "AI and Human Mathematicians Claim Breakthrough Riemann Hypothesis Solution",
+  "source_link": "https://techcrunch.com/2026/11/20/ai-claimed-a-solution-to-the-167-year-old-riemann-hypothesis-and-a-human-did-too/",
+  "theme": "mint",
+  "angle": "proof",
+  "scenes": [
+   "hook",
+   "reveal",
+   "prompt",
+   "custom",
+   "custom",
+   "cta"
+  ],
+  "words": 129,
+  "caption": "AI and Human Mathematicians Claim Breakthrough Riemann Hypothesis Solution\n\nA mathematician using Claude AI has claimed a solution to the 167-year-old Riemann Hypothesis. The proof is currently undergoing high-stakes verification by the global math community. Follow for daily AI news.\n\n#ai #mathematics #riemannhypothesis #claude #anthropic #science #coding #breakthrough",
+  "thumb": "renders/output/2026-11-21-013306-0.jpg",
+  "status": "queued"
  }
 ]

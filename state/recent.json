@@ -1,32 +1,5 @@
 [
  {
-  "ts": "2026-11-05 07:54",
-  "pack": "Alert Room",
-  "theme": "neon",
-  "transition": "zoom",
-  "angle": "solution",
-  "hook": null,
-  "scenes": [
-   "repohook",
-   "reveal",
-   "custom",
-   "custom",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "spec-kit: \ud83d\udcab Toolkit to help you get started with SDD or any other process!",
-  "link": "https://github.com/github/spec-kit",
-  "motion_refs": [
-   "superalesha-970412",
-   "songkeys-384673",
-   "egawa-ai-design-092323",
-   "egawa-ai-design-092323",
-   "songkeys-384673",
-   "superalesha-970412"
-  ]
- },
- {
   "ts": "2026-11-05 07:58",
   "pack": "Explainer",
   "theme": "forest",
@@ -929,5 +902,32 @@
   "kind": "tutorial",
   "headline": "autoclip: AutoClip\uff5c\u4e00\u4e2a\u94fe\u63a5\uff0c\u4e00\u952e\u51fa\u7247\u3002\u5f00\u6e90 AI \u89c6\u9891\u526a\u8f91\u684c\u9762\u5de5\u5177\uff0c\u5c06\u64ad\u5ba2\u3001\u8bbf\u8c08\u3001\u8bfe\u7a0b\u7b49\u957f\u89c6\u9891\u81ea\u52a8\u526a\u6210\u77ed\u89c6\u9891\uff0c\u751f\u6210\u5b57\u5e55\u3001\u5c01\u9762\u548c\u53d1\u5e03\u6587\u6848\uff0c\u9002\u914d",
   "link": "https://github.com/zhouxiaoka/autoclip"
+ },
+ {
+  "ts": "2026-11-21 01:32",
+  "pack": "Conversation",
+  "theme": "mint",
+  "transition": "fade",
+  "angle": "proof",
+  "hook": null,
+  "scenes": [
+   "hook",
+   "reveal",
+   "prompt",
+   "custom",
+   "custom",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "AI and Human Mathematicians Claim Breakthrough Solutions to the 167-Year-Old Rie",
+  "link": "https://techcrunch.com/2026/11/20/ai-claimed-a-solution-to-the-167-year-old-riemann-hypothesis-and-a-human-did-too/",
+  "motion_refs": [
+   "annacher-152174",
+   "thejohnnyhuy-282154",
+   "fleyta88-443662",
+   "annacher-152174",
+   "fleyta88-443662",
+   "thejohnnyhuy-282154"
+  ]
  }
 ]
