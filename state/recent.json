@@ -1,27 +1,5 @@
 [
  {
-  "ts": "2026-11-05 07:58",
-  "pack": "Explainer",
-  "theme": "forest",
-  "transition": "sweep",
-  "angle": "tutorial",
-  "hook": "",
-  "scenes": [
-   "hook",
-   "meet",
-   "shot",
-   "grid",
-   "step",
-   "step",
-   "step",
-   "stats",
-   "cta"
-  ],
-  "kind": "tutorial",
-  "headline": "pr-agent: \ud83d\ude80 PR Agent: The Original Open-Source PR Reviewer. This project is not ",
-  "link": "https://github.com/The-PR-Agent/pr-agent"
- },
- {
   "ts": "2026-11-06 07:51",
   "pack": "Terminal Ops",
   "theme": "neon",
@@ -928,6 +906,30 @@
    "annacher-152174",
    "fleyta88-443662",
    "thejohnnyhuy-282154"
+  ]
+ },
+ {
+  "ts": "2026-11-21 01:37",
+  "pack": "Systems Map",
+  "theme": "indigo",
+  "transition": "slide",
+  "angle": "3 steps",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "reveal",
+   "hubmap",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "agent_skills: Agent skills",
+  "link": "https://github.com/janestreet/agent_skills",
+  "motion_refs": [
+   "thilina-a-915273",
+   "n01ennn-597182",
+   "koushikde-937635"
   ]
  }
 ]
