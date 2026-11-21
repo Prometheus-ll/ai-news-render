@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-29-065834-1.mp4",
-  "caption": "Expo Skills: Turbocharge your AI coding agent for mobile dev\n\nLearn how the new Expo Skills project gives AI agents expert-level knowledge for building and deploying mobile apps. This open-source toolkit is a game changer for React Native developers.\n\n#ai #opensource #github #expo #reactnative #coding #mobiledev #javascript #software",
-  "source_link": "https://github.com/expo/skills",
-  "headline": "skills: A collection of AI agent skills for working with Expo projects and Expo Application Services",
-  "thumb": "renders/output/2026-10-29-065834-1.jpg",
-  "added": "2026-10-29 07:02",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "1077963298620025",
-    "at": "2026-10-30 14:44"
-   }
-  },
-  "posted_at": "2026-10-30 14:44",
-  "fb_id": "1077963298620025"
- },
- {
   "video": "renders/output/2026-10-29-070220-2.mp4",
   "caption": "How to turn WiFi into spatial intelligence with RuView\n\nLearn how to use RuView to monitor vitals and presence using only WiFi signals. This open source tool provides camera-free spatial AI for your home. Follow for more daily AI tutorials.\n\n#tutorial #opensource #howto #smarthome #ai #esp32 #privacy #rust #github",
   "source_link": "https://github.com/ruvnet/RuView",
@@ -1206,9 +1186,18 @@
   "headline": "AI and Human Mathematicians Claim Breakthrough Solutions to the 167-Year-Old Riemann Hypothesis",
   "thumb": "renders/output/2026-11-21-013306-0.jpg",
   "added": "2026-11-21 01:36",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 774032110
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1190902390552990",
+    "at": "2026-11-21 10:52"
+   }
+  },
+  "posted_at": "2026-11-21 10:52",
+  "fb_id": "1190902390552990"
  },
  {
   "video": "renders/output/2026-11-21-014039-1.mp4",

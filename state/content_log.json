@@ -3109,7 +3109,15 @@
   "words": 129,
   "caption": "AI and Human Mathematicians Claim Breakthrough Riemann Hypothesis Solution\n\nA mathematician using Claude AI has claimed a solution to the 167-year-old Riemann Hypothesis. The proof is currently undergoing high-stakes verification by the global math community. Follow for daily AI news.\n\n#ai #mathematics #riemannhypothesis #claude #anthropic #science #coding #breakthrough",
   "thumb": "renders/output/2026-11-21-013306-0.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-21 10:52",
+  "fb_id": "1190902390552990",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1190902390552990"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-21-014039-1.mp4",
