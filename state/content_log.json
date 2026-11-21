@@ -3139,7 +3139,15 @@
   "words": 106,
   "caption": "Jane Street\u2019s Agent Skills is a Game-Changer for LLMs\n\nLearn how Jane Street's new open-source project provides standardized skills to upgrade any AI agent or chatbot. Turn your LLM into a Socratic tutor using the MIT-licensed SKILL.md format.\n\n#ai #opensource #github #llm #janestreet #coding #agents #technology",
   "thumb": "renders/output/2026-11-21-014039-1.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-21 10:55",
+  "fb_id": "1462684848526804",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1462684848526804"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-21-014330-2.mp4",
