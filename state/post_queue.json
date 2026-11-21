@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-30-065753-0.mp4",
-  "caption": "Mistral Releases Trillion-Parameter Cyber AI weights\n\nMistral has released the open weights for Mistral Large 4, a trillion-parameter model for cybersecurity. It offers sovereign defense capabilities for enterprises to run locally. Follow for more AI news.\n\n#ai #mistral #cybersecurity #opensource #ml4 #tech #infosec #coding",
-  "source_link": "https://techcrunch.com/2026/10/29/mistral-releases-weights-for-its-trillion-parameter-ai-model-targeting-cybersecurity/",
-  "headline": "Mistral Releases Trillion-Parameter AI Weights for Cybersecurity",
-  "thumb": "renders/output/2026-10-30-065753-0.jpg",
-  "added": "2026-10-30 07:00",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "1763848918025399",
-    "at": "2026-10-31 09:30"
-   }
-  },
-  "posted_at": "2026-10-31 09:30",
-  "fb_id": "1763848918025399"
- },
- {
   "video": "renders/output/2026-10-30-070138-1.mp4",
   "caption": "obra/superpowers: The Agentic Framework Changing Software Development\n\nDiscover Superpowers, a viral open-source framework that brings subagent-driven development to your coding workflow. It forces AI agents to plan, test, and work autonomously for hours. Follow for daily AI news.\n\n#ai #opensource #github #coding #softwareengineering #agentic #claude #developer #programming",
   "source_link": "https://github.com/obra/superpowers",
@@ -1206,8 +1186,17 @@
   "headline": "rust-anything: Rewrite your whole app in Rust, one piece at a time, checked against the original's recorded be",
   "thumb": "renders/output/2026-11-21-014330-2.jpg",
   "added": "2026-11-21 01:45",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 774049719
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1590441712845677",
+    "at": "2026-11-21 15:56"
+   }
+  },
+  "posted_at": "2026-11-21 15:56",
+  "fb_id": "1590441712845677"
  }
 ]

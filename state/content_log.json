@@ -3173,6 +3173,14 @@
   "words": 125,
   "caption": "How to migrate any app to Rust safely with rust-anything\n\nLearn how to rewrite your applications in Rust piece by piece while ensuring zero behavior changes. This open-source tool records your original code to verify every step. Follow for more AI tutorials!\n\n#tutorial #opensource #rustlang #coding #softwareengineering #aiagents #claude #programming",
   "thumb": "renders/output/2026-11-21-014330-2.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-21 15:56",
+  "fb_id": "1590441712845677",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1590441712845677"
+   }
+  }
  }
 ]
