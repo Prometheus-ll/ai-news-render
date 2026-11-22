@@ -3203,7 +3203,15 @@
   "words": 105,
   "caption": "Anthropic Hits $2 Trillion Valuation in Massive Nasdaq IPO\n\nAnthropic shares surged 33% on their first day of trading, giving the AI lab a market cap over $2 trillion. With $220 billion in cash, the company is now a top-tier financial giant.\n\n#ai #anthropic #nasdaq #ipo #finance #claude #tech #investing",
   "thumb": "renders/output/2026-11-22-002419-0.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-22 11:00",
+  "fb_id": "3141892596168712",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "3141892596168712"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-22-002856-1.mp4",
