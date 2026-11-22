@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-31-065107-0.mp4",
-  "caption": "OpenAI-Backed Thrive Holdings Acquires ADT in $15.3 Billion AI Security Move\n\nThrive Holdings is acquiring home security giant ADT to integrate OpenAI models into physical infrastructure. This massive $15.3 billion deal signals a major shift toward AI-native home protection. Follow for daily AI news.\n\n#ai #openai #adt #smarthome #techdeal #automation #security #futuretech",
-  "source_link": "https://techcrunch.com/2026/10/29/openai-backed-thrive-holdings-acquires-adt/",
-  "headline": "OpenAI-Backed Thrive Holdings to Acquire ADT in $15.3 Billion AI Security Play",
-  "thumb": "renders/output/2026-10-31-065107-0.jpg",
-  "added": "2026-10-31 06:53",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "2315472699309273",
-    "at": "2026-11-01 10:14"
-   }
-  },
-  "posted_at": "2026-11-01 10:14",
-  "fb_id": "2315472699309273"
- },
- {
   "video": "renders/output/2026-10-31-065436-1.mp4",
   "caption": "This GitHub repo turns AI agents into real engineers\n\nStop relying on vibe coding and start building real applications. This MIT-licensed repo adds professional workflows like TDD and alignment grilling to agents like Claude and Copilot. Follow for daily AI news.\n\n#ai #opensource #github #coding #programming #softwareengineering #claude #copilot #developer",
   "source_link": "https://github.com/mattpocock/skills",
@@ -1206,8 +1186,17 @@
   "headline": "phonebox: Turn an old Android phone into a customizable desk panel and touch control deck for Windows, Linux a",
   "thumb": "renders/output/2026-11-22-003155-2.jpg",
   "added": "2026-11-22 00:33",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 777350112
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1159947553185461",
+    "at": "2026-11-22 15:56"
+   }
+  },
+  "posted_at": "2026-11-22 15:56",
+  "fb_id": "1159947553185461"
  }
 ]
