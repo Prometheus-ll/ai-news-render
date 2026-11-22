@@ -1209,5 +1209,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 777336347
+ },
+ {
+  "video": "renders/output/2026-11-22-002856-1.mp4",
+  "caption": "Write an app once. It runs natively on the web, macOS, iOS, and Linux.\n\nExact is an agent-native framework for building high-performance apps. It uses native rendering for every platform rather than a web-view wrapper. Follow for daily AI news.\n\n#ai #coding #opensource #github #rust #software #programming #iosdev",
+  "source_link": "https://github.com/expo/exact",
+  "headline": "exact: Write an app once. It runs natively on the web, macOS, iOS, and Linux, and an AI agent can build it, ru",
+  "thumb": "renders/output/2026-11-22-002856-1.jpg",
+  "added": "2026-11-22 00:31",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 777346263
  }
 ]

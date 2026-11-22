@@ -1,27 +1,5 @@
 [
  {
-  "ts": "2026-11-06 08:05",
-  "pack": "Explainer",
-  "theme": "ember",
-  "transition": "sweep",
-  "angle": "tutorial",
-  "hook": "",
-  "scenes": [
-   "hook",
-   "meet",
-   "shot",
-   "grid",
-   "step",
-   "step",
-   "step",
-   "stats",
-   "cta"
-  ],
-  "kind": "tutorial",
-  "headline": "skills: Get production-ready images, video, audio, and 3D from any AI agent: ski",
-  "link": "https://github.com/scenario-labs/skills"
- },
- {
   "ts": "2026-11-07 06:59",
   "pack": "Product Keynote",
   "theme": "mint",
@@ -926,5 +904,32 @@
   "headline": "Anthropic Debuts on Nasdaq with Massive $105 Billion IPO",
   "link": "https://techcrunch.com/2026/11/19/anthropic-hits-nasdaq-exchanges-at-110-27-above-ipo-price/",
   "motion_refs": []
+ },
+ {
+  "ts": "2026-11-22 00:26",
+  "pack": "Alert Room",
+  "theme": "neon",
+  "transition": "zoom",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "reveal",
+   "custom",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "exact: Write an app once. It runs natively on the web, macOS, iOS, and Linux, an",
+  "link": "https://github.com/expo/exact",
+  "motion_refs": [
+   "archiveexplorer-560622",
+   "n01ennn-597182",
+   "annacher-152174",
+   "n01ennn-597182",
+   "archiveexplorer-560622",
+   "annacher-152174"
+  ]
  }
 ]

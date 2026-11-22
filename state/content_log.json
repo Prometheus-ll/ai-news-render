@@ -3204,5 +3204,27 @@
   "caption": "Anthropic Hits $2 Trillion Valuation in Massive Nasdaq IPO\n\nAnthropic shares surged 33% on their first day of trading, giving the AI lab a market cap over $2 trillion. With $220 billion in cash, the company is now a top-tier financial giant.\n\n#ai #anthropic #nasdaq #ipo #finance #claude #tech #investing",
   "thumb": "renders/output/2026-11-22-002419-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-22-002856-1.mp4",
+  "ts": "2026-11-22 00:31",
+  "kind": "repo",
+  "headline": "exact: Write an app once. It runs natively on the web, macOS, iOS, and Linux, and an AI agent can build it, ru",
+  "title": "Write an app once. It runs natively on the web, macOS, iOS, and Linux.",
+  "source_link": "https://github.com/expo/exact",
+  "theme": "neon",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "custom",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "words": 107,
+  "caption": "Write an app once. It runs natively on the web, macOS, iOS, and Linux.\n\nExact is an agent-native framework for building high-performance apps. It uses native rendering for every platform rather than a web-view wrapper. Follow for daily AI news.\n\n#ai #coding #opensource #github #rust #software #programming #iosdev",
+  "thumb": "renders/output/2026-11-22-002856-1.jpg",
+  "status": "queued"
  }
 ]
