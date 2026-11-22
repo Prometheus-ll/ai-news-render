@@ -1220,5 +1220,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 777346263
+ },
+ {
+  "video": "renders/output/2026-11-22-003155-2.mp4",
+  "caption": "How to turn an old Android into a PC desk panel with Phonebox\n\nLearn how to use the open-source Phonebox tool to transform your old Android phone into a powerful touch control deck for your computer. This tutorial covers installation and setup for Windows, Linux, and macOS. Follow for more AI and open-source tools!\n\n#tutorial #opensource #howto #android #desksetup #productivity #coding #github",
+  "source_link": "https://github.com/ersinkoc/phonebox",
+  "headline": "phonebox: Turn an old Android phone into a customizable desk panel and touch control deck for Windows, Linux a",
+  "thumb": "renders/output/2026-11-22-003155-2.jpg",
+  "added": "2026-11-22 00:33",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 777350112
  }
 ]

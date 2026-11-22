@@ -3226,5 +3226,30 @@
   "caption": "Write an app once. It runs natively on the web, macOS, iOS, and Linux.\n\nExact is an agent-native framework for building high-performance apps. It uses native rendering for every platform rather than a web-view wrapper. Follow for daily AI news.\n\n#ai #coding #opensource #github #rust #software #programming #iosdev",
   "thumb": "renders/output/2026-11-22-002856-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-22-003155-2.mp4",
+  "ts": "2026-11-22 00:33",
+  "kind": "tutorial",
+  "headline": "phonebox: Turn an old Android phone into a customizable desk panel and touch control deck for Windows, Linux a",
+  "title": "How to turn an old Android into a PC desk panel with Phonebox",
+  "source_link": "https://github.com/ersinkoc/phonebox",
+  "theme": "forest",
+  "angle": "tutorial",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "words": 120,
+  "caption": "How to turn an old Android into a PC desk panel with Phonebox\n\nLearn how to use the open-source Phonebox tool to transform your old Android phone into a powerful touch control deck for your computer. This tutorial covers installation and setup for Windows, Linux, and macOS. Follow for more AI and open-source tools!\n\n#tutorial #opensource #howto #android #desksetup #productivity #coding #github",
+  "thumb": "renders/output/2026-11-22-003155-2.jpg",
+  "status": "queued"
  }
 ]
