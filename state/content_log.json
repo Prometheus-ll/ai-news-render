@@ -3182,5 +3182,27 @@
     "id": "1590441712845677"
    }
   }
+ },
+ {
+  "video": "renders/output/2026-11-22-002419-0.mp4",
+  "ts": "2026-11-22 00:26",
+  "kind": "news",
+  "headline": "Anthropic Debuts on Nasdaq with Massive $105 Billion IPO",
+  "title": "Anthropic Hits $2 Trillion Valuation in Massive Nasdaq IPO",
+  "source_link": "https://techcrunch.com/2026/11/19/anthropic-hits-nasdaq-exchanges-at-110-27-above-ipo-price/",
+  "theme": "paper",
+  "angle": "by the numbers",
+  "scenes": [
+   "slam",
+   "reveal",
+   "timeline",
+   "checklist",
+   "roundup",
+   "cta"
+  ],
+  "words": 105,
+  "caption": "Anthropic Hits $2 Trillion Valuation in Massive Nasdaq IPO\n\nAnthropic shares surged 33% on their first day of trading, giving the AI lab a market cap over $2 trillion. With $220 billion in cash, the company is now a top-tier financial giant.\n\n#ai #anthropic #nasdaq #ipo #finance #claude #tech #investing",
+  "thumb": "renders/output/2026-11-22-002419-0.jpg",
+  "status": "queued"
  }
 ]

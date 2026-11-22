@@ -1,29 +1,5 @@
 [
  {
-  "ts": "2026-11-06 07:56",
-  "pack": "Data Story",
-  "theme": "ocean",
-  "transition": "slide",
-  "angle": "by the numbers",
-  "hook": null,
-  "scenes": [
-   "repohook",
-   "reveal",
-   "bignumber",
-   "custom",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "gstack: Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve",
-  "link": "https://github.com/garrytan/gstack",
-  "motion_refs": [
-   "bradmillscan-839974",
-   "ai9app-989009",
-   "imryven-495965"
-  ]
- },
- {
   "ts": "2026-11-06 08:05",
   "pack": "Explainer",
   "theme": "ember",
@@ -930,5 +906,25 @@
   "kind": "tutorial",
   "headline": "rust-anything: Rewrite your whole app in Rust, one piece at a time, checked agai",
   "link": "https://github.com/erkamyaman/rust-anything"
+ },
+ {
+  "ts": "2026-11-22 00:21",
+  "pack": "Playbook Steps",
+  "theme": "paper",
+  "transition": "wipe",
+  "angle": "by the numbers",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "reveal",
+   "timeline",
+   "checklist",
+   "roundup",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Anthropic Debuts on Nasdaq with Massive $105 Billion IPO",
+  "link": "https://techcrunch.com/2026/11/19/anthropic-hits-nasdaq-exchanges-at-110-27-above-ipo-price/",
+  "motion_refs": []
  }
 ]
