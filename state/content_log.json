@@ -3233,7 +3233,15 @@
   "words": 107,
   "caption": "Write an app once. It runs natively on the web, macOS, iOS, and Linux.\n\nExact is an agent-native framework for building high-performance apps. It uses native rendering for every platform rather than a web-view wrapper. Follow for daily AI news.\n\n#ai #coding #opensource #github #rust #software #programming #iosdev",
   "thumb": "renders/output/2026-11-22-002856-1.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-22 11:13",
+  "fb_id": "1628183071860694",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1628183071860694"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-22-003155-2.mp4",

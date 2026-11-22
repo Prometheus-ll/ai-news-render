@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-10-30-070433-2.mp4",
-  "caption": "How to install OpenBot: Your own fleet of AI coworkers\n\nLearn how to deploy OpenBot, the open-source tool that gives AI agents their own computer and browser. Follow this step-by-step guide to get started with autonomous agents today.\n\n#tutorial #opensource #howto #aiagents #copilotkit #automation #github #typescript",
-  "source_link": "https://github.com/CopilotKit/OpenBot",
-  "headline": "OpenBot: Open-source AI coworkers that each get a computer of their own: a browser, files and tools, with ever",
-  "thumb": "renders/output/2026-10-30-070433-2.jpg",
-  "added": "2026-10-30 07:07",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "1104582975756017",
-    "at": "2026-10-31 19:12"
-   }
-  },
-  "posted_at": "2026-10-31 19:12",
-  "fb_id": "1104582975756017"
- },
- {
   "video": "renders/output/2026-10-31-065107-0.mp4",
   "caption": "OpenAI-Backed Thrive Holdings Acquires ADT in $15.3 Billion AI Security Move\n\nThrive Holdings is acquiring home security giant ADT to integrate OpenAI models into physical infrastructure. This massive $15.3 billion deal signals a major shift toward AI-native home protection. Follow for daily AI news.\n\n#ai #openai #adt #smarthome #techdeal #automation #security #futuretech",
   "source_link": "https://techcrunch.com/2026/10/29/openai-backed-thrive-holdings-acquires-adt/",
@@ -1206,9 +1186,18 @@
   "headline": "exact: Write an app once. It runs natively on the web, macOS, iOS, and Linux, and an AI agent can build it, ru",
   "thumb": "renders/output/2026-11-22-002856-1.jpg",
   "added": "2026-11-22 00:31",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 777346263
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1628183071860694",
+    "at": "2026-11-22 11:13"
+   }
+  },
+  "posted_at": "2026-11-22 11:13",
+  "fb_id": "1628183071860694"
  },
  {
   "video": "renders/output/2026-11-22-003155-2.mp4",
