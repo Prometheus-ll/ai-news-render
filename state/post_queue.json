@@ -1220,5 +1220,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 781030678
+ },
+ {
+  "video": "renders/output/2026-11-23-010336-2.mp4",
+  "caption": "How to get private AI meeting notes with Yogurt\n\nStop using meeting bots that steal your data. Learn how to install Yogurt, a free open-source alternative to Granola and Otter that runs locally. Follow for daily AI tools!\n\n#tutorial #opensource #howto #localai #privacy #productivity #meetingnotes #yogurtai",
+  "source_link": "https://github.com/FrigadeHQ/yogurt",
+  "headline": "yogurt: Private AI meeting notes that stay on your computer. No meeting bot. Free and open source for Mac, Win",
+  "thumb": "renders/output/2026-11-23-010336-2.jpg",
+  "added": "2026-11-23 01:05",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 781037079
  }
 ]

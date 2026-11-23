@@ -1,25 +1,5 @@
 [
  {
-  "ts": "2026-11-08 07:05",
-  "pack": "Conversation",
-  "theme": "ocean",
-  "transition": "fade",
-  "angle": "by the numbers",
-  "hook": null,
-  "scenes": [
-   "slam",
-   "bignumber",
-   "quote",
-   "versus",
-   "prompt",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "OpenAI Valuation Surges to $1.25 Trillion with New $11B Capital Injection",
-  "link": "https://techcrunch.com/2026/11/06/openai-reportedly-raises-an-additional-11-billion-at-a-1-25-trillion-valuation/",
-  "motion_refs": []
- },
- {
   "ts": "2026-11-08 07:12",
   "pack": "Systems Map",
   "theme": "forest",
@@ -931,5 +911,27 @@
    "zhu185178-255661",
    "dale-vaz-879074"
   ]
+ },
+ {
+  "ts": "2026-11-23 01:03",
+  "pack": "Explainer",
+  "theme": "ember",
+  "transition": "sweep",
+  "angle": "tutorial",
+  "hook": "",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "kind": "tutorial",
+  "headline": "yogurt: Private AI meeting notes that stay on your computer. No meeting bot. Fre",
+  "link": "https://github.com/FrigadeHQ/yogurt"
  }
 ]
