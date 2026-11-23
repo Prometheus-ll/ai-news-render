@@ -1209,5 +1209,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 781019044
+ },
+ {
+  "video": "renders/output/2026-11-23-010000-1.mp4",
+  "caption": "Monitor Your GPU Like a Pro: gputaskman for LLMs\n\ngputaskman is a viral new GPU task manager that tracks per-process VRAM and LLM model insights. It supports NVIDIA, AMD, and Intel hardware across Windows and Linux. Follow for daily AI news.\n\n#ai #opensource #github #gpu #nvidia #llm #python #coding",
+  "source_link": "https://github.com/shanselman/gputaskman",
+  "headline": "gputaskman: A GPU task manager for Windows, Linux, and WSL: per-process VRAM, GPU activity, and LLM model/KV-c",
+  "thumb": "renders/output/2026-11-23-010000-1.jpg",
+  "added": "2026-11-23 01:03",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 781030678
  }
 ]

@@ -1,28 +1,5 @@
 [
  {
-  "ts": "2026-11-07 07:10",
-  "pack": "Explainer",
-  "theme": "neon",
-  "transition": "sweep",
-  "angle": "tutorial",
-  "hook": "",
-  "scenes": [
-   "hook",
-   "meet",
-   "shot",
-   "grid",
-   "step",
-   "step",
-   "step",
-   "step",
-   "stats",
-   "cta"
-  ],
-  "kind": "tutorial",
-  "headline": "day-trader-skill: 11 Claude skills for day trading: scan thousands of charts, tr",
-  "link": "https://github.com/Jakeschincariol/day-trader-skill"
- },
- {
   "ts": "2026-11-08 07:05",
   "pack": "Conversation",
   "theme": "ocean",
@@ -928,6 +905,31 @@
    "charlesmendez-476517",
    "leanzubrezki-766171",
    "davidmarcus-686217"
+  ]
+ },
+ {
+  "ts": "2026-11-23 00:58",
+  "pack": "Data Story",
+  "theme": "ocean",
+  "transition": "slide",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "slam",
+   "reveal",
+   "custom",
+   "bignumber",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "gputaskman: A GPU task manager for Windows, Linux, and WSL: per-process VRAM, GP",
+  "link": "https://github.com/shanselman/gputaskman",
+  "motion_refs": [
+   "imryven-495965",
+   "zhu185178-255661",
+   "dale-vaz-879074"
   ]
  }
 ]
