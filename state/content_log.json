@@ -3327,7 +3327,15 @@
   "words": 111,
   "caption": "Monitor Your GPU Like a Pro: gputaskman for LLMs\n\ngputaskman is a viral new GPU task manager that tracks per-process VRAM and LLM model insights. It supports NVIDIA, AMD, and Intel hardware across Windows and Linux. Follow for daily AI news.\n\n#ai #opensource #github #gpu #nvidia #llm #python #coding",
   "thumb": "renders/output/2026-11-23-010000-1.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-23 12:24",
+  "fb_id": "1139639565507542",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1139639565507542"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-23-010336-2.mp4",
