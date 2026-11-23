@@ -1,29 +1,5 @@
 [
  {
-  "ts": "2026-11-07 07:04",
-  "pack": "Editorial",
-  "theme": "paper",
-  "transition": "panel",
-  "angle": "proof",
-  "hook": null,
-  "scenes": [
-   "repohook",
-   "reveal",
-   "stack",
-   "terminal",
-   "custom",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "security-audit-skill: A coding-agent skill for multi-phase security audits with ",
-  "link": "https://github.com/cloudflare/security-audit-skill",
-  "motion_refs": [
-   "koushikde-937635",
-   "woojinrad-455731",
-   "dale-vaz-879074"
-  ]
- },
- {
   "ts": "2026-11-07 07:10",
   "pack": "Explainer",
   "theme": "neon",
@@ -926,5 +902,32 @@
   "kind": "tutorial",
   "headline": "phonebox: Turn an old Android phone into a customizable desk panel and touch con",
   "link": "https://github.com/ersinkoc/phonebox"
+ },
+ {
+  "ts": "2026-11-23 00:53",
+  "pack": "Terminal Ops",
+  "theme": "neon",
+  "transition": "wipe",
+  "angle": "before vs after",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "reveal",
+   "phases",
+   "custom",
+   "custom",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Google Unlocks 'Computer Use' for Gemini on macOS",
+  "link": "https://techcrunch.com/2026/11/19/google-gives-gemini-the-ability-to-use-your-mac-for-you/",
+  "motion_refs": [
+   "davidmarcus-686217",
+   "charlesmendez-476517",
+   "leanzubrezki-766171",
+   "charlesmendez-476517",
+   "leanzubrezki-766171",
+   "davidmarcus-686217"
+  ]
  }
 ]

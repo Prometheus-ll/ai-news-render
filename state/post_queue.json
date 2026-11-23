@@ -1198,5 +1198,16 @@
   },
   "posted_at": "2026-11-22 15:56",
   "fb_id": "1159947553185461"
+ },
+ {
+  "video": "renders/output/2026-11-23-005539-0.mp4",
+  "caption": "Google's New Gemini Agent Controls Your Mac\n\nGoogle just unlocked 'Computer Use' for Gemini on macOS, allowing the AI to control apps, organize files, and browse the web. This new agentic capability signals a major shift in the race against OpenAI and Anthropic.\n\n#ai #google #gemini #macos #productivity #tech #automation #agenticai",
+  "source_link": "https://techcrunch.com/2026/11/19/google-gives-gemini-the-ability-to-use-your-mac-for-you/",
+  "headline": "Google Unlocks 'Computer Use' for Gemini on macOS",
+  "thumb": "renders/output/2026-11-23-005539-0.jpg",
+  "added": "2026-11-23 00:58",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 781019044
  }
 ]
