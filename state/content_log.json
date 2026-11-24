@@ -3384,5 +3384,27 @@
   "caption": "Anthropic's Claude Ship: Fully Autonomous AI Code Approval\n\nAnthropic has launched Claude Ship to automate the final bottleneck of software engineering. This new suite of agents reviews, fixes, and approves code changes autonomously. Follow for daily AI news.\n\n#ai #coding #anthropic #claude #softwareengineering #automation #devops #tech",
   "thumb": "renders/output/2026-11-24-045027-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-24-045656-1.mp4",
+  "ts": "2026-11-24 04:58",
+  "kind": "repo",
+  "headline": "fast-anything: Don't rewrite it in Rust. Rewrite the 5% that's slow: profile Python, Node or Ruby apps, port t",
+  "title": "Boost App Speed with AI and Rust: fast-anything",
+  "source_link": "https://github.com/EL4CTEO/fast-anything",
+  "theme": "paper",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "reveal",
+   "custom",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "words": 102,
+  "caption": "Boost App Speed with AI and Rust: fast-anything\n\nStop wasting months rewriting entire apps in Rust when you only need to optimize the slow parts. This open-source tool profiles your code and uses AI to port bottleneck functions automatically. Follow for daily AI news.\n\n#ai #rust #programming #python #opensource #github #developer #softwareengineering",
+  "thumb": "renders/output/2026-11-24-045656-1.jpg",
+  "status": "queued"
  }
 ]

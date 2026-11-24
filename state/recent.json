@@ -1,26 +1,5 @@
 [
  {
-  "ts": "2026-11-09 07:49",
-  "pack": "Playbook Steps",
-  "theme": "paper",
-  "transition": "wipe",
-  "angle": "red flags",
-  "hook": null,
-  "scenes": [
-   "hook",
-   "slam",
-   "alert",
-   "timeline",
-   "checklist",
-   "phases",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Nvidia CEO Jensen Huang Under Investigation Over Alleged Espionage Link",
-  "link": "https://techcrunch.com/2026/11/08/is-jensen-huangs-job-on-the-line-yales-jeffrey-sonnenfeld-estimates-its-about-a-50-50/",
-  "motion_refs": []
- },
- {
   "ts": "2026-11-09 07:54",
   "pack": "Alert Room",
   "theme": "neon",
@@ -932,6 +911,33 @@
    "daniel-mac8-306214",
    "kmasiff-549880",
    "imryven-495965"
+  ]
+ },
+ {
+  "ts": "2026-11-24 04:53",
+  "pack": "Editorial",
+  "theme": "paper",
+  "transition": "panel",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "reveal",
+   "custom",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "fast-anything: Don't rewrite it in Rust. Rewrite the 5% that's slow: profile Pyt",
+  "link": "https://github.com/EL4CTEO/fast-anything",
+  "motion_refs": [
+   "annacher-152174",
+   "daniel-mac8-306214",
+   "superalesha-970412",
+   "superalesha-970412",
+   "daniel-mac8-306214",
+   "annacher-152174"
   ]
  }
 ]

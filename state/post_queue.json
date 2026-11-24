@@ -1220,5 +1220,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 785748859
+ },
+ {
+  "video": "renders/output/2026-11-24-045656-1.mp4",
+  "caption": "Boost App Speed with AI and Rust: fast-anything\n\nStop wasting months rewriting entire apps in Rust when you only need to optimize the slow parts. This open-source tool profiles your code and uses AI to port bottleneck functions automatically. Follow for daily AI news.\n\n#ai #rust #programming #python #opensource #github #developer #softwareengineering",
+  "source_link": "https://github.com/EL4CTEO/fast-anything",
+  "headline": "fast-anything: Don't rewrite it in Rust. Rewrite the 5% that's slow: profile Python, Node or Ruby apps, port t",
+  "thumb": "renders/output/2026-11-24-045656-1.jpg",
+  "added": "2026-11-24 04:58",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 785762837
  }
 ]
