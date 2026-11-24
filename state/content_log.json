@@ -3391,7 +3391,15 @@
   "words": 124,
   "caption": "Anthropic's Claude Ship: Fully Autonomous AI Code Approval\n\nAnthropic has launched Claude Ship to automate the final bottleneck of software engineering. This new suite of agents reviews, fixes, and approves code changes autonomously. Follow for daily AI news.\n\n#ai #coding #anthropic #claude #softwareengineering #automation #devops #tech",
   "thumb": "renders/output/2026-11-24-045027-0.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-24 13:35",
+  "fb_id": "1510248730971879",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1510248730971879"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-24-045656-1.mp4",

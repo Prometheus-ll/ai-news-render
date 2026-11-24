@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-11-01-072501-1.mp4",
-  "caption": "Build Games with 49 AI Agents: Claude Code Game Studios\n\nTurn a single Claude Code session into a full professional game studio with 49 specialized AI agents. This open-source project features 74 workflow skills and a real studio hierarchy. Follow for more AI news.\n\n#ai #gamedev #claude #anthropic #github #opensource #coding #indiedev #softwareengineering",
-  "source_link": "https://github.com/Donchitos/Claude-Code-Game-Studios",
-  "headline": "Claude-Code-Game-Studios: Turn Claude Code into a full game dev studio \u2014 49 AI agents, 72 workflow skills, and",
-  "thumb": "renders/output/2026-11-01-072501-1.jpg",
-  "added": "2026-11-01 07:27",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "3268288346707630",
-    "at": "2026-11-02 10:51"
-   }
-  },
-  "posted_at": "2026-11-02 10:51",
-  "fb_id": "3268288346707630"
- },
- {
   "video": "renders/output/2026-11-01-073334-2.mp4",
   "caption": "How to install Orkas: The local-first open-source AI agent team\n\nLearn how to set up Orkas, an MIT-licensed tool that coordinates specialist agents like Claude Code and VideoStudio on your desktop. Run your own AI team locally with full privacy. Follow AI Quantum for more daily open source tools.\n\n#tutorial #opensource #howto #aiagents #localai #productivity #orkas #python",
   "source_link": "https://github.com/Orkas-AI/Orkas",
@@ -1206,9 +1186,18 @@
   "headline": "Anthropic Debuts Claude Ship for Autonomous AI Code Approval",
   "thumb": "renders/output/2026-11-24-045027-0.jpg",
   "added": "2026-11-24 04:52",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 785748859
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1510248730971879",
+    "at": "2026-11-24 13:35"
+   }
+  },
+  "posted_at": "2026-11-24 13:35",
+  "fb_id": "1510248730971879"
  },
  {
   "video": "renders/output/2026-11-24-045656-1.mp4",
