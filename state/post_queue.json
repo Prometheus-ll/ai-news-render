@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-11-01-071911-0.mp4",
-  "caption": "Google Successfully Deploys First AI Data Center Satellite\n\nGoogle has successfully deployed Project Suncatcher, a satellite data center equipped with Tensor Processing Units. This mission proves that high-performance AI can run in orbit, enabling real-time processing without ground latency. Follow for daily AI news.\n\n#ai #google #suncatcher #satellite #space #tpu #deepmind #engineering #tech #future",
-  "source_link": "https://techcrunch.com/2026/10/30/googles-first-data-center-satellite-is-online-and-writing-poetry/",
-  "headline": "Google Successfully Deploys First AI Data Center Satellite",
-  "thumb": "renders/output/2026-11-01-071911-0.jpg",
-  "added": "2026-11-01 07:22",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "3098178897202011",
-    "at": "2026-11-01 19:29"
-   }
-  },
-  "posted_at": "2026-11-01 19:29",
-  "fb_id": "3098178897202011"
- },
- {
   "video": "renders/output/2026-11-01-072501-1.mp4",
   "caption": "Build Games with 49 AI Agents: Claude Code Game Studios\n\nTurn a single Claude Code session into a full professional game studio with 49 specialized AI agents. This open-source project features 74 workflow skills and a real studio hierarchy. Follow for more AI news.\n\n#ai #gamedev #claude #anthropic #github #opensource #coding #indiedev #softwareengineering",
   "source_link": "https://github.com/Donchitos/Claude-Code-Game-Studios",
@@ -1206,9 +1186,18 @@
   "headline": "yogurt: Private AI meeting notes that stay on your computer. No meeting bot. Free and open source for Mac, Win",
   "thumb": "renders/output/2026-11-23-010336-2.jpg",
   "added": "2026-11-23 01:05",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 781037079
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2354763298608832",
+    "at": "2026-11-24 13:30"
+   }
+  },
+  "posted_at": "2026-11-24 13:30",
+  "fb_id": "2354763298608832"
  },
  {
   "video": "renders/output/2026-11-24-045027-0.mp4",
