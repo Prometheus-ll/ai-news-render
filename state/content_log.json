@@ -3406,5 +3406,30 @@
   "caption": "Boost App Speed with AI and Rust: fast-anything\n\nStop wasting months rewriting entire apps in Rust when you only need to optimize the slow parts. This open-source tool profiles your code and uses AI to port bottleneck functions automatically. Follow for daily AI news.\n\n#ai #rust #programming #python #opensource #github #developer #softwareengineering",
   "thumb": "renders/output/2026-11-24-045656-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-24-045839-2.mp4",
+  "ts": "2026-11-24 05:00",
+  "kind": "tutorial",
+  "headline": "abyssal-garden: A dreamy underwater world you can swim through in your browser: swaying kelp forests, sunbeams",
+  "title": "How to run Abyssal Garden: A 97KB 3D world in your browser",
+  "source_link": "https://github.com/Noniv/abyssal-garden",
+  "theme": "forest",
+  "angle": "tutorial",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "words": 148,
+  "caption": "How to run Abyssal Garden: A 97KB 3D world in your browser\n\nExplore a procedurally generated underwater world using only WebGPU and a single HTML file. Learn how to launch this open-source masterpiece and swim through kelp forests. Follow for daily AI and open-source tools!\n\n#tutorial #opensource #webgpu #javascript #coding #creativecoding #browsergame #github #programming",
+  "thumb": "renders/output/2026-11-24-045839-2.jpg",
+  "status": "queued"
  }
 ]

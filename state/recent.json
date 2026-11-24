@@ -1,32 +1,5 @@
 [
  {
-  "ts": "2026-11-09 07:54",
-  "pack": "Alert Room",
-  "theme": "neon",
-  "transition": "zoom",
-  "angle": "problem",
-  "hook": null,
-  "scenes": [
-   "repohook",
-   "reveal",
-   "custom",
-   "custom",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "hallmark: Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
-  "link": "https://github.com/Nutlope/hallmark",
-  "motion_refs": [
-   "koushikde-937635",
-   "ai9app-989009",
-   "yanliudesign-839698",
-   "ai9app-989009",
-   "koushikde-937635",
-   "yanliudesign-839698"
-  ]
- },
- {
   "ts": "2026-11-09 07:58",
   "pack": "Explainer",
   "theme": "indigo",
@@ -939,5 +912,27 @@
    "daniel-mac8-306214",
    "annacher-152174"
   ]
+ },
+ {
+  "ts": "2026-11-24 04:58",
+  "pack": "Explainer",
+  "theme": "forest",
+  "transition": "sweep",
+  "angle": "tutorial",
+  "hook": "",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "kind": "tutorial",
+  "headline": "abyssal-garden: A dreamy underwater world you can swim through in your browser: ",
+  "link": "https://github.com/Noniv/abyssal-garden"
  }
 ]
