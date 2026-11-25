@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-11-02-073513-0.mp4",
-  "caption": "Judge Rules xAI Lawsuit Can Proceed Over Memphis Data Center\n\nA federal judge has cleared the way for a major environmental lawsuit against Elon Musk's xAI. The case involves unpermitted gas turbines at the Memphis Colossus facility. Follow for daily AI infrastructure news.\n\n#ai #xai #elonmusk #lawsuit #environment #memphis #techlaw #legal",
-  "source_link": "https://techcrunch.com/2026/10/31/judge-allows-naacp-lawsuit-over-xai-data-center-pollution-to-move-forward/",
-  "headline": "Judge Allows NAACP Environmental Lawsuit Against xAI to Proceed",
-  "thumb": "renders/output/2026-11-02-073513-0.jpg",
-  "added": "2026-11-02 07:38",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "1637748841144148",
-    "at": "2026-11-02 23:04"
-   }
-  },
-  "posted_at": "2026-11-02 23:04",
-  "fb_id": "1637748841144148"
- },
- {
   "video": "renders/output/2026-11-02-074056-1.mp4",
   "caption": "Kronos: The Foundation Model for Global Financial Markets\n\nKronos is the first open-source foundation model designed specifically for financial market candlesticks. It is pre-trained on data from over 45 global exchanges to predict market movements. Follow for daily AI news.\n\n#ai #opensource #github #fintech #trading #python #machinelearning #quant",
   "source_link": "https://github.com/shiyu-coder/Kronos",
@@ -1206,9 +1186,18 @@
   "headline": "abyssal-garden: A dreamy underwater world you can swim through in your browser: swaying kelp forests, sunbeams",
   "thumb": "renders/output/2026-11-24-045839-2.jpg",
   "added": "2026-11-24 05:00",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 785767423
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "2153128818628553",
+    "at": "2026-11-25 12:45"
+   }
+  },
+  "posted_at": "2026-11-25 12:45",
+  "fb_id": "2153128818628553"
  },
  {
   "video": "renders/output/2026-11-25-033653-0.mp4",
