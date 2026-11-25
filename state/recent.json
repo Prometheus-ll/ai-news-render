@@ -1,28 +1,5 @@
 [
  {
-  "ts": "2026-11-09 07:58",
-  "pack": "Explainer",
-  "theme": "indigo",
-  "transition": "sweep",
-  "angle": "tutorial",
-  "hook": "",
-  "scenes": [
-   "hook",
-   "meet",
-   "shot",
-   "grid",
-   "example",
-   "step",
-   "step",
-   "step",
-   "stats",
-   "cta"
-  ],
-  "kind": "tutorial",
-  "headline": "humanizer: Agent skill that removes signs of AI-generated writing from text",
-  "link": "https://github.com/blader/humanizer"
- },
- {
   "ts": "2026-11-11 00:42",
   "pack": "Terminal Ops",
   "theme": "forest",
@@ -934,5 +911,25 @@
   "kind": "tutorial",
   "headline": "abyssal-garden: A dreamy underwater world you can swim through in your browser: ",
   "link": "https://github.com/Noniv/abyssal-garden"
+ },
+ {
+  "ts": "2026-11-25 03:33",
+  "pack": "Conversation",
+  "theme": "ocean",
+  "transition": "fade",
+  "angle": "who wins",
+  "hook": null,
+  "scenes": [
+   "slam",
+   "reveal",
+   "versus",
+   "quote",
+   "chat",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Amazon Acquires AI Startup Decart for $7.5B to Challenge Nvidia Dominance",
+  "link": "https://techcrunch.com/2026/11/24/amazons-decart-acquisition-is-a-bet-on-using-software-to-narrow-the-gap-with-nvidia-in-the-ai-chip-race/",
+  "motion_refs": []
  }
 ]
