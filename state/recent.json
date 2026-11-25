@@ -1,29 +1,5 @@
 [
  {
-  "ts": "2026-11-11 00:42",
-  "pack": "Terminal Ops",
-  "theme": "forest",
-  "transition": "wipe",
-  "angle": "by the numbers",
-  "hook": null,
-  "scenes": [
-   "slam",
-   "reveal",
-   "terminal",
-   "custom",
-   "phases",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Anthropic Targets $1.4 Trillion Valuation in Historic IPO Filing",
-  "link": "https://techcrunch.com/2026/11/10/anthropic-sets-ipo-price-range-of-70-to-78-per-share-to-reach-an-implied-valuation-of-1-404-trillion/",
-  "motion_refs": [
-   "imryven-495965",
-   "iammxfschr-955831",
-   "archiveexplorer-560622"
-  ]
- },
- {
   "ts": "2026-11-11 00:48",
   "pack": "Data Story",
   "theme": "signal",
@@ -931,5 +907,28 @@
   "headline": "Amazon Acquires AI Startup Decart for $7.5B to Challenge Nvidia Dominance",
   "link": "https://techcrunch.com/2026/11/24/amazons-decart-acquisition-is-a-bet-on-using-software-to-narrow-the-gap-with-nvidia-in-the-ai-chip-race/",
   "motion_refs": []
+ },
+ {
+  "ts": "2026-11-25 03:40",
+  "pack": "Explainer",
+  "theme": "signal",
+  "transition": "sweep",
+  "angle": "tutorial",
+  "hook": "",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "path",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "kind": "tutorial",
+  "headline": "freebie-radar: \u767d\u5ad6\u4e0e\u8d44\u8baf\u8d44\u6e90\u805a\u5408\u96f7\u8fbe\uff1a100+\u4e2a\u6e90\u5b9a\u65f6\u91c7\u96c6 + AI \u4e8c\u5ba1\u8fc7\u6ee4\u5047\u798f\u5229 + \u83b7\u53d6\u65b9\u5f0f\u5206\u7ea7\u9694\u79bb\u62bd\u5956/\u8bd5\u7528/\u63a8\u5e7f + Telegram",
+  "link": "https://github.com/ZiChuanLan/freebie-radar"
  }
 ]

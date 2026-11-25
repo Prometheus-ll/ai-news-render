@@ -3469,5 +3469,31 @@
   "caption": "Amazon's $7.5B Decart Deal: The Plan to Crush Nvidia's Monopoly\n\nAmazon has acquired AI startup Decart for $7.5 billion to optimize its custom Trainium chips. This strategic move aims to reduce AWS's dependency on Nvidia by boosting in-house performance. Follow for daily AI news.\n\n#ai #amazon #nvidia #decart #trainium #chips #tech #startup #aws #innovation",
   "thumb": "renders/output/2026-11-25-033653-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-25-034051-2.mp4",
+  "ts": "2026-11-25 03:42",
+  "kind": "tutorial",
+  "headline": "freebie-radar: \u767d\u5ad6\u4e0e\u8d44\u8baf\u8d44\u6e90\u805a\u5408\u96f7\u8fbe\uff1a100+\u4e2a\u6e90\u5b9a\u65f6\u91c7\u96c6 + AI \u4e8c\u5ba1\u8fc7\u6ee4\u5047\u798f\u5229 + \u83b7\u53d6\u65b9\u5f0f\u5206\u7ea7\u9694\u79bb\u62bd\u5956/\u8bd5\u7528/\u63a8\u5e7f + Telegram \u5373\u65f6\u63a8\u9001",
+  "title": "How to install freebie-radar for automated tech deals",
+  "source_link": "https://github.com/ZiChuanLan/freebie-radar",
+  "theme": "signal",
+  "angle": "tutorial",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "path",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "words": 124,
+  "caption": "How to install freebie-radar for automated tech deals\n\nLearn how to deploy freebie-radar to automatically track free software, games, and tech deals using AI filtering. Follow AI Quantum for more daily open-source tutorials.\n\n#tutorial #opensource #howto #selfhosted #freebies #ai #automation #techdeals",
+  "thumb": "renders/output/2026-11-25-034051-2.jpg",
+  "status": "queued"
  }
 ]
