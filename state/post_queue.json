@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-11-01-073334-2.mp4",
-  "caption": "How to install Orkas: The local-first open-source AI agent team\n\nLearn how to set up Orkas, an MIT-licensed tool that coordinates specialist agents like Claude Code and VideoStudio on your desktop. Run your own AI team locally with full privacy. Follow AI Quantum for more daily open source tools.\n\n#tutorial #opensource #howto #aiagents #localai #productivity #orkas #python",
-  "source_link": "https://github.com/Orkas-AI/Orkas",
-  "headline": "Orkas: Orkas is an open-source (MIT), local-first AI team for your desktop: a Commander turns your goal into t",
-  "thumb": "renders/output/2026-11-01-073334-2.jpg",
-  "added": "2026-11-01 07:35",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "1468013298730001",
-    "at": "2026-11-02 17:39"
-   }
-  },
-  "posted_at": "2026-11-02 17:39",
-  "fb_id": "1468013298730001"
- },
- {
   "video": "renders/output/2026-11-02-073513-0.mp4",
   "caption": "Judge Rules xAI Lawsuit Can Proceed Over Memphis Data Center\n\nA federal judge has cleared the way for a major environmental lawsuit against Elon Musk's xAI. The case involves unpermitted gas turbines at the Memphis Colossus facility. Follow for daily AI infrastructure news.\n\n#ai #xai #elonmusk #lawsuit #environment #memphis #techlaw #legal",
   "source_link": "https://techcrunch.com/2026/10/31/judge-allows-naacp-lawsuit-over-xai-data-center-pollution-to-move-forward/",
@@ -1206,9 +1186,18 @@
   "headline": "fast-anything: Don't rewrite it in Rust. Rewrite the 5% that's slow: profile Python, Node or Ruby apps, port t",
   "thumb": "renders/output/2026-11-24-045656-1.jpg",
   "added": "2026-11-24 04:58",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 785762837
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1138824439044495",
+    "at": "2026-11-25 12:32"
+   }
+  },
+  "posted_at": "2026-11-25 12:32",
+  "fb_id": "1138824439044495"
  },
  {
   "video": "renders/output/2026-11-24-045839-2.mp4",

@@ -3421,7 +3421,15 @@
   "words": 102,
   "caption": "Boost App Speed with AI and Rust: fast-anything\n\nStop wasting months rewriting entire apps in Rust when you only need to optimize the slow parts. This open-source tool profiles your code and uses AI to port bottleneck functions automatically. Follow for daily AI news.\n\n#ai #rust #programming #python #opensource #github #developer #softwareengineering",
   "thumb": "renders/output/2026-11-24-045656-1.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-25 12:32",
+  "fb_id": "1138824439044495",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1138824439044495"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-24-045839-2.mp4",
