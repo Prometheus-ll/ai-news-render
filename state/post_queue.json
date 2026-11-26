@@ -1220,5 +1220,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 789928340
+ },
+ {
+  "video": "renders/output/2026-11-26-025508-0.mp4",
+  "caption": "Meta Embeds Muse AI into Instagram DMs for Black Friday Shopping\n\nMeta is bringing its AI agent Muse directly into Instagram DMs to help with holiday shopping and conversation summaries. No more app switching needed to find deals or organize your saved posts. Follow for daily AI news.\n\n#ai #meta #instagram #museai #ecommerce #blackfriday #techtrends #shopping",
+  "source_link": "https://techcrunch.com/2026/11/24/meta-brings-its-muse-ai-assistant-directly-into-instagram-dms/",
+  "headline": "Meta Integrates Muse AI Agent into Instagram DMs and Walmart Shopping",
+  "thumb": "renders/output/2026-11-26-025508-0.jpg",
+  "added": "2026-11-26 02:58",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 794084625
  }
 ]

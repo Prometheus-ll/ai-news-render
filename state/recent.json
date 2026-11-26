@@ -1,25 +1,5 @@
 [
  {
-  "ts": "2026-11-11 00:48",
-  "pack": "Data Story",
-  "theme": "signal",
-  "transition": "slide",
-  "angle": "proof",
-  "hook": null,
-  "scenes": [
-   "repohook",
-   "reveal",
-   "bignumber",
-   "monitor",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "agent-skills: Production-grade engineering skills for AI coding agents.",
-  "link": "https://github.com/addyosmani/agent-skills",
-  "motion_refs": []
- },
- {
   "ts": "2026-11-11 00:55",
   "pack": "Explainer",
   "theme": "ember",
@@ -930,5 +910,26 @@
   "kind": "tutorial",
   "headline": "freebie-radar: \u767d\u5ad6\u4e0e\u8d44\u8baf\u8d44\u6e90\u805a\u5408\u96f7\u8fbe\uff1a100+\u4e2a\u6e90\u5b9a\u65f6\u91c7\u96c6 + AI \u4e8c\u5ba1\u8fc7\u6ee4\u5047\u798f\u5229 + \u83b7\u53d6\u65b9\u5f0f\u5206\u7ea7\u9694\u79bb\u62bd\u5956/\u8bd5\u7528/\u63a8\u5e7f + Telegram",
   "link": "https://github.com/ZiChuanLan/freebie-radar"
+ },
+ {
+  "ts": "2026-11-26 02:52",
+  "pack": "Systems Map",
+  "theme": "indigo",
+  "transition": "slide",
+  "angle": "what changes for you",
+  "hook": null,
+  "scenes": [
+   "appclutter",
+   "slam",
+   "reveal",
+   "hubmap",
+   "orbit",
+   "timeline",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "Meta Integrates Muse AI Agent into Instagram DMs and Walmart Shopping",
+  "link": "https://techcrunch.com/2026/11/24/meta-brings-its-muse-ai-assistant-directly-into-instagram-dms/",
+  "motion_refs": []
  }
 ]

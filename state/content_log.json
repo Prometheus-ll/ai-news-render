@@ -3511,5 +3511,28 @@
   "caption": "How to install freebie-radar for automated tech deals\n\nLearn how to deploy freebie-radar to automatically track free software, games, and tech deals using AI filtering. Follow AI Quantum for more daily open-source tutorials.\n\n#tutorial #opensource #howto #selfhosted #freebies #ai #automation #techdeals",
   "thumb": "renders/output/2026-11-25-034051-2.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-26-025508-0.mp4",
+  "ts": "2026-11-26 02:58",
+  "kind": "news",
+  "headline": "Meta Integrates Muse AI Agent into Instagram DMs and Walmart Shopping",
+  "title": "Meta Embeds Muse AI into Instagram DMs for Black Friday Shopping",
+  "source_link": "https://techcrunch.com/2026/11/24/meta-brings-its-muse-ai-assistant-directly-into-instagram-dms/",
+  "theme": "indigo",
+  "angle": "what changes for you",
+  "scenes": [
+   "appclutter",
+   "slam",
+   "reveal",
+   "hubmap",
+   "orbit",
+   "timeline",
+   "cta"
+  ],
+  "words": 102,
+  "caption": "Meta Embeds Muse AI into Instagram DMs for Black Friday Shopping\n\nMeta is bringing its AI agent Muse directly into Instagram DMs to help with holiday shopping and conversation summaries. No more app switching needed to find deals or organize your saved posts. Follow for daily AI news.\n\n#ai #meta #instagram #museai #ecommerce #blackfriday #techtrends #shopping",
+  "thumb": "renders/output/2026-11-26-025508-0.jpg",
+  "status": "queued"
  }
 ]
