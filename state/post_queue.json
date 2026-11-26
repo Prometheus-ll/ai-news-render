@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-11-02-074316-2.mp4",
-  "caption": "How to install AiSOC: The Free Open-Source AI Security Operations Center\n\nLearn how to deploy your own self-hosted AI SOC for automated threat triage and investigation. This open-source tool runs locally with no API keys required. Follow for more AI tutorials!\n\n#tutorial #opensource #cybersecurity #aisoc #blueteam #aiagents #selfhosted #python",
-  "source_link": "https://github.com/beenuar/AiSOC",
-  "headline": "AiSOC: Open-source AI Security Operations Center: alert fusion, LLM-agent triage, MITRE ATT&CK investigation, ",
-  "thumb": "renders/output/2026-11-02-074316-2.jpg",
-  "added": "2026-11-02 07:45",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "2366022270892381",
-    "at": "2026-11-03 15:42"
-   }
-  },
-  "posted_at": "2026-11-03 15:42",
-  "fb_id": "2366022270892381"
- },
- {
   "video": "renders/output/2026-11-03-075613-0.mp4",
   "caption": "This Open-Source App Manages Your AI Agent Team\n\nDiscover Paperclip, the viral open-source platform that lets you manage AI agents with an org chart, budgets, and governance. It is free, MIT-licensed, and works with any agent runtime. Follow for daily AI news.\n\n#ai #opensource #github #agenticai #aiengineering #typescript #coding #software",
   "source_link": "https://github.com/paperclipai/paperclip",
@@ -1206,9 +1186,18 @@
   "headline": "freebie-radar: \u767d\u5ad6\u4e0e\u8d44\u8baf\u8d44\u6e90\u805a\u5408\u96f7\u8fbe\uff1a100+\u4e2a\u6e90\u5b9a\u65f6\u91c7\u96c6 + AI \u4e8c\u5ba1\u8fc7\u6ee4\u5047\u798f\u5229 + \u83b7\u53d6\u65b9\u5f0f\u5206\u7ea7\u9694\u79bb\u62bd\u5956/\u8bd5\u7528/\u63a8\u5e7f + Telegram \u5373\u65f6\u63a8\u9001",
   "thumb": "renders/output/2026-11-25-034051-2.jpg",
   "added": "2026-11-25 03:42",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 789928340
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "4729883724003504",
+    "at": "2026-11-26 12:20"
+   }
+  },
+  "posted_at": "2026-11-26 12:20",
+  "fb_id": "4729883724003504"
  },
  {
   "video": "renders/output/2026-11-26-025508-0.mp4",
