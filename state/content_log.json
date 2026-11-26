@@ -3534,5 +3534,28 @@
   "caption": "Meta Embeds Muse AI into Instagram DMs for Black Friday Shopping\n\nMeta is bringing its AI agent Muse directly into Instagram DMs to help with holiday shopping and conversation summaries. No more app switching needed to find deals or organize your saved posts. Follow for daily AI news.\n\n#ai #meta #instagram #museai #ecommerce #blackfriday #techtrends #shopping",
   "thumb": "renders/output/2026-11-26-025508-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-26-030131-1.mp4",
+  "ts": "2026-11-26 03:03",
+  "kind": "repo",
+  "headline": "astryx: An open source design system that's fully customizable and agent ready",
+  "title": "Meta just open-sourced Astryx: The AI-ready design system",
+  "source_link": "https://github.com/meta/astryx",
+  "theme": "paper",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "slam",
+   "reveal",
+   "roundup",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "words": 107,
+  "caption": "Meta just open-sourced Astryx: The AI-ready design system\n\nMeta released Astryx, the design system powering 13,000 of their internal apps. It features 150 components and is built specifically for AI agents to use. Follow for more AI news.\n\n#ai #opensource #github #meta #astryx #coding #webdev #react #typescript",
+  "thumb": "renders/output/2026-11-26-030131-1.jpg",
+  "status": "queued"
  }
 ]

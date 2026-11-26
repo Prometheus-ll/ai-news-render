@@ -1,27 +1,5 @@
 [
  {
-  "ts": "2026-11-11 00:55",
-  "pack": "Explainer",
-  "theme": "ember",
-  "transition": "sweep",
-  "angle": "tutorial",
-  "hook": "",
-  "scenes": [
-   "hook",
-   "meet",
-   "shot",
-   "grid",
-   "step",
-   "step",
-   "step",
-   "stats",
-   "cta"
-  ],
-  "kind": "tutorial",
-  "headline": "ha-mcp: Configure and automate Home Assistant with Claude, ChatGPT, and other AI",
-  "link": "https://github.com/homeassistant-ai/ha-mcp"
- },
- {
   "ts": "2026-11-12 01:55",
   "pack": "Product Keynote",
   "theme": "mint",
@@ -931,5 +909,30 @@
   "headline": "Meta Integrates Muse AI Agent into Instagram DMs and Walmart Shopping",
   "link": "https://techcrunch.com/2026/11/24/meta-brings-its-muse-ai-assistant-directly-into-instagram-dms/",
   "motion_refs": []
+ },
+ {
+  "ts": "2026-11-26 02:58",
+  "pack": "Playbook Steps",
+  "theme": "paper",
+  "transition": "wipe",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "slam",
+   "reveal",
+   "roundup",
+   "custom",
+   "terminal",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "astryx: An open source design system that's fully customizable and agent ready",
+  "link": "https://github.com/meta/astryx",
+  "motion_refs": [
+   "macrohou-733862",
+   "archiveexplorer-560622",
+   "nummanali-340931"
+  ]
  }
 ]
