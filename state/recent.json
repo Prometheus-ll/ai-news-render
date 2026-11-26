@@ -1,32 +1,5 @@
 [
  {
-  "ts": "2026-11-12 01:55",
-  "pack": "Product Keynote",
-  "theme": "mint",
-  "transition": "zoom",
-  "angle": "what changes for you",
-  "hook": null,
-  "scenes": [
-   "slam",
-   "reveal",
-   "stack",
-   "custom",
-   "custom",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "New York Enforces Sweeping AI Safety Law for Major Developers",
-  "link": "https://techcrunch.com/2026/11/10/openai-anthropic-face-new-oversight-as-new-yorks-ai-safety-law-takes-effect/",
-  "motion_refs": [
-   "nummanali-340931",
-   "chrisjdimarco-808196",
-   "fanfulladev-063524",
-   "fanfulladev-063524",
-   "chrisjdimarco-808196",
-   "nummanali-340931"
-  ]
- },
- {
   "ts": "2026-11-12 02:00",
   "pack": "Editorial",
   "theme": "paper",
@@ -934,5 +907,29 @@
    "archiveexplorer-560622",
    "nummanali-340931"
   ]
+ },
+ {
+  "ts": "2026-11-26 03:03",
+  "pack": "Explainer",
+  "theme": "neon",
+  "transition": "sweep",
+  "angle": "tutorial",
+  "hook": "",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "path",
+   "step",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "kind": "tutorial",
+  "headline": "inference-optimisation-skill: Agent skill for hill-climbing local LLM serving sp",
+  "link": "https://github.com/sybil-solutions/inference-optimisation-skill"
  }
 ]

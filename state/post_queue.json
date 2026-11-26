@@ -1242,5 +1242,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 794098422
+ },
+ {
+  "video": "renders/output/2026-11-26-030400-2.mp4",
+  "caption": "How to optimize local LLM speed with sybil-solutions inference-optimisation-skill\n\nLearn how to use this free open-source tool to hill-climb your local LLM serving speed using automated benchmarking and agent skills. Boost your tok/s and optimize memory usage today. Follow for more AI tutorials!\n\n#tutorial #opensource #howto #llm #vllm #aiagent #benchmarking #python #machinelearning",
+  "source_link": "https://github.com/sybil-solutions/inference-optimisation-skill",
+  "headline": "inference-optimisation-skill: Agent skill for hill-climbing local LLM serving speed (decode, speculative decod",
+  "thumb": "renders/output/2026-11-26-030400-2.jpg",
+  "added": "2026-11-26 03:06",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 794104516
  }
 ]

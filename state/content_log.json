@@ -3557,5 +3557,32 @@
   "caption": "Meta just open-sourced Astryx: The AI-ready design system\n\nMeta released Astryx, the design system powering 13,000 of their internal apps. It features 150 components and is built specifically for AI agents to use. Follow for more AI news.\n\n#ai #opensource #github #meta #astryx #coding #webdev #react #typescript",
   "thumb": "renders/output/2026-11-26-030131-1.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-26-030400-2.mp4",
+  "ts": "2026-11-26 03:06",
+  "kind": "tutorial",
+  "headline": "inference-optimisation-skill: Agent skill for hill-climbing local LLM serving speed (decode, speculative decod",
+  "title": "How to optimize local LLM speed with sybil-solutions inference-optimisation-skill",
+  "source_link": "https://github.com/sybil-solutions/inference-optimisation-skill",
+  "theme": "neon",
+  "angle": "tutorial",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "path",
+   "step",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "words": 143,
+  "caption": "How to optimize local LLM speed with sybil-solutions inference-optimisation-skill\n\nLearn how to use this free open-source tool to hill-climb your local LLM serving speed using automated benchmarking and agent skills. Boost your tok/s and optimize memory usage today. Follow for more AI tutorials!\n\n#tutorial #opensource #howto #llm #vllm #aiagent #benchmarking #python #machinelearning",
+  "thumb": "renders/output/2026-11-26-030400-2.jpg",
+  "status": "queued"
  }
 ]
