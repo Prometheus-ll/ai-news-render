@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-11-02-074056-1.mp4",
-  "caption": "Kronos: The Foundation Model for Global Financial Markets\n\nKronos is the first open-source foundation model designed specifically for financial market candlesticks. It is pre-trained on data from over 45 global exchanges to predict market movements. Follow for daily AI news.\n\n#ai #opensource #github #fintech #trading #python #machinelearning #quant",
-  "source_link": "https://github.com/shiyu-coder/Kronos",
-  "headline": "Kronos: Kronos: A Foundation Model for the Language of Financial Markets",
-  "thumb": "renders/output/2026-11-02-074056-1.jpg",
-  "added": "2026-11-02 07:42",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "1786583252398327",
-    "at": "2026-11-03 10:43"
-   }
-  },
-  "posted_at": "2026-11-03 10:43",
-  "fb_id": "1786583252398327"
- },
- {
   "video": "renders/output/2026-11-02-074316-2.mp4",
   "caption": "How to install AiSOC: The Free Open-Source AI Security Operations Center\n\nLearn how to deploy your own self-hosted AI SOC for automated threat triage and investigation. This open-source tool runs locally with no API keys required. Follow for more AI tutorials!\n\n#tutorial #opensource #cybersecurity #aisoc #blueteam #aiagents #selfhosted #python",
   "source_link": "https://github.com/beenuar/AiSOC",
@@ -1206,9 +1186,18 @@
   "headline": "Amazon Acquires AI Startup Decart for $7.5B to Challenge Nvidia Dominance",
   "thumb": "renders/output/2026-11-25-033653-0.jpg",
   "added": "2026-11-25 03:40",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 789921334
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1617950356269564",
+    "at": "2026-11-26 12:11"
+   }
+  },
+  "posted_at": "2026-11-26 12:11",
+  "fb_id": "1617950356269564"
  },
  {
   "video": "renders/output/2026-11-25-034051-2.mp4",

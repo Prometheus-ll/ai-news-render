@@ -3484,7 +3484,15 @@
   "words": 105,
   "caption": "Amazon's $7.5B Decart Deal: The Plan to Crush Nvidia's Monopoly\n\nAmazon has acquired AI startup Decart for $7.5 billion to optimize its custom Trainium chips. This strategic move aims to reduce AWS's dependency on Nvidia by boosting in-house performance. Follow for daily AI news.\n\n#ai #amazon #nvidia #decart #trainium #chips #tech #startup #aws #innovation",
   "thumb": "renders/output/2026-11-25-033653-0.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-26 12:11",
+  "fb_id": "1617950356269564",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1617950356269564"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-25-034051-2.mp4",
