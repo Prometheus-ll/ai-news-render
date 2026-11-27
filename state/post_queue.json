@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-11-04-072908-0.mp4",
-  "caption": "Anthropic Warns: The Era of Self-Improving AI is Here\n\nAnthropic's latest SEC filing reveals the company is approaching Recursive Self-Improvement. This critical threshold could lead to an exponential acceleration of AI capabilities. Follow for daily AI news.\n\n#ai #anthropic #rsi #machinelearning #aisafety #futureoftech #technology #singularities",
-  "source_link": "https://techcrunch.com/2026/11/02/anthropic-warns-that-its-very-close-to-rsi-capability-aka-self-building-ai/",
-  "headline": "Anthropic Warns of Imminent 'Recursive Self-Improvement' in AI",
-  "thumb": "renders/output/2026-11-04-072908-0.jpg",
-  "added": "2026-11-04 07:32",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "1662643158851689",
-    "at": "2026-11-04 15:54"
-   }
-  },
-  "posted_at": "2026-11-04 15:54",
-  "fb_id": "1662643158851689"
- },
- {
   "video": "renders/output/2026-11-04-073657-1.mp4",
   "caption": "This AI Scraper Finds Hidden Gems on Goofish Automatically\n\nDiscover ai-goofish-monitor, an open-source system that uses Playwright and AI to track second-hand listings in real-time. It features a complete Web UI and multi-channel notifications for professional flipping. Follow for daily AI news.\n\n#ai #opensource #github #automation #goofish #python #playwright #sidehustle",
   "source_link": "https://github.com/Usagi-org/ai-goofish-monitor",
@@ -1206,9 +1186,18 @@
   "headline": "inference-optimisation-skill: Agent skill for hill-climbing local LLM serving speed (decode, speculative decod",
   "thumb": "renders/output/2026-11-26-030400-2.jpg",
   "added": "2026-11-26 03:06",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 794104516
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1575430331274545",
+    "at": "2026-11-27 17:51"
+   }
+  },
+  "posted_at": "2026-11-27 17:51",
+  "fb_id": "1575430331274545"
  },
  {
   "video": "renders/output/2026-11-27-025715-0.mp4",
