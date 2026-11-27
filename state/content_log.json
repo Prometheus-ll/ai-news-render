@@ -3622,5 +3622,30 @@
   "caption": "Why Nvidia Just Paused AI Shipments to Southeast Asia\n\nNvidia has paused AI server shipments to key Southeast Asian hubs to prevent unauthorized access by China. This move signals a major escalation in global export controls. Follow for more daily AI news.\n\n#ai #nvidia #chips #geopolitics #china #tech #supplychain #breaking",
   "thumb": "renders/output/2026-11-27-025715-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-27-030041-2.mp4",
+  "ts": "2026-11-27 03:02",
+  "kind": "tutorial",
+  "headline": "mdldm-maitian: \u9ea6\u7530\uff1a\u81ea\u5a92\u4f53\u591a\u5e73\u53f0\u53d1\u5e03\u4e2d\u63a7\u4e0e\u6570\u636e\u76d1\u63a7\uff08B\u7ad9/\u6296\u97f3/\u5c0f\u7ea2\u4e66/\u89c6\u9891\u53f7/YouTube/X\uff09\uff0c\u98de\u4e66\u5361\u7247\u901a\u77e5 + \u6570\u636e\u5927\u5c4f",
+  "title": "How to automate multi-platform publishing with Maitian",
+  "source_link": "https://github.com/CzzzzzzJ/mdldm-maitian",
+  "theme": "forest",
+  "angle": "tutorial",
+  "scenes": [
+   "hook",
+   "meet",
+   "shot",
+   "grid",
+   "step",
+   "step",
+   "step",
+   "stats",
+   "cta"
+  ],
+  "words": 154,
+  "caption": "How to automate multi-platform publishing with Maitian\n\nLearn how to use Maitian to manage Bilibili, TikTok, YouTube, and more from a single open-source dashboard. This tool automates your content workflow and tracks all your data in one place. Follow for more daily AI tools!\n\n#tutorial #opensource #automation #creatortools #socialmedia #maitian #github #workflow #python #javascript",
+  "thumb": "renders/output/2026-11-27-030041-2.jpg",
+  "status": "queued"
  }
 ]

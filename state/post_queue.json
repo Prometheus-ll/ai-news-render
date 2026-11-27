@@ -1242,5 +1242,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 798718915
+ },
+ {
+  "video": "renders/output/2026-11-27-030041-2.mp4",
+  "caption": "How to automate multi-platform publishing with Maitian\n\nLearn how to use Maitian to manage Bilibili, TikTok, YouTube, and more from a single open-source dashboard. This tool automates your content workflow and tracks all your data in one place. Follow for more daily AI tools!\n\n#tutorial #opensource #automation #creatortools #socialmedia #maitian #github #workflow #python #javascript",
+  "source_link": "https://github.com/CzzzzzzJ/mdldm-maitian",
+  "headline": "mdldm-maitian: \u9ea6\u7530\uff1a\u81ea\u5a92\u4f53\u591a\u5e73\u53f0\u53d1\u5e03\u4e2d\u63a7\u4e0e\u6570\u636e\u76d1\u63a7\uff08B\u7ad9/\u6296\u97f3/\u5c0f\u7ea2\u4e66/\u89c6\u9891\u53f7/YouTube/X\uff09\uff0c\u98de\u4e66\u5361\u7247\u901a\u77e5 + \u6570\u636e\u5927\u5c4f",
+  "thumb": "renders/output/2026-11-27-030041-2.jpg",
+  "added": "2026-11-27 03:02",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 798727755
  }
 ]
