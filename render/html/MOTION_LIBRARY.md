@@ -87,3 +87,6 @@ Any failure falls back to the normal engine scene. Switch off with HYPERFRAMES=0
 Per video, Gemini writes 2 (env `CUSTOM_SCENES`, max 3) brand-new scenes. Each one is rendered and checked like a person would: empty, nothing animates, still moving after p=.55,
 text cut off / under 30px / overlapping / low contrast, then a Gemini vision pass looks at the settled frame. Failures go back with the exact problems (3 tries);
 a scene that never passes is dropped and the library scene stays. Passing scenes are saved to `state/scene_library` (newest 40) and shown to Gemini as quality examples next time.
+
+## Broadcast package layer (style refresh, from lemo-opuscar "Broadcast News Package")
+Applied to every video, in the channel's own colours: slanted channel plate (top-left) that stays on screen, story progress bar (one segment per scene), mono source line with a gold edge, category kicker as a skewed yellow tab, and a vertical **band wipe** between scenes (accent bar + ink line + gold edge) replacing the old fades. Code: CSS block "broadcast package layer", `TRANS='band'` branch in `seek()`, `#bandw`, `#tickbar`.
