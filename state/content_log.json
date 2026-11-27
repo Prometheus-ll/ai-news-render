@@ -3600,5 +3600,27 @@
   "caption": "How to optimize local LLM speed with sybil-solutions inference-optimisation-skill\n\nLearn how to use this free open-source tool to hill-climb your local LLM serving speed using automated benchmarking and agent skills. Boost your tok/s and optimize memory usage today. Follow for more AI tutorials!\n\n#tutorial #opensource #howto #llm #vllm #aiagent #benchmarking #python #machinelearning",
   "thumb": "renders/output/2026-11-26-030400-2.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-27-025715-0.mp4",
+  "ts": "2026-11-27 02:59",
+  "kind": "news",
+  "headline": "Nvidia Halts AI Chip Shipments to Southeast Asia Over China Concerns",
+  "title": "Why Nvidia Just Paused AI Shipments to Southeast Asia",
+  "source_link": "https://techcrunch.com/2026/11/26/nvidia-hits-pause-on-chip-shipments-to-southeast-asia/",
+  "theme": "ember",
+  "angle": "red flags",
+  "scenes": [
+   "slam",
+   "alert",
+   "bignumber",
+   "monitor",
+   "versus",
+   "cta"
+  ],
+  "words": 108,
+  "caption": "Why Nvidia Just Paused AI Shipments to Southeast Asia\n\nNvidia has paused AI server shipments to key Southeast Asian hubs to prevent unauthorized access by China. This move signals a major escalation in global export controls. Follow for more daily AI news.\n\n#ai #nvidia #chips #geopolitics #china #tech #supplychain #breaking",
+  "thumb": "renders/output/2026-11-27-025715-0.jpg",
+  "status": "queued"
  }
 ]

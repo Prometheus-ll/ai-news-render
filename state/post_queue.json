@@ -1231,5 +1231,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 794104516
+ },
+ {
+  "video": "renders/output/2026-11-27-025715-0.mp4",
+  "caption": "Why Nvidia Just Paused AI Shipments to Southeast Asia\n\nNvidia has paused AI server shipments to key Southeast Asian hubs to prevent unauthorized access by China. This move signals a major escalation in global export controls. Follow for more daily AI news.\n\n#ai #nvidia #chips #geopolitics #china #tech #supplychain #breaking",
+  "source_link": "https://techcrunch.com/2026/11/26/nvidia-hits-pause-on-chip-shipments-to-southeast-asia/",
+  "headline": "Nvidia Halts AI Chip Shipments to Southeast Asia Over China Concerns",
+  "thumb": "renders/output/2026-11-27-025715-0.jpg",
+  "added": "2026-11-27 02:59",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 798718915
  }
 ]
