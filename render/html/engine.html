@@ -449,6 +449,20 @@ body{font-family:'PoppinsX','Poppins','Noto Sans',sans-serif;-webkit-font-smooth
 #tickbar i{flex:1;background:rgba(255,255,255,.28);position:relative;overflow:hidden;display:block}
 #tickbar i b{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--plate);display:block}
 .focus #tickbar{display:none}
+
+#strap{position:absolute;left:0;right:0;bottom:600px;height:104px;z-index:25;pointer-events:none;opacity:0}
+#strap .sb{position:absolute;left:54px;right:150px;top:0;height:104px;background:#f4f1e8;transform:skewX(-8deg);box-shadow:8px 8px 0 rgba(0,0,0,.35);overflow:hidden}
+#strap .se{position:absolute;right:54px;top:0;width:110px;height:104px;background:#121417;transform:skewX(-8deg);border-bottom:8px solid var(--plate)}
+#strap .st{position:absolute;left:98px;right:200px;top:0;height:104px;display:flex;align-items:center;font-weight:900;font-size:46px;color:#121417;white-space:nowrap;overflow:hidden;letter-spacing:-.01em}
+#strap .st span{position:absolute;left:0;display:block}
+#strap .sg{position:absolute;left:54px;top:-8px;width:12px;height:112px;background:var(--acc);transform:skewX(-8deg);z-index:2}
+#stamp{position:absolute;right:70px;top:1060px;z-index:26;pointer-events:none;opacity:0;font-weight:900;font-size:78px;letter-spacing:.06em;color:var(--al);border:10px double var(--al);padding:6px 30px;border-radius:10px;text-transform:uppercase;background:rgba(10,14,30,.4)}
+.fliprow{display:flex;justify-content:center;gap:14px}.fliptile{width:150px;height:210px;border-radius:18px;background:#1b1e23;border-top:8px solid var(--plate);color:#f4f1e8;font-weight:900;font-size:150px;line-height:210px;text-align:center;box-shadow:0 14px 30px rgba(0,0,0,.4);position:relative}
+.fliptile:after{content:"";position:absolute;left:0;right:0;top:50%;height:4px;background:rgba(0,0,0,.6)}
+.rdrow{display:flex;align-items:center;gap:26px;padding:0 0 0 0;margin-bottom:26px;opacity:0}
+.rdrow .n{width:96px;height:96px;background:var(--acc);color:#0b1020;font-weight:900;font-size:52px;display:flex;align-items:center;justify-content:center;transform:skewX(-8deg);flex:none}
+.rdrow .t{flex:1;height:96px;background:#121417;color:#f4f1e8;font-weight:800;font-size:40px;display:flex;align-items:center;padding:0 30px;transform:skewX(-8deg);border-top:6px solid var(--plate);white-space:nowrap;overflow:hidden}
+.rdrow .k{width:96px;height:96px;flex:none;font-size:70px;font-weight:900;color:var(--plate);display:flex;align-items:center;justify-content:center;opacity:0}
 </style></head>
 <body><div id="stage">
 <div id="brand"><span class="tile i" id="brandico"></span><span id="brandname"></span></div>
@@ -458,10 +472,12 @@ body{font-family:'PoppinsX','Poppins','Noto Sans',sans-serif;-webkit-font-smooth
 <div id="wipepanel"></div>
 <div id="bandw"><i style="left:0;width:96px;background:var(--acc)"></i><i style="left:96px;width:8px;background:#0b1020"></i><i style="left:104px;width:20px;background:var(--plate)"></i></div>
 <div id="tickbar"></div>
+<div id="strap"><div class="sb"></div><div class="sg"></div><div class="se"></div><div class="st"><span id="s1"></span><span id="s2"></span></div></div>
+<div id="stamp"></div>
 <div id="capw"><div id="cap"></div></div>
 </div>
 <script>
-let RSHOT='',RINFO=null,PLOGO='',anims=[],scenes=[],typers=[],updaters=[],CAPS=[],DARK=new Set(),KICK='pill',TRANS='fade';
+let STRAPS=[],SCN=[],RSHOT='',RINFO=null,PLOGO='',anims=[],scenes=[],typers=[],updaters=[],CAPS=[],DARK=new Set(),KICK='pill',TRANS='fade';
 const stage=document.getElementById('stage');
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -1594,7 +1610,40 @@ function sceneThumb(m,S,D){
   return sc;
 }
 
-const BUILDERS={thumb:sceneThumb,custom:sceneCustom,prompt:scenePrompt,stack:sceneStack,orbit:sceneOrbit,connect:sceneConnect,strikehook:sceneStrikeHook,breaking:sceneBreaking,person:scenePerson,profile:sceneProfile,claims:sceneClaims,watch:sceneWatch,funnel:sceneFunnel,chatdemo:sceneChatDemo,countchips:sceneCountChips,plug:scenePlug,dashboard:sceneDashboard,shift:sceneShift,poll:scenePoll,tasks:sceneTasks,network:sceneNetwork,wordmark:sceneWordmark,morph:sceneMorph,shapes:sceneShapes,bars:sceneBars,kinetic:sceneKinetic,command:sceneCommand,tabs:sceneTabs,mark:sceneMark,say:sceneSay,end:sceneSay,stat:sceneStat,icon:sceneIconFx,name:sceneName,code:sceneCode,phases:scenePhases,cycle:sceneCycle,stars:sceneStars,repohook:sceneRepoHook,reveal:sceneReveal,screenshot:sceneScreenshot,appclutter:sceneAppClutter,profile:sceneProfile,hubmap:sceneHubMap,roundup:sceneRoundup,hook:sceneHook,slam:sceneSlam,terminal:sceneTerminal,alert:sceneAlert,timeline:sceneTimeline,monitor:sceneMonitor,cta:sceneCTA,
+
+/* ===== broadcast scenes: flip board + rundown ===== */
+function sceneFlip(m,S,D){
+  const sc=moScene(m,S),st=cyStage(sc);
+  const title=nofs(m.title)||'The number changed',o=String(nofs(m.old)||'$15').slice(0,5),n=String(nofs(m.new)||'$3').slice(0,5),note=nofs(m.note)||'';
+  const L=Math.max(o.length,n.length),tw=Math.min(150,Math.floor(900/L)-14);
+  const tt=cyText(st,10,esc(title),Math.min(92,cyFit(title,900,92)*1.2),'cygr');
+  const row=H(`<div class="fliprow" style="position:absolute;left:0;right:0;top:360px;opacity:0">${Array.from({length:L},()=>`<div class="fliptile" style="width:${tw}px;font-size:${Math.floor(tw*1.0)}px"></div>`).join('')}</div>`);st.appendChild(row);
+  const tiles=[...row.children],po=o.padStart(L,' '),pn=n.padStart(L,' ');
+  const nt=cyText(st,680,esc(note),Math.min(80,cyFit(note||'x',900,80)),'');nt.style.color='var(--plate)';nt.style.fontWeight='900';
+  const t0=S+D*.34;
+  updaters.push(t=>{
+    cyIn(tt,t,S+.05);cyIn(row,t,S+.15);cyIn(nt,t,t0+.6);
+    tiles.forEach((e,i)=>{const u=(t-(t0+i*.07))/.28,old=u<.5;e.textContent=(old?po:pn)[i].trim();
+      const k=u<=0?1:u>=1?1:Math.abs(1-2*u);e.style.transform=`scaleY(${Math.max(.02,k).toFixed(3)})`;});
+  });
+  return sc;
+}
+function sceneRundown(m,S,D){
+  const sc=moScene(m,S),st=cyStage(sc);
+  const items=(m.items||[]).slice(0,5);
+  const tt=cyText(st,0,'TODAY IN AI',92,'cygr');
+  const box=H(`<div style="position:absolute;left:0;right:0;top:230px">${items.map((x,i)=>`<div class="rdrow"><div class="n">${i+1}</div><div class="t">${esc(x)}</div><div class="k">✓</div></div>`).join('')}</div>`);st.appendChild(box);
+  const rows=[...box.children];
+  updaters.push(t=>{
+    cyIn(tt,t,S+.03);
+    rows.forEach((r,i)=>{const p=E_OUT(clamp((t-S-D*(.04+i*.07))/(D*.2)));r.style.opacity=clamp(p*1.6);r.style.transform=`translateX(${(1-p)*-140}px)`;
+      r.lastElementChild.style.opacity=clamp((t-(S+D*(.3+i*.12)))/.08);});
+  });
+  return sc;
+}
+const NOSTRAP=new Set(['hook','slam','appclutter','strikehook','thumb','cta','end','rundown','repohook']);
+function strapText(s){let x=s.strap||(s.value&&s.label?s.value+' '+s.label:'')||s.headline||s.title||s.text||(s.lines&&s.lines[0])||s.label||s.kicker||'';x=String(x).replace(/\s+/g,' ').trim();return x.length>34?x.slice(0,33).replace(/\s+\S*$/,'')+'…':x;}
+const BUILDERS={flip:sceneFlip,rundown:sceneRundown,thumb:sceneThumb,custom:sceneCustom,prompt:scenePrompt,stack:sceneStack,orbit:sceneOrbit,connect:sceneConnect,strikehook:sceneStrikeHook,breaking:sceneBreaking,person:scenePerson,profile:sceneProfile,claims:sceneClaims,watch:sceneWatch,funnel:sceneFunnel,chatdemo:sceneChatDemo,countchips:sceneCountChips,plug:scenePlug,dashboard:sceneDashboard,shift:sceneShift,poll:scenePoll,tasks:sceneTasks,network:sceneNetwork,wordmark:sceneWordmark,morph:sceneMorph,shapes:sceneShapes,bars:sceneBars,kinetic:sceneKinetic,command:sceneCommand,tabs:sceneTabs,mark:sceneMark,say:sceneSay,end:sceneSay,stat:sceneStat,icon:sceneIconFx,name:sceneName,code:sceneCode,phases:scenePhases,cycle:sceneCycle,stars:sceneStars,repohook:sceneRepoHook,reveal:sceneReveal,screenshot:sceneScreenshot,appclutter:sceneAppClutter,profile:sceneProfile,hubmap:sceneHubMap,roundup:sceneRoundup,hook:sceneHook,slam:sceneSlam,terminal:sceneTerminal,alert:sceneAlert,timeline:sceneTimeline,monitor:sceneMonitor,cta:sceneCTA,
   bignumber:sceneBigNumber,versus:sceneVersus,leaderboard:sceneBoard,chat:sceneChat,quote:sceneQuote,checklist:sceneChecklist};
 
 /* ================= themes ================= */
@@ -1624,6 +1673,9 @@ window.build=function(M){
   PLOGO=M.product_logo||'';RSHOT=M.repo_shot||'';RINFO=M.repo_info||null;{const pl=document.getElementById('plogo');if(PLOGO){document.getElementById('plimg').src=PLOGO;pl.style.display='block';}}
   document.getElementById('src').textContent=M.source?('SOURCE · '+M.source.toUpperCase()):'';
   CAPS=M.captions||[];
+  STRAPS=M.scenes.map(s=>NOSTRAP.has(s.type)?'':strapText(s));
+  M.scenes.forEach(s=>{if(s.type==='rundown')s.items=STRAPS.filter(Boolean).slice(0,5);});
+  SCN=M.scenes;
   M.scenes.forEach((s,i)=>{
     const b=BUILDERS[s.type];if(!b)return;
     s.idx=i+1;s.n=M.scenes.length;
@@ -1669,6 +1721,19 @@ window.seek=function(t){
   if(TRANS==='band'){const bw=document.getElementById('bandw');let bx=-200;for(const sc of scenes){const s0=+sc.dataset.s;if(s0<=0)continue;const u=(t-(s0-.15))/.3;if(u>0&&u<1)bx=E_INOUT(u)*(1080+124)-124;}
     bw.style.display=bx>-200?'block':'none';bw.style.left=bx+'px';
     [...document.getElementById('tickbar').children].forEach((c,i)=>{const sc=scenes[i];if(!sc)return;const s0=+sc.dataset.s,e0=+sc.dataset.e;c.firstElementChild.style.width=(clamp((t-s0)/Math.max(.1,e0-s0))*100).toFixed(1)+'%';});}
+  {const str=document.getElementById('strap'),stp=document.getElementById('stamp'),br=document.getElementById('brand');
+   const bk=clamp(t/.35);br.style.transform=`translateX(${((1-E_OUT(bk))*-620).toFixed(1)}px)`;
+   let ci=-1;for(let i=0;i<scenes.length;i++){if(t>=+scenes[i].dataset.s-.001&&t<+scenes[i].dataset.e)ci=i;}
+   const tx=ci>=0?STRAPS[ci]:'';
+   if(tx&&ci>0){const s0=+scenes[ci].dataset.s,u=clamp((t-s0)/.32),e1=document.getElementById('s1'),e2=document.getElementById('s2');
+     // flip: previous words leave upward, new words rise in
+     let prev=''; for(let j=ci-1;j>=0;j--){if(STRAPS[j]){prev=STRAPS[j];break;}}
+     e1.textContent=tx;e2.textContent=prev;const k=E_OUT(u);
+     e1.style.transform=`translateY(${((1-k)*70).toFixed(1)}px)`;e1.style.opacity=k;e2.style.transform=`translateY(${(-k*70).toFixed(1)}px)`;e2.style.opacity=1-k;
+     str.style.opacity=Math.min(1,u*3+.0)*(t<s0+.0?0:1);}
+   else str.style.opacity=0;
+   let sx='',sa=0;if(ci>=0){const m=SCN[ci];if(m&&m.stamp){const s0=+scenes[ci].dataset.s,D=+scenes[ci].dataset.e-s0,t1=s0+D*.62,u=(t-t1)/.18;if(u>0){sx=String(m.stamp).toUpperCase();const k=clamp(u);sa=1;stp.style.transform=`rotate(-8deg) scale(${(1+ (1-E_OUT(k))*.9).toFixed(3)})`;stp.style.opacity=clamp(k*3);}}}
+   if(sx){if(stp.textContent!==sx)stp.textContent=sx;}else stp.style.opacity=0;}
   updaters.forEach(u=>u(t));
   typers.forEach(ty=>{
     const lt=t-ty.t0,n=Math.max(0,Math.min(ty.full.length,Math.floor(lt*ty.cps)));

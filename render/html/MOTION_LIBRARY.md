@@ -90,3 +90,10 @@ a scene that never passes is dropped and the library scene stays. Passing scenes
 
 ## Broadcast package layer (style refresh, from lemo-opuscar "Broadcast News Package")
 Applied to every video, in the channel's own colours: slanted channel plate (top-left) that stays on screen, story progress bar (one segment per scene), mono source line with a gold edge, category kicker as a skewed yellow tab, and a vertical **band wipe** between scenes (accent bar + ink line + gold edge) replacing the old fades. Code: CSS block "broadcast package layer", `TRANS='band'` branch in `seek()`, `#bandw`, `#tickbar`.
+
+### Broadcast package, part 2
+- **Headline strap** (`#strap`): paper bar above the captions, words flip per scene; text auto-derived by `strapText()` (strap > value+label > headline > title > text > lines[0] > label > kicker). Hidden on hook/cta/rundown scenes.
+- **Verdict stamp**: optional `stamp` on any scene (one per video), lands at 62% of the scene.
+- **`flip` scene**: split-flap board, old value flips to new (`old`,`new`,`title`,`note`).
+- **`rundown` scene**: auto-inserted before the CTA when a video has 4+ story scenes; lists strap headlines and ticks them off.
+- Sound: plate slam at 0, flip clicks, stamp thump, rundown ticks (`render/soundtrack.py`).

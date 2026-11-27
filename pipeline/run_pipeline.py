@@ -278,7 +278,7 @@ HOOK_TYPES = ["hook", "slam", "appclutter", "strikehook"]
 REPO_HOOK = "repohook"
 MID_TYPES = ["terminal", "alert", "timeline", "monitor", "bignumber", "versus", "leaderboard", "chat", "quote", "checklist",
              "profile", "hubmap", "roundup", "reveal", "phases", "cycle", "stars",
-             "bars", "command", "tabs", "prompt", "stack", "orbit", "connect", "tasks", "network", "funnel", "chatdemo", "countchips", "plug", "dashboard", "shift", "poll", "breaking", "person", "profile", "claims", "watch"]
+             "bars", "command", "tabs", "prompt", "stack", "orbit", "connect", "tasks", "network", "funnel", "chatdemo", "countchips", "plug", "dashboard", "shift", "poll", "flip", "breaking", "person", "profile", "claims", "watch"]
 THEMES = ["indigo", "ember", "forest", "ocean", "neon", "signal", "mint", "paper"]
 TRANSITIONS = ["fade", "slide", "zoom", "wipe", "panel"]
 MODE_PATTERNS = ["alternate_light", "alternate_dark", "light_then_dark", "dark_then_light"]
@@ -363,6 +363,8 @@ chatdemo (a prompt is typed, the assistant answers with 1-2 result cards): {"typ
 countchips (a REAL number counts up, partner names pop in): {"type":"countchips","kicker":"2-3 words CAPS","number":"digits only, a figure from the story","suffix":"+ or % or x","label":"max 30 chars","chips":["2-4 REAL names, max 12 chars"],"foot":"max 56 chars","narration":"..."}
 plug (two things joined by one standard, three steps): {"type":"plug","kicker":"2-3 words CAPS","title":["1-2 lines, max 14 chars"],"left":"max 14 chars","right":"max 16 chars","badge":"max 8 chars, the standard's name","definition":"max 80 chars","steps":["up to 3 words, max 10 chars"],"narration":"..."}
 dashboard (an account card with 2-3 meters and a switch): {"type":"dashboard","kicker":"2-3 words CAPS","name":"max 20 chars","sub":"max 40 chars","meters":[{"label":"max 14 chars","value":0-100}  (2-3)],"tabs":["2-3 labels, max 10 chars"],"on":0-2,"narration":"..."}
+flip (split-flap board, old value flips to new value; only for a real before/after number from the story): {"type":"flip","kicker":"2-3 words CAPS","title":"max 30 chars","old":"max 5 chars e.g. $15","new":"max 5 chars e.g. $3","note":"max 24 chars e.g. 5x cheaper","narration":"..."}
+OPTIONAL on ANY scene: "stamp":"ONE word max 10 chars, e.g. CONFIRMED / NEW / WATCH" - a verdict rubber stamp, at most ONE scene per video.
 shift (old multi-step way struck out, new one-step way): {"type":"shift","kicker":"2-3 words CAPS","title":"max 24 chars","before":["3-4 old steps, max 14 chars"],"ask":"max 10 chars","done":"max 10 chars","narration":"..."}
 poll (closing question with two buttons): {"type":"poll","kicker":"2-3 words CAPS","question":["1-3 lines, max 14 chars each"],"yes":"YES","no":"NO","prompt":"max 30 chars","pill":"max 28 chars","narration":"..."}
 breaking (NEWS ONLY, an early scene for a breaking event: red pill, giant headline, one big number): {"type":"breaking","pill":"BREAKING NEWS (max 20)","lines":["2-3 short lines, max 12 chars each, the last is highlighted"],"number":"digits only, a real figure from the story, or empty","suffix":"max 3 chars","sub":"max 44 chars","narration":"..."}
@@ -1151,7 +1153,12 @@ def _san_wordmark(x):
     return {"name": _nofs(x.get("name"), 20) or CHANNEL_NAME}
 
 
-SANITIZERS = {"breaking": _san_breaking, "person": _san_person, "profile": _san_profile, "claims": _san_claims, "watch": _san_watch, "strikehook": _san_strikehook, "funnel": _san_funnel, "chatdemo": _san_chatdemo, "countchips": _san_countchips, "plug": _san_plug, "dashboard": _san_dashboard, "shift": _san_shift, "poll": _san_poll, "connect": _san_connect, "tasks": _san_tasks, "network": _san_network, "prompt": _san_prompt, "stack": _san_stack, "orbit": _san_orbit, "wordmark": _san_wordmark, "morph": _san_morph, "shapes": _san_shapes, "bars": _san_bars, "command": _san_command,
+def _san_flip(x):
+    return {"kicker": _clip(x.get("kicker"), 28), "title": _nofs(x.get("title"), 30) or "The number changed", "old": _nofs(x.get("old"), 5) or "$15",
+            "new": _nofs(x.get("new"), 5) or "$3", "note": _nofs(x.get("note"), 24)}
+
+
+SANITIZERS = {"flip": _san_flip, "breaking": _san_breaking, "person": _san_person, "profile": _san_profile, "claims": _san_claims, "watch": _san_watch, "strikehook": _san_strikehook, "funnel": _san_funnel, "chatdemo": _san_chatdemo, "countchips": _san_countchips, "plug": _san_plug, "dashboard": _san_dashboard, "shift": _san_shift, "poll": _san_poll, "connect": _san_connect, "tasks": _san_tasks, "network": _san_network, "prompt": _san_prompt, "stack": _san_stack, "orbit": _san_orbit, "wordmark": _san_wordmark, "morph": _san_morph, "shapes": _san_shapes, "bars": _san_bars, "command": _san_command,
               "tabs": _san_tabs, "mark": _san_mark, "hook": _san_hook, "slam": _san_slam, "terminal": _san_terminal, "alert": _san_alert, "timeline": _san_timeline,
               "monitor": _san_monitor, "bignumber": _san_bignumber, "versus": _san_versus, "leaderboard": _san_leaderboard,
               "chat": _san_chat, "quote": _san_quote, "checklist": _san_checklist, "cta": _san_cta,
@@ -1282,7 +1289,15 @@ def script_to_manifest(script, story=None, recent=None):
         sc = {"type": t, "mode": modes[i], **SANITIZERS[t](x), "narration": str(x["narration"]).strip()}
         if x.get("_beat"):
             sc["beat"] = True
+        if x.get("stamp") and not any(q.get("stamp") for q in scenes):
+            st = re.sub(r"[^A-Za-z0-9 !?+%$-]", "", str(x["stamp"])).strip()[:10]
+            if st:
+                sc["stamp"] = st.upper()
         scenes.append(sc)
+    mids = [q for q in scenes if q["type"] not in ("hook", "slam", "appclutter", "strikehook", "cta", REPO_HOOK)]
+    if len(mids) >= 4:                                  # news-bulletin recap: the stories listed and ticked off, just before the CTA
+        ci = max((i for i, q in enumerate(scenes) if q["type"] == "cta"), default=len(scenes))
+        scenes.insert(ci, {"type": "rundown", "mode": "dark", "kicker": "", "narration": "So that's your rundown for today."})
     pr = script.get("product") if isinstance(script.get("product"), dict) else {}
     product = {"name": _clip(pr.get("name"), 30), "domain": re.sub(r"[^a-z0-9.\-]", "", str(pr.get("domain") or "").lower().replace("https://", "").replace("www.", "").split("/")[0]),
                "slug": re.sub(r"[^a-z0-9]", "", str(pr.get("simple_icon") or "").lower())}

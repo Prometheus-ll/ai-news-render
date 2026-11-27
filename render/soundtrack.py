@@ -228,6 +228,10 @@ def scene_sfx(fx, sc, rng, first):
     if sc.get('data') is not None:                       # explainer (paper engine) scenes
         paper_sfx(fx, sc, rng, S, D)
         return
+    if sc.get('stamp'):
+        fx.put(thump(), S + D * .62, .45); fx.put(click(), S + D * .62 + .02, .30)
+    if first:
+        fx.put(thump(), .06, .40); fx.put(chime(1318.5, .8), .1, .12)      # channel plate slams in
     if ty == 'morph':
         tc = S + min(D * .2, .9); tl = tc + .05; tk = tl + max(.55, D * .2); tr = tk + max(.5, D * .17)
         fx.put(click(), tc, .5); fx.put(thump(), tc, .22); fx.put(tick(900), tl + .05, .12)
@@ -273,6 +277,14 @@ def scene_sfx(fx, sc, rng, first):
         for k in range(3):
             fx.put(pop(620 + 120 * k), S + .4 + k * (D / 5), .11)
         fx.put(chime(880, .6), S + D * .72, .12)
+    elif ty == 'flip':
+        t0 = S + D * .34
+        for i in range(4):
+            fx.put(click(), t0 + i * .07, .30); fx.put(tick(1800), t0 + i * .07 + .14, .10)
+        fx.put(chime(1174.7, .7), t0 + .5, .14)
+    elif ty == 'rundown':
+        for i in range(5):
+            fx.put(pop(500 + 90 * i), S + D * (.04 + i * .07), .10); fx.put(chime(1318.5 + 110 * i, .5), S + D * (.3 + i * .12), .09)
     elif ty == 'orbit':
         fx.put(whoosh(rng, .6, .4), S - .05, .14); fx.put(chime(880, .6), S + D * .0 + .5, .12)
         fx.put(whoosh(rng, .5), S + D * .5 - .05, .16); fx.put(pop(700), S + D * .5 + .45, .12)
