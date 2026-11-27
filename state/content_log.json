@@ -3580,7 +3580,15 @@
   "words": 107,
   "caption": "Meta just open-sourced Astryx: The AI-ready design system\n\nMeta released Astryx, the design system powering 13,000 of their internal apps. It features 150 components and is built specifically for AI agents to use. Follow for more AI news.\n\n#ai #opensource #github #meta #astryx #coding #webdev #react #typescript",
   "thumb": "renders/output/2026-11-26-030131-1.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-27 12:07",
+  "fb_id": "2176590293232294",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "2176590293232294"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-26-030400-2.mp4",
