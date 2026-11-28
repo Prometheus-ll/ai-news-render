@@ -3678,7 +3678,15 @@
   "words": 154,
   "caption": "How to automate multi-platform publishing with Maitian\n\nLearn how to use Maitian to manage Bilibili, TikTok, YouTube, and more from a single open-source dashboard. This tool automates your content workflow and tracks all your data in one place. Follow for more daily AI tools!\n\n#tutorial #opensource #automation #creatortools #socialmedia #maitian #github #workflow #python #javascript",
   "thumb": "renders/output/2026-11-27-030041-2.jpg",
-  "status": "queued"
+  "status": "posted",
+  "posted_at": "2026-11-28 11:36",
+  "fb_id": "1520213989955145",
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "id": "1520213989955145"
+   }
+  }
  },
  {
   "video": "renders/output/2026-11-28-024442-0.mp4",

@@ -1,25 +1,5 @@
 [
  {
-  "video": "renders/output/2026-11-04-074019-2.mp4",
-  "caption": "How to install ECC: The agent harness performance optimization system\n\nLearn how to give your AI agents a professional engineering toolbox with ECC. Follow this step-by-step guide to install the open-source system used by thousands.\n\n#tutorial #opensource #howto #claude #cursor #aiagents #developer #javascript #coding",
-  "source_link": "https://github.com/affaan-m/ECC",
-  "headline": "ECC: The agent harness performance optimization system. Skills, instincts, memory, security, and research-firs",
-  "thumb": "renders/output/2026-11-04-074019-2.jpg",
-  "added": "2026-11-04 07:42",
-  "status": "posted",
-  "attempts": 0,
-  "platforms": {
-   "facebook": {
-    "status": "posted",
-    "attempts": 0,
-    "id": "2445638372840840",
-    "at": "2026-11-05 10:41"
-   }
-  },
-  "posted_at": "2026-11-05 10:41",
-  "fb_id": "2445638372840840"
- },
- {
   "video": "renders/output/2026-11-05-075203-0.mp4",
   "caption": "Anthropic FlashProve: Cryptographic Verification for AI Models\n\nAnthropic has unveiled FlashProve, an open-source system that uses cryptography to verify the identity of AI models. It prevents model swapping and ensures trust through mathematical guarantees. Follow for more AI news.\n\n#ai #anthropic #flashprove #cryptography #infosec #tech #cybersecurity #llm",
   "source_link": "https://techcrunch.com/2026/11/03/anthropic-is-working-on-a-system-to-prove-ai-models-identity/",
@@ -1206,9 +1186,18 @@
   "headline": "mdldm-maitian: \u9ea6\u7530\uff1a\u81ea\u5a92\u4f53\u591a\u5e73\u53f0\u53d1\u5e03\u4e2d\u63a7\u4e0e\u6570\u636e\u76d1\u63a7\uff08B\u7ad9/\u6296\u97f3/\u5c0f\u7ea2\u4e66/\u89c6\u9891\u53f7/YouTube/X\uff09\uff0c\u98de\u4e66\u5361\u7247\u901a\u77e5 + \u6570\u636e\u5927\u5c4f",
   "thumb": "renders/output/2026-11-27-030041-2.jpg",
   "added": "2026-11-27 03:02",
-  "status": "pending",
+  "status": "posted",
   "attempts": 0,
-  "asset_id": 798727755
+  "platforms": {
+   "facebook": {
+    "status": "posted",
+    "attempts": 0,
+    "id": "1520213989955145",
+    "at": "2026-11-28 11:36"
+   }
+  },
+  "posted_at": "2026-11-28 11:36",
+  "fb_id": "1520213989955145"
  },
  {
   "video": "renders/output/2026-11-28-024442-0.mp4",
