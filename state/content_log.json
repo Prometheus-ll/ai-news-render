@@ -3671,5 +3671,29 @@
   "caption": "How to automate multi-platform publishing with Maitian\n\nLearn how to use Maitian to manage Bilibili, TikTok, YouTube, and more from a single open-source dashboard. This tool automates your content workflow and tracks all your data in one place. Follow for more daily AI tools!\n\n#tutorial #opensource #automation #creatortools #socialmedia #maitian #github #workflow #python #javascript",
   "thumb": "renders/output/2026-11-27-030041-2.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-28-024442-0.mp4",
+  "ts": "2026-11-28 02:48",
+  "kind": "news",
+  "headline": "State AGs Block Character.AI from Auctioning 21 Million Private User Chats",
+  "title": "State AGs Block Character.AI from Selling 21 Million User Chats",
+  "source_link": "https://techcrunch.com/2026/11/25/state-ags-fight-character-ais-plan-to-auction-off-users-private-chats/",
+  "theme": "forest",
+  "angle": "red flags",
+  "scenes": [
+   "hook",
+   "slam",
+   "reveal",
+   "terminal",
+   "phases",
+   "checklist",
+   "rundown",
+   "cta"
+  ],
+  "words": 106,
+  "caption": "State AGs Block Character.AI from Selling 21 Million User Chats\n\n42 state attorneys general are fighting to stop Character.AI from selling private chat logs during bankruptcy. The data includes sensitive info from over 2 million minors. Follow for daily AI privacy updates.\n\n#ai #characterai #privacy #databreach #legal #tech #security #ainews",
+  "thumb": "renders/output/2026-11-28-024442-0.jpg",
+  "status": "queued"
  }
 ]

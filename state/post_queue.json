@@ -1220,5 +1220,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 798727755
+ },
+ {
+  "video": "renders/output/2026-11-28-024442-0.mp4",
+  "caption": "State AGs Block Character.AI from Selling 21 Million User Chats\n\n42 state attorneys general are fighting to stop Character.AI from selling private chat logs during bankruptcy. The data includes sensitive info from over 2 million minors. Follow for daily AI privacy updates.\n\n#ai #characterai #privacy #databreach #legal #tech #security #ainews",
+  "source_link": "https://techcrunch.com/2026/11/25/state-ags-fight-character-ais-plan-to-auction-off-users-private-chats/",
+  "headline": "State AGs Block Character.AI from Auctioning 21 Million Private User Chats",
+  "thumb": "renders/output/2026-11-28-024442-0.jpg",
+  "added": "2026-11-28 02:48",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 802952246
  }
 ]

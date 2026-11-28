@@ -1,29 +1,5 @@
 [
  {
-  "ts": "2026-11-13 01:06",
-  "pack": "Conversation",
-  "theme": "ocean",
-  "transition": "fade",
-  "angle": "the big question",
-  "hook": null,
-  "scenes": [
-   "slam",
-   "reveal",
-   "quote",
-   "versus",
-   "custom",
-   "cta"
-  ],
-  "kind": "news",
-  "headline": "Jensen Huang Resigns as Nvidia CEO Amidst Espionage Investigation and Leadership",
-  "link": "https://techcrunch.com/2026/11/12/jensen-huang-is-out-at-nvidia-who-is-colette-kress-his-interim-replacement/",
-  "motion_refs": [
-   "techyoutbe-588678",
-   "woojinrad-455731",
-   "egawa-ai-design-092323"
-  ]
- },
- {
   "ts": "2026-11-13 01:13",
   "pack": "Systems Map",
   "theme": "indigo",
@@ -930,5 +906,27 @@
   "kind": "tutorial",
   "headline": "mdldm-maitian: \u9ea6\u7530\uff1a\u81ea\u5a92\u4f53\u591a\u5e73\u53f0\u53d1\u5e03\u4e2d\u63a7\u4e0e\u6570\u636e\u76d1\u63a7\uff08B\u7ad9/\u6296\u97f3/\u5c0f\u7ea2\u4e66/\u89c6\u9891\u53f7/YouTube/X\uff09\uff0c\u98de\u4e66\u5361\u7247\u901a\u77e5 + \u6570\u636e\u5927\u5c4f",
   "link": "https://github.com/CzzzzzzJ/mdldm-maitian"
+ },
+ {
+  "ts": "2026-11-28 02:42",
+  "pack": "Terminal Ops",
+  "theme": "forest",
+  "transition": "wipe",
+  "angle": "red flags",
+  "hook": null,
+  "scenes": [
+   "hook",
+   "slam",
+   "reveal",
+   "terminal",
+   "phases",
+   "checklist",
+   "rundown",
+   "cta"
+  ],
+  "kind": "news",
+  "headline": "State AGs Block Character.AI from Auctioning 21 Million Private User Chats",
+  "link": "https://techcrunch.com/2026/11/25/state-ags-fight-character-ais-plan-to-auction-off-users-private-chats/",
+  "motion_refs": []
  }
 ]
