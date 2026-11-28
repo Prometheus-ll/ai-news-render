@@ -1242,5 +1242,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 802968279
+ },
+ {
+  "video": "renders/output/2026-11-28-025521-2.mp4",
+  "caption": "How to run the tiny 100% Assembly LLM engine: llm.asm\n\nLearn how to run llm.asm, a project featuring an LLM inference engine and OS written entirely in NASM assembly. No C, no dependencies, just pure performance. Follow for more AI tutorials!\n\n#tutorial #opensource #howto #assembly #nasm #machinelearning #lowlevel #coding #aiquantum",
+  "source_link": "https://github.com/alesha-pro/llm.asm",
+  "headline": "llm.asm: Qwen3-0.6B inference (12 KB), bare-metal bootable OS (22 KB), and from-scratch Mini-GPT trainer with ",
+  "thumb": "renders/output/2026-11-28-025521-2.jpg",
+  "added": "2026-11-28 02:57",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 802973663
  }
 ]
