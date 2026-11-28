@@ -1,25 +1,5 @@
 [
  {
-  "ts": "2026-11-13 01:13",
-  "pack": "Systems Map",
-  "theme": "indigo",
-  "transition": "slide",
-  "angle": "solution",
-  "hook": null,
-  "scenes": [
-   "repohook",
-   "reveal",
-   "stack",
-   "hubmap",
-   "terminal",
-   "cta"
-  ],
-  "kind": "repo",
-  "headline": "llama.cpp: LLM inference in C/C++",
-  "link": "https://github.com/ggml-org/llama.cpp",
-  "motion_refs": []
- },
- {
   "ts": "2026-11-14 00:55",
   "pack": "Playbook Steps",
   "theme": "paper",
@@ -927,6 +907,28 @@
   "kind": "news",
   "headline": "State AGs Block Character.AI from Auctioning 21 Million Private User Chats",
   "link": "https://techcrunch.com/2026/11/25/state-ags-fight-character-ais-plan-to-auction-off-users-private-chats/",
+  "motion_refs": []
+ },
+ {
+  "ts": "2026-11-28 02:48",
+  "pack": "Data Story",
+  "theme": "signal",
+  "transition": "slide",
+  "angle": "solution",
+  "hook": null,
+  "scenes": [
+   "repohook",
+   "slam",
+   "reveal",
+   "terminal",
+   "bignumber",
+   "monitor",
+   "rundown",
+   "cta"
+  ],
+  "kind": "repo",
+  "headline": "obsidian-skills: Teach your agent to use Obsidian and open formats including Mar",
+  "link": "https://github.com/obsidianmd/obsidian-skills",
   "motion_refs": []
  }
 ]

@@ -1231,5 +1231,16 @@
   "status": "pending",
   "attempts": 0,
   "asset_id": 802952246
+ },
+ {
+  "video": "renders/output/2026-11-28-025143-1.mp4",
+  "caption": "Teach Your AI Agent to Manage Your Obsidian Vault\n\nLearn how to connect Claude, ChatGPT, and Cursor to your Obsidian vault using this viral open-source project. This MIT-licensed tool allows agents to edit Markdown and JSON Canvas files directly. Follow for daily AI news.\n\n#ai #obsidian #opensource #github #productivity #llm #claude #chatgpt",
+  "source_link": "https://github.com/obsidianmd/obsidian-skills",
+  "headline": "obsidian-skills: Teach your agent to use Obsidian and open formats including Markdown, Bases, JSON Canvas.",
+  "thumb": "renders/output/2026-11-28-025143-1.jpg",
+  "added": "2026-11-28 02:54",
+  "status": "pending",
+  "attempts": 0,
+  "asset_id": 802968279
  }
 ]

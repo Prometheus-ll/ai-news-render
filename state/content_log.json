@@ -3695,5 +3695,29 @@
   "caption": "State AGs Block Character.AI from Selling 21 Million User Chats\n\n42 state attorneys general are fighting to stop Character.AI from selling private chat logs during bankruptcy. The data includes sensitive info from over 2 million minors. Follow for daily AI privacy updates.\n\n#ai #characterai #privacy #databreach #legal #tech #security #ainews",
   "thumb": "renders/output/2026-11-28-024442-0.jpg",
   "status": "queued"
+ },
+ {
+  "video": "renders/output/2026-11-28-025143-1.mp4",
+  "ts": "2026-11-28 02:54",
+  "kind": "repo",
+  "headline": "obsidian-skills: Teach your agent to use Obsidian and open formats including Markdown, Bases, JSON Canvas.",
+  "title": "Teach Your AI Agent to Manage Your Obsidian Vault",
+  "source_link": "https://github.com/obsidianmd/obsidian-skills",
+  "theme": "signal",
+  "angle": "solution",
+  "scenes": [
+   "repohook",
+   "slam",
+   "reveal",
+   "terminal",
+   "bignumber",
+   "monitor",
+   "rundown",
+   "cta"
+  ],
+  "words": 87,
+  "caption": "Teach Your AI Agent to Manage Your Obsidian Vault\n\nLearn how to connect Claude, ChatGPT, and Cursor to your Obsidian vault using this viral open-source project. This MIT-licensed tool allows agents to edit Markdown and JSON Canvas files directly. Follow for daily AI news.\n\n#ai #obsidian #opensource #github #productivity #llm #claude #chatgpt",
+  "thumb": "renders/output/2026-11-28-025143-1.jpg",
+  "status": "queued"
  }
 ]
